@@ -58,6 +58,10 @@ M.telescope = {
          "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
          { desc = "Telescope all files" },
       },
+      ["<leader>fn"] = {
+         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
+         { desc = "Telescope Neovim config files" },
+      },
       ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", { desc = "Telescope grep" } },
       ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", { desc = "Telescope buffers" } },
       ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope help tags" } },

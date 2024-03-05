@@ -48,7 +48,9 @@ return {
 
          local lspconfig = require("lspconfig")
          local util = require("lspconfig.util")
-         local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+         local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+         lsp_capabilities =
+            vim.tbl_deep_extend("force", lsp_capabilities, require("cmp_nvim_lsp").default_capabilities())
 
          local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
          local lsp_format_on_save = require("core.util").format_on_save(augroup)

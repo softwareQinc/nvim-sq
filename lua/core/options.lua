@@ -22,6 +22,8 @@ M = {
       cursorline = true,
       undofile = true,
       hlsearch = true,
+      showmode = false, -- we have lualine
+      mouse = "a",
       -- colorcolumn = "80,120",
       -- ignorecase = true,
    },
