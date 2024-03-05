@@ -1,0 +1,4 @@
+indent_type = "Spaces"
+column_width = 120
+# https://github.com/luarocks/lua-style-guide?tab=readme-ov-file#indentation-and-formatting
+indent_width = 3
