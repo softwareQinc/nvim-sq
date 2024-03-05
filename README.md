@@ -4,7 +4,7 @@ Custom Neovim configuration for the organization
 
 ## Installation
 
-Install `neovim` using your favourite package manager, e.g., on macOS,
+Install Neovim using your favourite package manager, e.g., on macOS,
 
 ```shell
 brew install nvim
@@ -31,7 +31,7 @@ Finally, install all Mason dependencies by executing in Command Mode:
 
 ## Terminal
 
-Install iTerm2 (`brew install iterm2` on macOS) and use nvim from within;
+Install iTerm2 (`brew install iterm2` on macOS) and use Neovim from within;
 on macOS, the vanilla Terminal does not support TrueColor and further advanced
 configurations.
 
@@ -42,7 +42,7 @@ system.
 
 ## GNU sed
 
-When starting `nvim` on macOS, you may get a message about `gnu-sed` being
+When starting Neovim on macOS, you may get a message about `gnu-sed` being
 required. Install `gnu-sed` with
 
 ```shell
@@ -51,14 +51,14 @@ brew install gnu-sed
 
 ## GUI
 
-If you prefer a GUI neovim client, install [Neovide](https://neovide.dev/)
+If you prefer a GUI Neovim client, install [Neovide](https://neovide.dev/)
 (`brew install neovide` on macOS).
 
 ---
 
 ## Issues
 
-From neovim, run `:checkhealth` in case you are getting warnings/errors
+From Neovim, run `:checkhealth` in case you are getting warnings/errors
 and/or there are missing packages required for this configuration.
 
 ### npm
