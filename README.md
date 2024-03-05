@@ -2,7 +2,7 @@
 
 Custom Neovim configuration for the organization
 
-## Installation:
+## Installation
 
 Install `neovim` using your favourite package manager, e.g., on macOS,
 
