@@ -74,7 +74,6 @@ return {
                "pyright",
                "ruff_lsp",
                "cmake",
-               "rust_analyzer",
                "marksman",
                "gopls",
                "hls",
