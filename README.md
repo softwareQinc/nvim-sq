@@ -23,7 +23,7 @@ Finally, launch Neovim by executing
 nvim
 ```
 
-Finally, install all Mason dependencies by executing in Command Mode:
+Finally, install all Mason dependencies by executing in Command Mode
 
 ```
 :MasonEnsureInstalled
@@ -121,4 +121,4 @@ codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ### haskell-language-server
 
 Ensure that `ghcup` is installed, see
-[https://www.haskell.org/ghcup/install/](https://www.haskell.org/ghcup/install/).
+[https//www.haskell.org/ghcup/install/](https//www.haskell.org/ghcup/install/).
