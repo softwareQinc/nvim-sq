@@ -39,16 +39,12 @@ api.nvim_create_autocmd("FileType", {
    command = "setlocal colorcolumn=80,120",
 })
 -- Enable compiling and running of standalone C/C++ buffers in normal mode
-local cc_run_map = "<leader>cx"
 api.nvim_create_autocmd("FileType", {
    pattern = { "c", "cpp" },
    callback = function()
-      keymap.set("n", cc_run_map, function()
-         local current_file = vim.fn.expand("%:p")
-         local output_file = current_file:gsub("%..-$", "")
-         local terminal_cmd = '!bash -c "make ' .. output_file .. " && " .. output_file .. '"'
-         api.nvim_command(terminal_cmd)
-      end, { buffer = true, desc = "Compile and run standalone C/C++ file" })
+      local util = require("core.util")
+      local bindings = require("core.bindings")
+      util.map_keys(bindings.compile_and_run_standalone_cpp, { buffer = true })
    end,
 })
 
