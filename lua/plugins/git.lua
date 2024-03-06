@@ -1,11 +1,17 @@
 return {
    {
       "tpope/vim-fugitive",
-      event = { "BufReadPost", "BufNewFile" },
+      cmd = "Git",
    },
    {
       "kdheepak/lazygit.nvim",
-      event = { "BufReadPost", "BufNewFile" },
+      cmd = {
+         "LazyGit",
+         "LazyGitConfig",
+         "LazyGitCurrentFile",
+         "LazyGitFilter",
+         "LazyGitFilterCurrentFile",
+      },
       -- optional for floating window border decoration
       dependencies = {
          "nvim-lua/plenary.nvim",
@@ -14,5 +20,6 @@ return {
    {
       "lewis6991/gitsigns.nvim",
       event = { "BufReadPost", "BufNewFile" },
+      config = true,
    },
 }
