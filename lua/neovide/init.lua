@@ -20,8 +20,8 @@ for _, mode in ipairs(modes) do
    end
    cmd_font_increase = pre .. cmd_font_increase .. post
    cmd_font_decrease = pre .. cmd_font_decrease .. post
-   vim.api.nvim_set_keymap(mode, keymap_font_increase, cmd_font_increase, { noremap = true, silent = true })
-   vim.api.nvim_set_keymap(mode, keymap_font_decrease, cmd_font_decrease, { noremap = true, silent = true })
+   vim.keymap.set(mode, keymap_font_increase, cmd_font_increase, { noremap = true, silent = true })
+   vim.keymap.set(mode, keymap_font_decrease, cmd_font_decrease, { noremap = true, silent = true })
 end
 
 -- Disable cursor trailing
