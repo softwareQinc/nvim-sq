@@ -9,6 +9,10 @@ M.generic = {
       ["<leader>|"] = { "<cmd> vsplit <CR>", { desc = "Split vertically" } },
       ["<leader>-"] = { "<cmd> split <CR>", { desc = "Split horizontally" } },
       ["<leader>q"] = { "<cmd> bd <CR>", { desc = "Close current buffer" } },
+      -- https://vi.stackexchange.com/a/3877
+      ["<leader>o"] = { 'o<ESC>0"_D', { desc = "Insert new line below" } },
+      ["<leader>O"] = { 'O<ESC>0"_D', { desc = "Insert new line above" } },
+      --
       ["<ESC>"] = { "<cmd> nohlsearch <CR>" },
 
       ["<Up>"] = { "<Nop>" },
