@@ -17,6 +17,18 @@ api.nvim_create_autocmd("TextYankPost", {
       vim.highlight.on_yank({ timeout = 200 })
    end,
 })
+-- Sign column always on, and of length 1, so relative numbers are right-aligned
+api.nvim_create_autocmd("VimEnter", {
+   group = "Generic",
+   pattern = "*",
+   command = "set scl=yes numberwidth=1",
+})
+-- Set SignColumn color to background color
+api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+   group = "Generic",
+   pattern = "*",
+   command = "hi! link SignColumn Normal",
+})
 
 -- CPP
 api.nvim_create_augroup("CPP", { clear = true })

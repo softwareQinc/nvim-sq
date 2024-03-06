@@ -1,9 +1,9 @@
---[[ 
-Core functionality: 
-    Auto commands 
-    Vim options 
-    key bindings 
-    Lua functions 
+--[[
+Core functionality:
+    auto commands
+    Vim options
+    key bindings
+    Lua functions
     Neovide
 --]]
 
