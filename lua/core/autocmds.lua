@@ -1,9 +1,8 @@
 local api = vim.api
-local keymap = vim.keymap
 
 -- Generic
 api.nvim_create_augroup("Generic", { clear = true })
--- Auto resize panes when resizing nvim window
+-- Auto resize panes when resizing Neovim window
 api.nvim_create_autocmd("VimResized", {
    group = "Generic",
    pattern = "*",
@@ -17,13 +16,14 @@ api.nvim_create_autocmd("TextYankPost", {
       vim.highlight.on_yank({ timeout = 200 })
    end,
 })
--- Sign column always on, and of length 1, so relative numbers are right-aligned
+-- SignColumn always on, and of length 1, so new events in the SignColumn do
+-- not "push" the text to the right
 api.nvim_create_autocmd("VimEnter", {
    group = "Generic",
    pattern = "*",
    command = "set scl=yes numberwidth=1",
 })
--- Set SignColumn color to background color
+-- Set SignColumn color to background color, aesthetically nicer
 api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
    group = "Generic",
    pattern = "*",
@@ -38,13 +38,13 @@ api.nvim_create_autocmd("FileType", {
    pattern = { "c", "cpp" },
    command = "setlocal colorcolumn=80,120",
 })
--- Enable compiling and running of standalone C/C++ buffers in normal mode
+-- Enable compiling and running of current C/C++ buffer in Normal mode
 api.nvim_create_autocmd("FileType", {
    pattern = { "c", "cpp" },
    callback = function()
       local util = require("core.util")
       local bindings = require("core.bindings")
-      util.map_keys(bindings.compile_and_run_standalone_cpp, { buffer = true })
+      util.map_keys(bindings.compile_and_run_current_cpp, { buffer = true })
    end,
 })
 

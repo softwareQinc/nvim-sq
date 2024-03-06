@@ -355,7 +355,7 @@ M.nvim_lspconfig = {
    },
 }
 
-M.compile_and_run_standalone_cpp = {
+M.compile_and_run_current_cpp = {
    plugin = true,
    n = {
       ["<leader>cx"] = {
@@ -365,7 +365,7 @@ M.compile_and_run_standalone_cpp = {
             local terminal_cmd = '!bash -c "make ' .. output_file .. " && " .. output_file .. '"'
             vim.api.nvim_command(terminal_cmd)
          end,
-         { desc = "Compile and run C/C++ buffer" },
+         { desc = "Compile and run current C/C++ buffer" },
       },
    },
 }
