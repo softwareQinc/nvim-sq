@@ -1,5 +1,7 @@
 return {
    "simrat39/symbols-outline.nvim",
    event = "LspAttach",
-   config = true,
+   config = function()
+      require("symbols-outline").setup()
+   end,
 }

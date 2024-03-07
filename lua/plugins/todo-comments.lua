@@ -2,5 +2,8 @@ return {
    "folke/todo-comments.nvim",
    event = { "BufReadPost", "BufNewFile" },
    dependencies = { "nvim-lua/plenary.nvim" },
-   config = true,
+   opts = {},
+   config = function(_, opts)
+      require("todo-comments").setup(opts)
+   end,
 }

@@ -28,6 +28,8 @@ return {
                   key = "u",
                },
             },
+            project = { enable = true, limit = 5 },
+            mru = { enable = true, limit = 7 },
             footer = { "", "softwareQ Inc.", "Designing Quantum Software" },
          },
       })

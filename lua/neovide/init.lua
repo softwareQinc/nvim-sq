@@ -1,18 +1,24 @@
 ------------------------------------------------------------------------------
--- Neovide-only config
+-- Neovide additional initialization, executed only by a Neovide session,
+-- after all other initializations are performed
 
--- Scale fonts up/down with <Command>= and <Command>-, respectively
 local util = require("core.util")
+
 local bindings = require("neovide.bindings")
+local options = require("neovide.options")
+
+------------------------------------------------------------------------------
+-- Neovide additional options
+util.set_options(options)
+
+------------------------------------------------------------------------------
+-- Scale fonts up/down with <Command>= and <Command>-, respectively
 util.map_keys(bindings.scale, { noremap = true, silent = true })
 
--- Disable cursor trailing
--- vim.g.neovide_cursor_trail_length = 0
--- Disable cursor animation
--- vim.g.neovide_cursor_animation_length = 0
+------------------------------------------------------------------------------
+-- Set custom font
+vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
+------------------------------------------------------------------------------
 -- Set the current working directory to the home folder
 vim.cmd("cd $HOME")
-
--- Set the custom font in Neovide
-vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")

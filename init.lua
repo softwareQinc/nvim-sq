@@ -31,11 +31,11 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
--- Neovide (executed only when in a Neovide session)
+-- Default color theme
+vim.cmd.colorscheme("gruvbox")
+
+------------------------------------------------------------------------------
+-- Neovide initialization, executed only by a Neovide session
 if vim.g.neovide then
 	require("neovide")
 end
-
-------------------------------------------------------------------------------
--- Colors
-vim.cmd.colorscheme("gruvbox")

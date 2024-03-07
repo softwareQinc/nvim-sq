@@ -4,12 +4,10 @@ local M = {}
 
 ------------------------------------------------------------------------------
 -- Scale fonts up and down with <Command>= and <Command>-, respectively
-
 local increment = 0.1
 local decrement = -increment
 local cmd_font_increase = ":lua require('neovide.util').neovide_scale(" .. increment .. ")<CR>"
 local cmd_font_decrease = ":lua require('neovide.util').neovide_scale(" .. decrement .. ")<CR>"
-
 M.scale = {
    plugin = true,
    n = {
