@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 -- Start-up
 -- Disable Neovim welcome message
-vim.cmd("set shm+=I")
+vim.cmd("set shortmess+=I")
 -- Set terminal GUI colors
 vim.cmd("set termguicolors")
 -- Set leader key mapping
@@ -31,8 +31,13 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
--- Default color theme
-vim.cmd.colorscheme("gruvbox")
+-- Sets color theme using a protected call; in case it isn't available, loads
+-- the default color scheme
+local color_scheme = "gruvbox"
+local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
+if not status then
+	print("Color scheme '" .. color_scheme .. "'" .. " not found, switching to 'default'!")
+end
 
 ------------------------------------------------------------------------------
 -- Neovide initialization, executed only by a Neovide session
