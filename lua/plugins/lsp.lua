@@ -19,7 +19,6 @@ return {
             "prettier",
 
             -- Linters
-            "ruff",
             "shellcheck",
             "cmake-language-server",
             "cmakelang",

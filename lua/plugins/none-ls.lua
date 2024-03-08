@@ -1,7 +1,10 @@
 return {
    "nvimtools/none-ls.nvim",
-   enabled = false,
    event = "VeryLazy",
+   dependencies = {
+      -- For latexindent
+      "nvimtools/none-ls-extras.nvim",
+   },
    opts = function()
       local null_ls = require("null-ls")
       local augroup = vim.api.nvim_create_augroup("NullLsFormatting", { clear = true })
@@ -15,11 +18,6 @@ return {
             null_ls.builtins.formatting.goimports_reviser,
             null_ls.builtins.formatting.golines,
             null_ls.builtins.formatting.cmake_format,
-            null_ls.builtins.formatting.latexindent.with({
-               args = { "-m", "-l" },
-               filetypes = { "tex", "plaintex" },
-               format = "sync",
-            }),
             null_ls.builtins.formatting.shfmt.with({
                args = { "-i", "4", "-ci", "-s" },
                filetypes = { "sh", "zsh" },
@@ -39,8 +37,6 @@ return {
                   "julia",
                },
             }),
-            null_ls.builtins.diagnostics.ruff,
-            null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()
@@ -48,6 +44,15 @@ return {
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
+            -- none-ls-extras
+            require("none-ls.formatting.latexindent").with({
+               args = { "-m", "-l" },
+               filetypes = { "tex", "plaintex" },
+               format = "sync",
+            }),
+            -- Deprecated/removed
+            -- null_ls.builtins.diagnostics.ruff,
+            -- null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
          },
          -- Auto format on save
          on_attach = null_ls_format_on_save,
