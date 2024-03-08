@@ -2,8 +2,7 @@ return {
    "nvimtools/none-ls.nvim",
    event = "VeryLazy",
    dependencies = {
-      -- For latexindent
-      "nvimtools/none-ls-extras.nvim",
+      -- "nvimtools/none-ls-extras.nvim",
    },
    opts = function()
       local null_ls = require("null-ls")
@@ -44,15 +43,21 @@ return {
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
-            -- none-ls-extras
-            require("none-ls.formatting.latexindent").with({
-               args = { "-m", "-l" },
-               filetypes = { "tex", "plaintex" },
-               format = "sync",
-            }),
-            -- Deprecated/removed
+            -- Deprecated/removed, replace (if needed) with none-ls-extras
+            -- null_ls.builtins.formatting.latexindent.with({
+            --    args = { "-m", "-l" },
+            --    filetypes = { "tex", "plaintex" },
+            --    format = "sync",
+            -- }),
             -- null_ls.builtins.diagnostics.ruff,
             -- null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
+            --
+            -- none-ls-extras
+            -- require("none-ls.formatting.latexindent").with({
+            --    args = { "-m", "-l" },
+            --    filetypes = { "tex", "plaintex" },
+            --    format = "sync",
+            -- }),
          },
          -- Auto format on save
          on_attach = null_ls_format_on_save,

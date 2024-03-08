@@ -79,7 +79,7 @@ return {
             },
             handlers = {
                default_setup,
-               -- Custom configuration below
+               -- Custom configurations below
                clangd = function()
                   lspconfig.clangd.setup({
                      capabilities = lsp_capabilities,
@@ -119,6 +119,19 @@ return {
                            usePlaceholders = true,
                            analyses = {
                               unusedparams = true,
+                           },
+                        },
+                     },
+                  })
+               end,
+               texlab = function()
+                  lspconfig.texlab.setup({
+                     capabilities = lsp_capabilities,
+                     on_attach = lsp_format_on_save,
+                     settings = {
+                        texlab = {
+                           latexindent = {
+                              modifyLineBreaks = true,
                            },
                         },
                      },
