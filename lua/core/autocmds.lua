@@ -66,7 +66,7 @@ api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- LaTeX
 api.nvim_create_augroup("Latex", { clear = true })
--- LaTeX split at 80 columns
+-- Split text at 80 columns
 api.nvim_create_autocmd("FileType", {
    group = "Latex",
    pattern = { "tex", "plaintex" },

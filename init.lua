@@ -7,6 +7,7 @@ vim.cmd("set termguicolors")
 -- Set leader key mapping
 -- Make sure to set `mapleader` before lazy so your mappings are correct
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 ------------------------------------------------------------------------------
 -- Setup Lazy

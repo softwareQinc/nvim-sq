@@ -28,7 +28,8 @@ M = {
       -- ignorecase = true,
    },
    g = {
-      -- OpenQASM falls back to version 2.0
+      -- OpenQASM
+      -- Falls back to version 2.0
       openqasm_version_fallback = 2.0,
       -- openqasm_version_override = 2.0
    },

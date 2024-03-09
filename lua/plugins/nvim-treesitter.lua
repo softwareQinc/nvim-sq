@@ -26,6 +26,7 @@ return {
                enable = true,
                disable = {
                   "markdown",
+                  "latex",
                },
             },
 
