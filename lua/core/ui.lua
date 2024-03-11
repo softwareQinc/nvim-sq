@@ -2,8 +2,8 @@ local M = {}
 
 -- Color scheme auto toggle (light/dark) defaults, do not
 M.color_toggle_defaults = {
-   light_starts = 8, -- light theme starts
-   light_ends = 17, -- light theme ends
+   light_starts = 8, -- light theme starts at this hour (24h format)
+   light_ends = 17, -- light theme ends at this time (24h format)
    ["light"] = "delek", -- default light theme
    ["dark"] = "darkblue", -- default dark theme
 }

@@ -36,8 +36,8 @@ require("core")
 -- Colors scheme plugins are loaded from "./lua/plugins/colors.lua"
 local ui = require("core.ui")
 ui.set_auto_theme({
-   light_starts = 8, -- light theme starts
-   light_ends = 17, -- light theme ends
+   light_starts = 8, -- light theme starts at this hour (24h format)
+   light_ends = 17, -- light theme ends at this time (24h format)
    light_scheme = "vscode", -- default light theme
    dark_scheme = "catppuccin", -- default dark theme
 })
