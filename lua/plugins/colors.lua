@@ -14,6 +14,12 @@ return {
       "Mofiqul/vscode.nvim",
       lazy = true,
       priority = 1000,
+      config = function()
+         require("vscode").setup({
+            -- Enable italic comment
+            italic_comments = true,
+         })
+      end,
    },
    {
       "folke/tokyonight.nvim",
