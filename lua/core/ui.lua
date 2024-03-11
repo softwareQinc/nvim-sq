@@ -4,8 +4,8 @@ local M = {}
 M.color_toggle_defaults = {
    light_starts = 8, -- daylight starts at 8AM
    light_ends = 17, -- daylight ends at 5PM
-   ["light"] = "vscode", -- default light theme
-   ["dark"] = "catppuccin", -- default dark theme
+   ["light"] = "delek", -- default light theme
+   ["dark"] = "darkblue", -- default dark theme
 }
 
 -- Current status of color toggle
@@ -17,8 +17,9 @@ M.color_toggle_current = {
    ["dark"] = M.color_toggle_defaults["dark"],
 }
 
--- Sets a dark scheme
+-- Sets a light color scheme
 function M.set_light_theme(color_scheme)
+   vim.cmd("set background=light")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
@@ -32,12 +33,12 @@ function M.set_light_theme(color_scheme)
    else -- update the color_toggle_current table
       M.color_toggle_current["light"] = color_scheme
    end
-   vim.cmd("set background=light")
    M.color_toggle_current.is_light_theme = true
 end
 
--- Sets a light scheme
+-- Sets a dark color scheme
 function M.set_dark_theme(color_scheme)
+   vim.cmd("set background=dark")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
@@ -51,7 +52,6 @@ function M.set_dark_theme(color_scheme)
    else -- update the color_toggle_current table
       M.color_toggle_current["dark"] = color_scheme
    end
-   vim.cmd("set background=dark")
    M.color_toggle_current.is_light_theme = false
 end
 
