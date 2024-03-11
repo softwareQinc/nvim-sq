@@ -2,10 +2,10 @@ local M = {}
 
 -- Color scheme auto toggle (light/dark) defaults, do not
 M.color_toggle_defaults = {
-   light_scheme_starts_at = 8, -- light theme starts at this hour (24h format)
-   light_scheme_ends_at = 17, -- light theme ends at this time (24h format)
-   ["light"] = "delek", -- default light theme
-   ["dark"] = "darkblue", -- default dark theme
+   ["light"] = "delek", -- default light color scheme
+   ["dark"] = "darkblue", -- default dark color scheme
+   light_scheme_starts_at = 8, -- light color scheme starts at this time (24h format)
+   light_scheme_ends_at = 17, -- light color scheme ends at this time (24h format)
 }
 
 -- Current status of color toggle
@@ -18,7 +18,7 @@ M.color_toggle_current = {
 }
 
 -- Sets a light color scheme
-function M.set_light_theme(color_scheme)
+function M.set_light_scheme(color_scheme)
    vim.cmd("set background=light")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
@@ -37,7 +37,7 @@ function M.set_light_theme(color_scheme)
 end
 
 -- Sets a dark color scheme
-function M.set_dark_theme(color_scheme)
+function M.set_dark_scheme(color_scheme)
    vim.cmd("set background=dark")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
@@ -55,9 +55,9 @@ function M.set_dark_theme(color_scheme)
    M.color_toggle_current.is_light_scheme = false
 end
 
--- Sets a light/dark theme automatically based on current time
+-- Sets a light/dark color scheme automatically based on current time
 -- Opts: {light_scheme_starts_at, light_scheme_ends_at, light_scheme_name, dark_scheme_name}
-function M.set_auto_theme(opts)
+function M.set_auto_scheme(opts)
    if opts.light_scheme_starts_at == nil then
       M.color_toggle_current.light_scheme_starts_at = M.color_toggle_defaults.light_starts
    else
@@ -85,11 +85,11 @@ function M.set_auto_theme(opts)
    local current_time = os.date("*t")
    local current_hour = current_time.hour
    if current_hour >= opts.light_scheme_starts_at and current_hour < opts.light_scheme_ends_at then
-      -- Sets light theme during daytime
-      M.set_light_theme(M.color_toggle_current["light"])
+      -- Sets light color scheme during daytime
+      M.set_light_scheme(M.color_toggle_current["light"])
    else
-      -- Sets dark theme during nighttime
-      M.set_dark_theme(M.color_toggle_current["dark"])
+      -- Sets dark color scheme during nighttime
+      M.set_dark_scheme(M.color_toggle_current["dark"])
    end
 end
 

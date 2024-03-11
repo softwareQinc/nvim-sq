@@ -179,14 +179,14 @@ M.color_toggle = {
       ["<leader>tl"] = {
          function()
             local ui = require("core.ui")
-            ui.set_light_theme(ui.color_toggle_current["light"])
+            ui.set_light_scheme(ui.color_toggle_current["light"])
          end,
          { desc = "Theme toggle light" },
       },
       ["<leader>td"] = {
          function()
             local ui = require("core.ui")
-            ui.set_dark_theme(ui.color_toggle_current["dark"])
+            ui.set_dark_scheme(ui.color_toggle_current["dark"])
          end,
          { desc = "Theme toggle dark" },
       },
@@ -194,9 +194,9 @@ M.color_toggle = {
          function()
             local ui = require("core.ui")
             if ui.color_toggle_current.is_light_scheme == true then
-               ui.set_dark_theme(ui.color_toggle_current["dark"])
+               ui.set_dark_scheme(ui.color_toggle_current["dark"])
             else
-               ui.set_light_theme(ui.color_toggle_current["light"])
+               ui.set_light_scheme(ui.color_toggle_current["light"])
             end
          end,
          { desc = "Theme toggle light/dark" },
