@@ -37,8 +37,8 @@ require("core")
 local ui = require("core.ui")
 ui.set_auto_theme({
    light_scheme_name = "vscode", -- default light theme
-   light_scheme_starts_at = 8, -- light theme starts at this time (24h format)
    dark_scheme_name = "catppuccin", -- default dark theme
+   light_scheme_starts_at = 8, -- light theme starts at this time (24h format)
    light_scheme_ends_at = 17, -- light theme ends at this time (24h format)
 })
 
