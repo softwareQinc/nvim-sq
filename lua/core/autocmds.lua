@@ -1,3 +1,5 @@
+-- Auto commands
+
 local api = vim.api
 
 -- Generic

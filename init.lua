@@ -32,13 +32,14 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
--- Sets color theme using a protected call; in case it isn't available, loads
--- the default color scheme
-local color_scheme = "gruvbox"
-local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
-if not status then
-   print("Color scheme '" .. color_scheme .. "'" .. " not found, switching to 'default'!")
-end
+-- Sets color theme to light between 8AM and 7PM, dark otherwise
+local ui = require("core.ui")
+ui.set_auto_theme({
+   light_starts = 8,
+   light_ends = 17,
+   light_scheme = "vscode",
+   dark_scheme = "gruvbox",
+})
 
 ------------------------------------------------------------------------------
 -- Neovide initialization, executed only by a Neovide session

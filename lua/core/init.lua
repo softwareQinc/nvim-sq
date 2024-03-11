@@ -1,5 +1,5 @@
 --[[
-Core functionality:
+Initializing core functionality:
     auto commands
     Vim options
     key bindings
