@@ -1,10 +1,5 @@
 return {
    {
-      "ellisonleao/gruvbox.nvim",
-      lazy = true,
-      priority = 1000,
-   },
-   {
       "catppuccin/nvim",
       lazy = true,
       name = "catppuccin",
@@ -23,6 +18,11 @@ return {
    },
    {
       "folke/tokyonight.nvim",
+      lazy = true,
+      priority = 1000,
+   },
+   {
+      "ellisonleao/gruvbox.nvim",
       lazy = true,
       priority = 1000,
    },

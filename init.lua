@@ -39,7 +39,7 @@ ui.set_auto_theme({
    light_starts = 8, -- light theme starts
    light_ends = 17, -- light theme ends
    light_scheme = "vscode", -- default light theme
-   dark_scheme = "gruvbox", -- default dark theme
+   dark_scheme = "catppuccin", -- default dark theme
 })
 
 ------------------------------------------------------------------------------
