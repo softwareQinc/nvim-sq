@@ -33,12 +33,13 @@ require("core")
 
 ------------------------------------------------------------------------------
 -- Sets color theme to light between 8AM and 7PM, dark otherwise
+-- Colors scheme plugins are loaded from "./lua/plugins/colors.lua"
 local ui = require("core.ui")
 ui.set_auto_theme({
-   light_starts = 8,
-   light_ends = 17,
-   light_scheme = "vscode",
-   dark_scheme = "gruvbox",
+   light_starts = 8, -- light theme starts
+   light_ends = 17, -- light theme ends
+   light_scheme = "vscode", -- default light theme
+   dark_scheme = "gruvbox", -- default dark theme
 })
 
 ------------------------------------------------------------------------------
