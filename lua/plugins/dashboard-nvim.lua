@@ -13,7 +13,7 @@ return {
                   desc = "𝌦 Buffer",
                   group = "Number",
                   action = "bd",
-                  key = "<ESC>",
+                  key = "q",
                },
                {
                   desc = " Files",
