@@ -18,7 +18,7 @@ function M.merge_tables(table1, table2)
    return merged_table
 end
 
--- Map keys for single non-plugin sub-table
+-- Bind keys for single non-plugin sub-table
 function M.map_keys(tbl, additional_options)
    for mode, key_bindings in pairs(tbl) do
       if mode ~= "n" and mode ~= "i" and mode ~= "v" then
@@ -34,7 +34,7 @@ function M.map_keys(tbl, additional_options)
    end
 end
 
--- Map keys for all sub-tables in the mappings table
+-- Bind keys for all sub-tables in the bindings table
 function M.map_all_keys(tbl, additional_options)
    for _, v in pairs(tbl) do
       -- Key binding tables that contain 'plugin = true' are skipped

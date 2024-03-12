@@ -156,7 +156,7 @@ return {
                end
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-               -- Buffer local mappings.
+               -- Buffer local key bindings.
                -- See `:help vim.lsp.*` for documentation on any of the below util
                local bindings = require("core.bindings")
                local util = require("core.util")

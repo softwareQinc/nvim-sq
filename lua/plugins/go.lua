@@ -9,7 +9,7 @@ return {
             group = vim.api.nvim_create_augroup("Gopher", {}),
             pattern = "go",
             callback = function(ev)
-               -- Buffer local mappings.
+               -- Buffer local key bindings.
                -- See `:help vim.lsp.*` for documentation on any of the below util
                local bindings = require("core.bindings")
                local util = require("core.util")
