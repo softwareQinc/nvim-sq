@@ -162,6 +162,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.nvim_lspconfig, { buffer = ev.buf })
             end,
+            desc = "Key bindings nvim-lspconfig (buffer local)",
          })
       end,
    },

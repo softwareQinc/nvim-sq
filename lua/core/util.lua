@@ -70,6 +70,7 @@ function M.format_on_save(augroup)
             callback = function()
                vim.lsp.buf.format({ bufnr = bufnr })
             end,
+            desc = "LSP format on save",
          })
       end
    end

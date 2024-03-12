@@ -15,6 +15,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.haskell_tools, { buffer = ev.buf })
             end,
+            desc = "Key bindings haskell-tools (buffer local)",
          })
       end,
    },

@@ -15,6 +15,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.go, { buffer = ev.buf })
             end,
+            desc = "Key bindings gopher (buffer local)",
          })
       end,
       build = function()

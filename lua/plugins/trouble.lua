@@ -12,6 +12,7 @@ return {
             local util = require("core.util")
             util.map_keys(bindings.trouble, { buffer = ev.buf })
          end,
+         desc = "Key bindings Trouble (buffer local)",
       })
    end,
 }

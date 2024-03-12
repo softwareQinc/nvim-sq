@@ -32,6 +32,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.rust, { buffer = ev.buf })
             end,
+            desc = "Key bindings rust (buffer local)",
          })
       end,
    },

@@ -13,6 +13,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.nvim_dap, { buffer = ev.buf })
             end,
+            desc = "Key bindings nvim-dap (buffer local)",
          })
       end,
    },
@@ -67,6 +68,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.nvim_dap_python, { buffer = ev.buf })
             end,
+            desc = "Key bindings nvim-dap-python (buffer local)",
          })
       end,
    },
@@ -90,6 +92,7 @@ return {
                local util = require("core.util")
                util.map_keys(bindings.nvim_dap_go, { buffer = ev.buf })
             end,
+            desc = "Key bindings nvim-dap-go (buffer local)",
          })
       end,
    },

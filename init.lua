@@ -4,8 +4,8 @@
 vim.cmd("set shortmess+=I")
 -- Set terminal GUI colors
 vim.cmd("set termguicolors")
--- Set leader key mapping
--- Make sure to set `mapleader` before lazy so your mappings are correct
+-- Set leader key binding
+-- Make sure to set `mapleader` before lazy so your bindings are correct
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
@@ -37,13 +37,13 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
--- Sets color scheme to light between 8AM and 7PM, dark otherwise
+-- Sets color scheme to light between 8AM and 5PM, dark otherwise
 -- Colors scheme plugins are loaded from "./lua/plugins/colors.lua"
 local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme
    dark_scheme_name = "catppuccin", -- default dark color scheme
-   light_scheme_starts_at = 17, -- light color scheme starts at this time (24h format)
+   light_scheme_starts_at = 8, -- light color scheme starts at this time (24h format)
    light_scheme_ends_at = 17, -- light color scheme ends at this time (24h format)
 })
 
