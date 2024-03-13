@@ -1,7 +1,7 @@
 return {
    "stevearc/oil.nvim",
    enabled = false,
-   cmd = "Oil",
+   cmd = { "Oil" },
    config = function()
       require("oil").setup({ silence_scp_warning = true })
    end,
