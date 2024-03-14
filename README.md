@@ -1,6 +1,6 @@
-# neovim-sq
+# nvim-sq
 
-Custom Neovim configuration for the organization
+Customized [Neovim](https://neovim.io/) configuration for the organization
 
 ## Installation
 
@@ -14,19 +14,15 @@ Install the custom configuration
 
 ```shell
 mv ~/.config/nvim ~/.config/nvim.bak
-git clone https://github.com/softwareqinc/neovim-sq ~/.config/nvim --depth 1
+mv ~/.local/share/nvim ~/.local/share/nvim.bak
+mv ~/.local/state/nvim ~/.local/state/nvim.bak
+git clone https://github.com/softwareqinc/nvim-sq ~/.config/nvim --depth 1
 ```
 
 Finally, launch Neovim by executing
 
 ```shell
 nvim
-```
-
-Finally, install all Mason dependencies by executing in Command Mode
-
-```
-:MasonEnsureInstalled
 ```
 
 ## Terminal
@@ -97,8 +93,8 @@ Pkg.add("StaticLint")
 
 ### Go support
 
-For Go development, the following packages need to be
-installed via `go install`
+For Go development, the following packages need to be installed via
+`go install`
 
 ```shell
 go install github.com/incu6us/goimports-reviser/v3@latest

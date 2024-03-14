@@ -19,7 +19,7 @@ M.color_toggle_current = {
 
 -- Sets a light color scheme
 function M.set_light_scheme(color_scheme)
-   vim.cmd("set background=light")
+   vim.cmd.set("background=light")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
@@ -38,7 +38,7 @@ end
 
 -- Sets a dark color scheme
 function M.set_dark_scheme(color_scheme)
-   vim.cmd("set background=dark")
+   vim.cmd.set("background=dark")
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(

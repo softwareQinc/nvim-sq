@@ -9,13 +9,13 @@ return {
             group = vim.api.nvim_create_augroup("Gopher", {}),
             pattern = "go",
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.go, { buffer = ev.buf })
+               util.map_keys(keymaps.go, { buffer = ev.buf })
             end,
-            desc = "Key bindings gopher (buffer local)",
+            desc = "Keymaps gopher (buffer local)",
          })
       end,
       build = function()

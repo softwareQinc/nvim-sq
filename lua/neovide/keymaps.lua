@@ -1,4 +1,4 @@
--- Neovide key bindings
+-- Neovide keymaps
 
 local M = {}
 

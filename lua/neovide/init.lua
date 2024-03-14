@@ -4,7 +4,7 @@
 
 local util = require("core.util")
 
-local bindings = require("neovide.bindings")
+local keymaps = require("neovide.keymaps")
 local options = require("neovide.options")
 
 ------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ util.set_options(options)
 
 ------------------------------------------------------------------------------
 -- Scale fonts up/down with <Command>= and <Command>-, respectively
-util.map_keys(bindings.scale, { noremap = true, silent = true })
+util.map_keys(keymaps.scale, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
 -- Set custom font

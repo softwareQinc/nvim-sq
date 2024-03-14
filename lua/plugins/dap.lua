@@ -7,13 +7,13 @@ return {
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("DAP", {}),
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.nvim_dap, { buffer = ev.buf })
+               util.map_keys(keymaps.nvim_dap, { buffer = ev.buf })
             end,
-            desc = "Key bindings nvim-dap (buffer local)",
+            desc = "Keymaps nvim-dap (buffer local)",
          })
       end,
    },
@@ -40,14 +40,21 @@ return {
    -- DAP for Mason
    {
       "jay-babu/mason-nvim-dap.nvim",
-      cmd = { "DapInstall", "DapUninstall" },
+      event = "LspAttach",
       dependencies = {
          "williamboman/mason.nvim",
          "mfussenegger/nvim-dap",
       },
-      opts = {
-         handlers = {},
-      },
+      config = function()
+         require("mason-nvim-dap").setup({
+            automatic_installation = true,
+            ensure_installed = {
+               "codelldb",
+               "python",
+            },
+            handlers = {},
+         })
+      end,
    },
    -- DAP for Python
    {
@@ -58,17 +65,18 @@ return {
          "rcarriga/nvim-dap-ui",
       },
       config = function(_, _)
+         require("dap-python").setup()
          vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
             group = vim.api.nvim_create_augroup("DAP-Python", {}),
             pattern = "python",
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.nvim_dap_python, { buffer = ev.buf })
+               util.map_keys(keymaps.nvim_dap_python, { buffer = ev.buf })
             end,
-            desc = "Key bindings nvim-dap-python (buffer local)",
+            desc = "Keymaps nvim-dap-python (buffer local)",
          })
       end,
    },
@@ -86,13 +94,13 @@ return {
             group = vim.api.nvim_create_augroup("DAP-Go", {}),
             pattern = "go",
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.nvim_dap_go, { buffer = ev.buf })
+               util.map_keys(keymaps.nvim_dap_go, { buffer = ev.buf })
             end,
-            desc = "Key bindings nvim-dap-go (buffer local)",
+            desc = "Keymaps nvim-dap-go (buffer local)",
          })
       end,
    },

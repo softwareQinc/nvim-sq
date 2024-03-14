@@ -26,13 +26,13 @@ return {
             group = vim.api.nvim_create_augroup("Crates", { clear = true }),
             pattern = "rust",
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.rust, { buffer = ev.buf })
+               util.map_keys(keymaps.rust, { buffer = ev.buf })
             end,
-            desc = "Key bindings rust (buffer local)",
+            desc = "Keymaps rust (buffer local)",
          })
       end,
    },

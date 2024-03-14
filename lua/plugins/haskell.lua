@@ -9,13 +9,13 @@ return {
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("HaskellTools", { clear = true }),
             callback = function(ev)
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.haskell_tools, { buffer = ev.buf })
+               util.map_keys(keymaps.haskell_tools, { buffer = ev.buf })
             end,
-            desc = "Key bindings haskell-tools (buffer local)",
+            desc = "Keymaps haskell-tools (buffer local)",
          })
       end,
    },

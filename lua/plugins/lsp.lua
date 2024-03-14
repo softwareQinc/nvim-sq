@@ -3,10 +3,15 @@ return {
    -- We use mason-lspconfig for language servers, and Mason only for DAPs, linters and formatters
    {
       "williamboman/mason.nvim",
-      cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+      cmd = { "Mason", "MasonInstall", "MasonUpdate" },
       config = function()
          require("mason").setup()
-         -- DAP, linters, and formatters. Do not add LSP servers here
+         -- vim.g.mason_binaries_list = ensure_installed
+      end,
+      build = function()
+         -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
+         -- LSPs are installed in this file, see mason-lsp-config:setup({...})
+         -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
          local ensure_installed = {
             -- Formatters
             "black",
@@ -24,18 +29,10 @@ return {
             "cmakelang",
             "cmakelint",
             "mypy",
-
-            -- Debuggers
-            "codelldb",
-            "debugpy",
          }
-         -- Custom NVChad cmd to install all Mason binaries listed in ensure_installed table
-         vim.api.nvim_create_user_command("MasonEnsureInstalled", function()
-            if ensure_installed and #ensure_installed > 0 then
-               vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
-            end
-         end, {})
-         -- vim.g.mason_binaries_list = ensure_installed
+         if ensure_installed and #ensure_installed > 0 then
+            vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
+         end
       end,
    },
    -- Manage (installs/removes etc.) language servers only
@@ -156,13 +153,13 @@ return {
                end
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-               -- Buffer local key bindings.
+               -- Buffer local keymaps.
                -- See `:help vim.lsp.*` for documentation on any of the below util
-               local bindings = require("core.bindings")
+               local keymaps = require("core.keymaps")
                local util = require("core.util")
-               util.map_keys(bindings.nvim_lspconfig, { buffer = ev.buf })
+               util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
             end,
-            desc = "Key bindings nvim-lspconfig (buffer local)",
+            desc = "Keymaps nvim-lspconfig (buffer local)",
          })
       end,
    },

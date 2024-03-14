@@ -1,13 +1,13 @@
 --[[
 Initializing core functionality:
-    auto commands
+    Auto commands
     Vim options
-    key bindings
+    Keymaps
     Lua functions
     Neovide
 --]]
 
-local bindings = require("core.bindings")
+local keymaps = require("core.keymaps")
 local options = require("core.options")
 local util = require("core.util")
 
@@ -16,8 +16,8 @@ local util = require("core.util")
 require("core.autocmds")
 
 ------------------------------------------------------------------------------
--- Key bindings
-util.map_all_keys(bindings)
+-- Keymaps
+util.map_all_keys(keymaps)
 
 ------------------------------------------------------------------------------
 -- Vim options

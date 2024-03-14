@@ -1,13 +1,7 @@
 ------------------------------------------------------------------------------
 -- Start-up
--- Disable Neovim welcome message
-vim.cmd("set shortmess+=I")
--- Set terminal GUI colors
-vim.cmd("set termguicolors")
--- Show EOLs and TABs
-vim.cmd("set list lcs=eol:↵,tab:>-")
--- Set leader key binding
--- Make sure to set `mapleader` before lazy so your bindings are correct
+-- Set leader keymap; ensure `mapleader` is set before lazy so your keymaps
+-- are correct
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 

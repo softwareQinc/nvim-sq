@@ -4,6 +4,7 @@ local M = {}
 
 M = {
    opt = {
+      shortmess = vim.opt.shortmess + "sI", -- disable Neovim welcome message
       shell = "bash --login",
       spell = true,
       termguicolors = true,
@@ -17,19 +18,24 @@ M = {
       splitright = true,
       inccommand = "split",
       virtualedit = "block",
-      textwidth = 78,
       scrolloff = 8,
       cursorline = true,
       undofile = true,
       hlsearch = true,
       showmode = false, -- we have lualine
       mouse = "a",
+      listchars = { -- special characters
+         -- eol = "⏎",
+         -- space = "␣",
+         tab = ">-",
+      },
+      list = true, -- show special characters
       -- colorcolumn = "80,120",
       -- ignorecase = true,
+      -- textwidth = 80,
    },
    g = {
-      -- OpenQASM
-      -- Falls back to version 2.0
+      -- OpenQASM falls back to version 2.0
       openqasm_version_fallback = 2.0,
       -- openqasm_version_override = 2.0
    },

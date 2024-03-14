@@ -49,6 +49,20 @@ api.nvim_create_autocmd("TermOpen", {
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = "*",
-   command = "startinsert",
+   callback = function(opts)
+      -- https://github.com/mfussenegger/nvim-dap/issues/439#issuecomment-1380787919
+      if opts.file:match("dap%-terminal") then
+         return
+      end
+      vim.cmd("startinsert")
+      vim.cmd("setlocal nonu")
+   end,
    desc = "Enter term windows in Insert mode",
 })
+-- Exit term windows without pressing any key
+-- api.nvim_create_autocmd("TermClose", {
+--    group = "Terminal",
+--    pattern = "*",
+--    command = "call feedkeys('q')",
+--    desc = "Exit term windows without pressing any key",
+-- })
