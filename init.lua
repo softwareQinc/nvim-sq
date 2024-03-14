@@ -4,6 +4,8 @@
 vim.cmd("set shortmess+=I")
 -- Set terminal GUI colors
 vim.cmd("set termguicolors")
+-- Show EOL
+vim.cmd("set list lcs=eol:↵")
 -- Set leader key binding
 -- Make sure to set `mapleader` before lazy so your bindings are correct
 vim.g.mapleader = " "
