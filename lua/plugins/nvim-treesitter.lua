@@ -9,9 +9,9 @@ return {
          local configs = require("nvim-treesitter.configs")
          configs.setup({
             ensure_installed = {
+               "c",
                "lua",
                "luadoc",
-               "c",
                "vim",
             },
 
@@ -25,8 +25,8 @@ return {
             highlight = {
                enable = true,
                disable = {
-                  "markdown",
                   "latex",
+                  "markdown",
                   "tmux",
                },
             },
@@ -40,12 +40,7 @@ return {
 
             incremental_selection = {
                enable = true,
-               keymaps = {
-                  init_selection = "<leader>ss",
-                  node_incremental = "<leader>si",
-                  scope_incremental = "<leader>sc",
-                  node_decremental = "<leader>sd",
-               },
+               keymaps = require("core.keymaps").nvim_treesitter.keymaps,
             },
 
             modules = {},

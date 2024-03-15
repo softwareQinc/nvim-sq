@@ -85,27 +85,31 @@ M.harpoon = {
    n = {
       ["<leader>jj"] = {
          function()
-            require("harpoon.mark").add_file()
+            local harpoon = require("harpoon")
+            harpoon:list():append()
          end,
          { desc = "Harpoon add mark" },
       },
       ["<leader>jh"] = {
          function()
-            require("harpoon.ui").toggle_quick_menu()
+            local harpoon = require("harpoon")
+            harpoon.ui:toggle_quick_menu(harpoon:list())
          end,
          { desc = "Harpoon quick menu" },
       },
       ["<leader>jp"] = {
          function()
-            require("harpoon.ui").nav_prev()
+            local harpoon = require("harpoon")
+            harpoon:list():prev()
          end,
          { desc = "Harpoon previous" },
       },
       ["<leader>jn"] = {
          function()
-            require("harpoon.ui").nav_next()
+            local harpoon = require("harpoon")
+            harpoon:list():next()
          end,
-         { desc = "harpoon next" },
+         { desc = "Harpoon next" },
       },
       ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telscope Harpoon marks" } },
    },
@@ -216,6 +220,15 @@ M.outline = {
 M.which_key = {
    plugin = true,
    keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g" },
+}
+
+M.nvim_treesitter = {
+   keymaps = {
+      init_selection = "<leader>ss",
+      node_incremental = "<leader>si",
+      scope_incremental = "<leader>sc",
+      node_decremental = "<leader>sd",
+   },
 }
 
 ------------------------------------------------------------------------------
