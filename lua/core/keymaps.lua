@@ -205,6 +205,20 @@ M.color_toggle = {
 }
 
 ------------------------------------------------------------------------------
+-- Global keymaps for key-triggered lazy-loaded plugins
+M.outline = {
+   plugin = true,
+   keys = {
+      { "<leader>so", "<cmd>Outline<CR>", desc = "Toggle outline" },
+   },
+}
+
+M.which_key = {
+   plugin = true,
+   keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g" },
+}
+
+------------------------------------------------------------------------------
 -- Buffer-local (plugin) keymaps
 M.trouble = {
    plugin = true,

@@ -1,6 +1,6 @@
 return {
    "folke/which-key.nvim",
-   keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g" },
+   keys = require("core.keymaps").which_key.keys,
    init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300

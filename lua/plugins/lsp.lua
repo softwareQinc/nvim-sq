@@ -153,8 +153,7 @@ return {
                end
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-               -- Buffer local keymaps.
-               -- See `:help vim.lsp.*` for documentation on any of the below util
+               -- Buffer local keymaps
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })

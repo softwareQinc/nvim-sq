@@ -7,8 +7,7 @@ return {
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("DAP", {}),
             callback = function(ev)
-               -- Buffer local keymaps.
-               -- See `:help vim.lsp.*` for documentation on any of the below util
+               -- Buffer local keymaps
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.nvim_dap, { buffer = ev.buf })
@@ -70,8 +69,7 @@ return {
             group = vim.api.nvim_create_augroup("DAP-Python", {}),
             pattern = "python",
             callback = function(ev)
-               -- Buffer local keymaps.
-               -- See `:help vim.lsp.*` for documentation on any of the below util
+               -- Buffer local keymaps
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.nvim_dap_python, { buffer = ev.buf })
@@ -94,8 +92,7 @@ return {
             group = vim.api.nvim_create_augroup("DAP-Go", {}),
             pattern = "go",
             callback = function(ev)
-               -- Buffer local keymaps.
-               -- See `:help vim.lsp.*` for documentation on any of the below util
+               -- Buffer local keymaps
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.nvim_dap_go, { buffer = ev.buf })

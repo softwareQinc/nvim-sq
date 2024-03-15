@@ -38,7 +38,8 @@ end
 function M.map_all_keys(tbl, additional_options)
    for _, v in pairs(tbl) do
       -- Keymap tables that contain 'plugin = true' are skipped
-      -- Keymaps are buffer-local and are done in the plugin config file
+      -- Keymaps are buffer-local/key-triggered and are performed in the plugin
+      -- config file
       if v.plugin and v.plugin == true then
          goto continue
       end
