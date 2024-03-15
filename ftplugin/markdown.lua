@@ -9,5 +9,5 @@ local home = vim.fn.expand("$HOME")
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
    group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
    pattern = home .. "/vaults/**.md",
-   command = "setlocal conceallevel=1",
+   command = "setlocal conceallevel=2",
 })
