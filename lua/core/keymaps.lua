@@ -111,6 +111,42 @@ M.harpoon = {
          end,
          { desc = "Harpoon next" },
       },
+      ["<leader>j1"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(1)
+         end,
+         {
+            desc = "Harpoon 1",
+         },
+      },
+      ["<leader>j2"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(2)
+         end,
+         {
+            desc = "Harpoon 2",
+         },
+      },
+      ["<leader>j3"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(3)
+         end,
+         {
+            desc = "Harpoon 3",
+         },
+      },
+      ["<leader>j4"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(4)
+         end,
+         {
+            desc = "Harpoon 4",
+         },
+      },
       ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telscope Harpoon marks" } },
    },
 }
@@ -213,7 +249,7 @@ M.color_toggle = {
 M.outline = {
    plugin = true,
    keys = {
-      { "<leader>so", "<cmd>Outline<CR>", desc = "Toggle outline" },
+      { "<leader>so", "<cmd> Outline <CR>", desc = "Toggle outline" },
    },
 }
 
@@ -223,6 +259,7 @@ M.which_key = {
 }
 
 M.nvim_treesitter = {
+   plugin = true,
    keymaps = {
       init_selection = "<leader>ss",
       node_incremental = "<leader>si",
