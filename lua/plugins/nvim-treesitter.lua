@@ -27,6 +27,7 @@ return {
                disable = {
                   "markdown",
                   "latex",
+                  "tmux",
                },
             },
 
