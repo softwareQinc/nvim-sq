@@ -7,7 +7,7 @@ return {
       lazy = true,
       config = function()
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("HaskellTools", { clear = true }),
+            group = vim.api.nvim_create_augroup("Haskell-tools", { clear = true }),
             callback = function(ev)
                -- Buffer local keymaps
                local keymaps = require("core.keymaps")

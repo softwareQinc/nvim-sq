@@ -48,7 +48,7 @@ return {
          lsp_capabilities =
             vim.tbl_deep_extend("force", lsp_capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-         local augroup = vim.api.nvim_create_augroup("LspFormatting", { clear = true })
+         local augroup = vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
          local lsp_format_on_save = require("core.util").format_on_save(augroup)
 
          local default_setup = function(server)
@@ -144,7 +144,7 @@ return {
       event = "LspAttach",
       config = function()
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("NvimLspConfig", { clear = true }),
+            group = vim.api.nvim_create_augroup("Nvim-lspconfig", { clear = true }),
             callback = function(ev)
                -- Disable semantic token highlighting for lua_ls
                local client = vim.lsp.get_client_by_id(ev.data.client_id)

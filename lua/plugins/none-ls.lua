@@ -6,7 +6,7 @@ return {
    },
    opts = function()
       local null_ls = require("null-ls")
-      local augroup = vim.api.nvim_create_augroup("NullLsFormatting", { clear = true })
+      local augroup = vim.api.nvim_create_augroup("None-ls-formatting", { clear = true })
       local null_ls_format_on_save = require("core.util").format_on_save(augroup)
 
       local opts = {
