@@ -21,4 +21,4 @@ vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
 -- Set the current working directory to the home folder
-vim.cmd("cd $HOME")
+vim.cmd("cd ~")

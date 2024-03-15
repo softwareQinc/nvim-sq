@@ -16,6 +16,14 @@ return {
       -- Required.
       "nvim-lua/plenary.nvim",
    },
+   init = function()
+      local home = vim.fn.expand("~")
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+         group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
+         pattern = home .. "/vaults/**.md",
+         command = "setlocal conceallevel=2",
+      })
+   end,
    opts = {
       workspaces = {
          {
