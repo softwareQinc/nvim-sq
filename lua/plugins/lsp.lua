@@ -144,7 +144,7 @@ return {
       event = "LspAttach",
       config = function()
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+            group = vim.api.nvim_create_augroup("NvimLspConfig", { clear = true }),
             callback = function(ev)
                -- Disable semantic token highlighting for lua_ls
                local client = vim.lsp.get_client_by_id(ev.data.client_id)

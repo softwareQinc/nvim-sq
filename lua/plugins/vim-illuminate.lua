@@ -14,6 +14,7 @@ return {
       api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
       -- Auto update the highlight style on colorscheme change
       api.nvim_create_autocmd({ "ColorScheme" }, {
+         group = vim.api.nvim_create_augroup("VimIlluminate", { clear = true }),
          pattern = { "*" },
          callback = function()
             api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })

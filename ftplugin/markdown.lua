@@ -8,7 +8,7 @@ vim.cmd.setlocal("textwidth=80")
 vim.api.nvim_create_augroup("Markdown", { clear = true })
 local home = vim.fn.expand("$HOME")
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-   group = "Markdown",
+   group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
    pattern = home .. "/vaults/**.md",
    command = "setlocal conceallevel=1",
 })
