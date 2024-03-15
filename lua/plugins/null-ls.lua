@@ -37,12 +37,7 @@ return {
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()
-                  local standard_python3_path = "/usr"
-                  local os_type = os.getenv("OSTYPE")
-                  if os_type and string.lower(os_type) == "freebsd" then
-                     standard_python3_path = standard_python3_path .. "/local"
-                  end
-                  local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or standard_python3_path
+                  local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
