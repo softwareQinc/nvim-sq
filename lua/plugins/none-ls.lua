@@ -39,7 +39,7 @@ return {
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()
-                  local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
+                  local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr" or "/usr/local"
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
