@@ -1,6 +1,6 @@
 # nvim-sq
 
-Customized [Neovim](https://neovim.io/) configuration for the organization
+Customized [Neovim](https://neovim.io/) configuration for softwareQ Inc.
 
 ## Installation
 
