@@ -23,7 +23,6 @@ M = {
       undofile = true,
       hlsearch = true,
       showmode = false, -- we have lualine
-      mouse = "a",
       foldmethod = "expr",
       foldexpr = "nvim_treesitter#foldexpr()",
       foldlevelstart = 20,

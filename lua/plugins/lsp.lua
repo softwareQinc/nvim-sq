@@ -10,7 +10,7 @@ return {
       end,
       build = function()
          -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
-         -- LSPs are installed in this file, see mason-lsp-config:setup({...})
+         -- LSPs are installed later in this file, see mason-lsp-config:setup({...})
          -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
          local ensure_installed = {
             -- Formatters
@@ -51,7 +51,7 @@ return {
          local augroup = vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
          local lsp_format_on_save = require("core.util").format_on_save(augroup)
 
-         local default_setup = function(server)
+         local function default_setup(server)
             lspconfig[server].setup({
                capabilities = lsp_capabilities,
                on_attach = lsp_format_on_save,
