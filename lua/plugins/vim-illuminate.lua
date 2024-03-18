@@ -2,12 +2,14 @@ return {
    "RRethy/vim-illuminate",
    event = { "BufReadPost", "BufNewFile" },
    config = function()
-      -- default configuration
+      -- Default configuration
       require("illuminate").configure({
-         under_cursor = false,
+         -- Enable illuminating under cursor (true by default)
+         under_cursor = true,
+         -- Disable vim-illuminate in Visual modes
+         modes_denylist = { "v", "vs", "V", "Vs", "", "s" },
       })
       local api = vim.api
-      -- vim-illuminate plugin
       -- Change the highlight style
       local function set_illumintate_hl()
          api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
