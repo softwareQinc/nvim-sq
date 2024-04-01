@@ -114,7 +114,7 @@ To fix, run
 codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ```
 
-### haskell-language-server
+### Haskell
 
 Ensure that `ghcup` is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).
