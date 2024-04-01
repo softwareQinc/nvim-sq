@@ -72,7 +72,7 @@ return {
                "cmake",
                "marksman",
                "gopls",
-               "hls",
+               -- "hls", -- not needed, we use haskell-tools.nvim
             },
             handlers = {
                default_setup,
