@@ -46,5 +46,5 @@ ui.set_auto_scheme({
 ------------------------------------------------------------------------------
 -- Neovide initialization, executed only by a Neovide session
 if vim.g.neovide then
-   require("neovide")
+   pcall(require, "neovide")
 end
