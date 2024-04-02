@@ -50,6 +50,7 @@ return {
             ensure_installed = {
                "codelldb",
                "python",
+               "delve",
             },
             handlers = {},
          })

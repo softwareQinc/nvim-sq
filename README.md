@@ -1,6 +1,7 @@
 # nvim-sq
 
-Customized [Neovim](https://neovim.io/) configuration for softwareQ Inc.
+Customized [Neovim](https://neovim.io/) configuration for
+[softwareQ Inc.](https://www.softwareq.ca)
 
 ## Installation
 
@@ -93,17 +94,7 @@ Pkg.add("StaticLint")
 
 ### Go support
 
-For Go development, the following packages need to be installed via
-`go install`
-
-```shell
-go install github.com/incu6us/goimports-reviser/v3@latest
-go install mvdan.cc/gofumpt@latest
-go install github.com/segmentio/golines@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
-```
-
-### gopls
+#### gopls
 
 Go binaries produced on macOS arm64 may not be code-signed properly. See
 [https://github.com/golang/go/issues/63997](https://github.com/golang/go/issues/63997).
@@ -114,7 +105,7 @@ To fix, run
 codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ```
 
-### Haskell
+### Haskell support
 
 Ensure that `ghcup` is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).
