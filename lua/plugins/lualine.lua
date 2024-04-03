@@ -19,9 +19,9 @@ return {
                   "fileformat",
                   icons_enabled = true,
                   symbols = {
-                     unix = "UNIX",
-                     dos = "DOS",
-                     mac = "Mac",
+                     unix = "UNIX", -- LF
+                     dos = "DOS", -- CRLF
+                     mac = "Mac", -- CR
                   },
                   -- symbols = {
                   --    unix = "", -- e712
