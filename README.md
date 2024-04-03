@@ -63,8 +63,7 @@ and/or there are missing packages required for this configuration.
 If `tree-sitter` is missing, install it (requires
 [Rust](https://www.rust-lang.org/)) with
 
-```
-shell
+```shell
 cargo install tree-sitter-cli
 ```
 
