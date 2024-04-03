@@ -58,6 +58,16 @@ If you prefer a GUI Neovim client, install [Neovide](https://neovide.dev/)
 From Neovim, run `:checkhealth` in case you are getting warnings/errors
 and/or there are missing packages required for this configuration.
 
+### tree-sitter
+
+If `tree-sitter` is missing, install it (requires
+[Rust](https://www.rust-lang.org/)) with
+
+```
+shell
+cargo install tree-sitter-cli
+```
+
 ### npm
 
 If `npm` is missing, install it (macOS) with
