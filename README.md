@@ -84,7 +84,7 @@ If `lazygit` is missing, install it (macOS) with
 brew install lazygit
 ```
 
-### Julia support
+### Julia language support
 
 Install Julia (macOS) with
 
@@ -102,7 +102,7 @@ Pkg.add("SymbolServer")
 Pkg.add("StaticLint")
 ```
 
-### Go support
+### Go language support
 
 #### gopls
 
@@ -115,7 +115,7 @@ To fix, run
 codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ```
 
-### Haskell support
+### Haskell language support
 
 Ensure that `ghcup` is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).
