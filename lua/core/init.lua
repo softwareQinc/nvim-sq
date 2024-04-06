@@ -5,7 +5,7 @@ Initializing core functionality:
     Keymaps
     Lua functions
     Neovide
---]]
+]]
 
 local keymaps = require("core.keymaps")
 local options = require("core.options")
