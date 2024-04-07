@@ -18,7 +18,6 @@ return {
          })
       end,
       build = function()
-         -- vim.cmd [[silent! GoInstallDeps]]
          vim.api.nvim_cmd({ cmd = "GoInstallDeps" }, { output = false })
       end,
    },
