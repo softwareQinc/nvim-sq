@@ -86,7 +86,7 @@ M.harpoon = {
       ["<leader>jj"] = {
          function()
             local harpoon = require("harpoon")
-            harpoon:list():append()
+            harpoon:list():add()
          end,
          { desc = "Harpoon add mark" },
       },

@@ -1,5 +1,6 @@
 return {
    "vhyrro/luarocks.nvim",
-   priority = 1000, -- We'd like this plugin to load first out of the rest
-   config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+   -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+   priority = 2000,
+   config = true,
 }

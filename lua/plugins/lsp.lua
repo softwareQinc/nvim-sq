@@ -4,10 +4,7 @@ return {
    {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-      config = function()
-         require("mason").setup()
-         -- vim.g.mason_binaries_list = ensure_installed
-      end,
+      config = true,
       build = function()
          -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
          -- LSPs are installed later in this file, see mason-lsp-config:setup({...})
@@ -41,7 +38,6 @@ return {
       config = function()
          -- Setup neodev BEFORE the first require("lspconfig")
          require("neodev").setup({})
-
          local lspconfig = require("lspconfig")
          local util = require("lspconfig.util")
          local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
