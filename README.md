@@ -1,10 +1,9 @@
 # nvim-sq
 
-Customized [Neovim](https://neovim.io/) configuration for
-[softwareQ Inc.](https://www.softwareq.ca/) It includes development
-productivity tools such as LSP, DAP, autocompletion, fuzzy-finding, tree-sitter,
-tmux integration etc., and [lazy](https://github.com/folke/lazy.nvim) plugin
-management.
+Customized [Neovim](https://neovim.io/) configuration that includes development
+productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
+tree-sitter, tmux integration etc., and
+[lazy](https://github.com/folke/lazy.nvim) plugin management.
 
 ---
 
@@ -36,7 +35,7 @@ Install Neovim using your favourite package manager, e.g., on macOS,
 brew install nvim
 ```
 
-Install the custom configuration
+Install the custom configuration. On UNIX-like systems, execute
 
 ```shell
 mv ~/.config/nvim ~/.config/nvim.bak
@@ -45,7 +44,7 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 git clone https://github.com/softwareqinc/nvim-sq ~/.config/nvim --depth 1
 ```
 
-Finally, launch Neovim by executing
+Adapt accordingly for other OS-es. Finally, launch Neovim by executing
 
 ```shell
 nvim
