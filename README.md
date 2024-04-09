@@ -23,7 +23,8 @@ as the vanilla macOS Terminal application does not support TrueColor.
 
 ### Fonts
 
-Install [JetBrainsMono Nerd Font](https://www.nerdfonts.com/).
+Install a [Nerd Font](https://www.nerdfonts.com/font-downloads), e.g.,
+[JetBrainsMono Nerd Font](https://www.programmingfonts.org/#jetbrainsmono).
 
 ---
 
