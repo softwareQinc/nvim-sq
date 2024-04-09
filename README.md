@@ -1,7 +1,31 @@
 # nvim-sq
 
 Customized [Neovim](https://neovim.io/) configuration for
-[softwareQ Inc.](https://www.softwareq.ca)
+[softwareQ Inc.](https://www.softwareq.ca/) It includes development
+productivity tools such as LSP, DAP, autocompletion, fuzzy-finding, tree-sitter,
+tmux integration etc., and [lazy](https://github.com/folke/lazy.nvim) plugin
+management.
+
+---
+
+## Pre-requisites
+
+### Terminal
+
+Install a terminal application with TrueColor support. On macOS, install, e.g.,
+[iTerm2](https://iterm2.com/) via [Homebrew](https://brew.sh/) with
+
+```shell
+brew install iterm2
+```
+
+as the vanilla macOS Terminal application does not support TrueColor.
+
+### Fonts
+
+Install [JetBrainsMono Nerd Font](https://www.nerdfonts.com/).
+
+---
 
 ## Installation
 
@@ -26,41 +50,30 @@ Finally, launch Neovim by executing
 nvim
 ```
 
-## Terminal
+### GUI
 
-Install iTerm2 (`brew install iterm2` on macOS) and use Neovim from within;
-on macOS, the vanilla Terminal does not support TrueColor and further advanced
-configurations.
+If you want a GUI Neovim client, install [Neovide](https://neovide.dev/)
+(`brew install neovide` on macOS).
 
-## Fonts
+---
 
-Install [JetBrainsMono Nerd Font](https://www.nerdfonts.com/) on your operating
-system.
+## Potential issues
+
+From Neovim, run `:checkhealth` in case you are getting warnings/errors
+and/or there are missing packages required for this configuration.
 
 ## GNU sed
 
 When starting Neovim on macOS, you may get a message about `gnu-sed` being
-required. Install `gnu-sed` with
+required. Install it
 
 ```shell
 brew install gnu-sed
 ```
 
-## GUI
-
-If you prefer a GUI Neovim client, install [Neovide](https://neovide.dev/)
-(`brew install neovide` on macOS).
-
----
-
-## Issues
-
-From Neovim, run `:checkhealth` in case you are getting warnings/errors
-and/or there are missing packages required for this configuration.
-
 ### tree-sitter
 
-If `tree-sitter` is missing, install it (requires
+If `tree-sitter` executable is missing, install it (requires
 [Rust](https://www.rust-lang.org/)) with
 
 ```shell
@@ -83,9 +96,19 @@ If `lazygit` is missing, install it (macOS) with
 brew install lazygit
 ```
 
-### Julia language support
+---
 
-Install Julia (macOS) with
+## Programming language support
+
+This Neovim configuration comes out of the box with LSP (and often DAP) support
+for a whole bunch of programming/scripting/markup languages, including (but not
+restricted to) mainstream ones such as C, C++, Python, Go, Rust, Markdown,
+LaTeX etc. Below we list potential issues that you may encounter for some
+specific languages.
+
+### Julia
+
+To enable Julia support, install it (macOS) with
 
 ```shell
 brew install julia
@@ -101,7 +124,7 @@ Pkg.add("SymbolServer")
 Pkg.add("StaticLint")
 ```
 
-### Go language support
+### Go
 
 #### gopls
 
@@ -114,7 +137,7 @@ To fix, run
 codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ```
 
-### Haskell language support
+### Haskell
 
 Ensure that `ghcup` is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).
