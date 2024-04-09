@@ -6,8 +6,6 @@ productivity tools such as LSP, DAP, autocompletion, fuzzy-finding, tree-sitter,
 tmux integration etc., and [lazy](https://github.com/folke/lazy.nvim) plugin
 management.
 
-Requires Neovim version 0.9.5 or later.
-
 ---
 
 ## Pre-requisites
