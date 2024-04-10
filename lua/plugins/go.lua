@@ -18,7 +18,7 @@ return {
          })
       end,
       build = function()
-         vim.api.nvim_cmd({ cmd = "GoInstallDeps" }, { output = false })
+         pcall(vim.api.nvim_cmd, { cmd = "GoInstallDeps" }, { output = false })
       end,
    },
 }
