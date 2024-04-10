@@ -2,7 +2,7 @@
 
 Customized [Neovim](https://neovim.io/) configuration that includes development
 productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
-tree-sitter, tmux integration etc., and
+tree-sitter, tmux integration, ChatGPT etc., and
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
 
 ---
@@ -62,7 +62,7 @@ If you want a GUI Neovim client, install [Neovide](https://neovide.dev/)
 From Neovim, run `:checkhealth` in case you are getting warnings/errors
 and/or there are missing packages required for this configuration.
 
-## GNU sed
+### GNU sed
 
 When starting Neovim on macOS, you may get a message about `gnu-sed` being
 required. Install it
@@ -95,6 +95,13 @@ If `lazygit` is missing, install it (macOS) with
 ```shell
 brew install lazygit
 ```
+
+### ChatGPT
+
+The
+[ChatGPT plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/chatgpt.lua)
+assumes that the OpenAI API key is available as a text file in
+`$HOME/OpenAIkey.txt`; modify accordingly on your system.
 
 ---
 

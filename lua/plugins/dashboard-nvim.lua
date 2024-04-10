@@ -12,7 +12,10 @@ return {
                {
                   desc = "𝌦 Buffer",
                   group = "Number",
-                  action = "bd",
+                  action = function()
+                     local util = require("core.util")
+                     util.smart_bd()
+                  end,
                   key = "q",
                },
                {

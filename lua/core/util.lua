@@ -77,4 +77,26 @@ function M.format_on_save(augroup)
    end
 end
 
+-- Delete current buffer, preserve splits
+function M.smart_bd()
+   local cur_buf_no = vim.api.nvim_get_current_buf()
+   -- local cur_buf_name = vim.api.nvim_buf_get_name(cur_buf_no)
+   local buffer_filetype = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
+   -- Special buffers
+   local buftype_cmd = {
+      ["neo-tree"] = "Neotree toggle",
+      ["netrw"] = "Lexplore",
+      ["Outline"] = "OutlineClose",
+   }
+   for buftype, cmd in pairs(buftype_cmd) do
+      if buffer_filetype == buftype then
+         vim.api.nvim_command(cmd)
+         return
+      end
+   end
+   -- All other buffers
+   local bd = require("bufdelete")
+   bd.bufdelete()
+end
+
 return M

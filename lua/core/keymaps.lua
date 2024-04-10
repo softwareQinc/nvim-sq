@@ -8,11 +8,17 @@ M.generic = {
    n = {
       ["<leader>|"] = { "<cmd> vsplit <CR>", { desc = "Split vertically" } },
       ["<leader>-"] = { "<cmd> split <CR>", { desc = "Split horizontally" } },
-      ["<leader>q"] = { "<cmd> bd <CR>", { desc = "Close current buffer" } },
+      ["<leader>q"] = {
+         function()
+            local util = require("core.util")
+            util.smart_bd()
+         end,
+         { desc = "Close current buffer" },
+      },
       -- https://vi.stackexchange.com/a/3877
       ["<leader>o"] = { 'o<ESC>0"_D', { desc = "Insert new line below" } },
       ["<leader>O"] = { 'O<ESC>0"_D', { desc = "Insert new line above" } },
-      --
+
       ["<ESC>"] = { "<cmd> nohlsearch <CR>" },
 
       ["<Up>"] = { "<Nop>" },
@@ -241,6 +247,12 @@ M.color_toggle = {
          end,
          { desc = "Theme toggle light <-> dark" },
       },
+   },
+}
+
+M.dashboard = {
+   n = {
+      ["<leader>a"] = { "<cmd> Dashboard <CR>", { desc = "Dashboard" } },
    },
 }
 
