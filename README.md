@@ -1,6 +1,6 @@
 # nvim-sq
 
-Customized [Neovim](https://neovim.io/) configuration that includes development
+Custom [Neovim](https://neovim.io/) configuration that includes development
 productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
 tree-sitter, tmux integration, ChatGPT etc., and
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
