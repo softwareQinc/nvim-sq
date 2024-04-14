@@ -1,9 +1,9 @@
 ------------------------------------------------------------------------------
 -- Start-up
--- Set leader keymap; ensure `mapleader` is set before lazy so your keymaps
--- are correct
+-- Set leader/localleader keymaps; ensure `mapleader` is set before lazy so
+-- your keymaps are correct
 vim.g.mapleader = " "
-vim.g.maplocalleader = ","
+vim.g.maplocalleader = "\\"
 
 ------------------------------------------------------------------------------
 -- Setup Lazy
