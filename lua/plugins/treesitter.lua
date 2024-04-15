@@ -1,6 +1,6 @@
 return {
+   -- Tree-sitter: LSP syntax tree and better syntax highlighting
    {
-      -- LSP syntax tree and better syntax highlighting
       "nvim-treesitter/nvim-treesitter",
       event = { "BufReadPost", "BufNewFile" },
       cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -52,5 +52,6 @@ return {
    {
       "nvim-treesitter/nvim-treesitter-context",
       event = { "BufReadPost", "BufNewFile" },
+      dependecies = { "nvim-treesitter/nvim-treesitter" },
    },
 }

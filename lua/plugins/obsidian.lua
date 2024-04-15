@@ -9,16 +9,16 @@ return {
       -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
       "BufReadPre "
-         .. (vim.loop.fs_realpath(vim.fs.normalize("~/vaults")) or "/dev/null")
+         .. (vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null")
          .. "/**.md",
-      "BufNewFile " .. (vim.loop.fs_realpath(vim.fs.normalize("~/vaults")) or "/dev/null") .. "/**.md",
+      "BufNewFile " .. (vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null") .. "/**.md",
    },
    dependencies = {
       -- Required
       "nvim-lua/plenary.nvim",
    },
    init = function()
-      local vaults_dir = vim.loop.fs_realpath(vim.fs.normalize("~/vaults")) or "/dev/null"
+      local vaults_dir = vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null"
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
          group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
          pattern = vaults_dir .. "/**.md",
@@ -29,11 +29,11 @@ return {
       workspaces = {
          {
             name = "personal",
-            path = "~/vaults/personal",
+            path = "~/obsidian_vaults/personal",
          },
          {
             name = "work",
-            path = "~/vaults/work",
+            path = "~/obsidian_vaults/work",
          },
       },
    },

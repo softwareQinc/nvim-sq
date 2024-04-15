@@ -8,7 +8,7 @@ return {
             -- Snippet plugin
             "L3MON4D3/LuaSnip",
             -- Follow latest release.
-            version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+            version = "v2.*", -- replace <CurrentMajor> by the latest released major (first number of latest release)
             dependencies = "rafamadriz/friendly-snippets",
             opts = { history = true, updateevents = "TextChanged,TextChangedI" },
          },
@@ -103,7 +103,8 @@ return {
          -- Set configuration for specific filetype.
          cmp.setup.filetype("gitcommit", {
             sources = cmp.config.sources({
-               { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+               -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+               { name = "git" },
             }, {
                { name = "buffer" },
             }),

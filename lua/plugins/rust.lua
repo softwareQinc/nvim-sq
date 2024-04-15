@@ -11,12 +11,12 @@ return {
    {
       "simrat39/rust-tools.nvim",
       ft = "rust",
-      dependencies = "neovim/nvim-lspconfig",
+      dependencies = { "neovim/nvim-lspconfig" },
    },
    -- Rust crates.io dependency management
    {
       "saecki/crates.nvim",
-      dependencies = "hrsh7th/nvim-cmp",
+      dependencies = { "hrsh7th/nvim-cmp" },
       ft = { "rust", "toml" },
       config = function(_, opts)
          local crates = require("crates")

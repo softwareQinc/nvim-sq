@@ -1,6 +1,6 @@
 # nvim-sq
 
-Custom [Neovim](https://neovim.io/) configuration that includes development
+Custom [Neovim](https://neovim.io) configuration that includes development
 productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
 tree-sitter, tmux integration, ChatGPT etc., and
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
@@ -12,7 +12,7 @@ tree-sitter, tmux integration, ChatGPT etc., and
 ### Terminal
 
 Install a terminal application with TrueColor support. On macOS, install, e.g.,
-[iTerm2](https://iterm2.com/) via [Homebrew](https://brew.sh/) with
+[iTerm2](https://iterm2.com) via [Homebrew](https://brew.sh) with
 
 ```shell
 brew install iterm2
@@ -52,8 +52,12 @@ nvim
 
 ### GUI
 
-If you want a GUI Neovim client, install [Neovide](https://neovide.dev/)
-(`brew install neovide` on macOS).
+If you prefer a GUI Neovim client, consider [Neovide](https://neovide.dev). On
+macOS, install it with
+
+```shell
+brew install Neovide
+```
 
 ---
 
@@ -64,8 +68,8 @@ and/or there are missing packages required for this configuration.
 
 ### GNU sed
 
-When starting Neovim on macOS, you may get a message about `gnu-sed` being
-required. Install it
+When starting Neovim on macOS, you may get a message about
+[`gnu-sed`](https://www.gnu.org/software/sed) being required. Install it
 
 ```shell
 brew install gnu-sed
@@ -73,8 +77,8 @@ brew install gnu-sed
 
 ### tree-sitter
 
-If `tree-sitter` executable is missing, install it (requires
-[Rust](https://www.rust-lang.org/)) with
+If [`tree-sitter`](https://github.com/tree-sitter) is missing, install it
+(requires [Rust](https://www.rust-lang.org)) with
 
 ```shell
 cargo install tree-sitter-cli
@@ -82,19 +86,35 @@ cargo install tree-sitter-cli
 
 ### npm
 
-If `npm` is missing, install it (macOS) with
+If [`npm`](https://docs.npmjs.com/about-npm) is missing, install it (macOS)
+with
 
 ```shell
 brew install npm
 ```
 
-### Lazygit
+### lazygit
 
-If `lazygit` is missing, install it (macOS) with
+If [`lazygit`](https://github.com/jesseduffield/lazygit) is missing, install it
+(macOS) with
 
 ```shell
 brew install lazygit
 ```
+
+### LuaJIT
+
+If the
+[Neorg plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua)
+fails to install or does not work properly, install
+[LuaJIT](https://luajit.org). On macOS, install it with
+
+```shell
+brew install luajit
+```
+
+See [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart)
+for more details.
 
 ### ChatGPT
 
@@ -146,5 +166,5 @@ codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 
 ### Haskell
 
-Ensure that `ghcup` is installed, see
+Ensure that [`ghcup`](https://www.haskell.org/ghcup) is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).

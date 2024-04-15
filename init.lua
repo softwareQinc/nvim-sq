@@ -1,7 +1,7 @@
 ------------------------------------------------------------------------------
 -- Start-up
--- Set leader/localleader keymaps; ensure `mapleader` is set before lazy so
--- your keymaps are correct
+-- Set leader/localleader keymaps
+-- Ensure `mapleader` is set before lazy so that your keymaps are correct
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -39,8 +39,8 @@ local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme
    dark_scheme_name = "catppuccin", -- default dark color scheme
-   light_scheme_starts_at = 08, -- light color scheme starts at this hour (24h format)
-   light_scheme_ends_at = 17, -- light color scheme ends at this hour (24h format)
+   light_scheme_starts_at = 08, -- light color scheme starts (24h format)
+   light_scheme_ends_at = 17, -- light color scheme ends (24h format)
 })
 
 ------------------------------------------------------------------------------
