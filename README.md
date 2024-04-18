@@ -2,7 +2,7 @@
 
 Custom [Neovim](https://neovim.io) configuration that includes development
 productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
-tree-sitter, tmux integration, ChatGPT etc., and
+tree-sitter, tmux integration, ChatGPT, etc., and uses
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
 
 ---

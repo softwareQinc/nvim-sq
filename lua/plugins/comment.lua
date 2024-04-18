@@ -1,6 +1,6 @@
 return {
    "numToStr/Comment.nvim",
-   event = "LspAttach",
+   event = { "BufReadPost", "BufNewFile" },
    opts = {
       -- add any options here
    },

@@ -12,9 +12,9 @@ return {
       local api = vim.api
       -- Change the highlight style
       local function set_illumintate_hl()
-         api.nvim_set_hl(0, "IlluminatedWordText", { link = "Visual" })
-         api.nvim_set_hl(0, "IlluminatedWordRead", { link = "Visual" })
-         api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "Visual" })
+         api.nvim_set_hl(0, "IlluminatedWordText", { link = "CursorLine" })
+         api.nvim_set_hl(0, "IlluminatedWordRead", { link = "CursorLine" })
+         api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "CursorLine" })
       end
       set_illumintate_hl()
       -- Auto update the highlight style on colorscheme change

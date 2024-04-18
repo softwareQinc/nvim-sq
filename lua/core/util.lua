@@ -81,19 +81,37 @@ end
 function M.smart_bd()
    local cur_buf_no = vim.api.nvim_get_current_buf()
    -- local cur_buf_name = vim.api.nvim_buf_get_name(cur_buf_no)
-   local buffer_filetype = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
-   -- Special buffers
-   local buftype_cmd = {
-      ["neo-tree"] = "Neotree toggle",
-      ["netrw"] = "Lexplore",
-      ["Outline"] = "OutlineClose",
+
+   -- Special filetype buffers
+   local buffer_ft = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
+   local close_buf_ft_cmd = 'execute "normal! \\<C-w>c"'
+   local buffer_ft_cmd = {
+      ["neo-tree"] = close_buf_ft_cmd,
+      ["netrw"] = close_buf_ft_cmd,
+      ["qf"] = close_buf_ft_cmd,
+      ["Outline"] = close_buf_ft_cmd,
+      ["Trouble"] = close_buf_ft_cmd,
    }
-   for buftype, cmd in pairs(buftype_cmd) do
-      if buffer_filetype == buftype then
-         vim.api.nvim_command(cmd)
+   for buf_ft, cmd in pairs(buffer_ft_cmd) do
+      if buffer_ft == buf_ft then
+         pcall(vim.api.nvim_command, cmd)
          return
       end
    end
+
+   -- Special buftype buffers
+   local buffer_bt = vim.api.nvim_buf_get_option(cur_buf_no, "buftype")
+   local close_buf_bt_cmd = 'execute ":bd!"'
+   local buffer_bt_cmd = {
+      ["terminal"] = close_buf_bt_cmd,
+   }
+   for buf_bt, cmd in pairs(buffer_bt_cmd) do
+      if buffer_bt == buf_bt then
+         pcall(vim.api.nvim_command, cmd)
+         return
+      end
+   end
+
    -- All other buffers
    local bd = require("bufdelete")
    bd.bufdelete()
