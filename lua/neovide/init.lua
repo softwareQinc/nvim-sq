@@ -20,5 +20,8 @@ util.map_keys(keymaps.scale, { noremap = true, silent = true })
 vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
--- Set the current working directory to the home folder
-vim.cmd("cd ~")
+-- Set the current working directory to home directory
+local home_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
+if home_dir then
+   vim.cmd("cd " .. home_dir)
+end

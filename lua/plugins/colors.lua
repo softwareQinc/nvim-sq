@@ -11,6 +11,16 @@ return {
       priority = 1000,
    },
    {
+      "rebelot/kanagawa.nvim",
+      lazy = true,
+      priority = 1000,
+   },
+   {
+      "folke/tokyonight.nvim",
+      lazy = true,
+      priority = 1000,
+   },
+   {
       "Mofiqul/vscode.nvim",
       lazy = true,
       priority = 1000,
@@ -20,10 +30,5 @@ return {
             italic_comments = true,
          })
       end,
-   },
-   {
-      "folke/tokyonight.nvim",
-      lazy = true,
-      priority = 1000,
    },
 }

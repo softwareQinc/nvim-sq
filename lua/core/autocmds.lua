@@ -36,7 +36,7 @@ api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
    desc = "Set SignColumn color to background color",
 })
 -- Folding
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
    callback = function()
       if require("nvim-treesitter.parsers").has_parser() then
          vim.opt.foldmethod = "expr"
@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
    command = "setlocal cursorline",
 })
 -- Disable cursor line in inactive buffers
-vim.api.nvim_create_autocmd({ "WinLeave" }, {
+vim.api.nvim_create_autocmd("WinLeave", {
    group = "Generic",
    pattern = "*",
    command = "setlocal nocursorline",

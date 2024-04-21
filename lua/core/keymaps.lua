@@ -437,8 +437,8 @@ M.nvim_lspconfig = {
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
       ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP go to implementation" } },
       ["<C-k>"] = { vim.lsp.buf.signature_help, { desc = "LSP signature help" } },
-      ["[<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP add workspace folder" } },
-      ["[<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete workspace folder" } },
+      ["<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP add workspace folder" } },
+      ["<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete workspace folder" } },
       ["<leader>wl"] = {
          function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))

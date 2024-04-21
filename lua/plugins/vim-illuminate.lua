@@ -12,13 +12,15 @@ return {
       local api = vim.api
       -- Change the highlight style
       local function set_illumintate_hl()
+         -- Use Visual instead of CursorLine for more accentuated highlighting,
+         -- or comment the lines below for illuminating only (no highlighting)
          api.nvim_set_hl(0, "IlluminatedWordText", { link = "CursorLine" })
          api.nvim_set_hl(0, "IlluminatedWordRead", { link = "CursorLine" })
          api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "CursorLine" })
       end
       set_illumintate_hl()
       -- Auto update the highlight style on colorscheme change
-      api.nvim_create_autocmd({ "ColorScheme" }, {
+      api.nvim_create_autocmd("ColorScheme", {
          group = vim.api.nvim_create_augroup("Vim-illuminate", { clear = true }),
          pattern = { "*" },
          callback = set_illumintate_hl,

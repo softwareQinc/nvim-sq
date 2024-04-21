@@ -102,19 +102,14 @@ If [`lazygit`](https://github.com/jesseduffield/lazygit) is missing, install it
 brew install lazygit
 ```
 
-### LuaJIT
+### Neorg
 
 If the
 [Neorg plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua)
-fails to install or does not work properly, install
-[LuaJIT](https://luajit.org). On macOS, install it with
-
-```shell
-brew install luajit
-```
-
-See [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart)
-for more details.
+fails to install or does not work properly, ensure that you have
+[Lua](https://www.lua.org) version 5.1 or [LuaJIT](https://luajit.org)
+installed on your system. For installation instructions, follow
+[Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart).
 
 ### ChatGPT
 
@@ -125,7 +120,7 @@ assumes that the OpenAI API key is available as a text file in
 
 ---
 
-## Programming language support
+## Programming languages support
 
 This Neovim configuration comes out of the box with LSP (and often DAP) support
 for a whole bunch of programming/scripting/markup languages, including (but not
