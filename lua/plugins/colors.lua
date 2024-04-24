@@ -14,6 +14,20 @@ return {
       "rebelot/kanagawa.nvim",
       lazy = true,
       priority = 1000,
+      config = function()
+         require("kanagawa").setup({
+            -- Remove the background of LineNr, {Sign,Fold}Column and friends
+            colors = {
+               theme = {
+                  all = {
+                     ui = {
+                        bg_gutter = "none",
+                     },
+                  },
+               },
+            },
+         })
+      end,
    },
    {
       "folke/tokyonight.nvim",
