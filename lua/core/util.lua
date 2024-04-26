@@ -89,6 +89,7 @@ function M.smart_bd()
       ["neo-tree"] = close_buf_ft_cmd,
       ["netrw"] = close_buf_ft_cmd,
       ["qf"] = close_buf_ft_cmd,
+      ["query"] = close_buf_ft_cmd,
       ["Outline"] = close_buf_ft_cmd,
       ["Trouble"] = close_buf_ft_cmd,
    }
