@@ -50,6 +50,16 @@ Adapt accordingly for other OS-es. Finally, launch Neovim by executing
 nvim
 ```
 
+### Colour schemes
+
+A few additional colour schemes can be lazy-loaded from
+[lua/plugins/colorschemes.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/colorschemes.lua).
+Edit the
+[init.lua](https://github.com/softwareQinc/nvim-sq/blob/main/init.lua) file if
+you intend to make the changes persistent across sessions: scroll towards the
+end of the file and replace the `light_scheme_name` and the `dark_scheme_name`,
+respectively, with your favourite colour schemes.
+
 ### GUI
 
 If you prefer a GUI Neovim client, consider [Neovide](https://neovide.dev). On

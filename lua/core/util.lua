@@ -80,18 +80,25 @@ end
 -- Delete current buffer, preserve splits
 function M.smart_bd()
    local cur_buf_no = vim.api.nvim_get_current_buf()
-   -- local cur_buf_name = vim.api.nvim_buf_get_name(cur_buf_no)
+   local cur_buf_name = vim.api.nvim_buf_get_name(cur_buf_no)
+
+   local buffer_ft = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
+   local buffer_bt = vim.api.nvim_buf_get_option(cur_buf_no, "buftype")
+   -- print(buffer_ft, buffer_bt)
 
    -- Special filetype buffers
-   local buffer_ft = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
    local close_buf_ft_cmd = 'execute "normal! \\<C-w>c"'
    local buffer_ft_cmd = {
+      ["fugitiveblame"] = close_buf_ft_cmd,
+      ["git"] = close_buf_ft_cmd,
+      ["help"] = close_buf_ft_cmd,
       ["neo-tree"] = close_buf_ft_cmd,
       ["netrw"] = close_buf_ft_cmd,
       ["qf"] = close_buf_ft_cmd,
       ["query"] = close_buf_ft_cmd,
       ["Outline"] = close_buf_ft_cmd,
       ["Trouble"] = close_buf_ft_cmd,
+      ["vim"] = close_buf_ft_cmd,
    }
    for buf_ft, cmd in pairs(buffer_ft_cmd) do
       if buffer_ft == buf_ft then
@@ -101,13 +108,13 @@ function M.smart_bd()
    end
 
    -- Special buftype buffers
-   local buffer_bt = vim.api.nvim_buf_get_option(cur_buf_no, "buftype")
    local close_buf_bt_cmd = 'execute ":bd!"'
    local buffer_bt_cmd = {
       ["terminal"] = close_buf_bt_cmd,
+      ["nofile"] = close_buf_ft_cmd, -- not a typo!
    }
    for buf_bt, cmd in pairs(buffer_bt_cmd) do
-      if buffer_bt == buf_bt then
+      if (buffer_ft == "" or buffer_ft == nil) and buffer_bt == buf_bt then
          pcall(vim.api.nvim_command, cmd)
          return
       end

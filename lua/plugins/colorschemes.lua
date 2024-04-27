@@ -6,6 +6,24 @@ return {
       priority = 1000,
    },
    {
+      "sainnhe/everforest",
+      lazy = true,
+      priority = 1000,
+      config = function()
+         -- Set contrast ("hard/medium/soft")
+         vim.g.everforest_background = "hard"
+      end,
+   },
+   {
+      "sainnhe/gruvbox-material",
+      lazy = true,
+      priority = 1000,
+      config = function()
+         -- Set contrast ("hard/medium/soft")
+         vim.g.gruvbox_material_background = "medium"
+      end,
+   },
+   {
       "ellisonleao/gruvbox.nvim",
       lazy = true,
       priority = 1000,

@@ -33,8 +33,8 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
--- Sets color scheme to light between 8AM and 5PM, dark otherwise
--- Colors scheme plugins are loaded from "./lua/plugins/colors.lua"
+-- Set color scheme to light between 8AM and 5PM, dark otherwise
+-- Color scheme plugins are loaded from "lua/plugins/colors.lua"
 local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme

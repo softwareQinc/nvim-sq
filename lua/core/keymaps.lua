@@ -252,7 +252,13 @@ M.color_toggle = {
 
 M.dashboard = {
    n = {
-      ["<leader>a"] = { "<cmd> Dashboard <CR>", { desc = "Dashboard" } },
+      ["<leader>a"] = {
+         function()
+            require("dashboard")
+            vim.cmd("Dashboard")
+         end,
+         { desc = "Dashboard" },
+      },
    },
 }
 
