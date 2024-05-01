@@ -40,7 +40,7 @@ function M.map_all_keys(tbl, additional_options)
       -- Keymap tables that contain 'plugin = true' are skipped
       -- Keymaps are buffer-local/key-triggered and are performed in the plugin
       -- config file
-      if v.plugin and v.plugin == true then
+      if v.plugin and v.plugin then
          goto continue
       end
       M.map_keys(v, additional_options)
@@ -79,42 +79,41 @@ end
 
 -- Delete current buffer, preserve splits
 function M.smart_bd()
-   local cur_buf_no = vim.api.nvim_get_current_buf()
-   local cur_buf_name = vim.api.nvim_buf_get_name(cur_buf_no)
+   local debug = false
 
-   local buffer_ft = vim.api.nvim_buf_get_option(cur_buf_no, "filetype")
-   local buffer_bt = vim.api.nvim_buf_get_option(cur_buf_no, "buftype")
-   -- print(buffer_ft, buffer_bt)
+   local buf_no = vim.api.nvim_get_current_buf()
+   local buf_name = vim.api.nvim_buf_get_name(buf_no)
 
-   -- Special filetype buffers
-   local close_buf_ft_cmd = 'execute "normal! \\<C-w>c"'
-   local buffer_ft_cmd = {
-      ["fugitiveblame"] = close_buf_ft_cmd,
-      ["git"] = close_buf_ft_cmd,
-      ["help"] = close_buf_ft_cmd,
-      ["neo-tree"] = close_buf_ft_cmd,
-      ["netrw"] = close_buf_ft_cmd,
-      ["qf"] = close_buf_ft_cmd,
-      ["query"] = close_buf_ft_cmd,
-      ["Outline"] = close_buf_ft_cmd,
-      ["Trouble"] = close_buf_ft_cmd,
-      ["vim"] = close_buf_ft_cmd,
-   }
-   for buf_ft, cmd in pairs(buffer_ft_cmd) do
-      if buffer_ft == buf_ft then
-         pcall(vim.api.nvim_command, cmd)
-         return
-      end
+   local buf_ft = vim.api.nvim_buf_get_option(buf_no, "filetype")
+   local buf_bt = vim.api.nvim_buf_get_option(buf_no, "buftype")
+   if debug then
+      print(string.format("filetype: [%s] | buftype: [%s]", buf_ft, buf_bt))
    end
 
-   -- Special buftype buffers
-   local close_buf_bt_cmd = 'execute ":bd!"'
-   local buffer_bt_cmd = {
-      ["terminal"] = close_buf_bt_cmd,
-      ["nofile"] = close_buf_ft_cmd, -- not a typo!
+   local close_Cwc = 'execute "normal! \\<C-w>c"'
+   local close_bd = 'execute ":bd!"'
+
+   -- Special buffers
+   -- Keys are tables of the form {buf_ft, [OPTIONAL buf_bt]}
+   local buf_cmds = {
+      [{ "fugitiveblame" }] = close_Cwc,
+      [{ "help" }] = close_Cwc,
+      [{ "man" }] = close_Cwc,
+      [{ "neo-tree" }] = close_Cwc,
+      [{ "netrw" }] = close_Cwc,
+      [{ "Outline" }] = close_Cwc,
+      [{ "qf" }] = close_Cwc,
+      [{ "query" }] = close_Cwc,
+      [{ "Trouble" }] = close_Cwc,
+      [{ "vim" }] = close_Cwc,
+
+      [{ "", "nofile" }] = close_Cwc,
+      [{ "", "terminal" }] = close_bd,
+      [{ "git", "nowrite" }] = close_Cwc,
    }
-   for buf_bt, cmd in pairs(buffer_bt_cmd) do
-      if (buffer_ft == "" or buffer_ft == nil) and buffer_bt == buf_bt then
+   for buf, cmd in pairs(buf_cmds) do
+      local selected = (buf[1] == buf_ft) and ((not buf[2]) or (buf[2] == buf_bt))
+      if selected then
          pcall(vim.api.nvim_command, cmd)
          return
       end

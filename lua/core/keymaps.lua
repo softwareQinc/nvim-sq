@@ -21,6 +21,11 @@ M.generic = {
 
       ["<ESC>"] = { "<cmd> nohlsearch <CR>" },
 
+      ["[b"] = { "<cmd> bprevious <CR>", { desc = "Buffer previous" } },
+      ["]b"] = { "<cmd> bnext <CR>", { desc = "Buffer next" } },
+      ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
+      ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
+
       ["<Up>"] = { "<Nop>" },
       ["<Down>"] = { "<Nop>" },
       ["<Left>"] = { "<Nop>" },
@@ -239,7 +244,7 @@ M.color_toggle = {
       ["<leader>tt"] = {
          function()
             local ui = require("core.ui")
-            if ui.color_toggle_current.is_light_scheme == true then
+            if ui.color_toggle_current.is_light_scheme then
                ui.set_dark_scheme(ui.color_toggle_current["dark"])
             else
                ui.set_light_scheme(ui.color_toggle_current["light"])
@@ -273,7 +278,7 @@ M.outline = {
 
 M.which_key = {
    plugin = true,
-   keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g", "z" },
+   keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g", "z", "[", "]" },
 }
 
 M.nvim_treesitter = {
