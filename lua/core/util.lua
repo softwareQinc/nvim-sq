@@ -96,7 +96,9 @@ function M.smart_bd()
    -- Special buffers
    -- Keys are tables of the form {buf_ft, [OPTIONAL buf_bt]}
    local buf_cmds = {
+      [{ "fugitive" }] = close_Cwc,
       [{ "fugitiveblame" }] = close_Cwc,
+      [{ "git" }] = close_Cwc,
       [{ "help" }] = close_Cwc,
       [{ "man" }] = close_Cwc,
       [{ "neo-tree" }] = close_Cwc,
@@ -109,7 +111,6 @@ function M.smart_bd()
 
       [{ "", "nofile" }] = close_Cwc,
       [{ "", "terminal" }] = close_bd,
-      [{ "git", "nowrite" }] = close_Cwc,
    }
    for buf, cmd in pairs(buf_cmds) do
       local selected = (buf[1] == buf_ft) and ((not buf[2]) or (buf[2] == buf_bt))

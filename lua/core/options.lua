@@ -24,6 +24,7 @@ M = {
       hlsearch = true,
       showmode = false, -- we have lualine
       foldlevelstart = 20,
+      timeoutlen = 400,
       listchars = { -- special characters
          -- eol = "⏎",
          -- space = "␣",

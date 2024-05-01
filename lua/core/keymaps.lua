@@ -82,8 +82,9 @@ M.telescope = {
       ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope help tags" } },
       ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Telescope current buffer" } },
       ["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope recent files" } },
-      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope git status" } },
       ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope git commits" } },
+      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope git files" } },
+      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope git status" } },
       ["<leader>ma"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope marks" } },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
@@ -221,7 +222,7 @@ M.terminal = {
 
 M.lazy_git = {
    n = {
-      ["<leader>gg"] = { "<cmd> LazyGit <CR>", { desc = "LazyGit" } },
+      ["<leader>lg"] = { "<cmd> LazyGit <CR>", { desc = "LazyGit" } },
    },
 }
 
@@ -447,7 +448,7 @@ M.nvim_lspconfig = {
       ["gd"] = { vim.lsp.buf.definition, { desc = "LSP go to definition" } },
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
       ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP go to implementation" } },
-      ["<C-k>"] = { vim.lsp.buf.signature_help, { desc = "LSP signature help" } },
+      ["<leader>sh"] = { vim.lsp.buf.signature_help, { desc = "LSP signature help" } },
       ["<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP add workspace folder" } },
       ["<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete workspace folder" } },
       ["<leader>wl"] = {
