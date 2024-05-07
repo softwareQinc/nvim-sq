@@ -18,17 +18,30 @@ function M.merge_tables(table1, table2)
    return merged_table
 end
 
+-- Utility function for M.map_keys()
+local function map_keys_inner(mode, rhs, additional_options)
+   for key, cmd in pairs(rhs) do
+      local keymap = cmd[1]
+      local options = cmd[2]
+      local all_options = M.merge_tables(options, additional_options)
+      vim.keymap.set(mode, key, keymap, all_options)
+   end
+end
+
 -- Map keys for single non-plugin sub-table
-function M.map_keys(tbl, additional_options)
-   for mode, key_keymaps in pairs(tbl) do
-      if mode ~= "n" and mode ~= "i" and mode ~= "v" then
-         goto continue
-      end
-      for key, cmd in pairs(key_keymaps) do
-         local keymap = cmd[1]
-         local options = cmd[2]
-         local all_options = M.merge_tables(options, additional_options)
-         vim.keymap.set(mode, key, keymap, all_options)
+function M.map_keys(keymap_tbl, additional_options)
+   for mode, rhs in pairs(keymap_tbl) do
+      -- Table as keys
+      if type(mode) == "table" then
+         for _, mode_elem in ipairs(mode) do
+            map_keys_inner(mode_elem, rhs, additional_options)
+         end
+      else
+         -- Regular keys
+         if mode ~= "n" and mode ~= "i" and mode ~= "v" then
+            goto continue
+         end
+         map_keys_inner(mode, rhs, additional_options)
       end
       ::continue::
    end
@@ -36,14 +49,14 @@ end
 
 -- Map keys for all sub-tables in the keymaps table
 function M.map_all_keys(tbl, additional_options)
-   for _, v in pairs(tbl) do
+   for _, keymap_tbl in pairs(tbl) do
       -- Keymap tables that contain 'plugin = true' are skipped
       -- Keymaps are buffer-local/key-triggered and are performed in the plugin
       -- config file
-      if v.plugin and v.plugin then
+      if keymap_tbl.plugin then
          goto continue
       end
-      M.map_keys(v, additional_options)
+      M.map_keys(keymap_tbl, additional_options)
       ::continue::
    end
 end

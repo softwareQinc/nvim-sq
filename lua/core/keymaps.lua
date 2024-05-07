@@ -25,19 +25,8 @@ M.generic = {
       ["]b"] = { "<cmd> bnext <CR>", { desc = "Buffer next" } },
       ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
       ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
-
-      ["<Up>"] = { "<Nop>" },
-      ["<Down>"] = { "<Nop>" },
-      ["<Left>"] = { "<Nop>" },
-      ["<Right>"] = { "<Nop>" },
    },
-   i = {
-      ["<Up>"] = { "<Nop>" },
-      ["<Down>"] = { "<Nop>" },
-      ["<Left>"] = { "<Nop>" },
-      ["<Right>"] = { "<Nop>" },
-   },
-   v = {
+   [{ "n", "i", "v" }] = {
       ["<Up>"] = { "<Nop>" },
       ["<Down>"] = { "<Nop>" },
       ["<Left>"] = { "<Nop>" },
@@ -459,7 +448,6 @@ M.nvim_lspconfig = {
       },
       ["<leader>D"] = { vim.lsp.buf.type_definition, { desc = "LSP type definition" } },
       ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP rename" } },
-      ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP code actions" } },
       ["gr"] = { vim.lsp.buf.references, { desc = "LSP references" } },
       ["<leader>fm"] = {
          function()
@@ -468,7 +456,7 @@ M.nvim_lspconfig = {
          { desc = "LSP format" },
       },
    },
-   v = {
+   [{ "n", "v" }] = {
       ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP code actions" } },
    },
 }
