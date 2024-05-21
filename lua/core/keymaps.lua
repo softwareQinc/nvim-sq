@@ -55,6 +55,12 @@ M.neo_tree = {
    },
 }
 
+M.oil = {
+   n = {
+      ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil" } },
+   },
+}
+
 M.telescope = {
    n = {
       ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", { desc = "Telescope files" } },
