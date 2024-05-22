@@ -61,14 +61,14 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Terminal
 api.nvim_create_augroup("Terminal", { clear = true })
--- Disable spelling and line numbers
+-- Disable spell checking and line numbering
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = "*",
    command = "setlocal nospell nonumber norelativenumber",
-   desc = "Disable spelling and line numbers in term windows",
+   desc = "Disable spell checking and line numbering in Term windows",
 })
--- Enter term windows in Insert mode
+-- Enter Term windows in Insert mode
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = "*",
@@ -80,12 +80,22 @@ api.nvim_create_autocmd("TermOpen", {
       vim.cmd("startinsert")
       vim.cmd("setlocal nonu")
    end,
-   desc = "Enter term windows in Insert mode",
+   desc = "Enter Term windows in Insert mode",
 })
--- Exit term windows without pressing any key
+-- Exit Term windows without pressing any key
 -- api.nvim_create_autocmd("TermClose", {
 --    group = "Terminal",
 --    pattern = "*",
 --    command = "call feedkeys('q')",
---    desc = "Exit term windows without pressing any key",
+--    desc = "Exit Term windows without pressing any key",
 -- })
+
+-- Quickfix lists
+api.nvim_create_augroup("Quickfix", { clear = true })
+-- Disable spell checking
+api.nvim_create_autocmd("FileType", {
+   group = "Quickfix",
+   pattern = "qf",
+   command = "setlocal nospell",
+   desc = "Disable spell checking in Quickfix lists",
+})
