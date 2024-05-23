@@ -461,6 +461,19 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP format" },
       },
+      ["<leader>ih"] = {
+         -- LSP inlay hints, requires Neovim 0.10 or later
+         function()
+            local lsp_inlay_hint = vim.lsp["inlay_hint"]
+            if lsp_inlay_hint then
+               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
+               print("LSP inlay hints:", vim.lsp.inlay_hint.is_enabled({}))
+            else
+               print("LSP inlay hints not supported!")
+            end
+         end,
+         { desc = "LSP inlay hints toggle" },
+      },
    },
    [{ "n", "v" }] = {
       ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP code actions" } },
