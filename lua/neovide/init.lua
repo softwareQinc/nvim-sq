@@ -20,8 +20,11 @@ util.map_keys(keymaps.scale, { noremap = true, silent = true })
 vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
--- Set the current working directory to home directory
+-- Set current working directory to home directory if we are in '/' or 'C:\'
+local current_dir = vim.fn.getcwd()
 local home_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
-if home_dir then
-   vim.cmd("cd " .. home_dir)
+if current_dir == "/" or current_dir == "C:\\Program Files\\Neovide" then
+   if home_dir then
+      vim.cmd("cd " .. home_dir)
+   end
 end
