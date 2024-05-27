@@ -23,7 +23,11 @@ as the vanilla macOS Terminal application does not support TrueColor.
 ### Fonts
 
 Install a [Nerd Font](https://www.nerdfonts.com/font-downloads), e.g.,
-[JetBrainsMono Nerd Font](https://www.programmingfonts.org/#jetbrainsmono).
+[JetBrainsMono Nerd Font](https://www.programmingfonts.org/#jetbrainsmono) with
+
+```shell
+brew install font-jetbrains-mono-nerd-font
+```
 
 ---
 
@@ -66,7 +70,7 @@ If you prefer a GUI Neovim client, consider [Neovide](https://neovide.dev). On
 macOS, install it with
 
 ```shell
-brew install Neovide
+brew install neovide
 ```
 
 ---
