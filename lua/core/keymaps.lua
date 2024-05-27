@@ -203,8 +203,8 @@ M.todo_comments = {
 }
 
 M.carbon_now = {
-   v = {
-      ["<leader>cn"] = { ":CarbonNow <CR>", { desc = "CarbonNow code selection screenshot" } },
+   [{ "n", "v" }] = {
+      ["<leader>cn"] = { ":CarbonNow <CR>", { desc = "CarbonNow (visual selection) screenshot" } },
    },
 }
 
