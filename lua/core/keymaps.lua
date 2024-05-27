@@ -439,8 +439,8 @@ M.nvim_dap_go = {
 M.nvim_lspconfig = {
    plugin = true,
    n = {
-      ["gD"] = { vim.lsp.buf.declaration, { desc = "LSP go to declaration" } },
       ["gd"] = { vim.lsp.buf.definition, { desc = "LSP go to definition" } },
+      ["gD"] = { vim.lsp.buf.declaration, { desc = "LSP go to declaration" } },
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
       ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP go to implementation" } },
       ["<leader>sh"] = { vim.lsp.buf.signature_help, { desc = "LSP signature help" } },
