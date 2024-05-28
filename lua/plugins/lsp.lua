@@ -73,6 +73,17 @@ return {
             handlers = {
                default_setup,
                -- Custom configurations below
+               lua_ls = function()
+                  lspconfig.lua_ls.setup({
+                     capabilities = lsp_capabilities,
+                     on_attach = lsp_format_on_save,
+                     settings = {
+                        Lua = {
+                           hint = { enable = true },
+                        },
+                     },
+                  })
+               end,
                clangd = function()
                   lspconfig.clangd.setup({
                      capabilities = lsp_capabilities,
@@ -112,6 +123,15 @@ return {
                            usePlaceholders = true,
                            analyses = {
                               unusedparams = true,
+                           },
+                           hints = {
+                              assignVariableTypes = true,
+                              compositeLiteralFields = true,
+                              compositeLiteralTypes = true,
+                              constantValues = true,
+                              functionTypeParameters = true,
+                              parameterNames = true,
+                              rangeVariableTypes = true,
                            },
                         },
                      },
