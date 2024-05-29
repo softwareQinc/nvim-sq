@@ -4,13 +4,6 @@ local api = vim.api
 
 -- Generic
 api.nvim_create_augroup("Generic", { clear = true })
--- Auto resize panes when resizing Neovim window
-api.nvim_create_autocmd("VimResized", {
-   group = "Generic",
-   pattern = "*",
-   command = "tabdo wincmd =",
-   desc = "Auto resize panes when resizing Neovim window",
-})
 -- Highlights yanked text
 api.nvim_create_autocmd("TextYankPost", {
    group = "Generic",
