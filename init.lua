@@ -33,6 +33,16 @@ require("lazy").setup(plugins, opts)
 require("core")
 
 ------------------------------------------------------------------------------
+-- Enable hardtime.nvim at startup, disabled by default
+-- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps
+local start_with_hardtime = false
+if start_with_hardtime then
+   local keymap = "<leader>he<CR>"
+   local keys = vim.api.nvim_replace_termcodes(keymap, true, false, true)
+   vim.api.nvim_feedkeys(keys, "m", false)
+end
+
+------------------------------------------------------------------------------
 -- Set color scheme to light between 8AM and 5PM, dark otherwise
 -- Color scheme plugins are loaded from "lua/plugins/colors.lua"
 local ui = require("core.ui")

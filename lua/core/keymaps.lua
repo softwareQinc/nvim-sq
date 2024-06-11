@@ -263,12 +263,52 @@ M.dashboard = {
    },
 }
 
+local hardtime_enabled = false
+M.hardtime = {
+   n = {
+      ["<leader>hd"] = {
+         function()
+            require("hardtime")
+            vim.cmd("Hardtime disable")
+            hardtime_enabled = false
+            print("Hardtime: false")
+         end,
+         { desc = "Hardtime disable" },
+      },
+      ["<leader>he"] = {
+         function()
+            require("hardtime")
+            vim.cmd("Hardtime enable")
+            hardtime_enabled = true
+            print("Hardtime: true")
+         end,
+         { desc = "Hardtime enable" },
+      },
+      ["<leader>hr"] = {
+         function()
+            require("hardtime")
+            vim.cmd("Hardtime report")
+         end,
+         { desc = "Hardtime report" },
+      },
+      ["<leader>ht"] = {
+         function()
+            require("hardtime")
+            vim.cmd("Hardtime toggle")
+            hardtime_enabled = not hardtime_enabled
+            print("Hardtime:", hardtime_enabled)
+         end,
+         { desc = "Hardtime toggle" },
+      },
+   },
+}
+
 ------------------------------------------------------------------------------
 -- Global keymaps for key-triggered lazy-loaded plugins
 M.outline = {
    plugin = true,
    keys = {
-      { "<leader>so", "<cmd> Outline <CR>", desc = "Toggle outline" },
+      { "<leader>so", "<cmd> Outline <CR>", desc = "Outline toggle" },
    },
 }
 
