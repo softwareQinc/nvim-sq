@@ -317,6 +317,42 @@ M.which_key = {
    keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g", "z", "[", "]" },
 }
 
+M.trouble = {
+   plugin = true,
+   keys = {
+      {
+         "<leader>xx",
+         "<cmd> Trouble diagnostics toggle <CR>",
+         desc = "Trouble diagnostics",
+      },
+      {
+         "<leader>xX",
+         "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>",
+         desc = "Trouble buffer diagnostics",
+      },
+      {
+         "<leader>cs",
+         "<cmd> Trouble symbols toggle focus=false <CR>",
+         desc = "Trouble symbols",
+      },
+      {
+         "<leader>cl",
+         "<cmd> Trouble lsp toggle focus=false win.position=right <CR>",
+         desc = "Trouble LSP definitions/references/...",
+      },
+      {
+         "<leader>xL",
+         "<cmd> Trouble loclist toggle <CR>",
+         desc = "Trouble Location list",
+      },
+      {
+         "<leader>xQ",
+         "<cmd> Trouble qflist toggle <CR>",
+         desc = "Trouble Quickfix list",
+      },
+   },
+}
+
 M.nvim_treesitter = {
    plugin = true,
    keymaps = {
@@ -329,48 +365,6 @@ M.nvim_treesitter = {
 
 ------------------------------------------------------------------------------
 -- Buffer-local (plugin) keymaps
-M.trouble = {
-   plugin = true,
-   n = {
-      ["<leader>xx"] = {
-         function()
-            require("trouble").toggle()
-         end,
-         { desc = "Trouble toggle" },
-      },
-      ["<leader>xw"] = {
-         function()
-            require("trouble").toggle("workspace_diagnostics")
-         end,
-         { desc = "Trouble workspace diagnostics" },
-      },
-      ["<leader>xd"] = {
-         function()
-            require("trouble").toggle("document_diagnostics")
-         end,
-         { desc = "Trouble document diagnostics" },
-      },
-      ["<leader>xq"] = {
-         function()
-            require("trouble").toggle("quickfix")
-         end,
-         { desc = "Trouble quickfix" },
-      },
-      ["<leader>xl"] = {
-         function()
-            require("trouble").toggle("loclist")
-         end,
-         { desc = "Trouble loclist" },
-      },
-      ["<leader>xr"] = {
-         function()
-            require("trouble").toggle("lsp_references")
-         end,
-         { desc = "Trouble LSP references" },
-      },
-   },
-}
-
 M.haskell_tools = {
    plugin = true,
    n = {

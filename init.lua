@@ -37,7 +37,7 @@ require("core")
 -- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps
 local start_with_hardtime = false
 if start_with_hardtime then
-   local keymap = "<leader>he<CR>"
+   local keymap = "<leader>he"
    local keys = vim.api.nvim_replace_termcodes(keymap, true, false, true)
    vim.api.nvim_feedkeys(keys, "m", false)
 end

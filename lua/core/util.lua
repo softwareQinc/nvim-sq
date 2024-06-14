@@ -119,7 +119,7 @@ function M.smart_bd()
       [{ "Outline" }] = close_Cwc,
       [{ "qf" }] = close_Cwc,
       [{ "query" }] = close_Cwc,
-      [{ "Trouble" }] = close_Cwc,
+      [{ "trouble" }] = close_Cwc,
       [{ "vim" }] = close_Cwc,
 
       [{ "", "nofile" }] = close_Cwc,
