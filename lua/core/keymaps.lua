@@ -77,9 +77,9 @@ M.telescope = {
       ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope help tags" } },
       ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Telescope current buffer" } },
       ["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope recent files" } },
-      ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope git commits" } },
-      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope git files" } },
-      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope git status" } },
+      ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git commits" } },
+      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Git files" } },
+      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git status" } },
       ["<leader>ma"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope marks" } },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
