@@ -25,6 +25,11 @@ M.generic = {
       ["]b"] = { "<cmd> bnext <CR>", { desc = "Buffer next" } },
       ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
       ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
+
+      ["<M-h>"] = { "<C-w>5<", { desc = "Resize split right" } },
+      ["<M-l>"] = { "<C-w>5>", { desc = "Resize split left" } },
+      ["<M-k>"] = { "<C-w>5-", { desc = "Resize split up" } },
+      ["<M-j>"] = { "<C-w>5+", { desc = "Resize split down" } },
    },
    [{ "n", "i", "v" }] = {
       ["<Up>"] = { "<Nop>" },
