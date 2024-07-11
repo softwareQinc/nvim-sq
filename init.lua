@@ -39,7 +39,13 @@ local start_with_hardtime = false
 if start_with_hardtime then
    local keymap = "<leader>he"
    local keys = vim.api.nvim_replace_termcodes(keymap, true, false, true)
+   local original_print = print
+   print = function() end
    vim.api.nvim_feedkeys(keys, "m", false)
+   -- 1 millisecond delay, hack to wait for nvim_feedkeys to finish
+   vim.defer_fn(function()
+      print = original_print
+   end, 1)
 end
 
 ------------------------------------------------------------------------------

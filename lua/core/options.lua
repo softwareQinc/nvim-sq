@@ -4,7 +4,7 @@ local M = {}
 
 M = {
    opt = {
-      shortmess = vim.opt.shortmess + "sI", -- disable Neovim welcome message
+      shortmess = vim.opt.shortmess + "I", -- disable Neovim welcome message
       shell = "bash --login",
       spell = true,
       termguicolors = true, -- true colors
