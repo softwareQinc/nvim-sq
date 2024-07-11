@@ -40,7 +40,8 @@ if start_with_hardtime then
    local util = require("core.util")
    local keymap = "<leader>he"
    local keys = vim.api.nvim_replace_termcodes(keymap, true, false, true)
-   -- 1 millisecond delay, hack to wait for nvim_feedkeys to finish
+   -- Disable "Hardtime: true" output at startup, so we can see nvim messages
+   -- 1 millisecond delay, hack to wait for vim.api.nvim_feedkeys() to finish
    util.disable_print(1, vim.api.nvim_feedkeys, keys, "m", false)
 end
 
