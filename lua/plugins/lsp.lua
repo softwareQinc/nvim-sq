@@ -39,13 +39,14 @@ return {
          -- Setup neodev BEFORE the first require("lspconfig")
          require("neodev").setup({})
          local lspconfig = require("lspconfig")
-         local util = require("lspconfig.util")
+         local lspconfig_util = require("lspconfig.util")
          local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
          lsp_capabilities =
             vim.tbl_deep_extend("force", lsp_capabilities, require("cmp_nvim_lsp").default_capabilities())
 
          local augroup = vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
-         local lsp_format_on_save = require("core.util").format_on_save(augroup)
+         local util = require("core.util")
+         local lsp_format_on_save = util.format_on_save(augroup)
 
          local function default_setup(server)
             lspconfig[server].setup({
@@ -100,7 +101,7 @@ return {
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
                      filetypes = { "rust" },
-                     root_dir = util.root_pattern("Cargo.toml"),
+                     root_dir = lspconfig_util.root_pattern("Cargo.toml"),
                      settings = {
                         ["rust-analyzer"] = {
                            cargo = {
@@ -116,7 +117,7 @@ return {
                      on_attach = lsp_format_on_save,
                      cmd = { "gopls" },
                      filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                     root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+                     root_dir = lspconfig_util.root_pattern("go.work", "go.mod", ".git"),
                      settings = {
                         gopls = {
                            completeUnimported = true,
