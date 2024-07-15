@@ -9,6 +9,13 @@ return {
                "mode",
                -- Display trailing whitespaces
                function()
+                  local ft = vim.bo.filetype
+                  local bt = vim.bo.buftype
+                  -- Do not display trailing whitespaces if any of those clauses are true
+                  local no_show = (ft == "") or (ft == "dashboard") or (bt == "nofile")
+                  if no_show then
+                     return ""
+                  end
                   local space = vim.fn.search([[\s\+$]], "nwc")
                   return space ~= 0 and "TW:" .. space or ""
                end,
