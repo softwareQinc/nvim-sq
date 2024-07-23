@@ -270,6 +270,7 @@ M.dashboard = {
 }
 
 local hardtime_enabled = false
+local showmode
 M.hardtime = {
    n = {
       ["<leader>hd"] = {
@@ -277,6 +278,10 @@ M.hardtime = {
             require("hardtime")
             vim.cmd("Hardtime disable")
             hardtime_enabled = false
+            -- Restore vim.o.showmode
+            if showmode then
+               vim.o.showmode = showmode
+            end
             print("Hardtime: false")
          end,
          { desc = "Hardtime disable" },
@@ -286,6 +291,11 @@ M.hardtime = {
             require("hardtime")
             vim.cmd("Hardtime enable")
             hardtime_enabled = true
+            -- Save vim.o.showmode
+            if not showmode then
+               showmode = vim.o.showmode
+            end
+            vim.o.showmode = false
             print("Hardtime: true")
          end,
          { desc = "Hardtime enable" },
@@ -302,6 +312,14 @@ M.hardtime = {
             require("hardtime")
             vim.cmd("Hardtime toggle")
             hardtime_enabled = not hardtime_enabled
+            if hardtime_enabled then
+               vim.o.showmode = false
+            else
+               -- Restore vim.o.showmode
+               if showmode then
+                  vim.o.showmode = showmode
+               end
+            end
             print("Hardtime:", hardtime_enabled)
          end,
          { desc = "Hardtime toggle" },

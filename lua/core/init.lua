@@ -7,18 +7,18 @@ Initializing core functionality:
     Neovide
 ]]
 
-local keymaps = require("core.keymaps")
-local options = require("core.options")
 local util = require("core.util")
+
+------------------------------------------------------------------------------
+-- Vim options
+local options = require("core.options")
+util.set_options(options)
+
+------------------------------------------------------------------------------
+-- Keymaps
+local keymaps = require("core.keymaps")
+util.map_all_keys(keymaps)
 
 ------------------------------------------------------------------------------
 -- Vim auto commands
 require("core.autocmds")
-
-------------------------------------------------------------------------------
--- Keymaps
-util.map_all_keys(keymaps)
-
-------------------------------------------------------------------------------
--- Vim options
-util.set_options(options)
