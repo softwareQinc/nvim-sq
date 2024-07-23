@@ -35,14 +35,10 @@ require("core")
 ------------------------------------------------------------------------------
 -- Enable hardtime.nvim at startup, disabled by default
 -- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps
-local start_with_hardtime = false
-if start_with_hardtime then
-   local util = require("core.util")
-   local keymap = "<leader>he"
-   local keys = vim.api.nvim_replace_termcodes(keymap, true, false, true)
-   -- Disable "Hardtime: true" output at startup, so we can see nvim messages
-   -- 1 millisecond delay, hack to wait for vim.api.nvim_feedkeys() to finish
-   util.disable_print(1, vim.api.nvim_feedkeys, keys, "m", false)
+local state = require("core.state")
+state.hardtime_enabled = false
+if state.hardtime_enabled then
+   vim.cmd("Hardtime enable")
 end
 
 ------------------------------------------------------------------------------

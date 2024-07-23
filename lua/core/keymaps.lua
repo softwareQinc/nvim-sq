@@ -269,18 +269,17 @@ M.dashboard = {
    },
 }
 
-local hardtime_enabled = false
-local showmode
 M.hardtime = {
    n = {
       ["<leader>hd"] = {
          function()
             require("hardtime")
+            local state = require("core.state")
             vim.cmd("Hardtime disable")
-            hardtime_enabled = false
+            state.hardtime_enabled = false
             -- Restore vim.o.showmode
-            if showmode then
-               vim.o.showmode = showmode
+            if state.initial_showmode then
+               vim.o.showmode = state.initial_showmode
             end
             print("Hardtime: false")
          end,
@@ -289,11 +288,12 @@ M.hardtime = {
       ["<leader>he"] = {
          function()
             require("hardtime")
+            local state = require("core.state")
             vim.cmd("Hardtime enable")
-            hardtime_enabled = true
+            state.hardtime_enabled = true
             -- Save vim.o.showmode
-            if not showmode then
-               showmode = vim.o.showmode
+            if not state.initial_showmode then
+               state.initial_showmode = vim.o.showmode
             end
             vim.o.showmode = false
             print("Hardtime: true")
@@ -310,17 +310,18 @@ M.hardtime = {
       ["<leader>ht"] = {
          function()
             require("hardtime")
+            local state = require("core.state")
             vim.cmd("Hardtime toggle")
-            hardtime_enabled = not hardtime_enabled
-            if hardtime_enabled then
+            state.hardtime_enabled = not state.hardtime_enabled
+            if state.hardtime_enabled then
                vim.o.showmode = false
             else
                -- Restore vim.o.showmode
-               if showmode then
-                  vim.o.showmode = showmode
+               if state.initial_showmode then
+                  vim.o.showmode = state.initial_showmode
                end
             end
-            print("Hardtime:", hardtime_enabled)
+            print("Hardtime:", state.hardtime_enabled)
          end,
          { desc = "Hardtime toggle" },
       },

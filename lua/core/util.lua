@@ -141,7 +141,7 @@ end
 -- Disable output printing for fn(...), restore it after timeout milliseconds
 function M.disable_print(timeout, fn, ...)
    local args = { ... }
-   original_print = print
+   local original_print = print
    print = function() end
    fn(unpack(args))
    vim.defer_fn(function()
