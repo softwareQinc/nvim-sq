@@ -138,15 +138,4 @@ function M.smart_bd()
    bd.bufdelete()
 end
 
--- Disable output printing for fn(...), restore it after timeout milliseconds
-function M.disable_print(timeout, fn, ...)
-   local args = { ... }
-   local original_print = print
-   print = function() end
-   fn(unpack(args))
-   vim.defer_fn(function()
-      print = original_print
-   end, timeout)
-end
-
 return M

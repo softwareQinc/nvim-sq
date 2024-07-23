@@ -160,7 +160,7 @@ M.harpoon = {
             desc = "Harpoon 4",
          },
       },
-      ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telscope Harpoon marks" } },
+      ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telescope Harpoon marks" } },
    },
 }
 
@@ -277,7 +277,7 @@ M.hardtime = {
             local state = require("core.state")
             vim.cmd("Hardtime disable")
             state.hardtime_enabled = false
-            -- Restore vim.o.showmode
+            -- Restore showmode
             if state.initial_showmode then
                vim.o.showmode = state.initial_showmode
             end
@@ -291,10 +291,6 @@ M.hardtime = {
             local state = require("core.state")
             vim.cmd("Hardtime enable")
             state.hardtime_enabled = true
-            -- Save vim.o.showmode
-            if not state.initial_showmode then
-               state.initial_showmode = vim.o.showmode
-            end
             vim.o.showmode = false
             print("Hardtime: true")
          end,
@@ -316,7 +312,7 @@ M.hardtime = {
             if state.hardtime_enabled then
                vim.o.showmode = false
             else
-               -- Restore vim.o.showmode
+               -- Restore showmode
                if state.initial_showmode then
                   vim.o.showmode = state.initial_showmode
                end

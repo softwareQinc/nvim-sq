@@ -34,10 +34,12 @@ require("core")
 
 ------------------------------------------------------------------------------
 -- Enable hardtime.nvim at startup, disabled by default
--- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps
+-- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps and settings
+-- To modify the state.hardtime_enabled flag, edit the table in
+-- "lua/core/state.lua"
 local state = require("core.state")
-state.hardtime_enabled = false
 if state.hardtime_enabled then
+   vim.o.showmode = false
    vim.cmd("Hardtime enable")
 end
 

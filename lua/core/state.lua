@@ -1,5 +1,8 @@
 -- Runtime state holder
 
-local M = {}
+local M = {
+   hardtime_enabled = false,
+   initial_showmode = vim.o.showmode,
+}
 
 return M
