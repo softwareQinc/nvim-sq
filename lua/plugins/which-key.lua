@@ -1,6 +1,6 @@
 return {
    "folke/which-key.nvim",
-   keys = require("core.keymaps").which_key.keys,
+   event = "VeryLazy",
    init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300

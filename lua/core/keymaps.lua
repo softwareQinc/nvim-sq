@@ -336,11 +336,6 @@ M.outline = {
    },
 }
 
-M.which_key = {
-   plugin = true,
-   keys = { "<leader>", "<localleader>", "<C-r>", "<C-w>", '"', "'", "`", "c", "v", "g", "z", "[", "]" },
-}
-
 M.trouble = {
    plugin = true,
    keys = {
