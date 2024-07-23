@@ -1,3 +1,5 @@
+-- Neovide-related generic Lua functions
+
 local M = {}
 
 M.neovide_scale = function(amount)

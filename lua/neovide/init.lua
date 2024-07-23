@@ -4,15 +4,14 @@
 
 local util = require("core.util")
 
-local keymaps = require("neovide.keymaps")
-local options = require("neovide.options")
-
 ------------------------------------------------------------------------------
 -- Neovide additional options
+local options = require("neovide.options")
 util.set_options(options)
 
 ------------------------------------------------------------------------------
 -- Scale fonts up/down with <Command>= and <Command>-, respectively
+local keymaps = require("neovide.keymaps")
 util.map_keys(keymaps.scale, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------

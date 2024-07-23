@@ -1,10 +1,9 @@
 --[[
 Initializing core functionality:
-    Auto commands
+    Lua functions
     Vim options
     Keymaps
-    Lua functions
-    Neovide
+    Auto commands
 ]]
 
 local util = require("core.util")

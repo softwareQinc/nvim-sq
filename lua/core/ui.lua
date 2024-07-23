@@ -1,3 +1,5 @@
+-- UI-related functions
+
 local M = {}
 
 -- Color scheme auto toggle (light/dark) defaults, do not
