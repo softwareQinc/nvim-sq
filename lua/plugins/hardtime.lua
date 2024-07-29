@@ -8,5 +8,6 @@ return {
          ["j"] = {},
          ["k"] = {},
       },
+      disable_mouse = false,
    },
 }
