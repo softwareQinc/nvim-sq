@@ -117,6 +117,7 @@ function M.smart_bd()
       [{ "neo-tree" }] = close_Cwc,
       [{ "netrw" }] = close_Cwc,
       [{ "Outline" }] = close_Cwc,
+      [{ "orgagenda" }] = close_Cwc,
       [{ "qf" }] = close_Cwc,
       [{ "query" }] = close_Cwc,
       [{ "trouble" }] = close_Cwc,
