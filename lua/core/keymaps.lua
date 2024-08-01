@@ -31,12 +31,12 @@ M.generic = {
       ["<M-k>"] = { "<C-w>5-", { desc = "Resize split up" } },
       ["<M-j>"] = { "<C-w>5+", { desc = "Resize split down" } },
    },
-   [{ "n", "i", "v" }] = {
-      ["<Up>"] = { "<Nop>" },
-      ["<Down>"] = { "<Nop>" },
-      ["<Left>"] = { "<Nop>" },
-      ["<Right>"] = { "<Nop>" },
-   },
+   -- [{ "n", "i", "v" }] = {
+   --    ["<Up>"] = { "<Nop>" },
+   --    ["<Down>"] = { "<Nop>" },
+   --    ["<Left>"] = { "<Nop>" },
+   --    ["<Right>"] = { "<Nop>" },
+   -- },
 }
 
 M.tmux_navigator = {
