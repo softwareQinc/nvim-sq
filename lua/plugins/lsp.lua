@@ -69,6 +69,7 @@ return {
                "cmake",
                "marksman",
                "gopls",
+               "vimls",
                -- "hls", -- not needed, we use haskell-tools.nvim
             },
             handlers = {
