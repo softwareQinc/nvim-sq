@@ -92,7 +92,7 @@ end
 
 -- Delete current buffer, preserve splits
 function M.smart_bd()
-   local debug = true
+   local debug = false
 
    local buf_no = vim.api.nvim_get_current_buf()
    local buf_name = vim.api.nvim_buf_get_name(buf_no)
