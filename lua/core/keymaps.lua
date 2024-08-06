@@ -6,14 +6,14 @@ local M = {}
 -- Global keymaps
 M.generic = {
    n = {
-      ["<leader>|"] = { "<cmd> vsplit <CR>", { desc = "Split vertically" } },
-      ["<leader>-"] = { "<cmd> split <CR>", { desc = "Split horizontally" } },
+      ["<leader>|"] = { "<cmd> vsplit <CR>", { desc = "Split vertically [|]" } },
+      ["<leader>-"] = { "<cmd> split <CR>", { desc = "Split horizontally [-]" } },
       ["<leader>q"] = {
          function()
             local util = require("core.util")
             util.smart_bd()
          end,
-         { desc = "Close current buffer" },
+         { desc = "[Q]uit/close current buffer" },
       },
       -- https://vi.stackexchange.com/a/3877
       ["<leader>o"] = { 'o<ESC>0"_D', { desc = "Insert new line below" } },
@@ -50,46 +50,49 @@ M.tmux_navigator = {
 
 M.netrw = {
    n = {
-      ["<leader>e"] = { "<cmd> Lexplore 20 <CR>", { desc = "NetRw toggle" } },
+      ["<leader>e"] = { "<cmd> Lexplore 20 <CR>", { desc = "N[e]tRw toggle" } },
    },
 }
 
 M.neo_tree = {
    n = {
-      ["<leader>n"] = { "<cmd> Neotree toggle <CR>", { desc = "Neo-tree toggle" } },
+      ["<leader>n"] = { "<cmd> Neotree toggle <CR>", { desc = "[N]eo-tree toggle" } },
    },
 }
 
 M.oil = {
    n = {
-      ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil" } },
+      ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil [.]" } },
    },
 }
 
 M.telescope = {
    n = {
-      ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", { desc = "Telescope files" } },
+      ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", { desc = "Telescope [f]iles" } },
       ["<leader>fa"] = {
          "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-         { desc = "Telescope all files" },
+         { desc = "Telescope [a]ll files" },
       },
       ["<leader>fn"] = {
          "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
-         { desc = "Telescope Neovim config files" },
+         { desc = "Telescope [n]vim config files" },
       },
-      ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", { desc = "Telescope grep" } },
-      ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", { desc = "Telescope buffers" } },
-      ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope help tags" } },
-      ["<leader>fz"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", { desc = "Telescope current buffer" } },
-      ["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope recent files" } },
+      ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", { desc = "Telescope [g]rep" } },
+      ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", { desc = "Telescope [b]uffers" } },
+      ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope [h]elp tags" } },
+      ["<leader>fz"] = {
+         "<cmd> Telescope current_buffer_fuzzy_find <CR>",
+         { desc = "Telescope fu[z]zy find current buffer" },
+      },
+      ["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope [r]ecent files" } },
       -- Consider using pcall here
-      ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git commits" } },
-      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Git files" } },
-      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git status" } },
-      ["<leader>ma"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope marks" } },
+      ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git [c]ommits" } },
+      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Gi[t] files" } },
+      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git [s]tatus" } },
+      ["<leader>ma"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope [m]arks" } },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
-         { desc = "Telescope colorscheme" },
+         { desc = "Telescope [c][o]lorscheme" },
       },
    },
 }
@@ -115,14 +118,14 @@ M.harpoon = {
             local harpoon = require("harpoon")
             harpoon:list():prev()
          end,
-         { desc = "Harpoon previous" },
+         { desc = "Harpoon [p]revious" },
       },
       ["<leader>jn"] = {
          function()
             local harpoon = require("harpoon")
             harpoon:list():next()
          end,
-         { desc = "Harpoon next" },
+         { desc = "Harpoon [n]ext" },
       },
       ["<leader>j1"] = {
          function()
@@ -130,7 +133,7 @@ M.harpoon = {
             harpoon:list():select(1)
          end,
          {
-            desc = "Harpoon 1",
+            desc = "Harpoon [1]",
          },
       },
       ["<leader>j2"] = {
@@ -139,7 +142,7 @@ M.harpoon = {
             harpoon:list():select(2)
          end,
          {
-            desc = "Harpoon 2",
+            desc = "Harpoon [2]",
          },
       },
       ["<leader>j3"] = {
@@ -148,7 +151,7 @@ M.harpoon = {
             harpoon:list():select(3)
          end,
          {
-            desc = "Harpoon 3",
+            desc = "Harpoon [3]",
          },
       },
       ["<leader>j4"] = {
@@ -157,7 +160,7 @@ M.harpoon = {
             harpoon:list():select(4)
          end,
          {
-            desc = "Harpoon 4",
+            desc = "Harpoon [4]",
          },
       },
       ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telescope Harpoon marks" } },
@@ -166,20 +169,20 @@ M.harpoon = {
 
 M.spectre = {
    n = {
-      ["<leader>S"] = { "<cmd> lua require('spectre').toggle() <CR>", { desc = "Spectre toggle" } },
+      ["<leader>S"] = { "<cmd> lua require('spectre').toggle() <CR>", { desc = "[S]pectre toggle" } },
       ["<leader>sw"] = {
          "<cmd> lua require('spectre').open_visual({select_word=true}) <CR>",
-         { desc = "Spectre search current word" },
+         { desc = "[S]pectre search current [w]ord" },
       },
-      ["<leader>sp"] = {
+      ["<leader>sf"] = {
          "<cmd> lua require('spectre').open_file_search({select_word=true}) <CR>",
-         { desc = "Spectre search current file" },
+         { desc = "[S]pectre search current [f]ile" },
       },
    },
    v = {
       ["<leader>sw"] = {
          "<esc><cmd> lua require('spectre').open_visual() <CR>",
-         { desc = "Spectre search current word" },
+         { desc = "[S]pectre search current [w]ord" },
       },
    },
 }
@@ -210,20 +213,20 @@ M.todo_comments = {
 
 M.carbon_now = {
    [{ "n", "v" }] = {
-      ["<leader>cn"] = { ":CarbonNow <CR>", { desc = "CarbonNow (visual selection) screenshot" } },
+      ["<leader>cn"] = { ":CarbonNow <CR>", { desc = "[C]arbon[N]ow (visual selection) screenshot" } },
    },
 }
 
 M.terminal = {
    n = {
-      ["<leader>th"] = { "<cmd> split | terminal <CR>", { desc = "Terminal horizontal" } },
-      ["<leader>tv"] = { "<cmd> vsplit | terminal <CR>", { desc = "Terminal vertical" } },
+      ["<leader>th"] = { "<cmd> split | terminal <CR>", { desc = "[T]erminal [h]orizontal (terminal)" } },
+      ["<leader>tv"] = { "<cmd> vsplit | terminal <CR>", { desc = "[T]erminal [v]ertical (terminal)" } },
    },
 }
 
 M.lazy_git = {
    n = {
-      ["<leader>lg"] = { "<cmd> LazyGit <CR>", { desc = "LazyGit" } },
+      ["<leader>lg"] = { "<cmd> LazyGit <CR>", { desc = "[L]azy[G]it (git)" } },
    },
 }
 
@@ -234,14 +237,14 @@ M.color_toggle = {
             local ui = require("core.ui")
             ui.set_light_scheme(ui.color_toggle_current["light"])
          end,
-         { desc = "Theme light" },
+         { desc = "[T]heme [l]ight" },
       },
       ["<leader>td"] = {
          function()
             local ui = require("core.ui")
             ui.set_dark_scheme(ui.color_toggle_current["dark"])
          end,
-         { desc = "Theme dark" },
+         { desc = "[T]heme [d]ark" },
       },
       ["<leader>tt"] = {
          function()
@@ -252,7 +255,7 @@ M.color_toggle = {
                ui.set_light_scheme(ui.color_toggle_current["light"])
             end
          end,
-         { desc = "Theme toggle light <-> dark" },
+         { desc = "[T]heme [t]oggle, light <-> dark toggle" },
       },
    },
 }
@@ -264,7 +267,7 @@ M.dashboard = {
             require("dashboard")
             vim.cmd("Dashboard")
          end,
-         { desc = "Dashboard" },
+         { desc = "D[a]shboard" },
       },
    },
 }
@@ -283,7 +286,7 @@ M.hardtime = {
             end
             print("Hardtime: false")
          end,
-         { desc = "Hardtime disable" },
+         { desc = "[H]ardtime [d]isable" },
       },
       ["<leader>he"] = {
          function()
@@ -294,14 +297,14 @@ M.hardtime = {
             vim.o.showmode = false
             print("Hardtime: true")
          end,
-         { desc = "Hardtime enable" },
+         { desc = "[H]ardtime [e]nable" },
       },
       ["<leader>hr"] = {
          function()
             require("hardtime")
             vim.cmd("Hardtime report")
          end,
-         { desc = "Hardtime report" },
+         { desc = "[H]ardtime [r]eport" },
       },
       ["<leader>ht"] = {
          function()
@@ -319,7 +322,7 @@ M.hardtime = {
             end
             print("Hardtime:", state.hardtime_enabled)
          end,
-         { desc = "Hardtime toggle" },
+         { desc = "[H]ardtime [t]oggle (toggle)" },
       },
    },
 }
@@ -328,9 +331,8 @@ M.hardtime = {
 -- Global keymaps for key-triggered lazy-loaded plugins
 M.outline = {
    plugin = true,
-   keys = {
-      { "<leader>so", "<cmd> Outline <CR>", desc = "Outline toggle" },
-   },
+   keys = {},
+   { "<leader>so", "<cmd> Outline <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
 }
 
 M.trouble = {
@@ -349,22 +351,22 @@ M.trouble = {
       {
          "<leader>cs",
          "<cmd> Trouble symbols toggle focus=false <CR>",
-         desc = "Trouble symbols",
+         desc = "Trouble [s]ymbols",
       },
       {
          "<leader>cl",
          "<cmd> Trouble lsp toggle focus=false win.position=right <CR>",
-         desc = "Trouble LSP definitions/references/...",
+         desc = "Trouble [L]SP definitions/references",
       },
       {
          "<leader>xL",
          "<cmd> Trouble loclist toggle <CR>",
-         desc = "Trouble Location list",
+         desc = "Trouble [L]ocation list",
       },
       {
          "<leader>xQ",
          "<cmd> Trouble qflist toggle <CR>",
-         desc = "Trouble Quickfix list",
+         desc = "Trouble [Q]uickfix list",
       },
    },
 }
@@ -386,36 +388,36 @@ M.haskell_tools = {
    n = {
       -- haskell-language-server relies heavily on codeLenses,
       -- so auto-refresh (see advanced configuration) is enabled by default
-      ["<leader>cl"] = { vim.lsp.codelens.run, { desc = "Ht codelens run", noremap = true, silent = true } },
+      ["<leader>cr"] = { vim.lsp.codelens.run, { desc = "Ht [c]odelens [r]un", noremap = true, silent = true } },
 
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ts"] = {
          "<cmd> lua require('haskell-tools').hoogle.hoogle_signature() <CR>",
-         { desc = "Ht type signature", noremap = true, silent = true },
+         { desc = "Ht [t]ype [s]ignature", noremap = true, silent = true },
       },
 
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ea"] = {
          "<cmd> lua require('haskell-tools').lsp.buf_eval_all() <CR>",
-         { desc = "Ht evaluate all code snippets", noremap = true, silent = true },
+         { desc = "Ht [e]valuate [a]ll code snippets", noremap = true, silent = true },
       },
 
       -- Toggle a GHCI REPL for the current package
       ["<leader>rr"] = {
          "<cmd> lua require('haskell-tools').repl.toggle() <CR>",
-         { desc = "Ht REPL current package" },
+         { desc = "Ht [R]EPL cu[r]rent package" },
       },
 
       -- Toggle a GHCi REPL for the current buffer
       ["<leader>rf"] = {
          "<cmd> lua require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0)) <CR>",
-         { desc = "Ht REPL current buffer" },
+         { desc = "Ht [R]EPL current bu[f]fer" },
       },
 
       -- Quit GHCi REPL for the current buffer
       ["<leader>rq"] = {
          "<cmd> lua require('haskell-tools').repl.quit() <CR>",
-         { desc = "Ht REPL quit" },
+         { desc = "Ht [R]EPL [q]uit" },
       },
    },
 }
@@ -427,7 +429,7 @@ M.rust = {
          function()
             require("crates").upgrade_all_crates()
          end,
-         { desc = "Update crates" },
+         { desc = "[R]ust [u]pdate [c]rates" },
       },
    },
 }
@@ -435,23 +437,23 @@ M.rust = {
 M.go = {
    plugin = true,
    n = {
-      ["<leader>gsj"] = { "<cmd> GoTagAdd json <CR>", { desc = "Add JSON struct tags" } },
-      ["<leader>gsy"] = { "<cmd> GoTagAdd yaml <CR>", { desc = "Add YAML struct tags" } },
+      ["<leader>gsj"] = { "<cmd> GoTagAdd json <CR>", { desc = "Add struct ta[g][s] [J]SON" } },
+      ["<leader>gsy"] = { "<cmd> GoTagAdd yaml <CR>", { desc = "Add struct ta[g][s] [Y]AML" } },
    },
 }
 
 M.nvim_dap = {
    plugin = true,
    n = {
-      ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", { desc = "DAP add breakpoint at line" } },
-      ["<leader>dr"] = { "<cmd> DapContinue <CR>", { desc = "DAP start or continue the debugger" } },
+      ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", { desc = "[D]AP add [b]reakpoint at line" } },
+      ["<leader>dr"] = { "<cmd> DapContinue <CR>", { desc = "[D]AP sta[r]t or continue the debugger" } },
       ["<leader>dus"] = {
          function()
             local widgets = require("dap.ui.widgets")
             local sidebar = widgets.sidebar(widgets.scopes)
             sidebar.open()
          end,
-         { desc = "DAP open debugging sidebar" },
+         { desc = "[D]AP open deb[u]gging [s]idebar" },
       },
    },
 }
@@ -463,7 +465,7 @@ M.nvim_dap_python = {
          function()
             require("dap-python").test_method()
          end,
-         { desc = "DAP Python debug unit testing" },
+         { desc = "[D]AP [P]ython [r]un unit testing" },
       },
    },
 }
@@ -475,13 +477,13 @@ M.nvim_dap_go = {
          function()
             require("dap-go").debug_test()
          end,
-         { desc = "Debug Go test" },
+         { desc = "[D]ebug [G]o [t]est" },
       },
       ["<leader>dgl"] = {
          function()
             require("dap-go").debug_last()
          end,
-         { desc = "Debug Go last test" },
+         { desc = "[D]ebug [G]o [l]ast test" },
       },
    },
 }
@@ -489,27 +491,27 @@ M.nvim_dap_go = {
 M.nvim_lspconfig = {
    plugin = true,
    n = {
-      ["gd"] = { vim.lsp.buf.definition, { desc = "LSP go to definition" } },
-      ["gD"] = { vim.lsp.buf.declaration, { desc = "LSP go to declaration" } },
+      ["gd"] = { vim.lsp.buf.definition, { desc = "LSP [g]o to [d]efinition" } },
+      ["gD"] = { vim.lsp.buf.declaration, { desc = "LSP [g]o to [d]eclaration" } },
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
-      ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP go to implementation" } },
-      ["<leader>sh"] = { vim.lsp.buf.signature_help, { desc = "LSP signature help" } },
-      ["<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP add workspace folder" } },
-      ["<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete workspace folder" } },
+      ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" } },
+      ["<leader>sh"] = { vim.lsp.buf.signature_help, { desc = "LSP [s]ignature [h]elp" } },
+      ["<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP [w]orkspace [a]dd folder" } },
+      ["<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete [w]orkspace folde[r]" } },
       ["<leader>wl"] = {
          function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
          end,
-         { desc = "LSP list workspace folders" },
+         { desc = "LSP [w]orkspace [l]ist folders" },
       },
-      ["<leader>D"] = { vim.lsp.buf.type_definition, { desc = "LSP type definition" } },
-      ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP rename" } },
-      ["gr"] = { vim.lsp.buf.references, { desc = "LSP references" } },
+      ["<leader>D"] = { vim.lsp.buf.type_definition, { desc = "LSP type [d]efinition" } },
+      ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" } },
+      ["gr"] = { vim.lsp.buf.references, { desc = "LSP [g]o to [r]eferences" } },
       ["<leader>fm"] = {
          function()
             vim.lsp.buf.format({ async = true })
          end,
-         { desc = "LSP format" },
+         { desc = "LSP [f]or[m]at" },
       },
       ["<leader>ih"] = {
          -- LSP inlay hints, requires Neovim 0.10 or later
@@ -522,11 +524,11 @@ M.nvim_lspconfig = {
                print("LSP inlay hints not supported!")
             end
          end,
-         { desc = "LSP inlay hints toggle" },
+         { desc = "LSP [i]nlay [h]ints toggle" },
       },
    },
    [{ "n", "v" }] = {
-      ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP code actions" } },
+      ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP [c]ode [a]ctions" } },
    },
 }
 
@@ -541,7 +543,7 @@ M.compile_and_run_current_cpp = {
             local terminal_cmd = 'split | term bash -c "make ' .. output_file .. " && " .. output_file .. '"'
             vim.api.nvim_command(terminal_cmd)
          end,
-         { desc = "Compile and run current C/C++ buffer" },
+         { desc = "[C]ompile and e[x]ecute current C/C++ buffer" },
       },
    },
 }
