@@ -92,7 +92,7 @@ end
 
 -- Delete current buffer, preserve splits
 function M.smart_bd()
-   local debug = false
+   local debug = true
 
    local buf_no = vim.api.nvim_get_current_buf()
    local buf_name = vim.api.nvim_buf_get_name(buf_no)
@@ -109,6 +109,7 @@ function M.smart_bd()
    -- Special buffers
    -- Keys are tables of the form {buf_ft, [OPTIONAL buf_bt]}
    local buf_cmds = {
+      [{ "chatgpt-input" }] = close_Cwc,
       [{ "fugitive" }] = close_Cwc,
       [{ "fugitiveblame" }] = close_Cwc,
       [{ "git" }] = close_Cwc,
@@ -123,6 +124,7 @@ function M.smart_bd()
       [{ "trouble" }] = close_Cwc,
       [{ "vim" }] = close_Cwc,
 
+      [{ "markdown", "nofile" }] = close_Cwc,
       [{ "", "nofile" }] = close_Cwc,
       [{ "", "terminal" }] = close_bd,
    }
