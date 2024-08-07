@@ -84,7 +84,7 @@ M.telescope = {
          "<cmd> Telescope current_buffer_fuzzy_find <CR>",
          { desc = "Telescope fu[z]zy find current buffer" },
       },
-      ["<leader>fr"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope [r]ecent files" } },
+      ["<leader>fe"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope r[e]cent files" } },
       -- Consider using pcall here
       ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git [c]ommits" } },
       ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Gi[t] files" } },
@@ -94,6 +94,8 @@ M.telescope = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
          { desc = "Telescope [c][o]lorscheme" },
       },
+      ["<leader>fd"] = { "<cmd> Telescope lsp_definitions <CR>", { desc = "Telescope LSP [d]definitions" } },
+      ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", { desc = "Telescope LSP [r]ferences" } },
    },
 }
 
