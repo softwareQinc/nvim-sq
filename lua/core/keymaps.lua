@@ -331,8 +331,9 @@ M.hardtime = {
 -- Global keymaps for key-triggered lazy-loaded plugins
 M.outline = {
    plugin = true,
-   keys = {},
-   { "<leader>so", "<cmd> Outline <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
+   keys = {
+      { "<leader>so", "<cmd> Outline <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
+   },
 }
 
 M.trouble = {
