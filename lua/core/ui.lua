@@ -2,97 +2,125 @@
 
 local M = {}
 
--- Color scheme auto toggle (light/dark) defaults, do not
-M.color_toggle_default = {
-   ["light"] = "delek", -- default light color scheme
-   ["dark"] = "default", -- default dark color scheme
-   light_scheme_starts_at = 8, -- light color scheme starts at this time (24h format)
-   light_scheme_ends_at = 17, -- light color scheme ends at this time (24h format)
-}
-
--- Current status of color toggle
-M.color_toggle_current = {
-   is_light_scheme = true,
-   light_scheme_starts_at = M.color_toggle_default.light_starts,
-   light_scheme_ends_at = M.color_toggle_default.light_scheme_ends_at,
-   ["light"] = M.color_toggle_default["light"],
-   ["dark"] = M.color_toggle_default["dark"],
-}
+local state = require("core.state")
 
 -- Set a light color scheme
 function M.set_light_scheme(color_scheme)
-   vim.cmd.set("background=light")
+   require(color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
          "Color scheme '"
             .. color_scheme
             .. "' not found, switching to core.ui.color_toggle_default['light']: "
-            .. M.color_toggle_default["light"]
+            .. state.color_toggle_default["light"]
       )
-      pcall(vim.cmd.colorscheme, M.color_toggle_default["light"])
-      M.color_toggle_current["light"] = M.color_toggle_default["light"]
+      pcall(vim.cmd.colorscheme, state.color_toggle_default["light"])
+      state.color_toggle_current["light"] = state.color_toggle_default["light"]
    else -- update the color_toggle_current table
-      M.color_toggle_current["light"] = color_scheme
+      state.color_toggle_current["light"] = color_scheme
    end
-   M.color_toggle_current.is_light_scheme = true
+
+   -- We invoked set_light_scheme() manually, disable autocmd
+   if state.color_toggle_current.manual_set then
+      pcall(vim.api.nvim_clear_autocmds, { group = "AutoColorScheme" })
+   end
+
+   state.color_toggle_current.light_scheme_set = true
+   state.color_toggle_current.dark_scheme_set = false
+
+   vim.cmd.set("background=light")
+   vim.cmd("hi! link SignColumn Normal")
 end
 
 -- Set a dark color scheme
 function M.set_dark_scheme(color_scheme)
-   vim.cmd.set("background=dark")
+   require(color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
          "Color scheme '"
             .. color_scheme
             .. "' not found, switching to core.ui.color_toggle_default['dark']: "
-            .. M.color_toggle_default["dark"]
+            .. state.color_toggle_default["dark"]
       )
-      pcall(vim.cmd.colorscheme, M.color_toggle_default["dark"])
-      M.color_toggle_current["dark"] = M.color_toggle_default["dark"]
+      pcall(vim.cmd.colorscheme, state.color_toggle_default["dark"])
+      state.color_toggle_current["dark"] = state.color_toggle_default["dark"]
    else -- update the color_toggle_current table
-      M.color_toggle_current["dark"] = color_scheme
+      state.color_toggle_current["dark"] = color_scheme
    end
-   M.color_toggle_current.is_light_scheme = false
+
+   -- We invoked set_dark_scheme() manually, disable autocmd
+   if state.color_toggle_current.manual_set then
+      pcall(vim.api.nvim_clear_autocmds, { group = "AutoColorScheme" })
+   end
+
+   state.color_toggle_current.light_scheme_set = false
+   state.color_toggle_current.dark_scheme_set = true
+
+   vim.cmd.set("background=dark")
+   vim.cmd("hi! link SignColumn Normal")
+end
+
+-- Auto color scheme switch callback, used by AutoColorScheme group in
+-- "lua/core/autocmds.lua"
+function M.set_color_scheme_callback()
+   local util = require("core.util")
+   local current_time = util.get_time()
+   if
+      util.time_is_less_than_or_equal(state.color_toggle_current.light_scheme_starts_at, current_time)
+      and util.time_is_greater_than(state.color_toggle_current.light_scheme_ends_at, current_time)
+   then
+      -- Set light color scheme during daytime (if not already set)
+      if not state.color_toggle_current.light_scheme_set then
+         M.set_light_scheme(state.color_toggle_current["light"])
+         -- Update lualine (glitch when autocmd triggers)
+         vim.defer_fn(function()
+            require("lualine").setup({})
+         end, 1)
+      end
+   else
+      -- Set dark color scheme during nighttime (if not already set)
+      if not state.color_toggle_current.dark_scheme_set then
+         M.set_dark_scheme(state.color_toggle_current["dark"])
+         -- Update lualine (glitch when autocmd triggers)
+         vim.defer_fn(function()
+            require("lualine").setup({})
+         end, 1)
+      end
+   end
 end
 
 -- Set a light/dark color scheme automatically based on current time
 -- Opts: {light_scheme_starts_at, light_scheme_ends_at, light_scheme_name, dark_scheme_name}
 function M.set_auto_scheme(opts)
    if opts.light_scheme_starts_at == nil then
-      M.color_toggle_current.light_scheme_starts_at = M.color_toggle_default.light_starts
+      state.color_toggle_current.light_scheme_starts_at = state.color_toggle_default.light_starts
    else
-      M.color_toggle_current.light_scheme_starts_at = opts.light_starts
+      state.color_toggle_current.light_scheme_starts_at = opts.light_scheme_starts_at
    end
 
    if opts.light_scheme_ends_at == nil then
-      M.color_toggle_current.light_scheme_ends_at = M.color_toggle_default.light_scheme_ends_at
+      state.color_toggle_current.light_scheme_ends_at = state.color_toggle_default.light_scheme_ends_at
    else
-      M.color_toggle_current.light_scheme_ends_at = opts.light_scheme_ends_at
+      state.color_toggle_current.light_scheme_ends_at = opts.light_scheme_ends_at
    end
 
    if opts.light_scheme_name == nil then
-      M.color_toggle_current["light"] = M.color_toggle_default["light"]
+      state.color_toggle_current["light"] = state.color_toggle_default["light"]
    else
-      M.color_toggle_current["light"] = opts.light_scheme_name
+      state.color_toggle_current["light"] = opts.light_scheme_name
    end
 
    if opts.dark_scheme_name == nil then
-      M.color_toggle_current["dark"] = M.color_toggle_default["dark"]
+      state.color_toggle_current["dark"] = state.color_toggle_default["dark"]
    else
-      M.color_toggle_current["dark"] = opts.dark_scheme_name
+      state.color_toggle_current["dark"] = opts.dark_scheme_name
    end
 
-   local current_time = os.date("*t")
-   local current_hour = current_time.hour
-   if current_hour >= opts.light_scheme_starts_at and current_hour < opts.light_scheme_ends_at then
-      -- Set light color scheme during daytime
-      M.set_light_scheme(M.color_toggle_current["light"])
-   else
-      -- Set dark color scheme during nighttime
-      M.set_dark_scheme(M.color_toggle_current["dark"])
-   end
+   -- Call it once, so we don't end up with defaults for a brief time before
+   -- the AutoColorScheme ("lua/core/autocmds.lua") autocmd kicks in
+   M.set_color_scheme_callback()
 end
 
 return M

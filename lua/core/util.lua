@@ -141,4 +141,26 @@ function M.smart_bd()
    bd.bufdelete()
 end
 
+-- Returns current time as a table {hh, mm}
+function M.get_time()
+   local t = os.date("*t") -- Get the current date and time as a table
+   return { hour = t.hour, min = t.min }
+end
+
+-- Returns true when t1 <= t2, where t1 and t2 are time tables {hh, mm}
+function M.time_is_less_than_or_equal(t1, t2)
+   if t1.hour < t2.hour then
+      return true
+   elseif t1.hour == t2.hour then
+      return t1.min <= t2.min
+   else
+      return false
+   end
+end
+
+-- Returns true when t1 > t2, where t1 and t2 are time tables {hh, mm}
+function M.time_is_greater_than(t1, t2)
+   return not M.time_is_less_than_or_equal(t1, t2)
+end
+
 return M

@@ -237,24 +237,30 @@ M.color_toggle = {
       ["<leader>tl"] = {
          function()
             local ui = require("core.ui")
-            ui.set_light_scheme(ui.color_toggle_current["light"])
+            local state = require("core.state")
+            state.color_toggle_current.manual_set = true
+            ui.set_light_scheme(state.color_toggle_current["light"])
          end,
          { desc = "[T]heme [l]ight" },
       },
       ["<leader>td"] = {
          function()
             local ui = require("core.ui")
-            ui.set_dark_scheme(ui.color_toggle_current["dark"])
+            local state = require("core.state")
+            state.color_toggle_current.manual_set = true
+            ui.set_dark_scheme(state.color_toggle_current["dark"])
          end,
          { desc = "[T]heme [d]ark" },
       },
       ["<leader>tt"] = {
          function()
             local ui = require("core.ui")
-            if ui.color_toggle_current.is_light_scheme then
-               ui.set_dark_scheme(ui.color_toggle_current["dark"])
+            local state = require("core.state")
+            state.color_toggle_current.manual_set = true
+            if state.color_toggle_current.is_light_scheme then
+               ui.set_dark_scheme(state.color_toggle_current["dark"])
             else
-               ui.set_light_scheme(ui.color_toggle_current["light"])
+               ui.set_light_scheme(state.color_toggle_current["light"])
             end
          end,
          { desc = "[T]heme [t]oggle, light <-> dark toggle" },

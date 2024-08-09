@@ -22,7 +22,7 @@ api.nvim_create_autocmd("VimEnter", {
    desc = "SignColumn always on, length 1",
 })
 -- Set SignColumn color to background color, aesthetically nicer
-api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
+api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    group = "Generic",
    pattern = "*",
    command = "hi! link SignColumn Normal",
@@ -91,4 +91,24 @@ api.nvim_create_autocmd("FileType", {
    pattern = "qf",
    command = "setlocal nospell",
    desc = "Disable spell checking in Quickfix lists",
+})
+
+-- Change color scheme automatically based on time of the day
+vim.api.nvim_create_augroup("AutoColorScheme", { clear = true })
+vim.api.nvim_create_autocmd({
+   "CursorHold",
+   "CursorHoldI",
+   "CursorMoved",
+   "CursorMovedI",
+   "FocusGained",
+   "FocusLost",
+   "InsertEnter",
+   "TextChanged",
+   "TextChangedI",
+   "TextChangedT",
+   "VimEnter",
+}, {
+   group = "AutoColorScheme",
+   callback = require("core.ui").set_color_scheme_callback,
+   desc = "Set auto color scheme",
 })
