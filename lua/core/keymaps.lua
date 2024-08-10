@@ -257,7 +257,7 @@ M.color_toggle = {
             local ui = require("core.ui")
             local state = require("core.state")
             state.color_toggle_current.manual_set = true
-            if state.color_toggle_current.is_light_scheme then
+            if state.color_toggle_current.light_scheme_set then
                ui.set_dark_scheme(state.color_toggle_current["dark"])
             else
                ui.set_light_scheme(state.color_toggle_current["light"])
