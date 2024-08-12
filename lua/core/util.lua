@@ -95,7 +95,7 @@ function M.smart_bd()
    local debug = false
 
    local buf_no = vim.api.nvim_get_current_buf()
-   local buf_name = vim.api.nvim_buf_get_name(buf_no)
+   -- local buf_name = vim.api.nvim_buf_get_name(buf_no)
 
    local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = buf_no })
    local buf_bt = vim.api.nvim_get_option_value("buftype", { buf = buf_no })

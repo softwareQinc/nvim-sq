@@ -380,6 +380,19 @@ M.trouble = {
    },
 }
 
+M.which_key = {
+   plugin = true,
+   keys = {
+      {
+         "<leader>?",
+         function()
+            require("which-key").show({ global = false })
+         end,
+         desc = "Buffer-local keymaps",
+      },
+   },
+}
+
 M.nvim_treesitter = {
    plugin = true,
    keymaps = {
