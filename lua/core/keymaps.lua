@@ -210,6 +210,7 @@ M.todo_comments = {
          end,
          { desc = "TODO previous" },
       },
+      ["<leader>fT"] = { "<cmd> TodoTelescope <CR>", { desc = "Telescope [T]odo" } },
    },
 }
 
