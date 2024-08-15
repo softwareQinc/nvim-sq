@@ -9,10 +9,10 @@ M.initial_showmode = vim.o.showmode
 
 -- Color scheme auto toggle (light/dark) defaults
 M.color_toggle_default = {
-   ["light"] = "delek", -- default light color scheme
+   ["light"] = "default", -- default light color scheme
    ["dark"] = "default", -- default dark color scheme
-   light_scheme_starts_at = { hour = 8, min = 0 }, -- light color scheme starts (24h format)
-   light_scheme_ends_at = { hour = 17, min = 0 }, -- light color scheme ends (24h format)
+   light_scheme_starts_at = { hour = 8, min = 0 }, -- 24h format
+   light_scheme_ends_at = { hour = 17, min = 0 }, -- 24h format
 }
 
 -- Current status of color toggle

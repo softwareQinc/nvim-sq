@@ -6,7 +6,7 @@ local state = require("core.state")
 
 -- Set a light color scheme
 function M.set_light_scheme(color_scheme)
-   require(color_scheme)
+   pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(
@@ -39,7 +39,7 @@ end
 
 -- Set a dark color scheme
 function M.set_dark_scheme(color_scheme)
-   require(color_scheme)
+   pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       print(

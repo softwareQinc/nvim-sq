@@ -46,12 +46,13 @@ end
 ------------------------------------------------------------------------------
 -- Set color scheme to light between 8:00AM and 5:00PM, dark otherwise
 -- Color scheme plugins are loaded from "lua/plugins/colors.lua"
+-- For defaults, see "lua/core/state.lua"
 local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme
    dark_scheme_name = "catppuccin", -- default dark color scheme
-   light_scheme_starts_at = { hour = 8, min = 00 }, -- light color scheme starts (24h format)
-   light_scheme_ends_at = { hour = 17, min = 00 }, -- light color scheme ends (24h format)
+   light_scheme_starts_at = { hour = 8, min = 00 }, -- 24h format
+   light_scheme_ends_at = { hour = 17, min = 00 }, -- 24h format
 })
 
 ------------------------------------------------------------------------------
