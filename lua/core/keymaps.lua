@@ -210,7 +210,20 @@ M.todo_comments = {
          end,
          { desc = "TODO previous" },
       },
-      ["<leader>fT"] = { "<cmd> TodoTelescope <CR>", { desc = "Telescope [T]odo" } },
+      ["<leader>fT"] = {
+         function()
+            require("todo-comments")
+            vim.cmd("TodoTelescope")
+         end,
+         { desc = "Telescope [T]odo" },
+      },
+      ["<leader>xT"] = {
+         function()
+            require("todo-comments")
+            vim.cmd("TodoTrouble")
+         end,
+         { desc = "Trouble [T]odo" },
+      },
    },
 }
 
