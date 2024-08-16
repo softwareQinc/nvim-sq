@@ -12,6 +12,7 @@ return {
                "c",
                "lua",
                "luadoc",
+               "query",
                "vim",
             },
 

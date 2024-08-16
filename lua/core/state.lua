@@ -1,4 +1,5 @@
 -- Runtime state holder
+
 local M = {}
 
 -- Hardtime.nvim is disabled by default
