@@ -110,6 +110,7 @@ function M.smart_bd()
    -- Keys are tables of the form {buf_ft, [OPTIONAL buf_bt]}
    local buf_cmds = {
       [{ "chatgpt-input" }] = close_Cwc,
+      [{ "diff" }] = close_Cwc,
       [{ "fugitive" }] = close_Cwc,
       [{ "fugitiveblame" }] = close_Cwc,
       [{ "git" }] = close_Cwc,
@@ -122,6 +123,7 @@ function M.smart_bd()
       [{ "qf" }] = close_Cwc,
       [{ "query" }] = close_Cwc,
       [{ "trouble" }] = close_Cwc,
+      [{ "undotree" }] = close_Cwc,
       [{ "vim" }] = close_Cwc,
 
       [{ "markdown", "nofile" }] = close_Cwc,

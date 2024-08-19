@@ -417,6 +417,13 @@ M.nvim_treesitter = {
    },
 }
 
+M.undotree = {
+   plugin = true,
+   keys = {
+      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
+   },
+}
+
 ------------------------------------------------------------------------------
 -- Buffer-local (plugin) keymaps
 M.haskell_tools = {

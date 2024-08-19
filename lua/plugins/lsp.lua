@@ -1,5 +1,5 @@
 return {
-   -- Manage (installs/removes etc.) DAPs, language servers, linters, and formatters
+   -- Manages (installs/removes etc.) DAPs, language servers, linters, and formatters
    -- We use mason-lspconfig for language servers, and Mason only for DAPs, linters and formatters
    {
       "williamboman/mason.nvim",
@@ -32,7 +32,7 @@ return {
          end
       end,
    },
-   -- Manage (installs/removes etc.) language servers only
+   -- Manages (installs/removes etc.) language servers only
    {
       "williamboman/mason-lspconfig.nvim",
       config = function()
