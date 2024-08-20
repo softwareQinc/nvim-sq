@@ -354,7 +354,7 @@ M.hardtime = {
 M.outline = {
    plugin = true,
    keys = {
-      { "<leader>so", "<cmd> Outline <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
+      { "<leader>so", "<cmd> Outline! <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
    },
 }
 
