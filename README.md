@@ -11,14 +11,13 @@ tree-sitter, tmux integration, ChatGPT, etc., and uses
 
 ### Terminal
 
-Install a terminal application with TrueColor support. On macOS, install, e.g.,
+Install a terminal application with TrueColor support, as the vanilla macOS
+Terminal application does not support TrueColor. On macOS, install, e.g.,
 [iTerm2](https://iterm2.com) via [Homebrew](https://brew.sh) with
 
 ```shell
 brew install iterm2
 ```
-
-as the vanilla macOS Terminal application does not support TrueColor.
 
 ### Fonts
 
@@ -62,7 +61,9 @@ Edit the
 [init.lua](https://github.com/softwareQinc/nvim-sq/blob/main/init.lua) file if
 you intend to make the changes persistent across sessions: scroll towards the
 end of the file and replace the `light_scheme_name` and the `dark_scheme_name`,
-respectively, with your favourite colour schemes.
+respectively, with your favourite colour schemes. Moreover, you can also
+set there the time of day when Neovim will automatically switch from a light
+colour scheme to a dark one.
 
 ### GUI
 
@@ -144,10 +145,10 @@ specific languages.
 
 ### Julia
 
-To enable Julia support, install it (macOS) with
+To enable Julia support, install Julia (macOS) with
 
 ```shell
-brew install julia
+curl -fsSL https://install.julialang.org | sh
 ```
 
 Next, to enable full LSP integration, install the `LanguageServer.jl` package
