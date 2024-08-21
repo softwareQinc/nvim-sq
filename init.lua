@@ -25,6 +25,9 @@ local opts = {
       enabled = true,
       notify = false,
    },
+   ui = {
+      border = "rounded",
+   },
 }
 require("lazy").setup(plugins, opts)
 

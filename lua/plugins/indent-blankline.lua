@@ -30,6 +30,7 @@ return {
          indent = { char = "│" },
          scope = { enabled = true },
          whitespace = { highlight = { "Whitespace", "NonText" } },
+         exclude = { filetypes = { "dashboard" } },
       })
    end,
 }

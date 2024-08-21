@@ -4,6 +4,11 @@ return {
    {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
+      opts = {
+         ui = {
+            border = "rounded",
+         },
+      },
       config = true,
       build = function()
          -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
