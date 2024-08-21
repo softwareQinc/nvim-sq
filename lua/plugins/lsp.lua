@@ -9,12 +9,18 @@ return {
             border = "rounded",
          },
       },
-      config = true,
-      build = function()
-         -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
-         -- LSPs are installed later in this file, see mason-lsp-config:setup({...})
-         -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
-         local ensure_installed = {
+   },
+   -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
+   -- LSPs are installed later in this file, see mason-lsp-config:setup({...})
+   -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
+   {
+      "jay-babu/mason-null-ls.nvim",
+      dependencies = {
+         "nvimtools/none-ls.nvim",
+         "williamboman/mason.nvim",
+      },
+      opts = {
+         ensure_installed = {
             -- Formatters
             "black",
             "stylua",
@@ -31,11 +37,8 @@ return {
             "cmakelang",
             "cmakelint",
             "mypy",
-         }
-         if ensure_installed and #ensure_installed > 0 then
-            vim.cmd("MasonInstall " .. table.concat(ensure_installed, " "))
-         end
-      end,
+         },
+      },
    },
    -- Manages (installs/removes etc.) language servers only
    {
@@ -91,6 +94,7 @@ return {
                      },
                   })
                end,
+
                clangd = function()
                   lspconfig.clangd.setup({
                      capabilities = lsp_capabilities,
@@ -102,6 +106,7 @@ return {
                      },
                   })
                end,
+
                rust_analyzer = function()
                   lspconfig.rust_analyzer.setup({
                      capabilities = lsp_capabilities,
@@ -117,6 +122,7 @@ return {
                      },
                   })
                end,
+
                gopls = function()
                   lspconfig.gopls.setup({
                      capabilities = lsp_capabilities,
@@ -144,6 +150,7 @@ return {
                      },
                   })
                end,
+
                texlab = function()
                   lspconfig.texlab.setup({
                      capabilities = lsp_capabilities,

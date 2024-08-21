@@ -44,17 +44,15 @@ return {
          "williamboman/mason.nvim",
          "mfussenegger/nvim-dap",
       },
-      config = function()
-         require("mason-nvim-dap").setup({
-            automatic_installation = true,
-            ensure_installed = {
-               "codelldb",
-               "python",
-               "delve",
-            },
-            handlers = {},
-         })
-      end,
+      opts = {
+         automatic_installation = true,
+         ensure_installed = {
+            "codelldb",
+            "python",
+            "delve",
+         },
+         handlers = {},
+      },
    },
    -- DAP for Python
    {

@@ -32,20 +32,18 @@ return {
       "rebelot/kanagawa.nvim",
       lazy = true,
       priority = 1000,
-      config = function()
-         require("kanagawa").setup({
-            -- Remove the background of LineNr, {Sign,Fold}Column and friends
-            colors = {
-               theme = {
-                  all = {
-                     ui = {
-                        bg_gutter = "none",
-                     },
+      opts = {
+         -- Remove the background of LineNr, {Sign,Fold}Column and friends
+         colors = {
+            theme = {
+               all = {
+                  ui = {
+                     bg_gutter = "none",
                   },
                },
             },
-         })
-      end,
+         },
+      },
    },
    {
       "rose-pine/neovim",
@@ -62,11 +60,9 @@ return {
       "Mofiqul/vscode.nvim",
       lazy = true,
       priority = 1000,
-      config = function()
-         require("vscode").setup({
-            -- Enable italic comment
-            italic_comments = true,
-         })
-      end,
+      opts = {
+         -- Enable italic comment
+         italic_comments = true,
+      },
    },
 }
