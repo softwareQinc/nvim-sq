@@ -237,6 +237,7 @@ M.terminal = {
    n = {
       ["<leader>th"] = { "<cmd> split | terminal <CR>", { desc = "[T]erminal [h]orizontal (terminal)" } },
       ["<leader>tv"] = { "<cmd> vsplit | terminal <CR>", { desc = "[T]erminal [v]ertical (terminal)" } },
+      ["<leader>tf"] = { "<cmd> FloatermNew <CR>", { desc = "[T]erminal [f]float (terminal)" } },
    },
 }
 
