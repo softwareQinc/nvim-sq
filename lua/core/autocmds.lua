@@ -112,3 +112,88 @@ vim.api.nvim_create_autocmd({
    callback = require("core.ui").set_color_scheme_callback,
    desc = "Set auto color scheme",
 })
+
+-- Transparent editing of GnuPG-encrypted files
+-- Written by Patrick R. McDonald at https://www.antagonism.org/privacy/gpg-vi.shtml
+-- Based on a solution by Wouter Hanegraaff
+vim.api.nvim_create_augroup("GnuPG", { clear = true })
+-- First make sure nothing is written to ~/.viminfo while editing an encrypted
+-- file
+vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "set viminfo=",
+   desc = "Do not write to ~/.viminfo while editing GnuPG-encrypted files",
+})
+-- We don't want a swap file, as it writes unencrypted data to disk
+vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "set noswapfile shada=",
+   desc = "Disable swap and shada files while editing GnuPG-encrypted files",
+})
+-- Switch to binary mode to read the encrypted file
+vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg" },
+   command = "set bin",
+   desc = "Switch to binary mode when reading GnuPG-encrpyted files",
+})
+vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "let ch_save = &ch|set ch=2",
+   desc = "Switch to binary mode when reading GnuPG-encrypted files",
+})
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "%!sh -c 'gpg --decrypt 2>/dev/null'",
+   desc = "Switch to binary mode when reading GnuPG-encrypted files",
+})
+-- Switch to normal mode for editing
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg" },
+   command = "set nobin",
+   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+})
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "let &ch = ch_save|unlet ch_save",
+   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+})
+vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = 'execute ":doautocmd BufReadPost " . expand("%:r")',
+   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+})
+-- Convert all text to encrypted text before writing
+vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg" },
+   command = "set bin",
+   desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
+})
+vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg" },
+   command = "%!sh -c 'gpg --default-recipient-self -e 2>/dev/null'",
+   desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
+})
+vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
+   group = "GnuPG",
+   pattern = { "*.asc" },
+   command = "%!sh -c 'gpg --default-recipient-self -e -a 2>/dev/null'",
+   desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
+})
+-- Undo the encryption so we are back in the normal text, directly after the
+-- file has been written
+vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
+   group = "GnuPG",
+   pattern = { "*.gpg", "*.asc" },
+   command = "u",
+   desc = "Undo encryption for GnuPG-encrypted files",
+})

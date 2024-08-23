@@ -32,7 +32,7 @@ brew install font-jetbrains-mono-nerd-font
 
 ## Installation
 
-Install Neovim using your favourite package manager, e.g., on macOS,
+Install Neovim using your favourite package manager, e.g., on macOS with
 
 ```shell
 brew install nvim
@@ -67,8 +67,8 @@ colour scheme to a dark one.
 
 ### GUI
 
-If you prefer a GUI Neovim client, consider [Neovide](https://neovide.dev). On
-macOS, install it with
+If you prefer a GUI Neovim client, consider [Neovide](https://neovide.dev).
+Install it (on macOS) with
 
 ```shell
 brew install neovide
@@ -84,7 +84,8 @@ and/or there are missing packages required for this configuration.
 ### GNU sed
 
 When starting Neovim on macOS, you may get a message about
-[`gnu-sed`](https://www.gnu.org/software/sed) being required. Install it
+[`gnu-sed`](https://www.gnu.org/software/sed) being required. Install it (on
+macOS) with
 
 ```shell
 brew install gnu-sed
@@ -101,7 +102,7 @@ cargo install tree-sitter-cli
 
 ### npm
 
-If [`npm`](https://docs.npmjs.com/about-npm) is missing, install it (macOS)
+If [`npm`](https://docs.npmjs.com/about-npm) is missing, install it (on macOS)
 with
 
 ```shell
@@ -111,7 +112,7 @@ brew install npm
 ### lazygit
 
 If [`lazygit`](https://github.com/jesseduffield/lazygit) is missing, install it
-(macOS) with
+(on macOS) with
 
 ```shell
 brew install lazygit
@@ -133,6 +134,28 @@ The
 assumes that the OpenAI API key is available as a text file in
 `$HOME/OpenAIkey.txt`; modify accordingly on your system.
 
+### GnuPG encryption
+
+We assume that you have installed and configured [GnuPG](https://gnupg.org/)
+accordingly (`brew install gpg2 gnupg` on macOS). Next, install
+[`pinentry`](https://www.gnupg.org/related_software/pinentry/index.html)
+for your platform, on macOS with
+
+```shell
+brew install pinetry-mac
+```
+
+Finally, execute
+
+```shell
+echo "use-agent" >> $HOME/.gnupg/gpg.conf
+echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" >> $HOME/.gnupg/gpg-agent.conf
+gpgconf --reload gpg-agent
+```
+
+The steps above are mandatory, as otherwise Neovim will not be able to
+interactively ask for passphrases when trying to encrypt and/or decrypt.
+
 ---
 
 ## Programming languages support
@@ -145,7 +168,7 @@ specific languages.
 
 ### Julia
 
-To enable Julia support, install Julia (macOS) with
+To enable Julia support, install Julia (on macOS) with
 
 ```shell
 curl -fsSL https://install.julialang.org | sh
