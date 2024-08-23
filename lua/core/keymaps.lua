@@ -87,15 +87,14 @@ M.telescope = {
       ["<leader>fe"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope r[e]cent files" } },
       -- Consider using pcall here
       ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git [c]ommits" } },
+      ["<leader>fC"] = { "<cmd> Telescope git_bcommits <CR>", { desc = "Telescope Git buffer [c]ommits" } },
       ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Gi[t] files" } },
       ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git [s]tatus" } },
-      ["<leader>ma"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope [m]arks" } },
+      ["<leader>f'"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope [m]arks" } },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
          { desc = "Telescope [c][o]lorscheme" },
       },
-      ["<leader>fd"] = { "<cmd> Telescope lsp_definitions <CR>", { desc = "Telescope LSP [d]definitions" } },
-      ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", { desc = "Telescope LSP [r]ferences" } },
    },
 }
 
@@ -557,6 +556,7 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP [f]or[m]at" },
       },
+      ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", { desc = "Telescope LSP [r]ferences" } },
       ["<leader>ih"] = {
          -- LSP inlay hints, requires Neovim 0.10 or later
          function()
