@@ -12,8 +12,12 @@ return {
             dependencies = "rafamadriz/friendly-snippets",
             opts = { history = true, updateevents = "TextChanged,TextChangedI" },
          },
-         -- Autopairing of (){}[] etc
          {
+            -- Nice LSP completion symbols
+            "onsails/lspkind.nvim",
+         },
+         {
+            -- Autopairing of (){}[] etc
             "windwp/nvim-autopairs",
             opts = {
                fast_wrap = {},
@@ -27,8 +31,8 @@ return {
                require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
             end,
          },
-         -- cmp sources plugins
          {
+            -- cmp sources plugins
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
@@ -36,8 +40,8 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
          },
-         -- Additional auto completion, command line
          {
+            -- Additional auto completion, command line
             "hrsh7th/cmp-cmdline",
             event = "CmdlineEnter",
             dependencies = {
@@ -57,7 +61,6 @@ return {
                   mapping = cmp.mapping.preset.cmdline(),
                   sources = cmp.config.sources({
                      { name = "path" },
-                  }, {
                      {
                         name = "cmdline",
                         option = {
@@ -72,9 +75,40 @@ return {
 
       config = function()
          local cmp = require("cmp")
-         -- vscode format
+         local lspkind = require("lspkind")
+         local luasnip = require("luasnip")
+
+         -- VSCode format
          require("luasnip.loaders.from_vscode").lazy_load()
+
+         -- Snippets
+         local config_path = vim.fn.stdpath("config")
+         require("luasnip.loaders.from_lua").load({ paths = { config_path .. "/lua/snippets" } })
+
          cmp.setup({
+            sources = cmp.config.sources({
+               { name = "nvim_lsp" },
+               { name = "nvim_lsp_signature_help" },
+               { name = "nvim_lua" },
+               { name = "luasnip" },
+               { name = "buffer" },
+            }),
+            formatting = {
+               fields = { "abbr", "kind", "menu" },
+               expandable_indicator = true,
+               format = lspkind.cmp_format({
+                  mode = "symbol_text",
+                  menu = {
+                     nvim_lsp = "[LSP]",
+                     nvim_lsp_signature_help = "[LSP sig. help]",
+                     nvim_lua = "[API]",
+                     luasnip = "[LuaSnip]",
+                     buffer = "[Buffer]",
+                     path = "[Path]",
+                     cmdline = "[Cmd]",
+                  },
+               }),
+            },
             snippet = {
                expand = function(args)
                   require("luasnip").lsp_expand(args.body)
@@ -85,28 +119,29 @@ return {
                documentation = cmp.config.window.bordered(),
             },
             mapping = cmp.mapping.preset.insert({
-               ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-               ["<C-f>"] = cmp.mapping.scroll_docs(4),
+               ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+               ["<C-d>"] = cmp.mapping.scroll_docs(4),
                ["<C-Space>"] = cmp.mapping.complete(),
                ["<C-e>"] = cmp.mapping.abort(),
                ["<CR>"] = cmp.mapping.confirm({ select = true }),
-            }),
-            sources = cmp.config.sources({
-               { name = "nvim_lsp" },
-               { name = "nvim_lsp_signature_help" },
-               { name = "luasnip" },
-            }, {
-               { name = "buffer" },
-            }),
-         })
-
-         -- Set configuration for specific filetype.
-         cmp.setup.filetype("gitcommit", {
-            sources = cmp.config.sources({
-               -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-               { name = "git" },
-            }, {
-               { name = "buffer" },
+               ["<C-n>"] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                     cmp.select_next_item()
+                  elseif luasnip.expand_or_jumpable() then
+                     luasnip.expand_or_jump()
+                  else
+                     fallback()
+                  end
+               end, { "i", "s" }),
+               ["<C-p>"] = cmp.mapping(function(fallback)
+                  if cmp.visible() then
+                     cmp.select_prev_item()
+                  elseif luasnip.jumpable(-1) then
+                     luasnip.jump(-1)
+                  else
+                     fallback()
+                  end
+               end, { "i", "s" }),
             }),
          })
       end,
