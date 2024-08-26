@@ -556,6 +556,7 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP [f]or[m]at" },
       },
+      ["<leader>fd"] = { "<cmd> Telescope lsp_definitions <CR>", { desc = "Telescope LSP [d]efinitions" } },
       ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", { desc = "Telescope LSP [r]ferences" } },
       ["<leader>ih"] = {
          -- LSP inlay hints, requires Neovim 0.10 or later
