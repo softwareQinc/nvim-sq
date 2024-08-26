@@ -82,6 +82,7 @@ return {
             },
             handlers = {
                default_setup,
+
                -- Custom configurations below
                lua_ls = function()
                   lspconfig.lua_ls.setup({
@@ -163,6 +164,10 @@ return {
                         },
                      },
                   })
+               end,
+
+               hls = function()
+                  lspconfig.hls.setup({})
                end,
             },
          })

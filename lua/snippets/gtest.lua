@@ -6,12 +6,12 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 
--- GoogleTest main entry point
+-- GoogleTest main entry point template
 ls.add_snippets("cpp", {
    s({
-      trig = "gtest_main",
-      name = "GoogleTest main entry point",
-      dscr = "GoogleTest main entry point, where int main() must be located",
+      trig = "gtest_main_template",
+      name = "GoogleTest main entry point template",
+      dscr = "GoogleTest main entry point template, where int main(){...} must be located",
    }, {
       t({ "// GoogleTest main entry point", "", "" }),
       t({ '#include "gtest/gtest.h"', "", "" }),
@@ -21,12 +21,12 @@ ls.add_snippets("cpp", {
    }),
 })
 
--- GoogleTest unit test source file
+-- GoogleTest unit test source file template
 ls.add_snippets("cpp", {
    s({
-      trig = "gtest_src",
-      name = "GoogleTest unit test source file",
-      dscr = "GoogleTest unit test source file, where TEST() statements must be located",
+      trig = "gtest_src_template",
+      name = "GoogleTest unit test source file template",
+      dscr = "GoogleTest unit test source file template, where TEST(){...} blocks must be located",
    }, {
       t({ "// #include <system_headers>", "", "" }),
       t({ '#include "gtest/gtest.h"', "", "" }),
