@@ -593,4 +593,18 @@ M.compile_and_run_current_cpp = {
    },
 }
 
+M.run_current_qasm = {
+   plugin = true,
+   n = {
+      ["<leader>cx"] = {
+         ":<C-u>lua vim.cmd('!qpp_qasm <% ' .. vim.v.count1) <CR>",
+         { desc = "Execute with qpp_qasm" },
+      },
+      ["<leader>cy"] = {
+         ":<C-u>lua vim.cmd('!qpp_qasm <% ' .. vim.v.count1 .. ' x') <CR>",
+         { desc = "Execute with qpp_qasm, show the final state" },
+      },
+   },
+}
+
 return M

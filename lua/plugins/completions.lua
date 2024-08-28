@@ -61,6 +61,7 @@ return {
                   mapping = cmp.mapping.preset.cmdline(),
                   sources = cmp.config.sources({
                      { name = "path" },
+                  }, {
                      {
                         name = "cmdline",
                         option = {
@@ -91,6 +92,7 @@ return {
                { name = "nvim_lsp_signature_help" },
                { name = "nvim_lua" },
                { name = "luasnip" },
+            }, {
                { name = "buffer" },
             }),
             formatting = {
