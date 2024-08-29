@@ -26,6 +26,29 @@ M.generic = {
       ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
       ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
 
+      ["<leader>bl"] = {
+         function()
+            vim.o.background = "light"
+         end,
+         { desc = "[B]ackground [l]ight" },
+      },
+      ["<leader>bd"] = {
+         function()
+            vim.o.background = "dark"
+         end,
+         { desc = "[B]ackground [d]ark" },
+      },
+      ["<leader>bt"] = {
+         function()
+            if vim.o.background == "light" then
+               vim.o.background = "dark"
+            else
+               vim.o.background = "light"
+            end
+         end,
+         { desc = "[B]ackground [t]oggle, light <-> dark toggle" },
+      },
+
       ["<M-h>"] = { "<C-w>5<", { desc = "Resize split right" } },
       ["<M-l>"] = { "<C-w>5>", { desc = "Resize split left" } },
       ["<M-k>"] = { "<C-w>5-", { desc = "Resize split up" } },

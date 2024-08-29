@@ -54,7 +54,7 @@ local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme
    dark_scheme_name = "kanagawa", -- default dark color scheme
-   light_scheme_starts_at = { hour = 8, min = 00 }, -- 24h format
+   light_scheme_starts_at = { hour = 08, min = 00 }, -- 24h format
    light_scheme_ends_at = { hour = 17, min = 00 }, -- 24h format
 })
 

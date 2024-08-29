@@ -91,6 +91,10 @@ return {
                      settings = {
                         Lua = {
                            hint = { enable = true },
+                           -- We use none-ls stylua
+                           format = {
+                              enable = false,
+                           },
                         },
                      },
                   })
