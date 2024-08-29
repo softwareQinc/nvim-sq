@@ -187,7 +187,7 @@ return {
             callback = function(ev)
                -- Disable semantic token highlighting for lua_ls
                local client = vim.lsp.get_client_by_id(ev.data.client_id)
-               if client.name == "lua_ls" then
+               if client and client.name and client.name == "lua_ls" then
                   client.server_capabilities.semanticTokensProvider = nil
                end
                -- Enable completion triggered by <c-x><c-o>

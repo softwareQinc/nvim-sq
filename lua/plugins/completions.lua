@@ -102,7 +102,7 @@ return {
                   mode = "symbol_text",
                   menu = {
                      nvim_lsp = "[LSP]",
-                     nvim_lsp_signature_help = "[LSP sig. help]",
+                     nvim_lsp_signature_help = "[LSP sig]",
                      nvim_lua = "[API]",
                      luasnip = "[LuaSnip]",
                      buffer = "[Buffer]",
