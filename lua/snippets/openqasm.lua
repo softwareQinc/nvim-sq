@@ -6,7 +6,7 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 
--- Minimal OpenQASM 2.0 template
+-- OpenQASM 2.0 minimal template
 ls.add_snippets("openqasm", {
    s({
       trig = "qasm2_template",

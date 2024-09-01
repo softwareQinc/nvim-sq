@@ -18,7 +18,10 @@ return {
       },
    },
    init = function()
-      vim.wo.foldlevel = 99
-      vim.wo.conceallevel = 2
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+         group = vim.api.nvim_create_augroup("Neorg", { clear = true }),
+         pattern = { "*.norg" },
+         command = "setlocal conceallevel=2 foldlevel=99",
+      })
    end,
 }

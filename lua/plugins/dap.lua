@@ -66,7 +66,7 @@ return {
          require("dap-python").setup()
          vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
             group = vim.api.nvim_create_augroup("Nvim-DAP-Python", { clear = true }),
-            pattern = "python",
+            pattern = { "python" },
             callback = function(ev)
                -- Buffer local keymaps
                local keymaps = require("core.keymaps")
@@ -89,7 +89,7 @@ return {
          require("dap-go").setup(opts)
          vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
             group = vim.api.nvim_create_augroup("Nvim-DAP-Go", { clear = true }),
-            pattern = "go",
+            pattern = { "go" },
             callback = function(ev)
                -- Buffer local keymaps
                local keymaps = require("core.keymaps")

@@ -9,7 +9,7 @@ local i = ls.insert_node
 -- GoogleTest main entry point template
 ls.add_snippets("cpp", {
    s({
-      trig = "gtest_main_template",
+      trig = "gtest_template_main",
       name = "GoogleTest main entry point template",
       dscr = "GoogleTest main entry point template, where int main(){...} must be located",
    }, {
@@ -24,7 +24,7 @@ ls.add_snippets("cpp", {
 -- GoogleTest unit test source file template
 ls.add_snippets("cpp", {
    s({
-      trig = "gtest_src_template",
+      trig = "gtest_template_src",
       name = "GoogleTest unit test source file template",
       dscr = "GoogleTest unit test source file template, where TEST(){...} blocks must be located",
    }, {

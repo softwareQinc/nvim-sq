@@ -7,7 +7,7 @@ api.nvim_create_augroup("Generic", { clear = true })
 -- Highlights yanked text
 api.nvim_create_autocmd("TextYankPost", {
    group = "Generic",
-   pattern = "*",
+   pattern = { "*" },
    callback = function()
       vim.highlight.on_yank({ timeout = 200 })
    end,
@@ -17,14 +17,14 @@ api.nvim_create_autocmd("TextYankPost", {
 -- not push the text to the right
 api.nvim_create_autocmd("VimEnter", {
    group = "Generic",
-   pattern = "*",
+   pattern = { "*" },
    command = "set scl=yes numberwidth=1",
    desc = "SignColumn always on, length 1",
 })
 -- Set SignColumn color to background color, aesthetically nicer
 api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    group = "Generic",
-   pattern = "*",
+   pattern = { "*" },
    command = "hi! link SignColumn Normal",
    desc = "Set SignColumn color to background color",
 })
@@ -42,13 +42,13 @@ vim.api.nvim_create_autocmd("FileType", {
 -- -- Cursor line in current buffer
 -- vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
 --    group = "Generic",
---    pattern = "*",
+--    pattern = { "*" },
 --    command = "setlocal cursorline",
 -- })
 -- -- Disable cursor line in inactive buffers
 -- vim.api.nvim_create_autocmd("WinLeave", {
 --    group = "Generic",
---    pattern = "*",
+--    pattern = { "*" },
 --    command = "setlocal nocursorline",
 -- })
 
@@ -57,14 +57,14 @@ api.nvim_create_augroup("Terminal", { clear = true })
 -- Disable spell checking and line numbering
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
-   pattern = "*",
+   pattern = { "*" },
    command = "setlocal nospell nonumber norelativenumber",
    desc = "Disable spell checking and line numbering in Term windows",
 })
 -- Enter Term windows in Insert mode
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
-   pattern = "*",
+   pattern = { "*" },
    callback = function(opts)
       -- https://github.com/mfussenegger/nvim-dap/issues/439#issuecomment-1380787919
       if opts.file:match("dap%-terminal") then
@@ -78,7 +78,7 @@ api.nvim_create_autocmd("TermOpen", {
 -- Exit Term windows without pressing any key
 -- api.nvim_create_autocmd("TermClose", {
 --    group = "Terminal",
---    pattern = "*",
+--    pattern = { "*" },
 --    command = "call feedkeys('q')",
 --    desc = "Exit Term windows without pressing any key",
 -- })
@@ -88,7 +88,7 @@ api.nvim_create_augroup("Quickfix", { clear = true })
 -- Disable spell checking
 api.nvim_create_autocmd("FileType", {
    group = "Quickfix",
-   pattern = "qf",
+   pattern = { "qf" },
    command = "setlocal nospell",
    desc = "Disable spell checking in Quickfix lists",
 })

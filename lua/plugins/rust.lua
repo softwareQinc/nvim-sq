@@ -24,7 +24,7 @@ return {
          crates.show()
          vim.api.nvim_create_autocmd("FileType", {
             group = vim.api.nvim_create_augroup("Crates", { clear = true }),
-            pattern = "rust",
+            pattern = { "rust" },
             callback = function(ev)
                -- Buffer local keymaps
                local keymaps = require("core.keymaps")

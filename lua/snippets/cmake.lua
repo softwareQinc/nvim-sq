@@ -7,7 +7,7 @@ local s = ls.snippet
 local t = ls.text_node
 local i = ls.insert_node
 
--- Minimal CMakeLists.txt template
+-- CMakeLists.txt minimal template
 ls.add_snippets("cmake", {
    s({
       trig = "cmake_template_minimal",
@@ -34,7 +34,7 @@ ls.add_snippets("cmake", {
    }),
 })
 
--- Typical CMakeLists.txt template
+-- CMakeLists.txt typical template
 ls.add_snippets("cmake", {
    s({
       trig = "cmake_template",
@@ -78,7 +78,7 @@ ls.add_snippets("cmake", {
    }),
 })
 
--- GoogleTest CMakeLists.txt template
+-- CMakeLists.txt GoogleTest template
 ls.add_snippets("cmake", {
    s({
       trig = "cmake_template_gtest",
