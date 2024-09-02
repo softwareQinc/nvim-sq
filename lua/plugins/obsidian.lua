@@ -20,7 +20,7 @@ return {
    init = function()
       local vaults_dir = vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null"
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-         group = vim.api.nvim_create_augroup("Markdown", { clear = true }),
+         group = vim.api.nvim_create_augroup("MarkdownObsidian", { clear = true }),
          pattern = { vaults_dir .. "/**.md" },
          command = "setlocal conceallevel=2",
       })

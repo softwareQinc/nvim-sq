@@ -19,12 +19,12 @@ return {
          api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "CursorLine" })
       end
       set_illumintate_hl()
-      -- Auto update the highlight style on colorscheme change
+      -- Auto update the highlight style when the color scheme changes
       api.nvim_create_autocmd("ColorScheme", {
          group = vim.api.nvim_create_augroup("Vim-illuminate", { clear = true }),
          pattern = { "*" },
          callback = set_illumintate_hl,
-         desc = "Auto update the highlight style on coloscheme change (vim-illuminate)",
+         desc = "Auto update the highlight style when the color scheme changes (vim-illuminate)",
       })
    end,
 }
