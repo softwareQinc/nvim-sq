@@ -23,7 +23,7 @@ M = {
       undofile = true,
       hlsearch = true,
       showmode = true,
-      foldlevelstart = 20,
+      foldlevelstart = 99,
       -- foldmethod is set in "lua/core/autocmds.lua" (see Folding)
       timeoutlen = 400,
       listchars = { -- special characters
