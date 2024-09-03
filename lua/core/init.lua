@@ -1,15 +1,17 @@
 --[[
 Initializing core functionality:
-    Lua functions
-    Vim options
+    Generic Lua functions
+    Options
     Keymaps
     Auto commands
 ]]
 
+------------------------------------------------------------------------------
+-- Generic Lua functions
 local util = require("core.util")
 
 ------------------------------------------------------------------------------
--- Vim options
+-- Options
 local options = require("core.options")
 util.set_options(options)
 
@@ -19,5 +21,5 @@ local keymaps = require("core.keymaps")
 util.map_all_keys(keymaps)
 
 ------------------------------------------------------------------------------
--- Vim auto commands
+-- Auto commands
 require("core.autocmds")

@@ -1,4 +1,4 @@
--- Vim options
+-- Options
 
 local M = {}
 
@@ -7,13 +7,13 @@ M = {
       shortmess = vim.opt.shortmess + "I", -- disable Neovim welcome message
       shell = "bash --login",
       spell = true,
-      termguicolors = true, -- true colors
+      termguicolors = true,
       expandtab = true,
       tabstop = 4,
       softtabstop = 4,
       shiftwidth = 4,
-      relativenumber = true,
       number = true,
+      relativenumber = true,
       splitbelow = true,
       splitright = true,
       inccommand = "split",
@@ -22,8 +22,9 @@ M = {
       cursorline = true,
       undofile = true,
       hlsearch = true,
-      showmode = true, -- we have lualine.nvim, hence not really needed
+      showmode = true,
       foldlevelstart = 20,
+      -- foldmethod is set in "lua/core/autocmds.lua" (see Folding)
       timeoutlen = 400,
       listchars = { -- special characters
          -- eol = "⏎",

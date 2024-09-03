@@ -61,7 +61,7 @@ function M.map_all_keys(tbl, additional_options)
    end
 end
 
--- Set Vim options
+-- Set Neovim options
 function M.set_options(options)
    for scope, settings in pairs(options) do
       for key, value in pairs(settings) do
