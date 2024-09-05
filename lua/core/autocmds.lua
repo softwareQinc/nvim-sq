@@ -39,18 +39,18 @@ vim.api.nvim_create_autocmd("FileType", {
       end
    end,
 })
--- -- Cursor line in current buffer
--- vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
---    group = "Generic",
---    pattern = { "*" },
---    command = "setlocal cursorline",
--- })
--- -- Disable cursor line in inactive buffers
--- vim.api.nvim_create_autocmd("WinLeave", {
---    group = "Generic",
---    pattern = { "*" },
---    command = "setlocal nocursorline",
--- })
+-- Cursor line in active buffer
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+   group = "Generic",
+   pattern = { "*" },
+   command = "setlocal cursorlineopt=both",
+})
+-- Cursor line in inactive buffers
+vim.api.nvim_create_autocmd("WinLeave", {
+   group = "Generic",
+   pattern = { "*" },
+   command = "setlocal cursorlineopt=line",
+})
 
 -- Terminal
 api.nvim_create_augroup("Terminal", { clear = true })
