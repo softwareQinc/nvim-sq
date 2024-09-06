@@ -22,6 +22,7 @@ return {
          group = vim.api.nvim_create_augroup("Neorg", { clear = true }),
          pattern = { "*.norg" },
          command = "setlocal conceallevel=2 foldlevel=99",
+         desc = "Set conceallevel=2 and foldlevel=99 for Neorg buffers",
       })
    end,
 }

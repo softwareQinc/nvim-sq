@@ -23,6 +23,7 @@ return {
          group = vim.api.nvim_create_augroup("MarkdownObsidian", { clear = true }),
          pattern = { vaults_dir .. "/**.md" },
          command = "setlocal conceallevel=2",
+         desc = "Set conceallevel=2 for Obsidian Markdown buffers",
       })
    end,
    opts = {

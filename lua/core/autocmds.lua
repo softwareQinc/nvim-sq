@@ -28,7 +28,7 @@ api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    command = "hi! link SignColumn Normal",
    desc = "Set SignColumn color to background color",
 })
--- Folding
+-- Fold method
 vim.api.nvim_create_autocmd("FileType", {
    callback = function()
       if require("nvim-treesitter.parsers").has_parser() then
@@ -38,18 +38,21 @@ vim.api.nvim_create_autocmd("FileType", {
          vim.opt.foldmethod = "indent"
       end
    end,
+   desc = "Set foldmethod",
 })
 -- Cursor line in active buffer
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
    group = "Generic",
    pattern = { "*" },
    command = "setlocal cursorlineopt=both",
+   desc = "Set cursorline/cursorlineopt in active buffer",
 })
 -- Cursor line in inactive buffers
 vim.api.nvim_create_autocmd("WinLeave", {
    group = "Generic",
    pattern = { "*" },
    command = "setlocal cursorlineopt=line",
+   desc = "Set cursorline/cursorlineopt in inactive buffer",
 })
 
 -- Terminal
@@ -71,7 +74,7 @@ api.nvim_create_autocmd("TermOpen", {
          return
       end
       vim.cmd("startinsert")
-      vim.cmd("setlocal nonu")
+      vim.cmd("setlocal nonumber")
    end,
    desc = "Enter Term windows in Insert mode",
 })

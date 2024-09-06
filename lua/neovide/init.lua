@@ -16,7 +16,7 @@ util.map_keys(keymaps.scale, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
 -- Set custom font
-vim.cmd("set guifont=JetBrainsMono\\ Nerd\\ Font:h16")
+vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
 -- Set current working directory to home directory if we are in '/' or 'C:\'
