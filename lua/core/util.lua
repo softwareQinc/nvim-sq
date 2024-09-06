@@ -114,6 +114,7 @@ function M.smart_bd()
       [{ "fugitive" }] = close_Cwc,
       [{ "fugitiveblame" }] = close_Cwc,
       [{ "git" }] = close_Cwc,
+      [{ "gitsigns-blame" }] = close_Cwc,
       [{ "help" }] = close_Cwc,
       [{ "man" }] = close_Cwc,
       [{ "neo-tree" }] = close_Cwc,
