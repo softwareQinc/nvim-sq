@@ -19,11 +19,41 @@ return {
    },
    init = function()
       local vaults_dir = vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null"
+      local function is_markdown_in_vault()
+         local bufname = vim.api.nvim_buf_get_name(0)
+         return bufname:match(vaults_dir .. "/.*%.md$")
+      end
+      local hl_groups = {
+         -- The options are passed directly to `vim.api.nvim_set_hl()`.
+         -- See `:help nvim_set_hl`.
+         ObsidianTodo = { bold = true, fg = "#f78c6c" },
+         ObsidianDone = { bold = true, fg = "#89ddff" },
+         ObsidianRightArrow = { bold = true, fg = "#f78c6c" },
+         ObsidianTilde = { bold = true, fg = "#ff5370" },
+         ObsidianImportant = { bold = true, fg = "#d73128" },
+         ObsidianBullet = { bold = true, fg = "#89ddff" },
+         ObsidianRefText = { underline = true, fg = "#c792ea" },
+         ObsidianExtLinkIcon = { fg = "#c792ea" },
+         ObsidianTag = { italic = true, fg = "#89ddff" },
+         ObsidianBlockID = { italic = true, fg = "#89ddff" },
+         ObsidianHighlightText = { bg = "#75662e" },
+      }
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
          group = vim.api.nvim_create_augroup("MarkdownObsidian", { clear = true }),
          pattern = { vaults_dir .. "/**.md" },
          command = "setlocal conceallevel=2",
          desc = "Set conceallevel=2 for Obsidian Markdown buffers",
+      })
+      vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+         group = vim.api.nvim_create_augroup("MarkdownObsidian", { clear = false }),
+         callback = function()
+            if is_markdown_in_vault() then
+               for group, opts in pairs(hl_groups) do
+                  vim.api.nvim_set_hl(0, group, opts)
+               end
+            end
+         end,
+         desc = "Apply Obsidian highlights for Obsidian Markdown files in vault",
       })
    end,
    opts = {
