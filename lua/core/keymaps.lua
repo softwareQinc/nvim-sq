@@ -111,7 +111,7 @@ M.telescope = {
       -- Consider using pcall here
       ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git [c]ommits" } },
       ["<leader>fC"] = { "<cmd> Telescope git_bcommits <CR>", { desc = "Telescope Git buffer [c]ommits" } },
-      ["<leader>ft"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope Gi[t] files" } },
+      ["<leader>fi"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope G[i]t files" } },
       ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git [s]tatus" } },
       ["<leader>f'"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope [m]arks" } },
       ["<leader>co"] = {
@@ -232,19 +232,19 @@ M.todo_comments = {
          end,
          { desc = "TODO previous" },
       },
-      ["<leader>fT"] = {
+      ["<leader>ft"] = {
          function()
             require("todo-comments")
             vim.cmd("TodoTelescope")
          end,
-         { desc = "Telescope [T]odo" },
+         { desc = "Telescope [t]odo" },
       },
-      ["<leader>xT"] = {
+      ["<leader>xt"] = {
          function()
             require("todo-comments")
             vim.cmd("TodoTrouble")
          end,
-         { desc = "Trouble [T]odo" },
+         { desc = "Trouble [t]odo" },
       },
    },
 }
@@ -385,6 +385,26 @@ M.trouble = {
    plugin = true,
    keys = {
       {
+         "<leader>xd",
+         "<cmd> Trouble lsp toggle focus=false win.position=right <CR>",
+         desc = "Trouble LSP [d]efinitions/references",
+      },
+      {
+         "<leader>xl",
+         "<cmd> Trouble loclist toggle <CR>",
+         desc = "Trouble [l]ocation list",
+      },
+      {
+         "<leader>xq",
+         "<cmd> Trouble qflist toggle <CR>",
+         desc = "Trouble [q]uickfix list",
+      },
+      {
+         "<leader>xs",
+         "<cmd> Trouble symbols toggle focus=false <CR>",
+         desc = "Trouble [s]ymbols",
+      },
+      {
          "<leader>xx",
          "<cmd> Trouble diagnostics toggle <CR>",
          desc = "Trouble diagnostics",
@@ -393,26 +413,6 @@ M.trouble = {
          "<leader>xX",
          "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>",
          desc = "Trouble buffer diagnostics",
-      },
-      {
-         "<leader>cs",
-         "<cmd> Trouble symbols toggle focus=false <CR>",
-         desc = "Trouble [s]ymbols",
-      },
-      {
-         "<leader>cl",
-         "<cmd> Trouble lsp toggle focus=false win.position=right <CR>",
-         desc = "Trouble [L]SP definitions/references",
-      },
-      {
-         "<leader>xL",
-         "<cmd> Trouble loclist toggle <CR>",
-         desc = "Trouble [L]ocation list",
-      },
-      {
-         "<leader>xQ",
-         "<cmd> Trouble qflist toggle <CR>",
-         desc = "Trouble [Q]uickfix list",
       },
    },
 }
