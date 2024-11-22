@@ -73,7 +73,7 @@ return {
                "bashls",
                "texlab",
                "pyright",
-               "ruff_lsp",
+               "ruff",
                "cmake",
                "marksman",
                "gopls",
