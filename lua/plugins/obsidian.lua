@@ -41,7 +41,9 @@ return {
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
          group = vim.api.nvim_create_augroup("MarkdownObsidian", { clear = true }),
          pattern = { vaults_dir .. "/**.md" },
-         command = "setlocal conceallevel=2",
+         callback = function()
+            vim.opt_local.conceallevel = 2
+         end,
          desc = "Set conceallevel=2 for Obsidian Markdown buffers",
       })
       vim.api.nvim_create_autocmd({ "ColorScheme" }, {

@@ -1,5 +1,5 @@
 -- 80/120 column markers
-vim.cmd.setlocal("colorcolumn=80,120")
+vim.opt_local.colorcolumn = { 80, 120 }
 
 -- Enable compiling and running the current C++ buffer in Normal mode
 local util = require("core.util")

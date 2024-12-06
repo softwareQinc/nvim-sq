@@ -18,7 +18,10 @@ api.nvim_create_autocmd("TextYankPost", {
 api.nvim_create_autocmd("VimEnter", {
    group = "Generic",
    pattern = { "*" },
-   command = "set scl=yes numberwidth=1",
+   callback = function()
+      vim.opt.signcolumn = "yes"
+      vim.opt.numberwidth = 1
+   end,
    desc = "SignColumn always on, length 1",
 })
 -- Set SignColumn color to background color, aesthetically nicer
@@ -44,14 +47,18 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
    group = "Generic",
    pattern = { "*" },
-   command = "setlocal cursorlineopt=both",
+   callback = function()
+      vim.opt_local.cursorlineopt = "both"
+   end,
    desc = "Set cursorline/cursorlineopt in active buffer",
 })
 -- Cursor line in inactive buffers
 vim.api.nvim_create_autocmd("WinLeave", {
    group = "Generic",
    pattern = { "*" },
-   command = "setlocal cursorlineopt=line",
+   callback = function()
+      vim.opt_local.cursorlineopt = "line"
+   end,
    desc = "Set cursorline/cursorlineopt in inactive buffer",
 })
 
@@ -61,7 +68,11 @@ api.nvim_create_augroup("Terminal", { clear = true })
 api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = { "*" },
-   command = "setlocal nospell nonumber norelativenumber",
+   callback = function()
+      vim.opt_local.spell = false
+      vim.opt_local.number = false
+      vim.opt_local.relativenumber = false
+   end,
    desc = "Disable spell checking and line numbering in Term windows",
 })
 -- Enter Term windows in Insert mode
@@ -74,7 +85,7 @@ api.nvim_create_autocmd("TermOpen", {
          return
       end
       vim.cmd("startinsert")
-      vim.cmd("setlocal nonumber")
+      vim.opt_local.number = false
    end,
    desc = "Enter Term windows in Insert mode",
 })
@@ -92,7 +103,9 @@ api.nvim_create_augroup("Quickfix", { clear = true })
 api.nvim_create_autocmd("FileType", {
    group = "Quickfix",
    pattern = { "qf" },
-   command = "setlocal nospell",
+   callback = function()
+      vim.opt_local.spell = false
+   end,
    desc = "Disable spell checking in Quickfix lists",
 })
 
@@ -125,59 +138,70 @@ vim.api.nvim_create_augroup("GnuPG", { clear = true })
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
-   command = "set viminfo=",
+   callback = function()
+      vim.opt.viminfo = ""
+   end,
    desc = "Do not write to ~/.viminfo while editing GnuPG-encrypted files",
 })
 -- We don't want a swap file, as it writes unencrypted data to disk
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
-   command = "set noswapfile shada=",
+   callback = function()
+      vim.opt_local.swapfile = false
+      vim.opt.shada = ""
+   end,
    desc = "Disable swap and shada files while editing GnuPG-encrypted files",
 })
--- Switch to binary mode to read the encrypted file
+-- Set binary mode to read the encrypted file
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = "GnuPG",
    pattern = { "*.gpg" },
-   command = "set bin",
-   desc = "Switch to binary mode when reading GnuPG-encrpyted files",
+   callback = function()
+      vim.opt_local.binary = true
+   end,
+   desc = "Set binary mode when reading GnuPG-encrpyted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
    command = "let ch_save = &ch|set ch=2",
-   desc = "Switch to binary mode when reading GnuPG-encrypted files",
+   desc = "Set binary mode when reading GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
    command = "%!sh -c 'gpg --decrypt 2>/dev/null'",
-   desc = "Switch to binary mode when reading GnuPG-encrypted files",
+   desc = "Set binary mode when reading GnuPG-encrypted files",
 })
--- Switch to normal mode for editing
+-- Set normal mode for editing
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = "GnuPG",
    pattern = { "*.gpg" },
-   command = "set nobin",
-   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+   callback = function()
+      vim.opt_local.binary = false
+   end,
+   desc = "Set normal mode for editing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
    command = "let &ch = ch_save|unlet ch_save",
-   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+   desc = "Set normal mode for editing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = "GnuPG",
    pattern = { "*.gpg", "*.asc" },
    command = 'execute ":doautocmd BufReadPost " . expand("%:r")',
-   desc = "Switch to normal mode for editing GnuPG-encrypted files",
+   desc = "Set normal mode for editing GnuPG-encrypted files",
 })
 -- Convert all text to encrypted text before writing
 vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
    group = "GnuPG",
    pattern = { "*.gpg" },
-   command = "set bin",
+   callback = function()
+      vim.opt_local.binary = false
+   end,
    desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {

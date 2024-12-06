@@ -3,7 +3,7 @@
 local M = {}
 
 -- Hardtime.nvim is disabled by default
-M.hardtime_enabled = false
+M.hardtime_enabled = true
 
 -- Displays --INSERT--/--VISUAL-- etc. modes by default when switching modes
 M.initial_showmode = vim.o.showmode
