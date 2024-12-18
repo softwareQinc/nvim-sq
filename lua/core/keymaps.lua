@@ -101,6 +101,19 @@ M.telescope = {
          { desc = "Telescope [n]vim config files" },
       },
       ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", { desc = "Telescope [g]rep" } },
+      ["<leader>fG"] = {
+         function()
+            require("telescope.builtin").live_grep({ grep_open_files = true })
+         end,
+         { desc = "Telescope [G]rep local buffers" },
+      },
+      ["<leader>fS"] = { "<cmd> Telescope grep_string <CR>", { desc = "Telescope grep_[S]tring" } },
+      ["<leader>fT"] = {
+         function()
+            require("telescope.builtin").grep_string({ grep_open_files = true })
+         end,
+         { desc = "Telescope grep_s[T]ring local buffers" },
+      },
       ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", { desc = "Telescope [b]uffers" } },
       ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope [h]elp tags" } },
       ["<leader>fz"] = {
