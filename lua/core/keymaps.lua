@@ -215,6 +215,10 @@ M.spectre = {
          "<cmd> lua require('spectre').open_file_search({select_word=true}) <CR>",
          { desc = "[S]pectre search current [f]ile" },
       },
+      ["<leader>sq"] = {
+         "<cmd> lua require('spectre.actions').send_to_qf() <CR>",
+         { desc = "[S]pectre send all items to [q]uickfix list" },
+      },
    },
    v = {
       ["<leader>sw"] = {
