@@ -6,7 +6,7 @@ tree-sitter, tmux integration, ChatGPT, etc., and uses
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
 
 This configuration was extensively tested on macOS and Linux (Debian/Ubuntu).
-You may experience minor issues if running a different platform.
+You may experience minor issues on other platforms.
 
 ---
 
