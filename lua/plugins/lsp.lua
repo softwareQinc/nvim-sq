@@ -45,6 +45,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       config = function()
          -- Setup neodev BEFORE the first require("lspconfig")
+         ---@diagnostic disable-next-line: missing-fields
          require("neodev").setup({})
          local lspconfig = require("lspconfig")
          local lspconfig_util = require("lspconfig.util")
@@ -63,6 +64,7 @@ return {
             })
          end
 
+         ---@diagnostic disable-next-line: missing-fields
          require("mason-lspconfig").setup({
             -- LSP servers
             ensure_installed = {

@@ -9,5 +9,4 @@ return {
          close = "q",
       },
    },
-   config = true,
 }

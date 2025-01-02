@@ -5,6 +5,9 @@ productivity tools such as LSP, DAP, autocompletion, fuzzy-finding,
 tree-sitter, tmux integration, ChatGPT, etc., and uses
 [lazy](https://github.com/folke/lazy.nvim) plugin management.
 
+This configuration was extensively tested on macOS and Linux (Debian/Ubuntu).
+You may experience minor issues if running a different platform.
+
 ---
 
 ## Pre-requisites
@@ -174,14 +177,10 @@ To enable Julia support, install Julia (on macOS) with
 curl -fsSL https://install.julialang.org | sh
 ```
 
-Next, to enable full LSP integration, install the `LanguageServer.jl` package
-by executing in a Julia REPL
+Next, to enable full LSP integration, execute in a shell
 
-```julia
-import Pkg
-Pkg.add("LanguageServer")
-Pkg.add("SymbolServer")
-Pkg.add("StaticLint")
+```shell
+julia --project=~/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer"); Pkg.add("SymbolServer"); Pkg.add("StaticLint")'
 ```
 
 ### Go
