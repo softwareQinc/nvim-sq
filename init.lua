@@ -1,54 +1,24 @@
 ------------------------------------------------------------------------------
--- Start-up
+-- Entry point
+
+------------------------------------------------------------------------------
 -- Set leader/localleader keymaps
--- Ensure `mapleader` is set before lazy so that your keymaps are correct
+-- Make sure to setup `mapleader` and `maplocalleader` before loading
+-- lazy.nvim so that mappings are correct
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 ------------------------------------------------------------------------------
--- Setup Lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-   vim.fn.system({
-      "git",
-      "clone",
-      "--filter=blob:none",
-      "https://github.com/folke/lazy.nvim.git",
-      "--branch=stable", -- latest stable release
-      lazypath,
-   })
-end
-vim.opt.rtp:prepend(lazypath)
-local plugins = "plugins"
-local opts = {
-   change_detection = {
-      enabled = true,
-      notify = false,
-   },
-   ui = {
-      border = "rounded",
-   },
-}
-require("lazy").setup(plugins, opts)
+-- lazy.nvim plugin manager
+require("config.lazy")
 
 ------------------------------------------------------------------------------
--- Core functionality setup
+-- Core functionality
 require("core")
 
 ------------------------------------------------------------------------------
--- Enable hardtime.nvim at startup, disabled by default
--- See the M.hardtime table in "lua/core/keymaps.lua" for keymaps and settings
--- To modify the state.hardtime_enabled flag, edit the table in
--- "lua/core/state.lua"
-local state = require("core.state")
-if state.hardtime_enabled then
-   vim.o.showmode = false
-   vim.cmd("Hardtime enable")
-end
-
-------------------------------------------------------------------------------
--- Set color scheme to light between 8:00AM and 5:00PM, dark otherwise
--- Color scheme plugins are loaded from "lua/plugins/colors.lua"
+-- Set color scheme to light between 8:00 AM and 5:00 PM, dark otherwise
+-- Color scheme plugins are loaded from "lua/plugins/colorschemes.lua"
 -- For defaults, see "lua/core/state.lua"
 local ui = require("core.ui")
 ui.set_auto_scheme({
@@ -59,7 +29,7 @@ ui.set_auto_scheme({
 })
 
 ------------------------------------------------------------------------------
--- Neovide initialization, executed only by a Neovide session
+-- Neovide initialization and configuration, executed only by Neovide sessions
 if vim.g.neovide then
    pcall(require, "neovide")
 end

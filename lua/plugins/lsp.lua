@@ -1,6 +1,7 @@
 return {
-   -- Manages (installs/removes etc.) DAPs, language servers, linters, and formatters
-   -- We use mason-lspconfig for language servers, and Mason only for DAPs, linters and formatters
+   -- Manages DAPs, language servers, linters, and formatters
+   -- We use mason-lspconfig for language servers, and Mason only for DAPs,
+   -- linters and formatters
    {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
@@ -50,10 +51,14 @@ return {
          local lspconfig = require("lspconfig")
          local lspconfig_util = require("lspconfig.util")
          local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-         lsp_capabilities =
-            vim.tbl_deep_extend("force", lsp_capabilities, require("cmp_nvim_lsp").default_capabilities())
+         lsp_capabilities = vim.tbl_deep_extend(
+            "force",
+            lsp_capabilities,
+            require("cmp_nvim_lsp").default_capabilities()
+         )
 
-         local augroup = vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
+         local augroup =
+            vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
          local util = require("core.util")
          local lsp_format_on_save = util.format_on_save(augroup)
 
@@ -136,7 +141,11 @@ return {
                      on_attach = lsp_format_on_save,
                      cmd = { "gopls" },
                      filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                     root_dir = lspconfig_util.root_pattern("go.work", "go.mod", ".git"),
+                     root_dir = lspconfig_util.root_pattern(
+                        "go.work",
+                        "go.mod",
+                        ".git"
+                     ),
                      settings = {
                         gopls = {
                            completeUnimported = true,
@@ -185,7 +194,10 @@ return {
       event = "LspAttach",
       config = function()
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("Nvim-lspconfig", { clear = true }),
+            group = vim.api.nvim_create_augroup(
+               "Nvim-lspconfig",
+               { clear = true }
+            ),
             callback = function(ev)
                -- Disable semantic token highlighting for lua_ls
                local client = vim.lsp.get_client_by_id(ev.data.client_id)

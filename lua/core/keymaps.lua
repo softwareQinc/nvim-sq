@@ -6,8 +6,14 @@ local M = {}
 -- Global keymaps
 M.generic = {
    n = {
-      ["<leader>|"] = { "<cmd> vsplit <CR>", { desc = "Split vertically [|]" } },
-      ["<leader>-"] = { "<cmd> split <CR>", { desc = "Split horizontally [-]" } },
+      ["<leader>|"] = {
+         "<cmd> vsplit <CR>",
+         { desc = "Split vertically [|]" },
+      },
+      ["<leader>-"] = {
+         "<cmd> split <CR>",
+         { desc = "Split horizontally [-]" },
+      },
       ["<leader>q"] = {
          function()
             local util = require("core.util")
@@ -79,7 +85,10 @@ M.netrw = {
 
 M.neo_tree = {
    n = {
-      ["<leader>n"] = { "<cmd> Neotree toggle <CR>", { desc = "[N]eo-tree toggle" } },
+      ["<leader>n"] = {
+         "<cmd> Neotree toggle <CR>",
+         { desc = "[N]eo-tree toggle" },
+      },
    },
 }
 
@@ -91,7 +100,10 @@ M.oil = {
 
 M.telescope = {
    n = {
-      ["<leader>ff"] = { "<cmd> Telescope find_files <CR>", { desc = "Telescope [f]iles" } },
+      ["<leader>ff"] = {
+         "<cmd> Telescope find_files <CR>",
+         { desc = "Telescope [f]iles" },
+      },
       ["<leader>fa"] = {
          "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
          { desc = "Telescope [a]ll files" },
@@ -100,33 +112,63 @@ M.telescope = {
          "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
          { desc = "Telescope [n]vim config files" },
       },
-      ["<leader>fg"] = { "<cmd> Telescope live_grep <CR>", { desc = "Telescope [g]rep" } },
+      ["<leader>fg"] = {
+         "<cmd> Telescope live_grep <CR>",
+         { desc = "Telescope [g]rep" },
+      },
       ["<leader>fG"] = {
          function()
             require("telescope.builtin").live_grep({ grep_open_files = true })
          end,
          { desc = "Telescope [G]rep local buffers" },
       },
-      ["<leader>fS"] = { "<cmd> Telescope grep_string <CR>", { desc = "Telescope grep_[S]tring" } },
+      ["<leader>fS"] = {
+         "<cmd> Telescope grep_string <CR>",
+         { desc = "Telescope grep_[S]tring" },
+      },
       ["<leader>fT"] = {
          function()
             require("telescope.builtin").grep_string({ grep_open_files = true })
          end,
          { desc = "Telescope grep_s[T]ring local buffers" },
       },
-      ["<leader>fb"] = { "<cmd> Telescope buffers <CR>", { desc = "Telescope [b]uffers" } },
-      ["<leader>fh"] = { "<cmd> Telescope help_tags <CR>", { desc = "Telescope [h]elp tags" } },
+      ["<leader>fb"] = {
+         "<cmd> Telescope buffers <CR>",
+         { desc = "Telescope [b]uffers" },
+      },
+      ["<leader>fh"] = {
+         "<cmd> Telescope help_tags <CR>",
+         { desc = "Telescope [h]elp tags" },
+      },
       ["<leader>fz"] = {
          "<cmd> Telescope current_buffer_fuzzy_find <CR>",
          { desc = "Telescope fu[z]zy find current buffer" },
       },
-      ["<leader>fe"] = { "<cmd> Telescope oldfiles <CR>", { desc = "Telescope r[e]cent files" } },
+      ["<leader>fe"] = {
+         "<cmd> Telescope oldfiles <CR>",
+         { desc = "Telescope r[e]cent files" },
+      },
       -- Consider using pcall here
-      ["<leader>fc"] = { "<cmd> Telescope git_commits <CR>", { desc = "Telescope Git [c]ommits" } },
-      ["<leader>fC"] = { "<cmd> Telescope git_bcommits <CR>", { desc = "Telescope Git buffer [c]ommits" } },
-      ["<leader>fi"] = { "<cmd> Telescope git_files <CR>", { desc = "Telescope G[i]t files" } },
-      ["<leader>fs"] = { "<cmd> Telescope git_status <CR>", { desc = "Telescope Git [s]tatus" } },
-      ["<leader>f'"] = { "<cmd> Telescope marks <CR>", { desc = "Telescope [m]arks" } },
+      ["<leader>fc"] = {
+         "<cmd> Telescope git_commits <CR>",
+         { desc = "Telescope Git [c]ommits" },
+      },
+      ["<leader>fC"] = {
+         "<cmd> Telescope git_bcommits <CR>",
+         { desc = "Telescope Git buffer [c]ommits" },
+      },
+      ["<leader>fi"] = {
+         "<cmd> Telescope git_files <CR>",
+         { desc = "Telescope G[i]t files" },
+      },
+      ["<leader>fs"] = {
+         "<cmd> Telescope git_status <CR>",
+         { desc = "Telescope Git [s]tatus" },
+      },
+      ["<leader>f'"] = {
+         "<cmd> Telescope marks <CR>",
+         { desc = "Telescope marks" },
+      },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
          { desc = "Telescope [c][o]lorscheme" },
@@ -200,13 +242,19 @@ M.harpoon = {
             desc = "Harpoon [4]",
          },
       },
-      ["<leader>fj"] = { "<cmd> Telescope harpoon marks <CR>", { desc = "Telescope Harpoon marks" } },
+      ["<leader>fj"] = {
+         "<cmd> Telescope harpoon marks <CR>",
+         { desc = "Telescope Harpoon marks" },
+      },
    },
 }
 
 M.spectre = {
    n = {
-      ["<leader>S"] = { "<cmd> lua require('spectre').toggle() <CR>", { desc = "[S]pectre toggle" } },
+      ["<leader>S"] = {
+         "<cmd> lua require('spectre').toggle() <CR>",
+         { desc = "[S]pectre toggle" },
+      },
       ["<leader>sw"] = {
          "<cmd> lua require('spectre').open_visual({select_word=true}) <CR>",
          { desc = "[S]pectre search current [w]ord" },
@@ -238,9 +286,11 @@ M.todo_comments = {
       },
       -- You can also specify a list of valid jump keywords
       -- ["]t"] = {
-      --   function()
-      --     require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
-      --   end,
+      -- function()
+      --    require("todo-comments").jump_next({
+      --       keywords = { "ERROR", "WARNING" },
+      --    })
+      -- end,
       --   { desc = "TODO next" },
       -- },
       ["[t"] = {
@@ -268,15 +318,27 @@ M.todo_comments = {
 
 M.carbon_now = {
    [{ "n", "v" }] = {
-      ["<leader>cn"] = { ":CarbonNow <CR>", { desc = "[C]arbon[N]ow (visual selection) screenshot" } },
+      ["<leader>cn"] = {
+         ":CarbonNow <CR>",
+         { desc = "[C]arbon[N]ow (visual selection) screenshot" },
+      },
    },
 }
 
 M.terminal = {
    n = {
-      ["<leader>th"] = { "<cmd> split | terminal <CR>", { desc = "[T]erminal [h]orizontal (terminal)" } },
-      ["<leader>tv"] = { "<cmd> vsplit | terminal <CR>", { desc = "[T]erminal [v]ertical (terminal)" } },
-      ["<leader>tf"] = { "<cmd> FloatermNew <CR>", { desc = "[T]erminal [f]float (terminal)" } },
+      ["<leader>th"] = {
+         "<cmd> split | terminal <CR>",
+         { desc = "[T]erminal [h]orizontal (terminal)" },
+      },
+      ["<leader>tv"] = {
+         "<cmd> vsplit | terminal <CR>",
+         { desc = "[T]erminal [v]ertical (terminal)" },
+      },
+      ["<leader>tf"] = {
+         "<cmd> FloatermNew <CR>",
+         { desc = "[T]erminal [f]float (terminal)" },
+      },
    },
 }
 
@@ -394,7 +456,11 @@ M.hardtime = {
 M.outline = {
    plugin = true,
    keys = {
-      { "<leader>so", "<cmd> Outline! <CR>", desc = "Outline [s]ymbols t[o]ggle (toggle)" },
+      {
+         "<leader>so",
+         "<cmd> Outline! <CR>",
+         desc = "Outline [s]ymbols t[o]ggle (toggle)",
+      },
    },
 }
 
@@ -471,7 +537,10 @@ M.haskell_tools = {
    n = {
       -- haskell-language-server relies heavily on codeLenses,
       -- so auto-refresh (see advanced configuration) is enabled by default
-      ["<leader>cr"] = { vim.lsp.codelens.run, { desc = "Ht [c]odelens [r]un", noremap = true, silent = true } },
+      ["<leader>cr"] = {
+         vim.lsp.codelens.run,
+         { desc = "Ht [c]odelens [r]un", noremap = true, silent = true },
+      },
 
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ts"] = {
@@ -482,7 +551,11 @@ M.haskell_tools = {
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ea"] = {
          "<cmd> lua require('haskell-tools').lsp.buf_eval_all() <CR>",
-         { desc = "Ht [e]valuate [a]ll code snippets", noremap = true, silent = true },
+         {
+            desc = "Ht [e]valuate [a]ll code snippets",
+            noremap = true,
+            silent = true,
+         },
       },
 
       -- Toggle a GHCI REPL for the current package
@@ -520,16 +593,28 @@ M.rust = {
 M.go = {
    plugin = true,
    n = {
-      ["<leader>gsj"] = { "<cmd> GoTagAdd json <CR>", { desc = "Add struct ta[g][s] [J]SON" } },
-      ["<leader>gsy"] = { "<cmd> GoTagAdd yaml <CR>", { desc = "Add struct ta[g][s] [Y]AML" } },
+      ["<leader>gsj"] = {
+         "<cmd> GoTagAdd json <CR>",
+         { desc = "Add struct ta[g][s] [J]SON" },
+      },
+      ["<leader>gsy"] = {
+         "<cmd> GoTagAdd yaml <CR>",
+         { desc = "Add struct ta[g][s] [Y]AML" },
+      },
    },
 }
 
 M.nvim_dap = {
    plugin = true,
    n = {
-      ["<leader>db"] = { "<cmd> DapToggleBreakpoint <CR>", { desc = "[D]AP add [b]reakpoint at line" } },
-      ["<leader>dr"] = { "<cmd> DapContinue <CR>", { desc = "[D]AP sta[r]t or continue the debugger" } },
+      ["<leader>db"] = {
+         "<cmd> DapToggleBreakpoint <CR>",
+         { desc = "[D]AP add [b]reakpoint at line" },
+      },
+      ["<leader>dr"] = {
+         "<cmd> DapContinue <CR>",
+         { desc = "[D]AP sta[r]t or continue the debugger" },
+      },
       ["<leader>dus"] = {
          function()
             local widgets = require("dap.ui.widgets")
@@ -574,30 +659,68 @@ M.nvim_dap_go = {
 M.nvim_lspconfig = {
    plugin = true,
    n = {
-      ["gd"] = { vim.lsp.buf.definition, { desc = "LSP [g]o to [d]efinition" } },
-      ["gD"] = { vim.lsp.buf.declaration, { desc = "LSP [g]o to [d]eclaration" } },
+      ["gd"] = {
+         vim.lsp.buf.definition,
+         { desc = "LSP [g]o to [d]efinition" },
+      },
+      ["gD"] = {
+         vim.lsp.buf.declaration,
+         { desc = "LSP [g]o to [d]eclaration" },
+      },
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
-      ["gi"] = { vim.lsp.buf.implementation, { desc = "LSP [g]o to [i]mplementation" } },
-      ["<leader>sh"] = { vim.lsp.buf.signature_help, { desc = "LSP [s]ignature [h]elp" } },
-      ["<leader>wa"] = { vim.lsp.buf.add_workspace_folder, { desc = "LSP [w]orkspace [a]dd folder" } },
-      ["<leader>wr"] = { vim.lsp.buf.remove_workspace_folder, { desc = "LSP delete [w]orkspace folde[r]" } },
+      ["gi"] = {
+         vim.lsp.buf.implementation,
+         { desc = "LSP [g]o to [i]mplementation" },
+      },
+      ["<leader>sh"] = {
+         vim.lsp.buf.signature_help,
+         { desc = "LSP [s]ignature [h]elp" },
+      },
+      ["<leader>wa"] = {
+         vim.lsp.buf.add_workspace_folder,
+         { desc = "LSP [w]orkspace [a]dd folder" },
+      },
+      ["<leader>wr"] = {
+         vim.lsp.buf.remove_workspace_folder,
+         { desc = "LSP delete [w]orkspace folde[r]" },
+      },
       ["<leader>wl"] = {
          function()
             print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
          end,
          { desc = "LSP [w]orkspace [l]ist folders" },
       },
-      ["<leader>D"] = { vim.lsp.buf.type_definition, { desc = "LSP type [d]efinition" } },
+      ["<leader>D"] = {
+         vim.lsp.buf.type_definition,
+         { desc = "LSP type [d]efinition" },
+      },
       ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" } },
-      ["gr"] = { vim.lsp.buf.references, { desc = "LSP [g]o to [r]eferences" } },
+      ["gr"] = {
+         vim.lsp.buf.references,
+         { desc = "LSP [g]o to [r]eferences" },
+      },
       ["<leader>fm"] = {
          function()
             vim.lsp.buf.format({ async = true })
          end,
          { desc = "LSP [f]or[m]at" },
       },
-      ["<leader>fd"] = { "<cmd> Telescope lsp_definitions <CR>", { desc = "Telescope LSP [d]efinitions" } },
-      ["<leader>fr"] = { "<cmd> Telescope lsp_references <CR>", { desc = "Telescope LSP [r]ferences" } },
+      ["<leader>fos"] = {
+         function()
+            local state = require("core.state")
+            state.format_on_save = not state.format_on_save
+            print("LSP format on save:", state.format_on_save)
+         end,
+         { desc = "LSP [f][o]rmat on [s]ave toggle" },
+      },
+      ["<leader>fd"] = {
+         "<cmd> Telescope lsp_definitions <CR>",
+         { desc = "Telescope LSP [d]efinitions" },
+      },
+      ["<leader>fr"] = {
+         "<cmd> Telescope lsp_references <CR>",
+         { desc = "Telescope LSP [r]ferences" },
+      },
       ["<leader>ih"] = {
          -- LSP inlay hints, requires Neovim 0.10 or later
          function()
@@ -613,7 +736,10 @@ M.nvim_lspconfig = {
       },
    },
    [{ "n", "v" }] = {
-      ["<leader>ca"] = { vim.lsp.buf.code_action, { desc = "LSP [c]ode [a]ctions" } },
+      ["<leader>ca"] = {
+         vim.lsp.buf.code_action,
+         { desc = "LSP [c]ode [a]ctions" },
+      },
    },
 }
 
@@ -624,8 +750,16 @@ M.compile_and_run_current_cpp = {
          function()
             local current_file = vim.fn.expand("%:p")
             local output_file = current_file:gsub("%..-$", "")
-            -- local terminal_cmd = '!bash -c "make ' .. output_file .. " && " .. output_file .. '"'
-            local terminal_cmd = 'split | term bash -c "make ' .. output_file .. " && " .. output_file .. '"'
+            -- local terminal_cmd = '!bash -c "make '
+            --    .. output_file
+            --    .. " && "
+            --    .. output_file
+            --    .. '"'
+            local terminal_cmd = 'split | term bash -c "make '
+               .. output_file
+               .. " && "
+               .. output_file
+               .. '"'
             vim.api.nvim_command(terminal_cmd)
          end,
          { desc = "[C]ompile and e[x]ecute current C/C++ buffer" },

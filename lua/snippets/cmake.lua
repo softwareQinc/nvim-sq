@@ -88,7 +88,11 @@ ls.add_snippets("cmake", {
       t({ "include(GoogleTest)", "" }),
       t({ 'set(TARGET_NAME "unit_tests")', "" }),
       t({ "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)", "", "" }),
-      t({ "include(FetchContent)", 'message(STATUS "Fetching GoogleTest...")', "" }),
+      t({
+         "include(FetchContent)",
+         'message(STATUS "Fetching GoogleTest...")',
+         "",
+      }),
       t({ "FetchContent_Declare(", "" }),
       t({ "  googletest", "" }),
       t({ "  GIT_REPOSITORY https://github.com/google/googletest.git", "" }),

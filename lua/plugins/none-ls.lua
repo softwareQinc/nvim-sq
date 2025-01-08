@@ -7,7 +7,8 @@ return {
    opts = function()
       local null_ls = require("null-ls")
       local util = require("core.util")
-      local augroup = vim.api.nvim_create_augroup("None-ls-formatting", { clear = true })
+      local augroup =
+         vim.api.nvim_create_augroup("None-ls-formatting", { clear = true })
       local null_ls_format_on_save = util.format_on_save(augroup)
 
       local opts = {
@@ -40,7 +41,9 @@ return {
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()
-                  local virtual = os.getenv("VIRTUAL_ENV") or os.getenv("CONDA_PREFIX") or "/usr"
+                  local virtual = os.getenv("VIRTUAL_ENV")
+                     or os.getenv("CONDA_PREFIX")
+                     or "/usr"
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
@@ -51,7 +54,9 @@ return {
             --    format = "sync",
             -- }),
             -- null_ls.builtins.diagnostics.ruff,
-            -- null_ls.builtins.diagnostics.shellcheck.with({ filetypes = { "sh", "zsh" } }),
+            -- null_ls.builtins.diagnostics.shellcheck.with({
+            --    filetypes = { "sh", "zsh" },
+            -- }),
             --
             -- none-ls-extras
             -- require("none-ls.formatting.latexindent").with({

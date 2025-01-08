@@ -2,8 +2,11 @@
 
 local M = {}
 
--- Hardtime.nvim is disabled by default
-M.hardtime_enabled = true
+-- LSP format buffer on save is enabled by default at startup
+M.format_on_save = true
+
+-- Hardtime.nvim's hardtime mode is disabled by default at startup
+M.hardtime_enabled = false
 
 -- Displays --INSERT--/--VISUAL-- etc. modes by default when switching modes
 M.initial_showmode = vim.o.showmode

@@ -19,7 +19,9 @@ local function wrap_text(text)
          table.insert(lines, current_line)
          current_line = word
       else
-         current_line = current_line .. (current_line == "" and "" or " ") .. word
+         current_line = current_line
+            .. (current_line == "" and "" or " ")
+            .. word
       end
    end
    if current_line ~= "" then

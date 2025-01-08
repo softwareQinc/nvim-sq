@@ -11,7 +11,7 @@ ls.add_snippets("cpp", {
    s({
       trig = "gtest_template_main",
       name = "GoogleTest main entry point template",
-      dscr = "GoogleTest main entry point template, where int main(){...} must be located",
+      dscr = "GoogleTest main entry point template, where int main() {...} must be located",
    }, {
       t({ "// GoogleTest main entry point", "", "" }),
       t({ '#include "gtest/gtest.h"', "", "" }),
@@ -26,7 +26,7 @@ ls.add_snippets("cpp", {
    s({
       trig = "gtest_template_src",
       name = "GoogleTest unit test source file template",
-      dscr = "GoogleTest unit test source file template, where TEST(){...} blocks must be located",
+      dscr = "GoogleTest unit test source file template, where TEST() {...} blocks must be located",
    }, {
       t({ "// #include <system_headers>", "", "" }),
       t({ '#include "gtest/gtest.h"', "", "" }),

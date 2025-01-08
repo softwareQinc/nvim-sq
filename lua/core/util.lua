@@ -82,7 +82,11 @@ function M.format_on_save(augroup)
             group = augroup,
             buffer = bufnr,
             callback = function()
-               vim.lsp.buf.format({ bufnr = bufnr })
+               local state = require("core.state")
+               if state.format_on_save then
+                  -- Do not call this asynchronously!
+                  vim.lsp.buf.format({ bufnr = bufnr })
+               end
             end,
             desc = "LSP format on save",
          })
@@ -132,7 +136,8 @@ function M.smart_bd()
       [{ "", "terminal" }] = close_bd,
    }
    for buf, cmd in pairs(buf_cmds) do
-      local selected = (buf[1] == buf_ft) and ((not buf[2]) or (buf[2] == buf_bt))
+      local selected = (buf[1] == buf_ft)
+         and ((not buf[2]) or (buf[2] == buf_bt))
       if selected then
          pcall(vim.api.nvim_command, cmd)
          return

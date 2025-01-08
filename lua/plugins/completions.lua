@@ -10,7 +10,12 @@ return {
             -- Follow latest release.
             version = "v2.*", -- replace <CurrentMajor> by the latest released major (first number of latest release)
             dependencies = "rafamadriz/friendly-snippets",
-            opts = { history = true, updateevents = "TextChanged,TextChangedI" },
+            opts = {
+               history = true,
+               updateevents = "TextChanged,TextChangedI",
+            },
+            -- install jsregexp (optional!).
+            build = "make install_jsregexp",
          },
          {
             -- Nice LSP completion symbols
@@ -28,7 +33,10 @@ return {
 
                -- Setup cmp for autopairs
                local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-               require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+               require("cmp").event:on(
+                  "confirm_done",
+                  cmp_autopairs.on_confirm_done()
+               )
             end,
          },
          {
@@ -84,7 +92,9 @@ return {
 
          -- Snippets
          local config_path = vim.fn.stdpath("config")
-         require("luasnip.loaders.from_lua").load({ paths = { config_path .. "/lua/snippets" } })
+         require("luasnip.loaders.from_lua").load({
+            paths = { config_path .. "/lua/snippets" },
+         })
 
          cmp.setup({
             sources = cmp.config.sources({

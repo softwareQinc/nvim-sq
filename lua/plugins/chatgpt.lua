@@ -1,6 +1,12 @@
 return {
    "jackMort/ChatGPT.nvim",
-   cmd = { "ChatGPT", "ChatGPTRun", "ChatGPTActAs", "ChatGPTCompleteCode", "ChatGPTEditWithInstructions" },
+   cmd = {
+      "ChatGPT",
+      "ChatGPTRun",
+      "ChatGPTActAs",
+      "ChatGPTCompleteCode",
+      "ChatGPTEditWithInstructions",
+   },
    config = function()
       local home = vim.fn.expand("~")
       require("chatgpt").setup({

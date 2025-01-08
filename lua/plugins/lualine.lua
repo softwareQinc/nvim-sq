@@ -10,8 +10,11 @@ return {
             function()
                local ft = vim.bo.filetype
                local bt = vim.bo.buftype
-               -- Do not display trailing whitespaces if any of those clauses are true
-               local no_show = (ft == "") or (ft == "dashboard") or (bt == "nofile")
+               -- Do not display trailing whitespaces if any of those clauses
+               -- are true
+               local no_show = (ft == "")
+                  or (ft == "dashboard")
+                  or (bt == "nofile")
                if no_show then
                   return ""
                end
