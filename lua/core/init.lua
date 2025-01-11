@@ -28,11 +28,11 @@ require("core.autocmds")
 ------------------------------------------------------------------------------
 -- Misc.
 
--- Enable Hardtime.nvim's hardtime mode at startup if state.hardtime_enable is
--- true
--- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
--- To modify the `state.hardtime_enable` flag, edit the table in
+-- Enable Hardtime.nvim hardtime mode at startup if `state.hardtime_enabled`
+-- is true
+-- To modify the `state.hardtime_enabled` flag, edit its table entry in
 -- "lua/core/state.lua"
+-- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
 local state = require("core.state")
 if state.hardtime_enabled then
    vim.o.showmode = false

@@ -781,14 +781,4 @@ M.run_current_qasm = {
    },
 }
 
-M.render_markdown = {
-   plugin = true,
-   n = {
-      ["<leader>rm"] = {
-         "<cmd> RenderMarkdown toggle <CR>",
-         { desc = "[R]ender[M]arkdon toggle" },
-      },
-   },
-}
-
 return M

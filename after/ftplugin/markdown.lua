@@ -16,8 +16,3 @@ vim.api.nvim_create_autocmd("ColorScheme", {
    end,
    desc = "Restore Markdown highlights when the color scheme changes",
 })
-
--- Keymaps
-local util = require("core.util")
-local keymaps = require("core.keymaps")
-util.map_keys(keymaps.render_markdown, { buffer = true })

@@ -30,8 +30,8 @@ return {
                enable = true,
                disable = {
                   "latex",
-                  "markdown",
                   "tmux",
+                  -- "markdown",
                },
             },
 
