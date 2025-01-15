@@ -13,9 +13,7 @@ return {
          "LazyGitFilterCurrentFile",
       },
       -- Optional for floating window border decoration
-      dependencies = {
-         "nvim-lua/plenary.nvim",
-      },
+      dependencies = { "nvim-lua/plenary.nvim" },
    },
    {
       "lewis6991/gitsigns.nvim",

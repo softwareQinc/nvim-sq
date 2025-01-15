@@ -3,13 +3,13 @@
 local M = {}
 
 -- LSP format buffer on save is enabled by default at startup
-M.format_on_save = true
+M.lsp_format_on_save_enabled_at_startup = true
 
 -- Hardtime.nvim hardtime mode is disabled by default at startup
-M.hardtime_enabled = false
+M.hardtime_enabled_at_startup = false
 
 -- Displays --INSERT--/--VISUAL-- etc. modes by default when switching modes
-M.initial_showmode = vim.o.showmode
+M.initial_showmode = vim.opt.showmode
 
 -- Color scheme auto toggle (light/dark) defaults
 M.color_toggle_default = {

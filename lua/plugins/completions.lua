@@ -8,8 +8,10 @@ return {
             -- Snippet plugin
             "L3MON4D3/LuaSnip",
             -- Follow latest release.
-            version = "v2.*", -- replace <CurrentMajor> by the latest released major (first number of latest release)
-            dependencies = "rafamadriz/friendly-snippets",
+            -- Replace <CurrentMajor> by the latest released major (first
+            -- number of latest release)
+            version = "v2.*",
+            dependencies = { "rafamadriz/friendly-snippets" },
             opts = {
                history = true,
                updateevents = "TextChanged,TextChangedI",
@@ -52,9 +54,7 @@ return {
             -- Additional auto completion, command line
             "hrsh7th/cmp-cmdline",
             event = "CmdlineEnter",
-            dependencies = {
-               "hrsh7th/cmp-buffer",
-            },
+            dependencies = { "hrsh7th/cmp-buffer" },
             config = function()
                local cmp = require("cmp")
                -- `/` cmdline setup.

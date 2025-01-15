@@ -2,7 +2,7 @@ return {
    {
       "nvim-telescope/telescope.nvim",
       cmd = { "Telescope" },
-      tag = "0.1.6",
+      tag = "0.1.8",
       -- or, branch = "0.1.x",
       dependencies = { "nvim-lua/plenary.nvim" },
    },
@@ -14,6 +14,12 @@ return {
             extensions = {
                ["ui-select"] = {
                   require("telescope.themes").get_dropdown({}),
+               },
+            },
+            pickers = {
+               buffers = {
+                  ignore_current_buffer = false,
+                  sort_lastused = true,
                },
             },
          })

@@ -16,10 +16,8 @@ return {
          vim.fs.normalize("~/obsidian_vaults")
       ) or "/dev/null") .. "/**.md",
    },
-   dependencies = {
-      -- Required
-      "nvim-lua/plenary.nvim",
-   },
+   -- Required
+   dependencies = { "nvim-lua/plenary.nvim" },
    init = function()
       local vaults_dir = vim.loop.fs_realpath(
          vim.fs.normalize("~/obsidian_vaults")

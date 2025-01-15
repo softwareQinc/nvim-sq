@@ -29,7 +29,7 @@ function M.set_light_scheme(color_scheme)
    state.color_toggle_current.light_scheme_set = true
    state.color_toggle_current.dark_scheme_set = false
 
-   vim.o.background = "light"
+   vim.opt.background = "light"
    vim.cmd("hi! link SignColumn Normal")
    -- Update lualine (glitch when autocmd triggers)
    vim.defer_fn(function()
@@ -62,7 +62,7 @@ function M.set_dark_scheme(color_scheme)
    state.color_toggle_current.light_scheme_set = false
    state.color_toggle_current.dark_scheme_set = true
 
-   vim.o.background = "dark"
+   vim.opt.background = "dark"
    vim.cmd("hi! link SignColumn Normal")
    -- Update lualine (glitch when autocmd triggers)
    vim.defer_fn(function()
