@@ -34,22 +34,22 @@ M.generic = {
 
       ["<leader>bl"] = {
          function()
-            vim.o.background = "light"
+            vim.opt.background = "light"
          end,
          { desc = "[B]ackground [l]ight" },
       },
       ["<leader>bd"] = {
          function()
-            vim.o.background = "dark"
+            vim.opt.background = "dark"
          end,
          { desc = "[B]ackground [d]ark" },
       },
       ["<leader>bt"] = {
          function()
-            if vim.o.background == "light" then
-               vim.o.background = "dark"
+            if vim.opt.background == "light" then
+               vim.opt.background = "dark"
             else
-               vim.o.background = "light"
+               vim.opt.background = "light"
             end
          end,
          { desc = "[B]ackground [t]oggle, light <-> dark toggle" },
@@ -124,13 +124,13 @@ M.telescope = {
       },
       ["<leader>fS"] = {
          "<cmd> Telescope grep_string <CR>",
-         { desc = "Telescope grep_[S]tring" },
+         { desc = "Telescope grep [S]tring" },
       },
       ["<leader>fT"] = {
          function()
             require("telescope.builtin").grep_string({ grep_open_files = true })
          end,
-         { desc = "Telescope grep_s[T]ring local buffers" },
+         { desc = "Telescope grep s[T]ring local buffers" },
       },
       ["<leader>fb"] = {
          "<cmd> Telescope buffers <CR>",
@@ -155,7 +155,7 @@ M.telescope = {
       },
       ["<leader>fC"] = {
          "<cmd> Telescope git_bcommits <CR>",
-         { desc = "Telescope Git buffer [c]ommits" },
+         { desc = "Telescope Git buffer [C]ommits" },
       },
       ["<leader>fi"] = {
          "<cmd> Telescope git_files <CR>",
@@ -171,7 +171,7 @@ M.telescope = {
       },
       ["<leader>co"] = {
          "<cmd> Telescope colorscheme enable_preview=true <CR>",
-         { desc = "Telescope [c][o]lorscheme" },
+         { desc = "Telescope [co]lorscheme" },
       },
    },
 }
@@ -403,10 +403,10 @@ M.hardtime = {
             require("hardtime")
             local state = require("core.state")
             vim.cmd("Hardtime disable")
-            state.hardtime_enabled = false
+            state.hardtime_enabled_at_startup = false
             -- Restore showmode
             if state.initial_showmode then
-               vim.o.showmode = state.initial_showmode
+               vim.opt.showmode = state.initial_showmode
             end
             print("Hardtime: false")
          end,
@@ -417,8 +417,8 @@ M.hardtime = {
             require("hardtime")
             local state = require("core.state")
             vim.cmd("Hardtime enable")
-            state.hardtime_enabled = true
-            vim.o.showmode = false
+            state.hardtime_enabled_at_startup = true
+            vim.opt.showmode = false
             print("Hardtime: true")
          end,
          { desc = "[H]ardtime [e]nable" },
@@ -435,16 +435,17 @@ M.hardtime = {
             require("hardtime")
             local state = require("core.state")
             vim.cmd("Hardtime toggle")
-            state.hardtime_enabled = not state.hardtime_enabled
-            if state.hardtime_enabled then
-               vim.o.showmode = false
+            state.hardtime_enabled_at_startup =
+               not state.hardtime_enabled_at_startup
+            if state.hardtime_enabled_at_startup then
+               vim.opt.showmode = false
             else
                -- Restore showmode
                if state.initial_showmode then
-                  vim.o.showmode = state.initial_showmode
+                  vim.opt.showmode = state.initial_showmode
                end
             end
-            print("Hardtime:", state.hardtime_enabled)
+            print("Hardtime:", state.hardtime_enabled_at_startup)
          end,
          { desc = "[H]ardtime [t]oggle (toggle)" },
       },
@@ -561,19 +562,19 @@ M.haskell_tools = {
       -- Toggle a GHCI REPL for the current package
       ["<leader>rr"] = {
          "<cmd> lua require('haskell-tools').repl.toggle() <CR>",
-         { desc = "Ht [R]EPL cu[r]rent package" },
+         { desc = "Ht [r]EPL cu[r]rent package" },
       },
 
       -- Toggle a GHCi REPL for the current buffer
       ["<leader>rf"] = {
          "<cmd> lua require('haskell-tools').repl.toggle(vim.api.nvim_buf_get_name(0)) <CR>",
-         { desc = "Ht [R]EPL current bu[f]fer" },
+         { desc = "Ht [r]EPL current bu[f]fer" },
       },
 
       -- Quit GHCi REPL for the current buffer
       ["<leader>rq"] = {
          "<cmd> lua require('haskell-tools').repl.quit() <CR>",
-         { desc = "Ht [R]EPL [q]uit" },
+         { desc = "Ht [r]EPL [q]uit" },
       },
    },
 }
@@ -585,7 +586,7 @@ M.rust = {
          function()
             require("crates").upgrade_all_crates()
          end,
-         { desc = "[R]ust [u]pdate [c]rates" },
+         { desc = "[R]ust [c]rates [u]pdate" },
       },
    },
 }
@@ -595,11 +596,11 @@ M.go = {
    n = {
       ["<leader>gsj"] = {
          "<cmd> GoTagAdd json <CR>",
-         { desc = "Add struct ta[g][s] [J]SON" },
+         { desc = "Add struct ta[gs] [j]SON" },
       },
       ["<leader>gsy"] = {
          "<cmd> GoTagAdd yaml <CR>",
-         { desc = "Add struct ta[g][s] [Y]AML" },
+         { desc = "Add struct ta[gs] [y]AML" },
       },
    },
 }
@@ -633,7 +634,7 @@ M.nvim_dap_python = {
          function()
             require("dap-python").test_method()
          end,
-         { desc = "[D]AP [P]ython [r]un unit testing" },
+         { desc = "[D]AP [p]ython [r]un unit testing" },
       },
    },
 }
@@ -645,13 +646,13 @@ M.nvim_dap_go = {
          function()
             require("dap-go").debug_test()
          end,
-         { desc = "[D]ebug [G]o [t]est" },
+         { desc = "[D]ebug [g]o [t]est" },
       },
       ["<leader>dgl"] = {
          function()
             require("dap-go").debug_last()
          end,
-         { desc = "[D]ebug [G]o [l]ast test" },
+         { desc = "[D]ebug [g]o [l]ast test" },
       },
    },
 }
@@ -665,7 +666,7 @@ M.nvim_lspconfig = {
       },
       ["gD"] = {
          vim.lsp.buf.declaration,
-         { desc = "LSP [g]o to [d]eclaration" },
+         { desc = "LSP [g]o to [D]eclaration" },
       },
       ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
       ["gi"] = {
@@ -692,7 +693,7 @@ M.nvim_lspconfig = {
       },
       ["<leader>D"] = {
          vim.lsp.buf.type_definition,
-         { desc = "LSP type [d]efinition" },
+         { desc = "LSP type [D]efinition" },
       },
       ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" } },
       ["gr"] = {
@@ -708,10 +709,14 @@ M.nvim_lspconfig = {
       ["<leader>fos"] = {
          function()
             local state = require("core.state")
-            state.format_on_save = not state.format_on_save
-            print("LSP format on save:", state.format_on_save)
+            state.lsp_format_on_save_enabled_at_startup =
+               not state.lsp_format_on_save_enabled_at_startup
+            print(
+               "LSP format on save:",
+               state.lsp_format_on_save_enabled_at_startup
+            )
          end,
-         { desc = "LSP [f][o]rmat on [s]ave toggle" },
+         { desc = "LSP [fo]rmat on [s]ave toggle" },
       },
       ["<leader>fd"] = {
          "<cmd> Telescope lsp_definitions <CR>",
@@ -719,7 +724,7 @@ M.nvim_lspconfig = {
       },
       ["<leader>fr"] = {
          "<cmd> Telescope lsp_references <CR>",
-         { desc = "Telescope LSP [r]ferences" },
+         { desc = "Telescope LSP [r]eferences" },
       },
       ["<leader>ih"] = {
          -- LSP inlay hints, requires Neovim 0.10 or later
@@ -772,11 +777,11 @@ M.run_current_qasm = {
    n = {
       ["<leader>cx"] = {
          ":<C-u>lua vim.cmd('!qpp_qasm <% ' .. vim.v.count1) <CR>",
-         { desc = "Execute with qpp_qasm" },
+         { desc = "E[x]ecute with qpp_qasm" },
       },
-      ["<leader>cy"] = {
-         ":<C-u>lua vim.cmd('!qpp_qasm <% ' .. vim.v.count1 .. ' x') <CR>",
-         { desc = "Execute with qpp_qasm, show the final state" },
+      ["<leader>cf"] = {
+         ":<C-u>lua vim.cmd('!qpp_qasm <% ' .. vim.v.count1 .. ' psi') <CR>",
+         { desc = "Execute with qpp_qasm, display the [f]inal state" },
       },
    },
 }

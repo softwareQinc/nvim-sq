@@ -16,10 +16,7 @@ return {
    -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
    {
       "jay-babu/mason-null-ls.nvim",
-      dependencies = {
-         "nvimtools/none-ls.nvim",
-         "williamboman/mason.nvim",
-      },
+      dependencies = { "nvimtools/none-ls.nvim", "williamboman/mason.nvim" },
       opts = {
          ensure_installed = {
             -- Formatters

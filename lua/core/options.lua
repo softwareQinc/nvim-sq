@@ -4,27 +4,31 @@ local M = {}
 
 M = {
    opt = {
-      shortmess = vim.opt.shortmess + "I", -- disable Neovim welcome message
-      shell = "bash --login",
-      spell = true,
-      termguicolors = true,
       expandtab = true,
       tabstop = 4,
       softtabstop = 4,
       shiftwidth = 4,
-      cursorline = true,
+
       number = true,
       relativenumber = true,
+      cursorline = true,
+
+      hlsearch = true,
+      spell = true,
+
       splitbelow = true,
       splitright = true,
+
       inccommand = "split",
       virtualedit = "block",
       scrolloff = 8,
-      undofile = true,
-      hlsearch = true,
-      showmode = true,
+
       foldlevelstart = 99,
       -- foldmethod is set in "lua/core/autocmds.lua" (see Folding)
+
+      termguicolors = true,
+      undofile = true,
+      showmode = true,
       timeoutlen = 400,
       listchars = { -- special characters
          -- eol = "⏎",
@@ -32,9 +36,11 @@ M = {
          tab = ">-",
       },
       list = true, -- show special characters
-      -- colorcolumn = "80,120",
+      shell = "bash --login",
+
       -- ignorecase = true,
       -- textwidth = 80,
+      -- colorcolumn = "80,120",
    },
    g = {
       -- OpenQASM falls back to version 2.0

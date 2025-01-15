@@ -40,10 +40,7 @@ return {
    {
       "jay-babu/mason-nvim-dap.nvim",
       event = "LspAttach",
-      dependencies = {
-         "williamboman/mason.nvim",
-         "mfussenegger/nvim-dap",
-      },
+      dependencies = { "williamboman/mason.nvim", "mfussenegger/nvim-dap" },
       opts = {
          automatic_installation = true,
          ensure_installed = {
@@ -58,10 +55,7 @@ return {
    {
       "mfussenegger/nvim-dap-python",
       ft = "python",
-      dependencies = {
-         "mfussenegger/nvim-dap",
-         "rcarriga/nvim-dap-ui",
-      },
+      dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
       config = function(_, _)
          require("dap-python").setup()
          vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
@@ -84,10 +78,7 @@ return {
    {
       "leoluz/nvim-dap-go",
       ft = "go",
-      dependencies = {
-         "mfussenegger/nvim-dap",
-         "rcarriga/nvim-dap-ui",
-      },
+      dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
       config = function(_, opts)
          require("dap-go").setup(opts)
          vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
