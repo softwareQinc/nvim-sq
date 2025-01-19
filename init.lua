@@ -29,7 +29,7 @@ ui.set_auto_scheme({
 })
 
 ------------------------------------------------------------------------------
--- Neovide initialization and configuration, executed only by Neovide sessions
+-- Neovide initialization and configuration, executed only by Neovide
 if vim.g.neovide then
    pcall(require, "neovide")
 end
