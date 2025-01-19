@@ -514,6 +514,13 @@ M.which_key = {
    },
 }
 
+M.undotree = {
+   plugin = true,
+   keys = {
+      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
+   },
+}
+
 M.nvim_treesitter = {
    plugin = true,
    keymaps = {
@@ -521,13 +528,6 @@ M.nvim_treesitter = {
       node_incremental = "<leader>si",
       scope_incremental = "<leader>sc",
       node_decremental = "<leader>sd",
-   },
-}
-
-M.undotree = {
-   plugin = true,
-   keys = {
-      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
    },
 }
 

@@ -1,7 +1,7 @@
 return {
    "nvimdev/dashboard-nvim",
-   -- event = "VimEnter",
-   cmd = "Dashboard",
+   event = "VimEnter",
+   -- cmd = "Dashboard",
    dependencies = { { "nvim-tree/nvim-web-devicons" } },
    config = function()
       local opts = {
