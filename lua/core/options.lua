@@ -14,6 +14,7 @@ M = {
       cursorline = true,
 
       hlsearch = true,
+      showmode = true,
       spell = true,
 
       splitbelow = true,
@@ -28,15 +29,15 @@ M = {
 
       termguicolors = true,
       undofile = true,
-      showmode = true,
       timeoutlen = 400,
+      shell = "bash --login",
+
       listchars = { -- special characters
          -- eol = "⏎",
          -- space = "␣",
          tab = ">-",
       },
       list = true, -- show special characters
-      shell = "bash --login",
 
       -- ignorecase = true,
       -- textwidth = 80,
