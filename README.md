@@ -25,7 +25,8 @@ brew install iterm2
 ### Fonts
 
 Install a [Nerd Font](https://www.nerdfonts.com/font-downloads), e.g.,
-[JetBrainsMono Nerd Font](https://www.programmingfonts.org/#jetbrainsmono) with
+[JetBrainsMono Nerd Font](https://www.programmingfonts.org/#jetbrainsmono) on
+macOS with
 
 ```shell
 brew install font-jetbrains-mono-nerd-font
