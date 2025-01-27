@@ -9,12 +9,12 @@ return {
             group = vim.api.nvim_create_augroup("Gopher", { clear = true }),
             pattern = { "go" },
             callback = function(ev)
-               -- Buffer local keymaps
+               -- Buffer-local keymaps
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.go, { buffer = ev.buf })
             end,
-            desc = "Keymaps gopher (buffer local)",
+            desc = "Keymaps gopher (buffer-local)",
          })
       end,
       build = function()

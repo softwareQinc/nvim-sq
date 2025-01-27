@@ -106,7 +106,7 @@ api.nvim_create_autocmd("FileType", {
    callback = function()
       vim.opt_local.spell = false
    end,
-   desc = "Disable spell checking in Quickfix lists",
+   desc = "Disable spell checking in quickfix lists",
 })
 
 -- Change color scheme automatically based on time of the day

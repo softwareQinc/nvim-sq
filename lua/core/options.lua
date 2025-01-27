@@ -29,7 +29,6 @@ M = {
 
       termguicolors = true,
       undofile = true,
-      timeoutlen = 400,
       shell = "bash --login",
 
       listchars = { -- special characters

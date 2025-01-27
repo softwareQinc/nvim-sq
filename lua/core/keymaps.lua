@@ -32,6 +32,11 @@ M.generic = {
       ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
       ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
 
+      ["[q"] = { "<cmd> cprevious <CR>", { desc = "Quickfix previous" } },
+      ["]q"] = { "<cmd> cnext <CR>", { desc = "Quickfix next" } },
+      ["[Q"] = { "<cmd> cfirst <CR>", { desc = "Quickfix first" } },
+      ["]Q"] = { "<cmd> clast <CR>", { desc = "Quickfix last" } },
+
       ["<leader>bl"] = {
          function()
             vim.opt.background = "light"
@@ -317,7 +322,13 @@ M.todo_comments = {
 }
 
 M.carbon_now = {
-   [{ "n", "v" }] = {
+   n = {
+      ["<leader>cn"] = {
+         ":CarbonNow <CR>",
+         { desc = "[C]arbon[N]ow screenshot" },
+      },
+   },
+   v = {
       ["<leader>cn"] = {
          ":CarbonNow <CR>",
          { desc = "[C]arbon[N]ow (visual selection) screenshot" },
@@ -509,7 +520,7 @@ M.which_key = {
          function()
             require("which-key").show({ global = false })
          end,
-         desc = "Buffer-local keymaps",
+         desc = "Buffer-local keymaps (which-key)",
       },
    },
 }
