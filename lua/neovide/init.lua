@@ -19,12 +19,13 @@ util.map_keys(keymaps.scale, { noremap = true, silent = true })
 vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h17")
 
 ------------------------------------------------------------------------------
--- Set current working directory to home directory if we are in '/' or 'C:\'
+-- Set the current working directory to the home directory when launched
+-- from a non-terminal session; hacky
 local current_dir = vim.fn.getcwd()
-local home_dir = os.getenv("HOME") or os.getenv("USERPROFILE")
+local home_dir = vim.loop.os_homedir()
 if current_dir == "/" or current_dir == "C:\\Program Files\\Neovide" then
    if home_dir then
-      vim.cmd("cd " .. home_dir)
+      vim.cmd("cd " .. vim.fn.fnameescape(home_dir))
    end
 end
 

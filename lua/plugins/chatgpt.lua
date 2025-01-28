@@ -8,10 +8,22 @@ return {
       "ChatGPTEditWithInstructions",
    },
    config = function()
-      local home = vim.fn.expand("~")
+      local home_dir = vim.loop.os_homedir()
+      -- local gpg_file_path
+      local key_path
+      if home_dir then
+         -- gpg_file_path = vim.fn.fnameescape(home_dir) .. "/OpenAIkey.gpg"
+         key_path = vim.fn.fnameescape(home_dir) .. "/OpenAIkey.txt"
+      end
+      local display_cmd
+      if string.match(vim.loop.os_uname().sysname, "Windows") then
+         display_cmd = "type " -- Windows
+      else
+         display_cmd = "cat " -- UNIX-like
+      end
       require("chatgpt").setup({
-         -- api_key_cmd = "gpg --decrypt " .. home .. "/OpenAIkey.gpg",
-         api_key_cmd = "cat " .. home .. "/OpenAIkey.txt",
+         -- api_key_cmd = "gpg --decrypt " .. gpg_file_path
+         api_key_cmd = display_cmd .. key_path,
       })
    end,
    dependencies = {
