@@ -16,7 +16,10 @@ util.map_keys(keymaps.scale, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
 -- Set custom font
-vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h17")
+-- Should be set in $XDG_CONFIG_HOME/neovide/config.toml, see
+-- https://neovide.dev/config-file.html#font
+-- Alternatively, use, e.g.,
+-- vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
 -- Set the current working directory to the home directory when launched
