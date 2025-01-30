@@ -12,7 +12,7 @@ return {
             },
             shortcut = {
                {
-                  desc = "𝌦 Buffer",
+                  desc = " Buffer",
                   group = "Number",
                   action = function()
                      local util = require("core.util")

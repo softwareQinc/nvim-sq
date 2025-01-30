@@ -162,7 +162,7 @@ brew install lazygit
 If the
 [Neorg plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua)
 fails to install or does not work properly, ensure that you have
-[Lua](https://www.lua.org) version 5.1 or [LuaJIT](https://luajit.org)
+[Lua](https://www.lua.org) or [LuaJIT](https://luajit.org)
 installed on your system. For installation instructions, follow
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart).
 
