@@ -4,6 +4,7 @@
 
 - Code refactoring
 - Appends `/` when auto-completing paths in Command mode
+- Rounded boxes for LSP hover/signature_help
 - Removed Neovide font settings, as it should be specified in
   `$XDG_CONFIG_HOME/neovide/config.toml`, see
   https://neovide.dev/config-file.html#font
