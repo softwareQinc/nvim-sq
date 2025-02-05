@@ -28,6 +28,7 @@ require("core.autocmds")
 ------------------------------------------------------------------------------
 -- Misc.
 local state = require("core.state")
+local ui = require("core.ui")
 
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
@@ -37,4 +38,15 @@ local state = require("core.state")
 if state.hardtime_enabled_at_startup then
    vim.opt.showmode = false
    vim.cmd("Hardtime enable")
+end
+
+-- Enable transparent background at startup if
+-- `state.transparent_background_enabled_at_startup` is true
+-- To modify the `state.transparent_background_enabled_at_startup` flag, edit
+-- its table entry in "lua/core/state.lua"
+-- See the `M.generic` table in "lua/core/keymaps.lua" for keymaps/settings
+if state.transparent_background_enabled_at_startup then
+   vim.defer_fn(function()
+      ui.set_transparent_background()
+   end, 1)
 end

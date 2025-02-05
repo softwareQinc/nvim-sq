@@ -129,6 +129,17 @@ vim.api.nvim_create_autocmd({
    desc = "Set auto color scheme",
 })
 
+-- Restore the state of transparent background on ColorScheme event
+vim.api.nvim_create_autocmd("ColorScheme", {
+   callback = function()
+      local ui = require("core.ui")
+      local state = require("core.state")
+      ui.set_transparent_background(
+         state.transparent_background_enabled_at_startup
+      )
+   end,
+})
+
 -- Transparent editing of GnuPG-encrypted files
 -- Written by Patrick R. McDonald at
 -- https://www.antagonism.org/privacy/gpg-vi.shtml

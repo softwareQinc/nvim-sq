@@ -51,13 +51,29 @@ M.generic = {
       },
       ["<leader>bt"] = {
          function()
-            if vim.opt.background == "light" then
+            if vim.opt.background:get() == "light" then
                vim.opt.background = "dark"
             else
                vim.opt.background = "light"
             end
          end,
          { desc = "[B]ackground [t]oggle, light <-> dark toggle" },
+      },
+      ["<leader>br"] = {
+         function()
+            local state = require("core.state")
+            local ui = require("core.ui")
+            state.transparent_background_enabled_at_startup =
+               not state.transparent_background_enabled_at_startup
+            if state.transparent_background_enabled_at_startup then
+               ui.set_transparent_background()
+            else
+               vim.cmd.colorscheme(vim.g.colors_name)
+            end
+         end,
+         {
+            desc = "[B]ackground t[r]ansparent toggle",
+         },
       },
 
       ["<M-h>"] = { "<C-w>5<", { desc = "Resize split right" } },

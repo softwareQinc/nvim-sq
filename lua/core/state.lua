@@ -8,6 +8,9 @@ M.lsp_format_on_save_enabled_at_startup = true
 -- Hardtime.nvim hardtime mode is disabled by default at startup
 M.hardtime_enabled_at_startup = false
 
+-- Transparent background is disabled by default at startup
+M.transparent_background_enabled_at_startup = false
+
 -- Displays --INSERT--/--VISUAL-- etc. modes as inherited from vim.opt when
 -- switching modes
 M.initial_showmode = vim.opt.showmode
