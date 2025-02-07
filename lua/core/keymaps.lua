@@ -59,22 +59,6 @@ M.generic = {
          end,
          { desc = "[B]ackground [t]oggle, light <-> dark toggle" },
       },
-      ["<leader>br"] = {
-         function()
-            local state = require("core.state")
-            local ui = require("core.ui")
-            state.transparent_background_enabled_at_startup =
-               not state.transparent_background_enabled_at_startup
-            if state.transparent_background_enabled_at_startup then
-               ui.set_transparent_background()
-            else
-               vim.cmd.colorscheme(vim.g.colors_name)
-            end
-         end,
-         {
-            desc = "[B]ackground t[r]ansparent toggle",
-         },
-      },
 
       ["<M-h>"] = { "<C-w>5<", { desc = "Resize split right" } },
       ["<M-l>"] = { "<C-w>5>", { desc = "Resize split left" } },
@@ -555,6 +539,28 @@ M.nvim_treesitter = {
       node_incremental = "<leader>si",
       scope_incremental = "<leader>sc",
       node_decremental = "<leader>sd",
+   },
+}
+
+M.transparent_background = {
+   plugin = true,
+   n = {
+      ["<leader>br"] = {
+         function()
+            local state = require("core.state")
+            local ui = require("core.ui")
+            state.transparent_background_enabled_at_startup =
+               not state.transparent_background_enabled_at_startup
+            if state.transparent_background_enabled_at_startup then
+               ui.set_transparent_background()
+            else
+               vim.cmd.colorscheme(vim.g.colors_name)
+            end
+         end,
+         {
+            desc = "[B]ackground t[r]ansparent toggle",
+         },
+      },
    },
 }
 

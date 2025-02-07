@@ -12,7 +12,7 @@ util.set_options(options)
 ------------------------------------------------------------------------------
 -- Scale fonts up/down with <Command>= and <Command>-, respectively
 local keymaps = require("neovide.keymaps")
-util.map_keys(keymaps.scale, { noremap = true, silent = true })
+util.map_all_keys(keymaps, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
 -- Set custom font

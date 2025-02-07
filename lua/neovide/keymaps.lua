@@ -13,7 +13,6 @@ local cmd_font_decrease = ":lua require('neovide.util').neovide_scale("
    .. decrement
    .. ")<CR>"
 M.scale = {
-   plugin = true,
    n = {
       ["<D-=>"] = {
          cmd_font_increase,
