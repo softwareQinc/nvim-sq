@@ -34,12 +34,12 @@ ls.add_snippets("cmake", {
    }),
 })
 
--- CMakeLists.txt typical template
+-- CMakeLists.txt template, includes the GoogleTest framework
 ls.add_snippets("cmake", {
    s({
-      trig = "cmake_template",
-      name = "CMakeLists.txt template",
-      dscr = "CMakeLists.txt template, with unit testing",
+      trig = "cmake_template_gtest",
+      name = "CMakeLists.txt template, GoogleTest",
+      dscr = "CMakeLists.txt template, includes the GoogleTest framework",
    }, {
       t({ "cmake_minimum_required(VERSION " }),
       i(1, "3.20"),
@@ -78,12 +78,12 @@ ls.add_snippets("cmake", {
    }),
 })
 
--- CMakeLists.txt GoogleTest template
+-- CMakeLists.txt template, GoogleTest entry point, multiple test files
 ls.add_snippets("cmake", {
    s({
-      trig = "cmake_template_gtest",
-      name = "CMakeLists.txt GoogleTest template",
-      dscr = "CMakeLists.txt GoogleTest template, with multiple test files",
+      trig = "cmake_template_gtest_entry",
+      name = "CMakeLists.txt template, GoogleTest entry point",
+      dscr = "CMakeLists.txt template, GoogleTest entry point, multiple test files",
    }, {
       t({ "include(GoogleTest)", "" }),
       t({ 'set(TARGET_NAME "unit_tests")', "" }),
