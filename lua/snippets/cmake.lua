@@ -34,12 +34,12 @@ ls.add_snippets("cmake", {
    }),
 })
 
--- CMakeLists.txt template, includes the GoogleTest framework
+-- CMakeLists.txt template, with unit testing
 ls.add_snippets("cmake", {
    s({
-      trig = "cmake_template_gtest",
-      name = "CMakeLists.txt template, GoogleTest",
-      dscr = "CMakeLists.txt template, includes the GoogleTest framework",
+      trig = "cmake_template_unit_tests",
+      name = "CMakeLists.txt template, with unit testing",
+      dscr = "CMakeLists.txt template, with unit testing",
    }, {
       t({ "cmake_minimum_required(VERSION " }),
       i(1, "3.20"),
@@ -65,13 +65,13 @@ ls.add_snippets("cmake", {
       t({ 'set(SRC_DIR "${CMAKE_SOURCE_DIR}/' }),
       i(7, "src"),
       t({ '")', 'file(GLOB_RECURSE SOURCES "${SRC_DIR}/*.cpp")', "", "" }),
-      t({ 'set(APP_MAIN_FILE "${CMAKE_SOURCE_DIR}/' }),
-      i(8, "app/main.cpp"),
+      t({ 'set(MAIN_FILE "${CMAKE_SOURCE_DIR}/' }),
+      i(8, "main/main.cpp"),
       t({ '")', "", "" }),
       t({ "add_executable(" }),
       i(9, "ExecutableName"),
-      t({ " ${SOURCES} ${APP_MAIN_FILE})", "", "" }),
-      t({ "# add_subdirectory(${CMAKE_SOURCE_DIR}/" }),
+      t({ " ${SOURCES} ${MAIN_FILE})", "", "" }),
+      t({ "add_subdirectory(${CMAKE_SOURCE_DIR}/" }),
       i(10, "unit_tests/"),
       t({ " EXCLUDE_FROM_ALL SYSTEM)", "", "" }),
       t({ "# Add additional CMake commands below" }),
@@ -116,5 +116,42 @@ ls.add_snippets("cmake", {
       t({ "endforeach()", "", "" }),
       t({ "target_link_libraries(${TARGET_NAME} PUBLIC gmock)", "" }),
       t({ "gtest_discover_tests(${TARGET_NAME})" }),
+   }),
+})
+
+-- CMakeLists.txt template, Catch2 entry point, multiple test files
+ls.add_snippets("cmake", {
+   s({
+      trig = "cmake_template_catch2_entry",
+      name = "CMakeLists.txt template, Catch2 entry point",
+      dscr = "CMakeLists.txt template, Catch2 entry point, multiple test files",
+   }, {
+      t({ 'set(TARGET_NAME "unit_tests")', "" }),
+      t({ "set(CMAKE_EXPORT_COMPILE_COMMANDS ON)", "", "" }),
+      t({
+         "include(FetchContent)",
+         'message(STATUS "Fetching Catch2...")',
+         "",
+      }),
+      t({ "FetchContent_Declare(", "" }),
+      t({ "  Catch2", "" }),
+      t({ "  GIT_REPOSITORY https://github.com/catchorg/Catch2.git", "" }),
+      t({ "  GIT_TAG v3.8.0", "" }),
+      t({ "  GIT_SHALLOW TRUE", "" }),
+      t({ "  GIT_PROGRESS TRUE)", "" }),
+      t({ "FetchContent_MakeAvailable(Catch2)", "", "" }),
+      t({ 'file(GLOB_RECURSE SOURCES "' }),
+      i(1, "../src"),
+      t({ '/*.cpp")', "", "" }),
+      t({ "aux_source_directory(" }),
+      i(2, "src"),
+      t({ " TEST_FILES)", "", "" }),
+      t({ "add_executable(${TARGET_NAME} ${SOURCES})", "", "" }),
+      t({ "foreach(file ${TEST_FILES})", "" }),
+      t({ "  target_sources(${TARGET_NAME} PUBLIC ${file})", "" }),
+      t({ "endforeach()", "", "" }),
+      t({
+         "target_link_libraries(${TARGET_NAME} PRIVATE Catch2::Catch2WithMain)",
+      }),
    }),
 })

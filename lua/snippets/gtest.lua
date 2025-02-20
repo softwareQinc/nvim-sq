@@ -37,7 +37,6 @@ ls.add_snippets("cpp", {
       i(2, "SubtestName"),
       t({ ") {", "" }),
       t({ "    // testing code here", "" }),
-      t({ "    EXPECT_EQ(42, 42);", "" }),
-      t("}"),
+      t({ "    EXPECT_EQ(42, 42);", "}" }),
    }),
 })
