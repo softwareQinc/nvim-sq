@@ -27,6 +27,10 @@ return {
       "ellisonleao/gruvbox.nvim",
       lazy = true,
       priority = 1000,
+      --- Fixes https://github.com/nvim-lualine/lualine.nvim/issues/1312
+      opts = {
+         inverse = false,
+      },
    },
    {
       "rebelot/kanagawa.nvim",
