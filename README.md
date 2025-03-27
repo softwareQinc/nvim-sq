@@ -16,10 +16,11 @@ This configuration has been extensively tested on macOS and Linux
 
 Install a terminal application with TrueColor support, as the default macOS
 Terminal does not support TrueColor. On macOS, you can install, for example,
-[iTerm2](https://iterm2.com), using [Homebrew](https://brew.sh)
+[WezTerm](https://wezterm.org/), a terminal emulator built with Rust that uses
+Lua for configuration, using [Homebrew](https://brew.sh)
 
 ```shell
-brew install iterm2
+brew install wezterm
 ```
 
 ### Fonts
