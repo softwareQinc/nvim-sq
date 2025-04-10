@@ -819,4 +819,20 @@ M.run_current_qasm = {
    },
 }
 
+M.run_current_zig = {
+   plugin = true,
+   n = {
+      ["<leader>cx"] = {
+         function()
+            local current_file = vim.fn.expand("%:p")
+            local terminal_cmd = 'split | term bash -c "zig run '
+               .. current_file
+               .. '"'
+            vim.api.nvim_command(terminal_cmd)
+         end,
+         { desc = "E[x]ecute current Zig buffer" },
+      },
+   },
+}
+
 return M

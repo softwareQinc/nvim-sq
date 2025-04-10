@@ -98,6 +98,7 @@ return {
                "marksman",
                "gopls",
                "vimls",
+               "zls",
                -- "hls", -- not needed, we use haskell-tools.nvim
             },
             handlers = {
