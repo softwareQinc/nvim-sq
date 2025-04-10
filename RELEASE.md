@@ -1,6 +1,6 @@
-# nvim-sq version 1.2
+# nvim-sq version 1.3
 
 ## Changes
 
-- Snippets for the [Catch2](https://github.com/catchorg/Catch2) unit testing
-  framework
+- Zig buffers can now be executed with `<leader>cx`
+- Removed deprecated Neovim API

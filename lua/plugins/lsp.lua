@@ -61,24 +61,11 @@ return {
          local util = require("core.util")
          local lsp_format_on_save = util.format_on_save(augroup)
 
-         -- Add the border on hover and on signature help popup window
-         local lsp_handlers = {
-            ["textDocument/hover"] = vim.lsp.with(
-               vim.lsp.handlers.hover,
-               { border = "rounded" }
-            ),
-            ["textDocument/signatureHelp"] = vim.lsp.with(
-               vim.lsp.handlers.signature_help,
-               { border = "rounded" }
-            ),
-         }
-
          -- Default server setup
          local function default_setup(server)
             lspconfig[server].setup({
                capabilities = lsp_capabilities,
                on_attach = lsp_format_on_save,
-               handlers = lsp_handlers,
             })
          end
 
@@ -109,7 +96,6 @@ return {
                   lspconfig.lua_ls.setup({
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
-                     handlers = lsp_handlers,
                      settings = {
                         Lua = {
                            hint = { enable = true },
@@ -126,7 +112,6 @@ return {
                   lspconfig.clangd.setup({
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
-                     handlers = lsp_handlers,
                      cmd = {
                         "clangd",
                         "--header-insertion=never",
@@ -139,7 +124,6 @@ return {
                   lspconfig.rust_analyzer.setup({
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
-                     handlers = lsp_handlers,
                      filetypes = { "rust" },
                      root_dir = lspconfig_util.root_pattern("Cargo.toml"),
                      settings = {
@@ -156,7 +140,6 @@ return {
                   lspconfig.gopls.setup({
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
-                     handlers = lsp_handlers,
                      cmd = { "gopls" },
                      filetypes = { "go", "gomod", "gowork", "gotmpl" },
                      root_dir = lspconfig_util.root_pattern(
@@ -189,7 +172,6 @@ return {
                   lspconfig.texlab.setup({
                      capabilities = lsp_capabilities,
                      on_attach = lsp_format_on_save,
-                     handlers = lsp_handlers,
                      settings = {
                         texlab = {
                            latexindent = {
@@ -203,7 +185,7 @@ return {
          })
       end,
    },
-   -- LSP (Language Server Protocol), automatically configured by lsp-zero
+   -- LSP (Language Server Protocol)
    {
       "neovim/nvim-lspconfig",
       event = "LspAttach",

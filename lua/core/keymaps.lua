@@ -701,13 +701,20 @@ M.nvim_lspconfig = {
          vim.lsp.buf.declaration,
          { desc = "LSP [g]o to [D]eclaration" },
       },
-      ["K"] = { vim.lsp.buf.hover, { desc = "LSP hover" } },
+      ["K"] = {
+         function()
+            vim.lsp.buf.hover({ border = "rounded" })
+         end,
+         { desc = "LSP hover" },
+      },
       ["gi"] = {
          vim.lsp.buf.implementation,
          { desc = "LSP [g]o to [i]mplementation" },
       },
       ["<leader>sh"] = {
-         vim.lsp.buf.signature_help,
+         function()
+            vim.lsp.buf.signature_help({ border = "rounded" })
+         end,
          { desc = "LSP [s]ignature [h]elp" },
       },
       ["<leader>wa"] = {
