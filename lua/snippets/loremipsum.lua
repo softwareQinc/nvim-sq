@@ -7,7 +7,8 @@ local f = ls.function_node
 
 local function wrap_text(text)
    local lines = {}
-   local textwidth = vim.api.nvim_get_option("textwidth")
+   local textwidth =
+      vim.api.nvim_get_option_value("textwidth", { scope = "local" })
 
    if textwidth == 0 then
       textwidth = 80 -- default fallback text width
