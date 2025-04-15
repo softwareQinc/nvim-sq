@@ -1,6 +1,13 @@
-# nvim-sq version 1.3
+# nvim-sq pre-release
 
 ## Changes
 
-- Zig buffers can now be executed with `<leader>cx`
-- Removed deprecated Neovim API
+- None
+
+## New plugins
+
+- [csvview.nvim](https://github.com/hat0uma/csvview.nvim)
+
+## New key mappings
+
+- None
