@@ -707,6 +707,7 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP hover" },
       },
+      -- NOTE: implemented by default in nvim 0.11 as `gri`
       ["gi"] = {
          vim.lsp.buf.implementation,
          { desc = "LSP [g]o to [i]mplementation" },
@@ -735,10 +736,12 @@ M.nvim_lspconfig = {
          vim.lsp.buf.type_definition,
          { desc = "LSP type [D]efinition" },
       },
+      -- NOTE: Implemented by default in nvim 0.11 as `grn`
       ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" } },
-      ["gr"] = {
+      -- NOTE: Implemented by default in nvim 0.11 as `grr`
+      ["gs"] = {
          vim.lsp.buf.references,
-         { desc = "LSP [g]o to [r]eferences" },
+         { desc = "LSP [g]o to reference[s]" },
       },
       ["<leader>fm"] = {
          function()
@@ -781,6 +784,7 @@ M.nvim_lspconfig = {
       },
    },
    [{ "n", "v" }] = {
+      -- NOTE: Implemented by default in nvim 0.11 as `gra`
       ["<leader>ca"] = {
          vim.lsp.buf.code_action,
          { desc = "LSP [c]ode [a]ctions" },
