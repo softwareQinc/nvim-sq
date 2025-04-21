@@ -1,4 +1,4 @@
-# nvim-sq pre-release
+# nvim-sq 1.4
 
 ## Changes
 
@@ -10,4 +10,6 @@
 
 ## New key mappings
 
-- None
+- `gr`->`gs` LSP \[g\]o to reference\[s\], since it conflicts with `gr`
+  LSP-related key mappings starting with nvim 0.11. This functionality is now
+  implemented by default starting with nvim 0.11 by the `grr` key mapping.
