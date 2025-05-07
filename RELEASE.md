@@ -1,15 +1,16 @@
-# nvim-sq 1.4
+# nvim-sq 1.5
 
 ## Changes
 
-- None
+- Minor bugfixes and comments for
+  [nvim-colorizer](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/nvim-colorizer.lua)
 
 ## New plugins
 
-- [csvview.nvim](https://github.com/hat0uma/csvview.nvim)
+- [marks.nvim](https://github.com/chentoast/marks.nvim)
+- Replaced deprecated [neodev.nvim](https://github.com/folke/neodev.nvim) with
+  [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 
 ## New key mappings
 
-- `gr`->`gs` LSP \[g\]o to reference\[s\], since it conflicts with `gr`
-  LSP-related key mappings starting with nvim 0.11. This functionality is now
-  implemented by default starting with nvim 0.11 by the `grr` key mapping.
+- None

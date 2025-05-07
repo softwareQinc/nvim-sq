@@ -42,10 +42,6 @@ return {
    {
       "williamboman/mason-lspconfig.nvim",
       config = function()
-         -- Setup neodev BEFORE the first require("lspconfig")
-         ---@diagnostic disable-next-line: missing-fields
-         require("neodev").setup({})
-
          local lspconfig = require("lspconfig")
          local lspconfig_util = require("lspconfig.util")
 
@@ -76,7 +72,6 @@ return {
                "lua_ls",
                "clangd",
                "rust_analyzer",
-               "julials",
                "bashls",
                "texlab",
                "pyright",
@@ -182,6 +177,12 @@ return {
                   })
                end,
             },
+         })
+         -- Julia LSP; julials needs separate setup
+         local lspconfig = require("lspconfig")
+         lspconfig.julials.setup({
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
          })
       end,
    },
