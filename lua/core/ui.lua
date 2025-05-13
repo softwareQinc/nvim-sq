@@ -31,10 +31,6 @@ function M.set_light_scheme(color_scheme)
 
    vim.opt.background = "light"
    vim.cmd("hi! link SignColumn Normal")
-   -- Update lualine (glitch when autocmd triggers)
-   vim.defer_fn(function()
-      require("lualine").setup({})
-   end, 1)
 end
 
 -- Set a dark color scheme
@@ -64,10 +60,6 @@ function M.set_dark_scheme(color_scheme)
 
    vim.opt.background = "dark"
    vim.cmd("hi! link SignColumn Normal")
-   -- Update lualine (glitch when autocmd triggers)
-   vim.defer_fn(function()
-      require("lualine").setup({})
-   end, 1)
 end
 
 -- Auto color scheme switch callback, used by AutoColorScheme group in

@@ -51,6 +51,7 @@ M.generic = {
       },
       ["<leader>bt"] = {
          function()
+            ---@diagnostic disable-next-line: undefined-field
             if vim.opt.background:get() == "light" then
                vim.opt.background = "dark"
             else

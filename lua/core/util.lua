@@ -73,7 +73,7 @@ end
 -- Format on save
 function M.format_on_save(augroup)
    return function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
+      if client:supports_method("textDocument/formatting") then
          vim.api.nvim_clear_autocmds({
             group = augroup,
             buffer = bufnr,

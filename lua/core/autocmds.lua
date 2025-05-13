@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
    callback = function()
       if require("nvim-treesitter.parsers").has_parser() then
          vim.opt.foldmethod = "expr"
-         vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       else
          vim.opt.foldmethod = "indent"
       end
@@ -136,7 +136,8 @@ if not vim.g.neovide then
       callback = function()
          local ui = require("core.ui")
          local state = require("core.state")
-         -- FIXME: why wait? see lua/plugins/nvim-colorizer.lua
+         -- TODO: Remove the line below.
+         -- Why blocking for 1 ms? see lua/plugins/nvim-colorizer.lua
          vim.wait(1) -- blocks for 1 ms
          ui.set_transparent_background(
             state.transparent_background_enabled_at_startup

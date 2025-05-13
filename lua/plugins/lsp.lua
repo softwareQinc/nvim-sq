@@ -21,176 +21,164 @@ return {
          ensure_installed = {
             -- Formatters
             "black",
-            "stylua",
             "gofumpt",
             "goimports-reviser",
             "golines",
             "latexindent",
-            "shfmt",
             "prettier",
+            "shfmt",
+            "stylua",
 
             -- Linters
-            "shellcheck",
-            "cmake-language-server",
             "cmakelang",
             "cmakelint",
             "mypy",
+            "shellcheck",
          },
       },
    },
    -- Manages (installs/removes etc.) language servers only
    {
       "williamboman/mason-lspconfig.nvim",
-      config = function()
-         local lspconfig = require("lspconfig")
-         local lspconfig_util = require("lspconfig.util")
-
-         local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-         lsp_capabilities = vim.tbl_deep_extend(
-            "force",
-            lsp_capabilities,
-            require("cmp_nvim_lsp").default_capabilities()
-         )
-
-         local augroup =
-            vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
-         local util = require("core.util")
-         local lsp_format_on_save = util.format_on_save(augroup)
-
-         -- Default server setup
-         local function default_setup(server)
-            lspconfig[server].setup({
-               capabilities = lsp_capabilities,
-               on_attach = lsp_format_on_save,
-            })
-         end
-
-         ---@diagnostic disable-next-line: missing-fields
-         require("mason-lspconfig").setup({
-            -- LSP servers
-            ensure_installed = {
-               "lua_ls",
-               "clangd",
-               "rust_analyzer",
-               "bashls",
-               "texlab",
-               "pyright",
-               "ruff",
-               "cmake",
-               "marksman",
-               "gopls",
-               "vimls",
-               "zls",
-               -- "hls", -- not needed, we use haskell-tools.nvim
-            },
-            handlers = {
-               default_setup,
-
-               -- Custom configurations below
-               lua_ls = function()
-                  lspconfig.lua_ls.setup({
-                     capabilities = lsp_capabilities,
-                     on_attach = lsp_format_on_save,
-                     settings = {
-                        Lua = {
-                           hint = { enable = true },
-                           -- We use none-ls stylua
-                           format = {
-                              enable = false,
-                           },
-                        },
-                     },
-                  })
-               end,
-
-               clangd = function()
-                  lspconfig.clangd.setup({
-                     capabilities = lsp_capabilities,
-                     on_attach = lsp_format_on_save,
-                     cmd = {
-                        "clangd",
-                        "--header-insertion=never",
-                        "--offset-encoding=utf-16",
-                     },
-                  })
-               end,
-
-               rust_analyzer = function()
-                  lspconfig.rust_analyzer.setup({
-                     capabilities = lsp_capabilities,
-                     on_attach = lsp_format_on_save,
-                     filetypes = { "rust" },
-                     root_dir = lspconfig_util.root_pattern("Cargo.toml"),
-                     settings = {
-                        ["rust-analyzer"] = {
-                           cargo = {
-                              allFeatures = true,
-                           },
-                        },
-                     },
-                  })
-               end,
-
-               gopls = function()
-                  lspconfig.gopls.setup({
-                     capabilities = lsp_capabilities,
-                     on_attach = lsp_format_on_save,
-                     cmd = { "gopls" },
-                     filetypes = { "go", "gomod", "gowork", "gotmpl" },
-                     root_dir = lspconfig_util.root_pattern(
-                        "go.work",
-                        "go.mod",
-                        ".git"
-                     ),
-                     settings = {
-                        gopls = {
-                           completeUnimported = true,
-                           usePlaceholders = true,
-                           analyses = {
-                              unusedparams = true,
-                           },
-                           hints = {
-                              assignVariableTypes = true,
-                              compositeLiteralFields = true,
-                              compositeLiteralTypes = true,
-                              constantValues = true,
-                              functionTypeParameters = true,
-                              parameterNames = true,
-                              rangeVariableTypes = true,
-                           },
-                        },
-                     },
-                  })
-               end,
-
-               texlab = function()
-                  lspconfig.texlab.setup({
-                     capabilities = lsp_capabilities,
-                     on_attach = lsp_format_on_save,
-                     settings = {
-                        texlab = {
-                           latexindent = {
-                              modifyLineBreaks = true,
-                           },
-                        },
-                     },
-                  })
-               end,
-            },
-         })
-         -- Julia LSP; julials needs separate setup
-         local lspconfig = require("lspconfig")
-         lspconfig.julials.setup({
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-         })
-      end,
+      dependencies = { "neovim/nvim-lspconfig" },
+      opts = {
+         -- LSP servers
+         ensure_installed = {
+            "bashls",
+            "clangd",
+            "cmake",
+            "gopls",
+            "julials",
+            "lua_ls",
+            "marksman",
+            "pyright",
+            "ruff",
+            "rust_analyzer",
+            "texlab",
+            "vimls",
+            "zls",
+            -- "hls", -- not needed, we use haskell-tools.nvim
+         },
+      },
    },
    -- LSP (Language Server Protocol)
    {
       "neovim/nvim-lspconfig",
       event = "LspAttach",
       config = function()
+         local util = require("core.util")
+         local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+
+         local augroup =
+            vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
+         local lsp_format_on_save = util.format_on_save(augroup)
+
+         -- TODO: eventually switch to the native nvim 0.11 LSP autocompletion
+         lsp_capabilities = vim.tbl_deep_extend(
+            "force",
+            lsp_capabilities,
+            require("cmp_nvim_lsp").default_capabilities()
+         )
+
+         -- C++
+         vim.lsp.config("clangd", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+            cmd = {
+               "clangd",
+               "--header-insertion=never",
+               "--offset-encoding=utf-16",
+            },
+         })
+
+         -- Go
+         vim.lsp.config("gopls", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+            cmd = { "gopls" },
+            filetypes = { "go", "gomod", "gowork", "gotmpl" },
+            root_markers = { "go.work", "go.mod", ".git" },
+            settings = {
+               gopls = {
+                  completeUnimported = true,
+                  usePlaceholders = true,
+                  analyses = {
+                     unusedparams = true,
+                  },
+                  hints = {
+                     assignVariableTypes = true,
+                     compositeLiteralFields = true,
+                     compositeLiteralTypes = true,
+                     constantValues = true,
+                     functionTypeParameters = true,
+                     parameterNames = true,
+                     rangeVariableTypes = true,
+                  },
+               },
+            },
+         })
+
+         -- BUG: Julia - new nvim 0.11 config style does not yet work
+         -- Client julials quit with exit code 1 and signal 0
+         -- vim.lsp.config("julials", {
+         --    capabilities = lsp_capabilities,
+         --    on_attach = lsp_format_on_save,
+         -- })
+
+         -- Julia - nvim 0.10 config style
+         require("lspconfig").julials.setup({
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+         })
+
+         -- Lua
+         vim.lsp.config("lua_ls", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+            settings = {
+               Lua = {
+                  hint = { enable = true },
+                  format = {
+                     enable = false, -- we use StyLua via none-ls
+                  },
+               },
+            },
+         })
+
+         -- Rust
+         vim.lsp.config("rust_analyzer", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+            filetypes = { "rust" },
+            root_markers = { "Cargo.toml" },
+            settings = {
+               ["rust-analyzer"] = {
+                  cargo = {
+                     allFeatures = true,
+                  },
+               },
+            },
+         })
+
+         -- LaTeX
+         vim.lsp.config("texlab", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+            settings = {
+               texlab = {
+                  latexindent = {
+                     modifyLineBreaks = true,
+                  },
+               },
+            },
+         })
+
+         -- Zig
+         vim.lsp.config("zls", {
+            capabilities = lsp_capabilities,
+            on_attach = lsp_format_on_save,
+         })
+
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup(
                "Nvim-lspconfig",
@@ -206,7 +194,6 @@ return {
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
                -- Buffer-local keymaps
                local keymaps = require("core.keymaps")
-               local util = require("core.util")
                util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
             end,
             desc = "Keymaps nvim-lspconfig (buffer-local)",

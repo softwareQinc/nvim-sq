@@ -13,17 +13,12 @@ return {
 
       local opts = {
          sources = {
+            -- Formatting
             null_ls.builtins.formatting.black,
-            null_ls.builtins.formatting.stylua,
+            null_ls.builtins.formatting.cmake_format,
             null_ls.builtins.formatting.gofumpt,
             null_ls.builtins.formatting.goimports_reviser,
             null_ls.builtins.formatting.golines,
-            null_ls.builtins.formatting.cmake_format,
-            null_ls.builtins.formatting.shfmt.with({
-               args = { "-i", "4", "-ci", "-s" },
-               filetypes = { "sh", "zsh" },
-               format = "sync",
-            }),
             null_ls.builtins.formatting.prettier.with({
                filetypes = {
                   "typescript",
@@ -38,6 +33,13 @@ return {
                   "julia",
                },
             }),
+            null_ls.builtins.formatting.shfmt.with({
+               args = { "-i", "4", "-ci", "-s" },
+               filetypes = { "sh", "zsh" },
+               format = "sync",
+            }),
+            null_ls.builtins.formatting.stylua,
+            -- Diagnostics
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()

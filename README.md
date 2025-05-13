@@ -4,6 +4,7 @@ Custom [Neovim](https://neovim.io) configuration designed to enhance
 development productivity. It includes tools such as LSP, DAP, autocompletion,
 fuzzy finding, Tree-sitter, tmux integration, ChatGPT, and more. Plugin
 management is handled using [lazy.nvim](https://github.com/folke/lazy.nvim).
+Requires Neovim 0.11 or newer for optimal functionality.
 
 This configuration has been extensively tested on macOS and Linux
 (Debian/Ubuntu). Minor issues may occur on other platforms.
