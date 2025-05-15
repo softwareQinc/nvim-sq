@@ -412,9 +412,8 @@ M.hardtime = {
    n = {
       ["<leader>hd"] = {
          function()
-            require("hardtime")
+            require("hardtime").disable()
             local state = require("core.state")
-            vim.cmd("Hardtime disable")
             state.hardtime_enabled_at_startup = false
             -- Restore showmode
             if state.initial_showmode then
@@ -426,9 +425,8 @@ M.hardtime = {
       },
       ["<leader>he"] = {
          function()
-            require("hardtime")
+            require("hardtime").enable()
             local state = require("core.state")
-            vim.cmd("Hardtime enable")
             state.hardtime_enabled_at_startup = true
             vim.opt.showmode = false
             print("Hardtime: true")
@@ -437,16 +435,14 @@ M.hardtime = {
       },
       ["<leader>hr"] = {
          function()
-            require("hardtime")
-            vim.cmd("Hardtime report")
+            require("hardtime").report()
          end,
          { desc = "[H]ardtime [r]eport" },
       },
       ["<leader>ht"] = {
          function()
-            require("hardtime")
+            require("hardtime").toggle()
             local state = require("core.state")
-            vim.cmd("Hardtime toggle")
             state.hardtime_enabled_at_startup =
                not state.hardtime_enabled_at_startup
             if state.hardtime_enabled_at_startup then
@@ -708,7 +704,7 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP hover" },
       },
-      -- NOTE: implemented by default in nvim 0.11 as `gri`
+      -- NOTE: Implemented by default in nvim 0.11 as `gri`
       ["gi"] = {
          vim.lsp.buf.implementation,
          { desc = "LSP [g]o to [i]mplementation" },

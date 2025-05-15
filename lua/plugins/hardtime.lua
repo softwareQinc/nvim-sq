@@ -1,12 +1,12 @@
 return {
    "m4xshen/hardtime.nvim",
-   cmd = "Hardtime",
-   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+   event = "VeryLazy",
+   dependencies = { "MunifTanjim/nui.nvim" },
    opts = {
       restricted_keys = {
          -- Remove the following restrictions
-         ["j"] = {},
-         ["k"] = {},
+         ["j"] = false,
+         ["k"] = false,
       },
       disable_mouse = false,
    },

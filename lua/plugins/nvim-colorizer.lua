@@ -1,4 +1,4 @@
--- BUG: see https://github.com/norcalli/nvim-colorizer.lua/issues/61
+-- BUG: See https://github.com/norcalli/nvim-colorizer.lua/issues/61
 return {
    "norcalli/nvim-colorizer.lua",
    event = { "BufReadPost", "BufNewFile" },

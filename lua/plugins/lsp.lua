@@ -73,7 +73,7 @@ return {
             vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
          local lsp_format_on_save = util.format_on_save(augroup)
 
-         -- TODO: eventually switch to the native nvim 0.11 LSP autocompletion
+         -- TODO: Eventually switch to the native nvim 0.11 LSP autocompletion
          lsp_capabilities = vim.tbl_deep_extend(
             "force",
             lsp_capabilities,

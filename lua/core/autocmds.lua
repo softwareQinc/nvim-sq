@@ -136,7 +136,7 @@ if not vim.g.neovide then
       callback = function()
          local ui = require("core.ui")
          local state = require("core.state")
-         -- TODO: Remove the line below.
+         -- TODO: Eventually remove the line below.
          -- Why blocking for 1 ms? see lua/plugins/nvim-colorizer.lua
          vim.wait(1) -- blocks for 1 ms
          ui.set_transparent_background(

@@ -35,9 +35,16 @@ local ui = require("core.ui")
 -- To modify the `state.hardtime_enabled_at_startup` flag, edit its table
 -- entry in "lua/core/state.lua"
 -- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
+-- TODO: Eventually get rid of defer_fn() if possible
 if state.hardtime_enabled_at_startup then
    vim.opt.showmode = false
-   vim.cmd("Hardtime enable")
+   vim.defer_fn(function()
+      vim.cmd("Hardtime enable")
+   end, 1000)
+else
+   vim.defer_fn(function()
+      vim.cmd("Hardtime disable")
+   end, 1000)
 end
 
 -- Enable transparent background at startup if
