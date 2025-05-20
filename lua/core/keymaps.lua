@@ -412,47 +412,34 @@ M.hardtime = {
    n = {
       ["<leader>hd"] = {
          function()
-            require("hardtime").disable()
+            vim.cmd("Hardtime disable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = false
-            -- Restore showmode
-            if state.initial_showmode then
-               vim.opt.showmode = state.initial_showmode
-            end
             print("Hardtime: false")
          end,
          { desc = "[H]ardtime [d]isable" },
       },
       ["<leader>he"] = {
          function()
-            require("hardtime").enable()
+            vim.cmd("Hardtime enable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = true
-            vim.opt.showmode = false
             print("Hardtime: true")
          end,
          { desc = "[H]ardtime [e]nable" },
       },
       ["<leader>hr"] = {
          function()
-            require("hardtime").report()
+            vim.cmd("Hardtime report")
          end,
          { desc = "[H]ardtime [r]eport" },
       },
       ["<leader>ht"] = {
          function()
-            require("hardtime").toggle()
+            vim.cmd("Hardtime toggle")
             local state = require("core.state")
             state.hardtime_enabled_at_startup =
                not state.hardtime_enabled_at_startup
-            if state.hardtime_enabled_at_startup then
-               vim.opt.showmode = false
-            else
-               -- Restore showmode
-               if state.initial_showmode then
-                  vim.opt.showmode = state.initial_showmode
-               end
-            end
             print("Hardtime:", state.hardtime_enabled_at_startup)
          end,
          { desc = "[H]ardtime [t]oggle (toggle)" },

@@ -37,7 +37,6 @@ local ui = require("core.ui")
 -- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
 -- TODO: Eventually get rid of defer_fn() if possible
 if state.hardtime_enabled_at_startup then
-   vim.opt.showmode = false
    vim.defer_fn(function()
       vim.cmd("Hardtime enable")
    end, 1000)

@@ -1,8 +1,9 @@
-# nvim-sq 1.6 - 15 May 2025
+# nvim-sq 1.6 - 20 May 2025
 
 ## Changes
 
 - Migrated to the new LSP configuration format. Requires Neovim 0.11 or later.
+- Minor bug fixes
 
 ## New plugins
 
@@ -16,7 +17,7 @@
 
 ## Changes
 
-- Minor bugfixes and comments for
+- Minor bug fixes and comments for
   [nvim-colorizer](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/nvim-colorizer.lua)
 
 ## New plugins
