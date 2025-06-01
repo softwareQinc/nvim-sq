@@ -27,16 +27,6 @@ M.generic = {
 
       ["<ESC>"] = { "<cmd> nohlsearch <CR>" },
 
-      ["[b"] = { "<cmd> bprevious <CR>", { desc = "Buffer previous" } },
-      ["]b"] = { "<cmd> bnext <CR>", { desc = "Buffer next" } },
-      ["[B"] = { "<cmd> bfirst <CR>", { desc = "Buffer first" } },
-      ["]B"] = { "<cmd> blast <CR>", { desc = "Buffer last" } },
-
-      ["[q"] = { "<cmd> cprevious <CR>", { desc = "Quickfix previous" } },
-      ["]q"] = { "<cmd> cnext <CR>", { desc = "Quickfix next" } },
-      ["[Q"] = { "<cmd> cfirst <CR>", { desc = "Quickfix first" } },
-      ["]Q"] = { "<cmd> clast <CR>", { desc = "Quickfix last" } },
-
       ["<leader>bl"] = {
          function()
             vim.opt.background = "light"
