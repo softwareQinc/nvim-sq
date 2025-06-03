@@ -10,16 +10,16 @@ return {
       -- 'vim.fn.expand'
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md"
       "BufReadPre "
-         .. (vim.loop.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null")
+         .. (vim.uv.fs_realpath(vim.fs.normalize("~/obsidian_vaults")) or "/dev/null")
          .. "/**.md",
-      "BufNewFile " .. (vim.loop.fs_realpath(
+      "BufNewFile " .. (vim.uv.fs_realpath(
          vim.fs.normalize("~/obsidian_vaults")
       ) or "/dev/null") .. "/**.md",
    },
    -- Required
    dependencies = { "nvim-lua/plenary.nvim" },
    init = function()
-      local vaults_dir = vim.loop.fs_realpath(
+      local vaults_dir = vim.uv.fs_realpath(
          vim.fs.normalize("~/obsidian_vaults")
       ) or "/dev/null"
       local function is_markdown_in_vault()

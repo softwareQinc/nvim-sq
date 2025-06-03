@@ -3,7 +3,7 @@ return {
    cmd = { "Spectre" },
    config = function()
       -- Prevent sed from creating backup files (filename-E) on macOS and BSD
-      local os_name = vim.loop.os_uname().sysname
+      local os_name = vim.uv.os_uname().sysname
       if os_name == "Darwin" or string.match(os_name, "BSD") then
          require("spectre").setup({
             replace_engine = {

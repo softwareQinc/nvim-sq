@@ -1,8 +1,9 @@
-# nvim-sq 1.6 - 1 June 2025
+# nvim-sq 1.6 - 3 June 2025
 
 ## Changes
 
 - Migrated to the new LSP configuration format. Requires Neovim 0.11 or later.
+- Removed deprecated API
 - Minor bug fixes
 
 ## New plugins

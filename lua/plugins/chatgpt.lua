@@ -8,7 +8,7 @@ return {
       "ChatGPTEditWithInstructions",
    },
    config = function()
-      local home_dir = vim.loop.os_homedir()
+      local home_dir = vim.uv.os_homedir()
       -- local gpg_file_path
       local key_path
       if home_dir then
@@ -16,7 +16,7 @@ return {
          key_path = vim.fn.fnameescape(home_dir) .. "/OpenAIkey.txt"
       end
       local display_cmd
-      if string.match(vim.loop.os_uname().sysname, "Windows") then
+      if string.match(vim.uv.os_uname().sysname, "Windows") then
          display_cmd = "type " -- Windows
       else
          display_cmd = "cat " -- UNIX-like
