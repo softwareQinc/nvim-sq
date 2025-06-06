@@ -1,3 +1,17 @@
+# nvim-sq pre-release
+
+## Changes
+
+- LSP shows diagnostics on current line (via virtual text)
+
+## New plugins
+
+- None
+
+## New key mappings
+
+- None
+
 # nvim-sq 1.6 - 3 June 2025
 
 ## Changes
