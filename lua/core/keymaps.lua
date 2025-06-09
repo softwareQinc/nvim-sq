@@ -756,6 +756,48 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP [i]nlay [h]ints toggle" },
       },
+      -- LSP diagnostics via virtual lines/text
+      ["<leader>dl0"] = {
+         function()
+            local util = require("core.util")
+            util.diagnostic_level_0()
+         end,
+         { desc = "LSP diagnostics level 0 (no diagnostics)" },
+      },
+      ["<leader>dl1"] = {
+         function()
+            local util = require("core.util")
+            util.diagnostic_level_1()
+         end,
+         { desc = "LSP diagnostics level 1" },
+      },
+      ["<leader>dl2"] = {
+         function()
+            local util = require("core.util")
+            util.diagnostic_level_2()
+         end,
+         { desc = "LSP diagnostics level 2" },
+      },
+      ["<leader>dl3"] = {
+         function()
+            local util = require("core.util")
+            util.diagnostic_level_3()
+         end,
+         { desc = "LSP diagnostics level 3" },
+      },
+      ["<leader>dl4"] = {
+         function()
+            local util = require("core.util")
+            util.diagnostic_level_4()
+         end,
+         { desc = "LSP diagnostics level 4" },
+      },
+      ["<leader>dlt"] = {
+         function()
+            vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+         end,
+         { desc = "Toggle LSP diagnostics (current level)" },
+      },
    },
    [{ "n", "v" }] = {
       -- NOTE: Implemented by default in nvim 0.11 as `gra`

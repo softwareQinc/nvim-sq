@@ -171,4 +171,104 @@ function M.time_is_greater_than(t1, t2)
    return not M.time_is_less_than_or_equal(t1, t2)
 end
 
+-- LSP diagnostic settings
+local diagnostic_signs = {
+   [vim.diagnostic.severity.ERROR] = "",
+   [vim.diagnostic.severity.WARN] = "",
+   [vim.diagnostic.severity.INFO] = "",
+   [vim.diagnostic.severity.HINT] = "󰌵",
+}
+M.diagnostic_signs = diagnostic_signs
+
+-- LSP diagnostic short names
+local shorter_source_names = {
+   ["Lua Diagnostics."] = "Lua",
+   ["Lua Syntax Check."] = "Lua",
+}
+
+-- LSP diagnostic format
+function M.diagnostic_format(diagnostic)
+   return string.format(
+      "%s %s (%s): %s",
+      diagnostic_signs[diagnostic.severity],
+      shorter_source_names[diagnostic.source] or diagnostic.source,
+      diagnostic.code,
+      diagnostic.message
+   )
+end
+
+local no_diagnostic = {
+   virtual_text = false,
+   virtual_lines = false,
+}
+
+function M.diagnostic_level_0()
+   vim.diagnostic.config(no_diagnostic)
+   vim.diagnostic.enable(true)
+end
+
+function M.diagnostic_level_1()
+   vim.diagnostic.config(no_diagnostic)
+   local dl1 = {
+      virtual_text = {
+         current_line = true,
+         spacing = 4,
+         prefix = "",
+         format = M.diagnostic_format,
+      },
+      -- signs = {
+      --    text = diagnostic_signs,
+      -- },
+      underline = true,
+      -- update_in_insert = true,
+      severity_sort = true,
+   }
+   vim.diagnostic.enable(true)
+   vim.diagnostic.config(dl1)
+end
+
+function M.diagnostic_level_2()
+   vim.diagnostic.config(no_diagnostic)
+   local dl2 = {
+      virtual_lines = {
+         current_line = true,
+         format = M.diagnostic_format,
+      },
+      underline = true,
+      severity_sort = true,
+   }
+   vim.diagnostic.enable(true)
+   vim.diagnostic.config(dl2)
+end
+
+function M.diagnostic_level_3()
+   vim.diagnostic.config(no_diagnostic)
+   local dl3 = {
+      virtual_text = {
+         current_line = false,
+         spacing = 4,
+         prefix = "",
+         format = M.diagnostic_format,
+      },
+      underline = true,
+      severity_sort = true,
+   }
+   vim.diagnostic.enable(true)
+   vim.diagnostic.config(dl3)
+end
+
+function M.diagnostic_level_4()
+   vim.diagnostic.config(no_diagnostic)
+   local dl4 = {
+      virtual_lines = {
+         current_line = false,
+         format = M.diagnostic_format,
+      },
+      underline = true,
+      severity_sort = true,
+   }
+   vim.diagnostic.enable(true)
+   vim.diagnostic.config(dl4)
+end
+
 return M
