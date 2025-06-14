@@ -197,18 +197,18 @@ function M.diagnostic_format(diagnostic)
    )
 end
 
-local no_diagnostic = {
-   virtual_text = false,
+local lsp_no_virtual_lines_text = {
    virtual_lines = false,
+   virtual_text = false,
 }
 
-function M.diagnostic_level_0()
-   vim.diagnostic.config(no_diagnostic)
-   vim.diagnostic.enable(true)
+-- LSP diagnostic levels
+function M.lsp_diagnostics_level_0()
+   vim.diagnostic.config(lsp_no_virtual_lines_text)
 end
 
-function M.diagnostic_level_1()
-   vim.diagnostic.config(no_diagnostic)
+function M.lsp_diagnostics_level_1()
+   vim.diagnostic.config(lsp_no_virtual_lines_text)
    local dl1 = {
       virtual_text = {
          current_line = true,
@@ -223,12 +223,11 @@ function M.diagnostic_level_1()
       -- update_in_insert = true,
       severity_sort = true,
    }
-   vim.diagnostic.enable(true)
    vim.diagnostic.config(dl1)
 end
 
-function M.diagnostic_level_2()
-   vim.diagnostic.config(no_diagnostic)
+function M.lsp_diagnostics_level_2()
+   vim.diagnostic.config(lsp_no_virtual_lines_text)
    local dl2 = {
       virtual_lines = {
          current_line = true,
@@ -237,12 +236,11 @@ function M.diagnostic_level_2()
       underline = true,
       severity_sort = true,
    }
-   vim.diagnostic.enable(true)
    vim.diagnostic.config(dl2)
 end
 
-function M.diagnostic_level_3()
-   vim.diagnostic.config(no_diagnostic)
+function M.lsp_diagnostics_level_3()
+   vim.diagnostic.config(lsp_no_virtual_lines_text)
    local dl3 = {
       virtual_text = {
          current_line = false,
@@ -253,12 +251,11 @@ function M.diagnostic_level_3()
       underline = true,
       severity_sort = true,
    }
-   vim.diagnostic.enable(true)
    vim.diagnostic.config(dl3)
 end
 
-function M.diagnostic_level_4()
-   vim.diagnostic.config(no_diagnostic)
+function M.lsp_diagnostics_level_4()
+   vim.diagnostic.config(lsp_no_virtual_lines_text)
    local dl4 = {
       virtual_lines = {
          current_line = false,
@@ -267,7 +264,6 @@ function M.diagnostic_level_4()
       underline = true,
       severity_sort = true,
    }
-   vim.diagnostic.enable(true)
    vim.diagnostic.config(dl4)
 end
 

@@ -1,4 +1,4 @@
-# nvim-sq 1.7 - xx June 2025
+# nvim-sq 1.7 - 14 June 2025
 
 ## Changes
 
@@ -14,13 +14,12 @@
 
 ## New key mappings
 
-- `<leader>dl0` - No LSP diagnostics (default)
+- `<leader>dl0` - No LSP virtual lines/text diagnostics (default)
 - `<leader>dl1` - LSP diagnostics, level 1
 - `<leader>dl2` - LSP diagnostics, level 2
 - `<leader>dl3` - LSP diagnostics, level 3
 - `<leader>dl4` - LSP diagnostics, level 4
-- `<leader>dlt` - LSP diagnostics, toggle show ON/OFF for the current
-  diagnostic level
+- `<leader>dlt` - LSP diagnostics, toggle ON/OFF the current diagnostic level
 
 # nvim-sq 1.6 - 3 June 2025
 

@@ -760,43 +760,43 @@ M.nvim_lspconfig = {
       ["<leader>dl0"] = {
          function()
             local util = require("core.util")
-            util.diagnostic_level_0()
+            util.lsp_diagnostics_level_0()
          end,
-         { desc = "LSP diagnostics level 0 (no diagnostics)" },
+         { desc = "LSP [d]iagnostics [l]evel 0 (no diagnostics)" },
       },
       ["<leader>dl1"] = {
          function()
             local util = require("core.util")
-            util.diagnostic_level_1()
+            util.lsp_diagnostics_level_1()
          end,
-         { desc = "LSP diagnostics level 1" },
+         { desc = "LSP [d]iagnostics [l]evel 1" },
       },
       ["<leader>dl2"] = {
          function()
             local util = require("core.util")
-            util.diagnostic_level_2()
+            util.lsp_diagnostics_level_2()
          end,
-         { desc = "LSP diagnostics level 2" },
+         { desc = "LSP [d]iagnostics [l]evel 2" },
       },
       ["<leader>dl3"] = {
          function()
             local util = require("core.util")
-            util.diagnostic_level_3()
+            util.lsp_diagnostics_level_3()
          end,
-         { desc = "LSP diagnostics level 3" },
+         { desc = "LSP [d]iagnostics [l]evel 3" },
       },
       ["<leader>dl4"] = {
          function()
             local util = require("core.util")
-            util.diagnostic_level_4()
+            util.lsp_diagnostics_level_4()
          end,
-         { desc = "LSP diagnostics level 4" },
+         { desc = "LSP [d]iagnostics [l]evel 4" },
       },
       ["<leader>dlt"] = {
          function()
             vim.diagnostic.enable(not vim.diagnostic.is_enabled())
          end,
-         { desc = "Toggle LSP diagnostics (current level)" },
+         { desc = "LSP [d]iagnostics current [l]evel [t]oggle" },
       },
    },
    [{ "n", "v" }] = {
