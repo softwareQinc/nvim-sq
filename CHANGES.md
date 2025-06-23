@@ -1,3 +1,34 @@
+# nvim-sq 1.8 - 23 June 2025
+
+## Changes
+
+- None
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- `<leader>foS` - Toggles LSP auto-formatting on save on **current buffer**,
+  has higher priority than LSP auto-formatting on save on all buffers
+  (`<leader>fos`). So if you toggle, e.g., LSP auto-formatting on current
+  buffer to `false`, you need to toggle it again to re-enable it, regardless of
+  the state of LSP auto-formatting on save on all buffers.
+
+To disable LSP auto-formatting for a specific file type (e.g., Markdown), add
+the following line to `after/ftplugin/markdown.lua`. Replace `markdown.lua`
+with the appropriate file type for which you want to disable auto-formatting on
+save.
+
+```lua
+vim.b.lsp_format_on_save_current_buffer = false
+```
+
 # nvim-sq 1.7 - 14 June 2025
 
 ## Changes

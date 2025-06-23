@@ -735,6 +735,22 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP [fo]rmat on [s]ave toggle" },
       },
+      ["<leader>foS"] = {
+         function()
+            local state = require("core.state")
+            if vim.b.lsp_format_on_save_current_buffer == nil then
+               vim.b.lsp_format_on_save_current_buffer =
+                  state.lsp_format_on_save_enabled_at_startup
+            end
+            vim.b.lsp_format_on_save_current_buffer =
+               not vim.b.lsp_format_on_save_current_buffer
+            print(
+               "LSP format on save (current buffer):",
+               vim.b.lsp_format_on_save_current_buffer
+            )
+         end,
+         { desc = "LSP [fo]rmat on [S]ave current buffer toggle" },
+      },
       ["<leader>fd"] = {
          "<cmd> Telescope lsp_definitions <CR>",
          { desc = "Telescope LSP [d]efinitions" },

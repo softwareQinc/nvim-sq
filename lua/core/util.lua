@@ -83,7 +83,13 @@ function M.format_on_save(augroup)
             buffer = bufnr,
             callback = function()
                local state = require("core.state")
-               if state.lsp_format_on_save_enabled_at_startup then
+               if vim.b.lsp_format_on_save_current_buffer == false then
+                  return
+               end
+               if
+                  vim.b.lsp_format_on_save_current_buffer == true
+                  or state.lsp_format_on_save_enabled_at_startup
+               then
                   -- Do not call this asynchronously!
                   vim.lsp.buf.format({ bufnr = bufnr })
                end
