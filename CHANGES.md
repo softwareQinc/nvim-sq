@@ -1,4 +1,4 @@
-# nvim-sq 1.8 - 23 June 2025
+# nvim-sq 1.8 - 24 June 2025
 
 ## Changes
 
@@ -20,14 +20,16 @@
   buffer to `false`, you need to toggle it again to re-enable it, regardless of
   the state of LSP auto-formatting on save on all buffers.
 
-To disable LSP auto-formatting for a specific file type (e.g., Markdown), add
-the following line to `after/ftplugin/markdown.lua`. Replace `markdown.lua`
-with the appropriate file type for which you want to disable auto-formatting on
-save.
+  To disable LSP auto-formatting for a specific file type (e.g., Markdown), add
+  the following line to `after/ftplugin/markdown.lua`
 
-```lua
-vim.b.lsp_format_on_save_current_buffer = false
-```
+  ```lua
+  vim.b.lsp_format_on_save_current_buffer = false
+  ```
+
+  Replace `markdown.lua`
+  with the appropriate file type for which you want to disable auto-formatting on
+  save.
 
 # nvim-sq 1.7 - 14 June 2025
 
