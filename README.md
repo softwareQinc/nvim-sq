@@ -122,6 +122,14 @@ The Neovide configuration is located under
 From Neovim, run `:checkhealth` in case you are getting warnings/errors
 and/or there are missing packages required for this configuration.
 
+### curl
+
+If `curl` is not available on your system (it is installed by default on
+macOS), install it, as it is required by some plugins internally. On
+Ubuntu/Debian Linux, you can install it with
+
+`sudo apt install curl`
+
 ### GNU sed
 
 When starting Neovim on macOS, you may get a message about

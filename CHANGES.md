@@ -1,3 +1,21 @@
+# Pre-release
+
+## Changes
+
+- Updated documentation, added note about `curl` being required
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
 # nvim-sq 1.8 - 24 June 2025
 
 ## Changes
