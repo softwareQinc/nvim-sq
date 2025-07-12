@@ -1,4 +1,4 @@
-# Pre-release
+# nvim-sq 1.9 - 12 July 2025
 
 ## Changes
 
@@ -14,7 +14,10 @@
 
 ## New key mappings
 
-- None
+- `<leader>tcd` - `:TSContext disable` (`nvim-treesitter-context`, disabled by
+  default)
+- `<leader>tce` - `:TSContext enable`
+- `<leader>tct` - `:TSContext toggle`
 
 # nvim-sq 1.8 - 24 June 2025
 

@@ -516,6 +516,29 @@ M.nvim_treesitter = {
    },
 }
 
+M.nvim_treesitter_context = {
+   n = {
+      ["<leader>tcd"] = {
+         function()
+            require("treesitter-context").disable()
+         end,
+         { desc = "[T]reesitter [c]ontext [d]isable" },
+      },
+      ["<leader>tce"] = {
+         function()
+            require("treesitter-context").enable()
+         end,
+         { desc = "[T]reesitter [c]ontext [e]nable" },
+      },
+      ["<leader>tct"] = {
+         function()
+            require("treesitter-context").toggle()
+         end,
+         { desc = "[T]reesitter [c]ontext [t]oggle" },
+      },
+   },
+}
+
 M.transparent_background = {
    plugin = true,
    n = {
