@@ -518,23 +518,13 @@ M.nvim_treesitter = {
 
 M.nvim_treesitter_context = {
    n = {
-      ["<leader>tcd"] = {
+      ["<leader>tc"] = {
          function()
-            require("treesitter-context").disable()
+            local tsc = require("treesitter-context")
+            tsc.toggle()
+            print("Tree-sitter context:", tsc.enabled())
          end,
-         { desc = "[T]reesitter [c]ontext [d]isable" },
-      },
-      ["<leader>tce"] = {
-         function()
-            require("treesitter-context").enable()
-         end,
-         { desc = "[T]reesitter [c]ontext [e]nable" },
-      },
-      ["<leader>tct"] = {
-         function()
-            require("treesitter-context").toggle()
-         end,
-         { desc = "[T]reesitter [c]ontext [t]oggle" },
+         { desc = "Tree-sitter [c]ontext [t]oggle (toggle)" },
       },
    },
 }
