@@ -1,8 +1,9 @@
-# nvim-sq 1.9 - 17 July 2025
+# nvim-sq 1.9 - 4 August 2025
 
 ## Changes
 
 - Updated documentation, added note about `curl` being required
+- Lualine displays `!EOL` when a file does not have EOL (End Of Line)
 
 ## New plugins
 
@@ -14,8 +15,8 @@
 
 ## New key mappings
 
-- `<leader>tc` - `:TSContext toggle` (`nvim-treesitter-context`), toggle ON/OFF
-  Tree-sitter code context, OFF by default
+- `<leader>tc` - `:TSContext toggle` (`nvim-treesitter-context`), toggle
+  Tree-sitter code context, ON by default
 
 # nvim-sq 1.8 - 24 June 2025
 

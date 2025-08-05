@@ -24,6 +24,13 @@ return {
          },
          lualine_x = {
             "encoding",
+            -- No EOL indicator
+            function()
+               if vim.bo.eol == false then
+                  return "!EOL"
+               end
+               return ""
+            end,
             {
                "fileformat",
                icons_enabled = true,

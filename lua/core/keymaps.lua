@@ -524,7 +524,7 @@ M.nvim_treesitter_context = {
             tsc.toggle()
             print("Tree-sitter context:", tsc.enabled())
          end,
-         { desc = "Tree-sitter [c]ontext [t]oggle (toggle)" },
+         { desc = "[T]ree-sitter [c]ontext toggle" },
       },
    },
 }
