@@ -1,3 +1,21 @@
+# Pre-release
+
+## Changes
+
+- Built-in terminal now uses $SHELL instead of bash
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
 # nvim-sq 1.9 - 4 August 2025
 
 ## Changes

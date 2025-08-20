@@ -844,12 +844,7 @@ M.compile_and_run_current_cpp = {
          function()
             local current_file = vim.fn.expand("%:p")
             local output_file = current_file:gsub("%..-$", "")
-            -- local terminal_cmd = '!bash -c "make '
-            --    .. output_file
-            --    .. " && "
-            --    .. output_file
-            --    .. '"'
-            local terminal_cmd = 'split | term bash -c "make '
+            local terminal_cmd = 'split | term $SHELL -c "make '
                .. output_file
                .. " && "
                .. output_file

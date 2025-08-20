@@ -29,7 +29,6 @@ M = {
 
       termguicolors = true,
       undofile = true,
-      shell = "bash --login",
 
       listchars = { -- special characters
          -- eol = "⏎",
