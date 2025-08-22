@@ -843,7 +843,7 @@ M.compile_and_run_current_cpp = {
       ["<leader>cx"] = {
          function()
             local current_file = vim.fn.expand("%:p")
-            local output_file = current_file:gsub("%..-$", "")
+            local output_file = vim.fn.fnamemodify(current_file, ":r")
             local terminal_cmd = 'split | term $SHELL -c "make '
                .. output_file
                .. " && "
