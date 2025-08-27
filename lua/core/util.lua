@@ -218,8 +218,8 @@ function M.lsp_diagnostics_level_1()
    local dl1 = {
       virtual_text = {
          current_line = true,
-         spacing = 4,
-         prefix = "",
+         spacing = 1,
+         -- prefix = "",
          format = M.diagnostic_format,
       },
       -- signs = {
@@ -250,8 +250,8 @@ function M.lsp_diagnostics_level_3()
    local dl3 = {
       virtual_text = {
          current_line = false,
-         spacing = 4,
-         prefix = "",
+         spacing = 1,
+         -- prefix = "",
          format = M.diagnostic_format,
       },
       underline = true,
