@@ -2,8 +2,9 @@
 
 ## Changes
 
-- Built-in terminal now uses default $SHELL instead of bash
+- Built-in terminal now uses the default $SHELL instead of bash
 - Bug fix in executing C/C++ files with `<leader>cx`
+- Aesthetic improvements to LSP inline diagnostic display
 
 ## New plugins
 
