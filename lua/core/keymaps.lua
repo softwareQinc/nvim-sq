@@ -870,13 +870,29 @@ M.run_current_qasm = {
    },
 }
 
+M.run_current_python = {
+   plugin = true,
+   n = {
+      ["<leader>cx"] = {
+         function()
+            local current_file = vim.fn.expand("%:p")
+            local terminal_cmd = 'split | term $SHELL -c "python3 '
+               .. current_file
+               .. '"'
+            vim.api.nvim_command(terminal_cmd)
+         end,
+         { desc = "E[x]ecute current Python buffer" },
+      },
+   },
+}
+
 M.run_current_zig = {
    plugin = true,
    n = {
       ["<leader>cx"] = {
          function()
             local current_file = vim.fn.expand("%:p")
-            local terminal_cmd = 'split | term bash -c "zig run '
+            local terminal_cmd = 'split | term $SHELL -c "zig run '
                .. current_file
                .. '"'
             vim.api.nvim_command(terminal_cmd)

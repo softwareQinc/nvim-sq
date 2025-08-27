@@ -2,8 +2,9 @@ return {
    {
       "nvim-telescope/telescope.nvim",
       cmd = { "Telescope" },
-      tag = "0.1.8",
+      -- tag = "0.1.8",
       -- or, branch = "0.1.x",
+      branch = "master", -- latest commit, fixes deprecation issues in nvim 0.11
       dependencies = { "nvim-lua/plenary.nvim" },
    },
    {

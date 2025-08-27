@@ -1,10 +1,13 @@
-# Pre-release
+# nvim-sq 1.10 - 28 August 2025
 
 ## Changes
 
-- Built-in terminal now uses the default $SHELL instead of bash
-- Bug fix in executing C/C++ files with `<leader>cx`
+- Telescope now uses latest commit instead of the release 0.1.8 due to
+  deprecation bug fixes
+- Built-in terminal now uses the default `$SHELL` instead of `bash`
 - Aesthetic improvements to LSP inline diagnostic display
+- Bug fix in executing C/C++ files with `<leader>cx`
+- Python buffers can now be executed with `<leader>cx`
 
 ## New plugins
 
