@@ -1,4 +1,4 @@
-# nvim-sq 1.10 - 28 August 2025
+# nvim-sq 1.10 - 29 August 2025
 
 ## Changes
 
@@ -6,7 +6,10 @@
   deprecation bug fixes
 - Built-in terminal now uses the default `$SHELL` instead of `bash`
 - Aesthetic improvements to LSP inline diagnostic display
-- Bug fix in executing C/C++ files with `<leader>cx`
+- Executing <leader>cx in C/C++ buffers now supports an optional COUNT to set
+  the language standard. For example, `23<leader>cx` selects C++23 in a `cpp`
+  buffer, while `11<leader>cx` selects C11 in a `c` buffer.
+- Bug fix in executing C/C++ buffers with `<leader>cx`
 - Python buffers can now be executed with `<leader>cx`
 
 ## New plugins

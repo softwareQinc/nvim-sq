@@ -845,6 +845,12 @@ M.compile_and_run_current_cpp = {
             local current_file = vim.fn.expand("%:p")
             local output_file = vim.fn.fnamemodify(current_file, ":r")
             local terminal_cmd = 'split | term $SHELL -c "make '
+            if vim.v.count > 0 then
+               local flag = (vim.bo.filetype == "c") and "CFLAGS=-std=c"
+                  or "CXXFLAGS=-std=c++"
+               terminal_cmd = terminal_cmd .. flag .. vim.v.count .. " "
+            end
+            terminal_cmd = terminal_cmd
                .. output_file
                .. " && "
                .. output_file
