@@ -1,10 +1,10 @@
-# nvim-sq 1.10 - 29 August 2025
+# nvim-sq 1.10 - 30 August 2025
 
 ## Changes
 
 - Telescope now uses latest commit instead of the release 0.1.8 due to
   deprecation bug fixes
-- Built-in terminal now uses the default `$SHELL` instead of `bash`
+- Built-in terminal now uses the default `vim.o.shell` instead of `bash`
 - Aesthetic improvements to LSP inline diagnostic display
 - Executing <leader>cx in C/C++ buffers now supports an optional COUNT to set
   the language standard. For example, `23<leader>cx` selects C++23 in a `cpp`

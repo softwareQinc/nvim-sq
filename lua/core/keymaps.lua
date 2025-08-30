@@ -844,7 +844,7 @@ M.compile_and_run_current_cpp = {
          function()
             local current_file = vim.fn.expand("%:p")
             local output_file = vim.fn.fnamemodify(current_file, ":r")
-            local terminal_cmd = 'split | term $SHELL -c "make '
+            local terminal_cmd = "split | term " .. vim.o.shell .. ' -c "make '
             if vim.v.count > 0 then
                local flag = (vim.bo.filetype == "c") and "CFLAGS=-std=c"
                   or "CXXFLAGS=-std=c++"
@@ -858,6 +858,24 @@ M.compile_and_run_current_cpp = {
             vim.api.nvim_command(terminal_cmd)
          end,
          { desc = "[C]ompile and e[x]ecute current C/C++ buffer" },
+      },
+   },
+}
+
+M.run_current_python = {
+   plugin = true,
+   n = {
+      ["<leader>cx"] = {
+         function()
+            local current_file = vim.fn.expand("%:p")
+            local terminal_cmd = "split | term "
+               .. vim.o.shell
+               .. ' -c  "python3 '
+               .. current_file
+               .. '"'
+            vim.api.nvim_command(terminal_cmd)
+         end,
+         { desc = "E[x]ecute current Python buffer" },
       },
    },
 }
@@ -876,29 +894,15 @@ M.run_current_qasm = {
    },
 }
 
-M.run_current_python = {
-   plugin = true,
-   n = {
-      ["<leader>cx"] = {
-         function()
-            local current_file = vim.fn.expand("%:p")
-            local terminal_cmd = 'split | term $SHELL -c "python3 '
-               .. current_file
-               .. '"'
-            vim.api.nvim_command(terminal_cmd)
-         end,
-         { desc = "E[x]ecute current Python buffer" },
-      },
-   },
-}
-
 M.run_current_zig = {
    plugin = true,
    n = {
       ["<leader>cx"] = {
          function()
             local current_file = vim.fn.expand("%:p")
-            local terminal_cmd = 'split | term $SHELL -c "zig run '
+            local terminal_cmd = "split | term "
+               .. vim.o.shell
+               .. ' -c "zig run '
                .. current_file
                .. '"'
             vim.api.nvim_command(terminal_cmd)
