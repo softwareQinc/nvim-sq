@@ -23,9 +23,10 @@ util.map_all_keys(keymaps, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
 -- Set the current working directory to the home directory when launched
--- from a non-terminal session; hacky
+-- (most-likely) from a non-terminal session; hacky
+-- TODO: eventually get rid of this
 local current_dir = vim.fn.getcwd()
-local home_dir = vim.loop.os_homedir()
+local home_dir = vim.uv.os_homedir()
 if current_dir == "/" or current_dir == "C:\\Program Files\\Neovide" then
    if home_dir then
       vim.cmd("cd " .. vim.fn.fnameescape(home_dir))
