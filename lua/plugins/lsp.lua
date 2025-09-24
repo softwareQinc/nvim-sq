@@ -145,7 +145,7 @@ return {
                Lua = {
                   hint = { enable = true },
                   format = {
-                     enable = false,
+                     enable = false, -- we use StyLua from none-ls
                   },
                },
             },

@@ -1,3 +1,22 @@
+# nvim-sq 1.11 - 24 September 2025
+
+## Changes
+
+- `julials` has switched to the Neovim 0.11 LSP config style, eliminating
+  obsolete warnings
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
 # nvim-sq 1.10 - 3 September 2025
 
 ## Changes
