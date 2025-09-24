@@ -11,6 +11,7 @@ return {
          },
       },
    },
+
    -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
    -- LSPs are installed later in this file, see mason-lsp-config:setup({...})
    -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
@@ -37,6 +38,7 @@ return {
          },
       },
    },
+
    -- Manages (installs/removes etc.) language servers only
    {
       "williamboman/mason-lspconfig.nvim",
@@ -48,7 +50,9 @@ return {
             "clangd",
             "cmake",
             "gopls",
-            "julials",
+            -- Do not install julials via Mason
+            -- https://discourse.julialang.org/t/neovim-languageserver-jl-crashing-again/130273
+            -- "julials",
             "lua_ls",
             "marksman",
             "pyright",
@@ -61,6 +65,7 @@ return {
          },
       },
    },
+
    -- LSP (Language Server Protocol)
    {
       "neovim/nvim-lspconfig",
@@ -118,18 +123,19 @@ return {
             },
          })
 
-         -- BUG: Julia - new nvim 0.11 config style does not yet work
-         -- Client julials quit with exit code 1 and signal 0
-         -- vim.lsp.config("julials", {
-         --    capabilities = lsp_capabilities,
-         --    on_attach = lsp_format_on_save,
-         -- })
-
-         -- Julia - nvim 0.10 config style
-         require("lspconfig").julials.setup({
+         -- Julia
+         vim.lsp.config("julials", {
             capabilities = lsp_capabilities,
             on_attach = lsp_format_on_save,
+            cmd = {
+               "julia",
+               "--project=@nvim-lspconfig",
+               "-e",
+               "using LanguageServer; using SymbolServer; runserver()",
+            },
+            filetypes = { "julia" },
          })
+         vim.lsp.enable("julials")
 
          -- Lua
          vim.lsp.config("lua_ls", {
@@ -139,7 +145,7 @@ return {
                Lua = {
                   hint = { enable = true },
                   format = {
-                     enable = false, -- we use StyLua via none-ls
+                     enable = false,
                   },
                },
             },
