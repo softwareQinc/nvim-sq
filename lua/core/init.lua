@@ -47,17 +47,17 @@ else
 end
 
 -- Enable transparent background at startup if
--- `state.transparent_background_enabled_at_startup` is true
+-- `state.background_transparency_enabled_at_startup` is true
 -- Not enabled in Neovide sessions
--- To modify the `state.transparent_background_enabled_at_startup` flag, edit
+-- To modify the `state.background_transparency_enabled_at_startup` flag, edit
 -- its table entry in "lua/core/state.lua"
--- See the `M.transparent_background` table in "lua/core/keymaps.lua" for
+-- See the `M.background_transparency` table in "lua/core/keymaps.lua" for
 -- keymaps/settings
 if not vim.g.neovide then
-   util.map_keys(keymaps.transparent_background)
-   if state.transparent_background_enabled_at_startup then
+   util.map_keys(keymaps.background_transparency)
+   if state.background_transparency_enabled_at_startup then
       vim.defer_fn(function()
-         ui.set_transparent_background()
+         ui.set_background_transparency()
       end, 1)
    end
 end

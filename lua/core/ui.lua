@@ -126,8 +126,8 @@ function M.set_auto_scheme(opts)
    M.set_color_scheme_callback()
 end
 
-function M.set_transparent_background(enable)
-   if enable then
+function M.set_background_transparency(enabled)
+   if enabled then
       vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
    else
       vim.cmd.colorscheme(vim.g.colors_name)

@@ -8,8 +8,8 @@ M.lsp_format_on_save_enabled_at_startup = true
 -- Hardtime.nvim hardtime mode is disabled by default at startup
 M.hardtime_enabled_at_startup = false
 
--- Transparent background is disabled by default at startup
-M.transparent_background_enabled_at_startup = false
+-- Background transparency is disabled by default at startup
+M.background_transparency_enabled_at_startup = false
 
 -- Color scheme auto toggle (light/dark) defaults
 M.color_toggle_default = {

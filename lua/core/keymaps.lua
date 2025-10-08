@@ -529,23 +529,27 @@ M.nvim_treesitter_context = {
    },
 }
 
-M.transparent_background = {
+M.background_transparency = {
    plugin = true,
    n = {
       ["<leader>br"] = {
          function()
             local state = require("core.state")
             local ui = require("core.ui")
-            state.transparent_background_enabled_at_startup =
-               not state.transparent_background_enabled_at_startup
-            if state.transparent_background_enabled_at_startup then
-               ui.set_transparent_background()
+            state.background_transparency_enabled_at_startup =
+               not state.background_transparency_enabled_at_startup
+            print(
+               "Background transparency:",
+               state.background_transparency_enabled_at_startup
+            )
+            if state.background_transparency_enabled_at_startup then
+               ui.set_background_transparency()
             else
                vim.cmd.colorscheme(vim.g.colors_name)
             end
          end,
          {
-            desc = "[B]ackground t[r]ansparent toggle",
+            desc = "[B]ackground t[r]ansparency toggle",
          },
       },
    },

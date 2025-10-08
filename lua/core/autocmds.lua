@@ -139,8 +139,8 @@ if not vim.g.neovide then
          -- TODO: Eventually remove the line below.
          -- Why blocking for 1 ms? see lua/plugins/nvim-colorizer.lua
          vim.wait(1) -- blocks for 1 ms
-         ui.set_transparent_background(
-            state.transparent_background_enabled_at_startup
+         ui.set_background_transparency(
+            state.background_transparency_enabled_at_startup
          )
       end,
    })
