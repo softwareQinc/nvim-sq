@@ -16,6 +16,7 @@ M = {
       hlsearch = true,
       showmode = true,
       spell = true,
+      spelllang = "en_ca",
 
       splitbelow = true,
       splitright = true,
