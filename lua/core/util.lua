@@ -129,16 +129,17 @@ function M.smart_bd()
       [{ "man" }] = close_Cwc,
       [{ "neo-tree" }] = close_Cwc,
       [{ "netrw" }] = close_Cwc,
-      [{ "Outline" }] = close_Cwc,
       [{ "orgagenda" }] = close_Cwc,
+      [{ "Outline" }] = close_Cwc,
       [{ "qf" }] = close_Cwc,
       [{ "query" }] = close_Cwc,
       [{ "trouble" }] = close_Cwc,
       [{ "undotree" }] = close_Cwc,
-      [{ "vim" }] = close_Cwc,
 
       [{ "markdown", "nofile" }] = close_Cwc,
-      [{ "", "nofile" }] = close_Cwc,
+      [{ "vim", "nofile" }] = close_Cwc,
+
+      [{ "", "nofile" }] = close_bd,
       [{ "", "terminal" }] = close_bd,
    }
    for buf, cmd in pairs(buf_cmds) do

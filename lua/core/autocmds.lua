@@ -1,11 +1,9 @@
 -- Auto commands
 
-local api = vim.api
-
 -- Generic
-api.nvim_create_augroup("Generic", { clear = true })
+vim.api.nvim_create_augroup("Generic", { clear = true })
 -- Highlights yanked text
-api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("TextYankPost", {
    group = "Generic",
    pattern = { "*" },
    callback = function()
@@ -15,7 +13,7 @@ api.nvim_create_autocmd("TextYankPost", {
 })
 -- SignColumn always on, and of length 1, so new events in the SignColumn do
 -- not push the text to the right
-api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("VimEnter", {
    group = "Generic",
    pattern = { "*" },
    callback = function()
@@ -25,7 +23,7 @@ api.nvim_create_autocmd("VimEnter", {
    desc = "SignColumn always on, length 1",
 })
 -- Set SignColumn color to background color, aesthetically nicer
-api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
+vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    group = "Generic",
    pattern = { "*" },
    command = "hi! link SignColumn Normal",
@@ -62,10 +60,24 @@ vim.api.nvim_create_autocmd("WinLeave", {
    desc = "Set cursorline/cursorlineopt in inactive buffer",
 })
 
+-- Restore last cursor position when reopening a file
+vim.api.nvim_create_augroup("RestoreCursor", { clear = true })
+vim.api.nvim_create_autocmd("BufReadPost", {
+   group = "RestoreCursor",
+   desc = "Jump to last edit position in file",
+   callback = function()
+      local last_line = vim.fn.line([['"]])
+      local total_lines = vim.fn.line("$")
+      if last_line > 1 and last_line <= total_lines then
+         vim.cmd('normal! g`"')
+      end
+   end,
+})
+
 -- Terminal
-api.nvim_create_augroup("Terminal", { clear = true })
+vim.api.nvim_create_augroup("Terminal", { clear = true })
 -- Disable spell checking and line numbering
-api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = { "*" },
    callback = function()
@@ -76,12 +88,13 @@ api.nvim_create_autocmd("TermOpen", {
    desc = "Disable spell checking and line numbering in Term windows",
 })
 -- Enter Term windows in Insert mode
-api.nvim_create_autocmd("TermOpen", {
+vim.api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = { "*" },
    callback = function(opts)
+      -- NOTE: Hacky, opts.file:match('dap%-terminal') doesn't work anymore
       -- https://github.com/mfussenegger/nvim-dap/issues/439#issuecomment-1380787919
-      if opts.file:match("dap%-terminal") then
+      if opts.file:match("^term://.*mason.*$") then
          return
       end
       vim.cmd("startinsert")
@@ -90,7 +103,7 @@ api.nvim_create_autocmd("TermOpen", {
    desc = "Enter Term windows in Insert mode",
 })
 -- Exit Term windows without pressing any key
--- api.nvim_create_autocmd("TermClose", {
+-- vim.api.nvim_create_autocmd("TermClose", {
 --    group = "Terminal",
 --    pattern = { "*" },
 --    command = "call feedkeys('q')",
@@ -98,9 +111,9 @@ api.nvim_create_autocmd("TermOpen", {
 -- })
 
 -- Quickfix lists
-api.nvim_create_augroup("Quickfix", { clear = true })
+vim.api.nvim_create_augroup("Quickfix", { clear = true })
 -- Disable spell checking
-api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
    group = "Quickfix",
    pattern = { "qf" },
    callback = function()
