@@ -10,7 +10,7 @@ return {
             -- Follow latest release.
             -- Replace <CurrentMajor> by the latest released major (first
             -- number of latest release)
-            version = "v2.*",
+            version = "*",
             dependencies = { "rafamadriz/friendly-snippets" },
             opts = {
                history = true,

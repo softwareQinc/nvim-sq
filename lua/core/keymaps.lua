@@ -510,6 +510,7 @@ M.nvim_treesitter = {
    plugin = true,
    keymaps = {
       init_selection = "<leader>ss",
+      -- The keymaps below become active only after init_selection is triggered
       node_incremental = "<leader>si",
       scope_incremental = "<leader>sc",
       node_decremental = "<leader>sd",
@@ -538,15 +539,15 @@ M.background_transparency = {
             local ui = require("core.ui")
             state.background_transparency_enabled_at_startup =
                not state.background_transparency_enabled_at_startup
-            print(
-               "Background transparency:",
-               state.background_transparency_enabled_at_startup
-            )
-            if state.background_transparency_enabled_at_startup then
-               ui.set_background_transparency()
-            else
-               vim.cmd.colorscheme(vim.g.colors_name)
-            end
+            ui.toggle_background_transparency()
+            -- Hack to delay message slightly so it prints
+            -- **after** color-related  updates
+            vim.defer_fn(function()
+               print(
+                  "Background transparency:",
+                  state.background_transparency_enabled_at_startup
+               )
+            end, 1)
          end,
          {
             desc = "[B]ackground t[r]ansparency toggle",

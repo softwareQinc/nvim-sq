@@ -122,14 +122,18 @@ function M.set_auto_scheme(opts)
    end
 
    -- Call it once, so we don't end up with defaults for a brief time before
-   -- the AutoColorScheme ("lua/core/autocmds.lua") autocmd kicks in
+   -- the auto command from the "AutoColorScheme" group in
+   -- "lua/core/autocmds.lua" kicks in
    M.set_color_scheme_callback()
 end
 
-function M.set_background_transparency(enabled)
-   if enabled then
+-- Applies or removes background transparency based on the state variable
+function M.toggle_background_transparency()
+   if state.background_transparency_enabled_at_startup then
+      -- Set Normal background to transparent (NONE)
       vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
    else
+      -- Reload the color scheme to restore the default, opaque background
       vim.cmd.colorscheme(vim.g.colors_name)
    end
 end

@@ -1,9 +1,36 @@
+# nvim-sq 1.12 - 6 December 2025
+
+## Changes
+
+- [`basedpyright`](https://github.com/DetachHead/basedpyright) now replaces
+  [`pyright`](https://github.com/microsoft/pyright) as the default Python LSP
+- Updated CMake Lua snippets
+- Restore last cursor position and centre the screen when reopening a file
+- Background transparency toggle now shows its current status
+- Canadian English spelling by default
+
+## New plugins
+
+- [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua) (fork),
+  replaces the original plugin (see below)
+
+## Removed plugins
+
+- [nvim-colorizer](https://github.com/norcalli/nvim-colorizer.lua), no
+  longer actively maintained
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.11 - 24 September 2025
 
 ## Changes
 
-- `julials` has switched to the Neovim 0.11 LSP config style, eliminating
-  obsolete warnings
+- `julials` uses now the new Neovim 0.11 LSP config style, eliminating obsolete
+  warnings
 
 ## New plugins
 
@@ -16,6 +43,8 @@
 ## New key mappings
 
 - None
+
+---
 
 # nvim-sq 1.10 - 3 September 2025
 
@@ -43,6 +72,8 @@
 
 - None
 
+---
+
 # nvim-sq 1.9 - 4 August 2025
 
 ## Changes
@@ -62,6 +93,8 @@
 
 - `<leader>tc` - `:TSContext toggle` (`nvim-treesitter-context`), toggle
   Tree-sitter code context, ON by default
+
+---
 
 # nvim-sq 1.8 - 24 June 2025
 
@@ -93,8 +126,10 @@
   ```
 
   Replace `markdown.lua`
-  with the appropriate file type for which you want to disable auto-formatting on
-  save.
+  with the appropriate file type for which you want to disable auto-formatting
+  on save.
+
+---
 
 # nvim-sq 1.7 - 14 June 2025
 
@@ -119,6 +154,8 @@
 - `<leader>dl4` - LSP diagnostics, level 4
 - `<leader>dlt` - LSP diagnostics, toggle ON/OFF the current diagnostic level
 
+---
+
 # nvim-sq 1.6 - 3 June 2025
 
 ## Changes
@@ -134,6 +171,8 @@
 ## New key mappings
 
 - None
+
+---
 
 # nvim-sq 1.5 - 9 May 2025
 
@@ -152,6 +191,8 @@
 
 - None
 
+---
+
 # nvim-sq 1.4 - 21 April 2025
 
 ## Changes
@@ -168,12 +209,16 @@
   LSP-related key mappings starting with nvim 0.11. This functionality is now
   implemented by default starting with nvim 0.11 by the `grr` key mapping.
 
+---
+
 # nvim-sq 1.3 - 10 April 2025
 
 ## Changes
 
 - Zig buffers can now be executed with `<leader>cx`
 - Removed deprecated Neovim API
+
+---
 
 # nvim-sq 1.2 - 20 February 2025
 
@@ -183,6 +228,8 @@
   framework
 
 # nvim-sq 1.1 - 6 February 2025
+
+---
 
 ## Changes
 
@@ -205,6 +252,8 @@
 - `[Q` for `:cfirst`
 - `]Q` for `:clast`
 - `<leader>br` to toggle transparent background, non-transparent by default
+
+---
 
 # nvim-sq 1.0 - 20 January 2025
 
