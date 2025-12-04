@@ -85,29 +85,32 @@ vim.api.nvim_create_autocmd("TermOpen", {
       vim.opt_local.number = false
       vim.opt_local.relativenumber = false
    end,
-   desc = "Disable spell checking and line numbering in Term windows",
+   desc = "Disable spell checking and line numbering in terminal windows",
 })
--- Enter Term windows in Insert mode
+-- Enter terminal windows in Insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
    group = "Terminal",
    pattern = { "*" },
-   callback = function(opts)
-      -- NOTE: Hacky, opts.file:match('dap%-terminal') doesn't work anymore
+   callback = function()
+      -- Prevent nvim-dap-ui from switching to Insert mode, see
       -- https://github.com/mfussenegger/nvim-dap/issues/439#issuecomment-1380787919
-      if opts.file:match("^term://.*mason.*$") then
+      -- opts.file:match('dap%-terminal') doesn't work anymore
+      local buf_no = vim.api.nvim_get_current_buf()
+      local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = buf_no })
+      if buf_ft == "dapui_console" then
          return
       end
       vim.cmd("startinsert")
       vim.opt_local.number = false
    end,
-   desc = "Enter Term windows in Insert mode",
+   desc = "Enter terminal windows in Insert mode",
 })
--- Exit Term windows without pressing any key
+-- Exit terminal windows without pressing any key
 -- vim.api.nvim_create_autocmd("TermClose", {
 --    group = "Terminal",
 --    pattern = { "*" },
 --    command = "call feedkeys('q')",
---    desc = "Exit Term windows without pressing any key",
+--    desc = "Exit terminal windows without pressing any key",
 -- })
 
 -- Quickfix lists
@@ -143,18 +146,17 @@ vim.api.nvim_create_autocmd({
 })
 
 -- Restore the state of transparent background on ColorScheme event
--- Not enabled in Neovide sessions
+-- This auto command is not enabled in Neovide sessions
 if not vim.g.neovide then
+   vim.api.nvim_create_augroup("TransparentBackground", { clear = true })
    vim.api.nvim_create_autocmd("ColorScheme", {
+      group = "TransparentBackground",
       callback = function()
-         local ui = require("core.ui")
          local state = require("core.state")
-         -- TODO: Eventually remove the line below.
-         -- Why blocking for 1 ms? see lua/plugins/nvim-colorizer.lua
-         vim.wait(1) -- blocks for 1 ms
-         ui.set_background_transparency(
-            state.background_transparency_enabled_at_startup
-         )
+         local ui = require("core.ui")
+         if state.background_transparency_enabled_at_startup then
+            ui.toggle_background_transparency()
+         end
       end,
    })
 end

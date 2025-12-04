@@ -1,7 +1,7 @@
 return {
    -- Haskell language support
    "mrcjkb/haskell-tools.nvim",
-   version = "^4", -- recommended
+   version = "*",
    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
    lazy = true,
    config = function()

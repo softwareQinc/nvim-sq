@@ -1,10 +1,9 @@
 # nvim-sq
 
 Custom [Neovim](https://neovim.io) configuration designed to enhance
-development productivity. It includes tools such as LSP, DAP, autocompletion,
-fuzzy finding, Tree-sitter, tmux integration, ChatGPT, and more. Plugin
-management is handled using [lazy.nvim](https://github.com/folke/lazy.nvim).
-Requires Neovim 0.11 or newer.
+development productivity. Includes LSP, DAP, auto-completion, fuzzy finding,
+Tree-sitter, tmux integration, ChatGPT, and more. Plugins are managed using
+[lazy.nvim](https://github.com/folke/lazy.nvim). Requires Neovim 0.11 or newer.
 
 This configuration has been extensively tested on macOS and Linux
 (Debian/Ubuntu). Minor issues may occur on other platforms.
@@ -169,8 +168,8 @@ brew install lazygit
 
 ### Neorg
 
-If the
-[Neorg plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua)
+If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
+[here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua),
 fails to install or does not work properly, ensure that you have
 [Lua](https://www.lua.org) or [LuaJIT](https://luajit.org)
 installed on your system. For installation instructions, follow
@@ -179,7 +178,8 @@ installed on your system. For installation instructions, follow
 ### ChatGPT
 
 The
-[ChatGPT plugin](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/chatgpt.lua)
+[ChatGPT](https://github.com/jackMort/ChatGPT.nvim) plugin, configured
+[here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/chatgpt.lua),
 assumes that the OpenAI API key is available as a text file in
 `$HOME/OpenAIkey.txt`; modify accordingly on your system.
 
@@ -203,17 +203,17 @@ gpgconf --reload gpg-agent
 ```
 
 The steps above are mandatory, as otherwise Neovim will not be able to
-interactively ask for passphrases when trying to encrypt and/or decrypt.
+interactively ask for passphrases when attempting to encrypt or decrypt.
 
 ---
 
 ## Programming languages
 
-This Neovim configuration comes out of the box with LSP and DAP support for a
-whole bunch of programming/scripting/markup languages, including (but not
-restricted to) mainstream ones such as C, C++, Python, Go, Rust, Markdown,
-LaTeX etc. Below we list potential issues that you may encounter for some
-specific languages.
+This Neovim configuration comes with built-in LSP and DAP support for a wide
+range of programming, scripting, and markup languages, including (but not
+limited to) mainstream ones such as C, C++, Python, Go, Rust, Markdown, and
+LaTeX. Below are some potential issues you may encounter with specific
+languages.
 
 ### Julia
 
@@ -227,19 +227,6 @@ Next, to enable full LSP integration, execute in a shell
 
 ```shell
 julia --project=$HOME/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer"); Pkg.add("SymbolServer"); Pkg.add("StaticLint")'
-```
-
-### Go
-
-#### gopls
-
-Go binaries produced on macOS arm64 may not be code-signed properly. See
-[https://github.com/golang/go/issues/63997](https://github.com/golang/go/issues/63997).
-
-To fix, run
-
-```shell
-codesign -f -s - ~/.local/share/nvim/mason/packages/gopls/gopls
 ```
 
 ### Haskell

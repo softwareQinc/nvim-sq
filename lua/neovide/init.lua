@@ -22,18 +22,6 @@ util.map_all_keys(keymaps, { noremap = true, silent = true })
 -- vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h16")
 
 ------------------------------------------------------------------------------
--- Set the current working directory to the home directory when launched
--- (most-likely) from a non-terminal session; hacky
--- TODO: eventually get rid of this
-local current_dir = vim.fn.getcwd()
-local home_dir = vim.uv.os_homedir()
-if current_dir == "/" or current_dir == "C:\\Program Files\\Neovide" then
-   if home_dir then
-      vim.cmd("cd " .. vim.fn.fnameescape(home_dir))
-   end
-end
-
-------------------------------------------------------------------------------
 -- Enable copy/paste shortcuts on Mac, expect to be fixed in future versions
 -- https://neovide.dev/faq.html#how-can-i-use-cmd-ccmd-v-to-copy-and-paste
 vim.keymap.set("n", "<D-s>", ":w<CR>") -- Save

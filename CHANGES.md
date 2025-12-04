@@ -1,19 +1,23 @@
-# nvim-sq 1.12 - 4 December 2025
+# nvim-sq 1.12 - 5 December 2025
 
 ## Changes
 
-- Restore last cursor position when reopening a file
+- [`basedpyright`](https://github.com/DetachHead/basedpyright) now replaces
+  [`pyright`](https://github.com/microsoft/pyright) as the default Python LSP
 - Updated CMake Lua snippets
+- Restore last cursor position when reopening a file
+- Background transparency toggle now shows its current status
 - Canadian English spelling by default
-- Background transparency toggle displays its status
 
 ## New plugins
 
-- None
+- [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua) fork,
+  removed the original one, see below
 
 ## Removed plugins
 
-- None
+- [nvim-colorizer](https://github.com/norcalli/nvim-colorizer.lua), not
+  actively maintained anymore
 
 ## New key mappings
 
@@ -122,8 +126,8 @@
   ```
 
   Replace `markdown.lua`
-  with the appropriate file type for which you want to disable auto-formatting on
-  save.
+  with the appropriate file type for which you want to disable auto-formatting
+  on save.
 
 ---
 

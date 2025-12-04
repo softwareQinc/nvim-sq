@@ -46,18 +46,18 @@ else
    end, 1000)
 end
 
--- Enable transparent background at startup if
--- `state.background_transparency_enabled_at_startup` is true
--- Not enabled in Neovide sessions
+-- Sets the keymap for enabling a transparent background. This is enabled if
+-- the `state.background_transparency_enabled_at_startup` flag is true.
+-- This keymap is not enabled in Neovide sessions
 -- To modify the `state.background_transparency_enabled_at_startup` flag, edit
 -- its table entry in "lua/core/state.lua"
 -- See the `M.background_transparency` table in "lua/core/keymaps.lua" for
 -- keymaps/settings
 if not vim.g.neovide then
    util.map_keys(keymaps.background_transparency)
-   if state.background_transparency_enabled_at_startup then
-      vim.defer_fn(function()
-         ui.set_background_transparency()
-      end, 1)
-   end
+   -- Hack to make the nvim-colorizer plugin attach to buffer when opening a
+   -- file from the command line
+   vim.defer_fn(function()
+      vim.cmd.colorscheme(vim.g.colors_name)
+   end, 1)
 end

@@ -46,6 +46,7 @@ return {
       opts = {
          -- LSP servers
          ensure_installed = {
+            "basedpyright",
             "bashls",
             "clangd",
             "cmake",
@@ -55,13 +56,12 @@ return {
             -- "julials",
             "lua_ls",
             "marksman",
-            "pyright",
             "ruff",
             "rust_analyzer",
             "texlab",
             "vimls",
             "zls",
-            -- "hls", -- not needed, we use haskell-tools.nvim
+            "hls",
          },
       },
    },
