@@ -5,19 +5,19 @@
 - [`basedpyright`](https://github.com/DetachHead/basedpyright) now replaces
   [`pyright`](https://github.com/microsoft/pyright) as the default Python LSP
 - Updated CMake Lua snippets
-- Restore last cursor position when reopening a file
+- Restore last cursor position and centre the screen when reopening a file
 - Background transparency toggle now shows its current status
 - Canadian English spelling by default
 
 ## New plugins
 
-- [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua) fork,
-  removed the original one, see below
+- [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua) (fork),
+  replaces the original plugin (see below)
 
 ## Removed plugins
 
-- [nvim-colorizer](https://github.com/norcalli/nvim-colorizer.lua), not
-  actively maintained anymore
+- [nvim-colorizer](https://github.com/norcalli/nvim-colorizer.lua), no
+  longer actively maintained
 
 ## New key mappings
 

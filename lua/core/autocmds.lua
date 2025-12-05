@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd("WinLeave", {
    desc = "Set cursorline/cursorlineopt in inactive buffer",
 })
 
--- Restore last cursor position when reopening a file
+-- Restore last cursor position and centre the screen when reopening a file
 vim.api.nvim_create_augroup("RestoreCursor", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
    group = "RestoreCursor",
@@ -69,7 +69,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       local last_line = vim.fn.line([['"]])
       local total_lines = vim.fn.line("$")
       if last_line > 1 and last_line <= total_lines then
-         vim.cmd('normal! g`"')
+         vim.cmd('normal! g`"zz')
       end
    end,
 })
