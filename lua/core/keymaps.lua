@@ -540,6 +540,8 @@ M.background_transparency = {
             state.background_transparency_enabled_at_startup =
                not state.background_transparency_enabled_at_startup
             ui.toggle_background_transparency()
+            -- Hack to delay message slightly so it prints
+            -- **after** color-related  updates
             vim.defer_fn(function()
                print(
                   "Background transparency:",
