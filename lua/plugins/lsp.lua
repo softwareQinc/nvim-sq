@@ -51,6 +51,7 @@ return {
             "clangd",
             "cmake",
             "gopls",
+            "hls",
             -- Do not install julials via Mason
             -- https://discourse.julialang.org/t/neovim-languageserver-jl-crashing-again/130273
             -- "julials",
@@ -61,7 +62,6 @@ return {
             "texlab",
             "vimls",
             "zls",
-            "hls",
          },
       },
    },

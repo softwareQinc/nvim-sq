@@ -209,11 +209,16 @@ interactively ask for passphrases when attempting to encrypt or decrypt.
 
 ## Programming languages
 
-This Neovim configuration comes with built-in LSP and DAP support for a wide
-range of programming, scripting, and markup languages, including (but not
-limited to) mainstream ones such as C, C++, Python, Go, Rust, Markdown, and
-LaTeX. Below are some potential issues you may encounter with specific
-languages.
+This Neovim configuration includes built-in LSP and DAP support for a wide
+range of programming, scripting, and markup languages, including common ones
+such as C, C++, Python, Go, Rust, Markdown, and LaTeX. Some LSPs and DAPs are
+pre-installed by default; if you don’t need them, you can disable or remove
+them in
+[lua/plugins/lsp.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/lsp.lua)
+and
+[lua/plugins/dap.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/dap.lua).
+
+Below are some potential issues you may encounter with specific languages.
 
 ### Julia
 

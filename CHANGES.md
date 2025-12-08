@@ -1,4 +1,4 @@
-# nvim-sq 1.12 - 6 December 2025
+# nvim-sq 1.12 - 8 December 2025
 
 ## Changes
 
