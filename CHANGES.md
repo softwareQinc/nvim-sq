@@ -1,3 +1,27 @@
+# nvim-sq 1.13 - 20 December 2025
+
+## Changes
+
+- Added [Tombi](https://github.com/tombi-toml/tombi), a TOML language server
+  (installed by default)
+- Added [YAML Language Server](https://github.com/redhat-developer/yaml-language-server)
+  (installed by default)
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- `<leader>fm` in Visual Mode - formats Visual selections through LSP, provided
+  the language server supports range formatting
+
+---
+
 # nvim-sq 1.12 - 8 December 2025
 
 ## Changes

@@ -56,7 +56,7 @@ M.generic = {
       ["<M-k>"] = { "<C-w>5-", { desc = "Resize split up" } },
       ["<M-j>"] = { "<C-w>5+", { desc = "Resize split down" } },
    },
-   -- [{ "n", "i", "v" }] = {
+   -- [{ "n", "i", "v", "x" }] = {
    --    ["<Up>"] = { "<Nop>" },
    --    ["<Down>"] = { "<Nop>" },
    --    ["<Left>"] = { "<Nop>" },
@@ -264,7 +264,7 @@ M.spectre = {
          { desc = "[S]pectre send all items to [q]uickfix list" },
       },
    },
-   v = {
+   x = {
       ["<leader>sw"] = {
          "<esc><cmd> lua require('spectre').open_visual() <CR>",
          { desc = "[S]pectre search current [w]ord" },
@@ -319,7 +319,7 @@ M.carbon_now = {
          { desc = "[C]arbon[N]ow screenshot" },
       },
    },
-   v = {
+   x = {
       ["<leader>cn"] = {
          ":CarbonNow <CR>",
          { desc = "[C]arbon[N]ow (visual selection) screenshot" },
@@ -735,12 +735,6 @@ M.nvim_lspconfig = {
          vim.lsp.buf.references,
          { desc = "LSP [g]o to reference[s]" },
       },
-      ["<leader>fm"] = {
-         function()
-            vim.lsp.buf.format({ async = true })
-         end,
-         { desc = "LSP [f]or[m]at" },
-      },
       ["<leader>fos"] = {
          function()
             local state = require("core.state")
@@ -833,11 +827,17 @@ M.nvim_lspconfig = {
          { desc = "LSP [d]iagnostics current [l]evel [t]oggle" },
       },
    },
-   [{ "n", "v" }] = {
+   [{ "n", "x" }] = {
       -- NOTE: Implemented by default in nvim 0.11 as `gra`
       ["<leader>ca"] = {
          vim.lsp.buf.code_action,
          { desc = "LSP [c]ode [a]ctions" },
+      },
+      ["<leader>fm"] = {
+         function()
+            vim.lsp.buf.format({ async = true })
+         end,
+         { desc = "LSP [f]or[m]at" },
       },
    },
 }

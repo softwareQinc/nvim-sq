@@ -30,20 +30,15 @@ end
 
 -- Map keys for single non-plugin sub-table
 function M.map_keys(keymap_tbl, additional_options)
+   local allowed_modes = { n = true, i = true, v = true, x = true, c = true }
    for mode, rhs in pairs(keymap_tbl) do
-      -- Table as keys
-      if type(mode) == "table" then
-         for _, mode_elem in ipairs(mode) do
-            map_keys_inner(mode_elem, rhs, additional_options)
-         end
-      else
-         -- Regular keys
-         if mode ~= "n" and mode ~= "i" and mode ~= "v" then
-            goto continue
-         end
+      -- Check if 'mode' is a table; if so, check if the first element is
+      -- allowed
+      -- If 'mode' is a string, check if it's in our allowed list
+      local primary_mode = type(mode) == "table" and mode[1] or mode
+      if allowed_modes[primary_mode] then
          map_keys_inner(mode, rhs, additional_options)
       end
-      ::continue::
    end
 end
 
@@ -91,7 +86,7 @@ function M.format_on_save(augroup)
                   or state.lsp_format_on_save_enabled_at_startup
                then
                   -- Do not call this asynchronously!
-                  vim.lsp.buf.format({ bufnr = bufnr })
+                  vim.lsp.buf.format({ async = false, bufnr = bufnr })
                end
             end,
             desc = "LSP format on save",

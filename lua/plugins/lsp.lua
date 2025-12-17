@@ -21,20 +21,20 @@ return {
       opts = {
          ensure_installed = {
             -- Formatters
-            "black",
-            "gofumpt",
-            "goimports-reviser",
-            "golines",
-            "latexindent",
-            "prettier",
-            "shfmt",
-            "stylua",
+            "black", -- Python
+            "gofumpt", -- Go
+            "goimports-reviser", -- Go
+            "golines", -- Go
+            "latexindent", -- Latex
+            "prettier", -- Multiple languages
+            "shfmt", -- Bash/sh
+            "stylua", -- Lua
 
             -- Linters
-            "cmakelang",
-            "cmakelint",
-            "mypy",
-            "shellcheck",
+            "cmakelang", -- CMake
+            "cmakelint", -- CMake
+            "mypy", -- Python
+            "shellcheck", -- Bash/sh
          },
       },
    },
@@ -44,24 +44,26 @@ return {
       "williamboman/mason-lspconfig.nvim",
       dependencies = { "neovim/nvim-lspconfig" },
       opts = {
-         -- LSP servers
+         -- LSPs that are installed by default
          ensure_installed = {
-            "basedpyright",
-            "bashls",
-            "clangd",
-            "cmake",
-            "gopls",
-            "hls",
+            "basedpyright", -- Python
+            "bashls", -- Bash/sh
+            "clangd", -- C, C++
+            "cmake", -- C, C++ build system
+            "gopls", -- Go
+            "hls", -- Haskell
             -- Do not install julials via Mason
             -- https://discourse.julialang.org/t/neovim-languageserver-jl-crashing-again/130273
             -- "julials",
-            "lua_ls",
-            "marksman",
-            "ruff",
-            "rust_analyzer",
-            "texlab",
-            "vimls",
-            "zls",
+            "lua_ls", -- Lua
+            "marksman", -- Markdown
+            "tombi", -- TOML
+            "ruff", -- Rust
+            "rust_analyzer", -- Rust
+            "texlab", -- LaTeX
+            "vimls", -- Vim
+            "yamlls", -- YAML
+            "zls", -- Zig
          },
       },
    },
@@ -85,105 +87,98 @@ return {
             require("cmp_nvim_lsp").default_capabilities()
          )
 
-         -- C++
-         vim.lsp.config("clangd", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            cmd = {
-               "clangd",
-               "--header-insertion=never",
-               "--offset-encoding=utf-16",
+         local servers = {
+            -- C, C++
+            clangd = {
+               cmd = {
+                  "clangd",
+                  "--header-insertion=never",
+                  "--offset-encoding=utf-16",
+               },
             },
-         })
 
-         -- Go
-         vim.lsp.config("gopls", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            cmd = { "gopls" },
-            filetypes = { "go", "gomod", "gowork", "gotmpl" },
-            root_markers = { "go.work", "go.mod", ".git" },
-            settings = {
-               gopls = {
-                  completeUnimported = true,
-                  usePlaceholders = true,
-                  analyses = {
-                     unusedparams = true,
-                  },
-                  hints = {
-                     assignVariableTypes = true,
-                     compositeLiteralFields = true,
-                     compositeLiteralTypes = true,
-                     constantValues = true,
-                     functionTypeParameters = true,
-                     parameterNames = true,
-                     rangeVariableTypes = true,
+            -- Go
+            gopls = {
+               cmd = { "gopls" },
+               filetypes = { "go", "gomod", "gowork", "gotmpl" },
+               root_markers = { "go.work", "go.mod", ".git" },
+               settings = {
+                  gopls = {
+                     completeUnimported = true,
+                     usePlaceholders = true,
+                     analyses = { unusedparams = true },
+                     hints = {
+                        assignVariableTypes = true,
+                        compositeLiteralFields = true,
+                        compositeLiteralTypes = true,
+                        constantValues = true,
+                        functionTypeParameters = true,
+                        parameterNames = true,
+                        rangeVariableTypes = true,
+                     },
                   },
                },
             },
-         })
 
-         -- Julia
-         vim.lsp.config("julials", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            cmd = {
-               "julia",
-               "--project=@nvim-lspconfig",
-               "-e",
-               "using LanguageServer; using SymbolServer; runserver()",
+            -- Julia
+            julials = {
+               cmd = {
+                  "julia",
+                  "--project=@nvim-lspconfig",
+                  "-e",
+                  "using LanguageServer; using SymbolServer; runserver()",
+               },
+               filetypes = { "julia" },
             },
-            filetypes = { "julia" },
-         })
-         vim.lsp.enable("julials")
 
-         -- Lua
-         vim.lsp.config("lua_ls", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            settings = {
-               Lua = {
-                  hint = { enable = true },
-                  format = {
-                     enable = false, -- we use StyLua from none-ls
+            -- LaTeX
+            texlab = {
+               settings = {
+                  texlab = {
+                     latexindent = { modifyLineBreaks = true },
                   },
                },
             },
-         })
 
-         -- Rust
-         vim.lsp.config("rust_analyzer", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            filetypes = { "rust" },
-            root_markers = { "Cargo.toml" },
-            settings = {
-               ["rust-analyzer"] = {
-                  cargo = {
-                     allFeatures = true,
+            -- Lua
+            lua_ls = {
+               settings = {
+                  Lua = {
+                     hint = { enable = true },
+                     format = { enable = false },
                   },
                },
             },
-         })
 
-         -- LaTeX
-         vim.lsp.config("texlab", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-            settings = {
-               texlab = {
-                  latexindent = {
-                     modifyLineBreaks = true,
+            -- Rust
+            rust_analyzer = {
+               filetypes = { "rust" },
+               root_markers = { "Cargo.toml" },
+               settings = {
+                  ["rust-analyzer"] = {
+                     cargo = { allFeatures = true },
                   },
                },
             },
-         })
 
-         -- Zig
-         vim.lsp.config("zls", {
-            capabilities = lsp_capabilities,
-            on_attach = lsp_format_on_save,
-         })
+            -- TOML
+            tombi = {},
+
+            -- YAML
+            yamlls = {},
+
+            -- Zig
+            zls = {},
+         }
+
+         -- Iterate over LSPs and apply global defaults
+         for server_name, config in pairs(servers) do
+            config.capabilities = lsp_capabilities
+            config.on_attach = lsp_format_on_save
+
+            vim.lsp.config(server_name, config)
+            vim.lsp.enable(server_name)
+         end
 
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup(

@@ -21,16 +21,16 @@ return {
             null_ls.builtins.formatting.golines,
             null_ls.builtins.formatting.prettier.with({
                filetypes = {
-                  "typescript",
                   "css",
-                  "scss",
-                  "html",
-                  "json",
-                  "yaml",
-                  "markdown",
                   "graphql",
-                  "md",
+                  "html",
+                  "javascript",
+                  "json",
                   "julia",
+                  "markdown",
+                  "md",
+                  "scss",
+                  "typescript",
                },
             }),
             null_ls.builtins.formatting.shfmt.with({
@@ -39,6 +39,7 @@ return {
                format = "sync",
             }),
             null_ls.builtins.formatting.stylua,
+
             -- Diagnostics
             null_ls.builtins.diagnostics.cmake_lint,
             null_ls.builtins.diagnostics.mypy.with({
@@ -49,24 +50,8 @@ return {
                   return { "--python-executable", virtual .. "/bin/python3" }
                end,
             }),
-            -- Deprecated/removed, replace (if needed) with none-ls-extras
-            -- null_ls.builtins.formatting.latexindent.with({
-            --    args = { "-m", "-l" },
-            --    filetypes = { "tex", "plaintex" },
-            --    format = "sync",
-            -- }),
-            -- null_ls.builtins.diagnostics.ruff,
-            -- null_ls.builtins.diagnostics.shellcheck.with({
-            --    filetypes = { "sh", "zsh" },
-            -- }),
-            --
-            -- none-ls-extras
-            -- require("none-ls.formatting.latexindent").with({
-            --    args = { "-m", "-l" },
-            --    filetypes = { "tex", "plaintex" },
-            --    format = "sync",
-            -- }),
          },
+
          -- Auto format on save
          on_attach = null_ls_format_on_save,
       }
