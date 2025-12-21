@@ -71,11 +71,11 @@ return {
       workspaces = {
          {
             name = "personal",
-            path = "~/notes/obsidian/personal",
+            path = vim.fs.normalize("~/notes/obsidian/personal"),
          },
          {
             name = "work",
-            path = "~/notes/obsidian/work",
+            path = vim.fs.normalize("~/notes/obsidian/work"),
          },
       },
    },
