@@ -35,8 +35,6 @@ vim.api.nvim_create_autocmd("FileType", {
       if require("nvim-treesitter.parsers").has_parser() then
          vim.opt.foldmethod = "expr"
          vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      else
-         vim.opt.foldmethod = "indent"
       end
    end,
    desc = "Set foldmethod",

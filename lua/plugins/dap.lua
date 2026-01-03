@@ -1,5 +1,5 @@
 return {
-   -- DAP
+   -- Core DAP (Debug Adapter Protocol) configuration
    {
       "mfussenegger/nvim-dap",
       event = "LspAttach",
@@ -16,7 +16,8 @@ return {
          })
       end,
    },
-   -- additional UI to make the debugger prettier
+
+   -- Additional DAP UI to make the debugger prettier
    {
       "rcarriga/nvim-dap-ui",
       event = "LspAttach",
@@ -36,7 +37,8 @@ return {
          end
       end,
    },
-   -- DAP for Mason
+
+   -- DAP integration via Mason
    {
       "jay-babu/mason-nvim-dap.nvim",
       event = "LspAttach",
@@ -51,6 +53,7 @@ return {
          handlers = {},
       },
    },
+
    -- DAP for Python
    {
       "mfussenegger/nvim-dap-python",
@@ -74,6 +77,7 @@ return {
          })
       end,
    },
+
    -- DAP for Go
    {
       "leoluz/nvim-dap-go",

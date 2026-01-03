@@ -64,254 +64,6 @@ M.generic = {
    -- },
 }
 
-M.tmux_navigator = {
-   n = {
-      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
-      ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
-      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
-      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
-   },
-}
-
-M.netrw = {
-   n = {
-      ["<leader>e"] = { "<cmd> Lexplore 20 <CR>", { desc = "N[e]tRw toggle" } },
-   },
-}
-
-M.neo_tree = {
-   n = {
-      ["<leader>n"] = {
-         "<cmd> Neotree toggle <CR>",
-         { desc = "[N]eo-tree toggle" },
-      },
-   },
-}
-
-M.oil = {
-   n = {
-      ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil [.]" } },
-   },
-}
-
-M.telescope = {
-   n = {
-      ["<leader>ff"] = {
-         "<cmd> Telescope find_files <CR>",
-         { desc = "Telescope [f]iles" },
-      },
-      ["<leader>fa"] = {
-         "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-         { desc = "Telescope [a]ll files" },
-      },
-      ["<leader>fn"] = {
-         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
-         { desc = "Telescope [n]vim config files" },
-      },
-      ["<leader>fg"] = {
-         "<cmd> Telescope live_grep <CR>",
-         { desc = "Telescope [g]rep" },
-      },
-      ["<leader>fG"] = {
-         function()
-            require("telescope.builtin").live_grep({ grep_open_files = true })
-         end,
-         { desc = "Telescope [G]rep local buffers" },
-      },
-      ["<leader>fS"] = {
-         "<cmd> Telescope grep_string <CR>",
-         { desc = "Telescope grep [S]tring" },
-      },
-      ["<leader>fT"] = {
-         function()
-            require("telescope.builtin").grep_string({ grep_open_files = true })
-         end,
-         { desc = "Telescope grep s[T]ring local buffers" },
-      },
-      ["<leader>fb"] = {
-         "<cmd> Telescope buffers <CR>",
-         { desc = "Telescope [b]uffers" },
-      },
-      ["<leader>fh"] = {
-         "<cmd> Telescope help_tags <CR>",
-         { desc = "Telescope [h]elp tags" },
-      },
-      ["<leader>fz"] = {
-         "<cmd> Telescope current_buffer_fuzzy_find <CR>",
-         { desc = "Telescope fu[z]zy find current buffer" },
-      },
-      ["<leader>fe"] = {
-         "<cmd> Telescope oldfiles <CR>",
-         { desc = "Telescope r[e]cent files" },
-      },
-      -- Consider using pcall here
-      ["<leader>fc"] = {
-         "<cmd> Telescope git_commits <CR>",
-         { desc = "Telescope Git [c]ommits" },
-      },
-      ["<leader>fC"] = {
-         "<cmd> Telescope git_bcommits <CR>",
-         { desc = "Telescope Git buffer [C]ommits" },
-      },
-      ["<leader>fi"] = {
-         "<cmd> Telescope git_files <CR>",
-         { desc = "Telescope G[i]t files" },
-      },
-      ["<leader>fs"] = {
-         "<cmd> Telescope git_status <CR>",
-         { desc = "Telescope Git [s]tatus" },
-      },
-      ["<leader>f'"] = {
-         "<cmd> Telescope marks <CR>",
-         { desc = "Telescope marks" },
-      },
-      ["<leader>co"] = {
-         "<cmd> Telescope colorscheme enable_preview=true <CR>",
-         { desc = "Telescope [co]lorscheme" },
-      },
-   },
-}
-
-M.harpoon = {
-   n = {
-      ["<leader>jj"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():add()
-         end,
-         { desc = "Harpoon add mark" },
-      },
-      ["<leader>jh"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon.ui:toggle_quick_menu(harpoon:list())
-         end,
-         { desc = "Harpoon quick menu" },
-      },
-      ["<leader>jp"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():prev()
-         end,
-         { desc = "Harpoon [p]revious" },
-      },
-      ["<leader>jn"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():next()
-         end,
-         { desc = "Harpoon [n]ext" },
-      },
-      ["<leader>j1"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():select(1)
-         end,
-         {
-            desc = "Harpoon [1]",
-         },
-      },
-      ["<leader>j2"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():select(2)
-         end,
-         {
-            desc = "Harpoon [2]",
-         },
-      },
-      ["<leader>j3"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():select(3)
-         end,
-         {
-            desc = "Harpoon [3]",
-         },
-      },
-      ["<leader>j4"] = {
-         function()
-            local harpoon = require("harpoon")
-            harpoon:list():select(4)
-         end,
-         {
-            desc = "Harpoon [4]",
-         },
-      },
-      ["<leader>fj"] = {
-         "<cmd> Telescope harpoon marks <CR>",
-         { desc = "Telescope Harpoon marks" },
-      },
-   },
-}
-
-M.spectre = {
-   n = {
-      ["<leader>S"] = {
-         "<cmd> lua require('spectre').toggle() <CR>",
-         { desc = "[S]pectre toggle" },
-      },
-      ["<leader>sw"] = {
-         "<cmd> lua require('spectre').open_visual({select_word=true}) <CR>",
-         { desc = "[S]pectre search current [w]ord" },
-      },
-      ["<leader>sf"] = {
-         "<cmd> lua require('spectre').open_file_search({select_word=true}) <CR>",
-         { desc = "[S]pectre search current [f]ile" },
-      },
-      ["<leader>sq"] = {
-         "<cmd> lua require('spectre.actions').send_to_qf() <CR>",
-         { desc = "[S]pectre send all items to [q]uickfix list" },
-      },
-   },
-   x = {
-      ["<leader>sw"] = {
-         "<esc><cmd> lua require('spectre').open_visual() <CR>",
-         { desc = "[S]pectre search current [w]ord" },
-      },
-   },
-}
-
-M.todo_comments = {
-   n = {
-      ["]t"] = {
-         function()
-            require("todo-comments").jump_next()
-         end,
-         { desc = "TODO next" },
-      },
-      -- You can also specify a list of valid jump keywords
-      -- ["]t"] = {
-      -- function()
-      --    require("todo-comments").jump_next({
-      --       keywords = { "ERROR", "WARNING" },
-      --    })
-      -- end,
-      --   { desc = "TODO next" },
-      -- },
-      ["[t"] = {
-         function()
-            require("todo-comments").jump_prev()
-         end,
-         { desc = "TODO previous" },
-      },
-      ["<leader>ft"] = {
-         function()
-            require("todo-comments")
-            vim.cmd("TodoTelescope")
-         end,
-         { desc = "Telescope [t]odo" },
-      },
-      ["<leader>xt"] = {
-         function()
-            require("todo-comments")
-            vim.cmd("TodoTrouble")
-         end,
-         { desc = "Trouble [t]odo" },
-      },
-   },
-}
-
 M.carbon_now = {
    n = {
       ["<leader>cn"] = {
@@ -324,29 +76,6 @@ M.carbon_now = {
          ":CarbonNow <CR>",
          { desc = "[C]arbon[N]ow (visual selection) screenshot" },
       },
-   },
-}
-
-M.terminal = {
-   n = {
-      ["<leader>th"] = {
-         "<cmd> split | terminal <CR>",
-         { desc = "[T]erminal [h]orizontal (terminal)" },
-      },
-      ["<leader>tv"] = {
-         "<cmd> vsplit | terminal <CR>",
-         { desc = "[T]erminal [v]ertical (terminal)" },
-      },
-      ["<leader>tf"] = {
-         "<cmd> FloatermNew <CR>",
-         { desc = "[T]erminal [f]float (terminal)" },
-      },
-   },
-}
-
-M.lazy_git = {
-   n = {
-      ["<leader>lg"] = { "<cmd> LazyGit <CR>", { desc = "[L]azy[G]it (git)" } },
    },
 }
 
@@ -437,8 +166,305 @@ M.hardtime = {
    },
 }
 
+M.harpoon = {
+   n = {
+      ["<leader>jj"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():add()
+         end,
+         { desc = "Harpoon add mark" },
+      },
+      ["<leader>jh"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+         end,
+         { desc = "Harpoon quick menu" },
+      },
+      ["<leader>jp"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():prev()
+         end,
+         { desc = "Harpoon [p]revious" },
+      },
+      ["<leader>jn"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():next()
+         end,
+         { desc = "Harpoon [n]ext" },
+      },
+      ["<leader>j1"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(1)
+         end,
+         {
+            desc = "Harpoon [1]",
+         },
+      },
+      ["<leader>j2"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(2)
+         end,
+         {
+            desc = "Harpoon [2]",
+         },
+      },
+      ["<leader>j3"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(3)
+         end,
+         {
+            desc = "Harpoon [3]",
+         },
+      },
+      ["<leader>j4"] = {
+         function()
+            local harpoon = require("harpoon")
+            harpoon:list():select(4)
+         end,
+         {
+            desc = "Harpoon [4]",
+         },
+      },
+      ["<leader>fj"] = {
+         "<cmd> Telescope harpoon marks <CR>",
+         { desc = "Telescope Harpoon marks" },
+      },
+   },
+}
+
+M.lazy_git = {
+   n = {
+      ["<leader>lg"] = { "<cmd> LazyGit <CR>", { desc = "[L]azy[G]it (git)" } },
+   },
+}
+
+M.neo_tree = {
+   n = {
+      ["<leader>n"] = {
+         "<cmd> Neotree toggle <CR>",
+         { desc = "[N]eo-tree toggle" },
+      },
+   },
+}
+
+M.netrw = {
+   n = {
+      ["<leader>e"] = { "<cmd> Lexplore 20 <CR>", { desc = "N[e]tRw toggle" } },
+   },
+}
+
+M.oil = {
+   n = {
+      ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil [.]" } },
+   },
+}
+
+M.spectre = {
+   n = {
+      ["<leader>S"] = {
+         "<cmd> lua require('spectre').toggle() <CR>",
+         { desc = "[S]pectre toggle" },
+      },
+      ["<leader>sw"] = {
+         "<cmd> lua require('spectre').open_visual({select_word=true}) <CR>",
+         { desc = "[S]pectre search current [w]ord" },
+      },
+      ["<leader>sf"] = {
+         "<cmd> lua require('spectre').open_file_search({select_word=true}) <CR>",
+         { desc = "[S]pectre search current [f]ile" },
+      },
+      ["<leader>sq"] = {
+         "<cmd> lua require('spectre.actions').send_to_qf() <CR>",
+         { desc = "[S]pectre send all items to [q]uickfix list" },
+      },
+   },
+   x = {
+      ["<leader>sw"] = {
+         "<esc><cmd> lua require('spectre').open_visual() <CR>",
+         { desc = "[S]pectre search current [w]ord" },
+      },
+   },
+}
+
+M.telescope = {
+   n = {
+      ["<leader>ff"] = {
+         "<cmd> Telescope find_files <CR>",
+         { desc = "Telescope [f]iles" },
+      },
+      ["<leader>fa"] = {
+         "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
+         { desc = "Telescope [a]ll files" },
+      },
+      ["<leader>fn"] = {
+         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
+         { desc = "Telescope [n]vim config files" },
+      },
+      ["<leader>fg"] = {
+         "<cmd> Telescope live_grep <CR>",
+         { desc = "Telescope [g]rep" },
+      },
+      ["<leader>fG"] = {
+         function()
+            require("telescope.builtin").live_grep({ grep_open_files = true })
+         end,
+         { desc = "Telescope [G]rep local buffers" },
+      },
+      ["<leader>fS"] = {
+         "<cmd> Telescope grep_string <CR>",
+         { desc = "Telescope grep [S]tring" },
+      },
+      ["<leader>fT"] = {
+         function()
+            require("telescope.builtin").grep_string({ grep_open_files = true })
+         end,
+         { desc = "Telescope grep s[T]ring local buffers" },
+      },
+      ["<leader>fb"] = {
+         "<cmd> Telescope buffers <CR>",
+         { desc = "Telescope [b]uffers" },
+      },
+      ["<leader>fh"] = {
+         "<cmd> Telescope help_tags <CR>",
+         { desc = "Telescope [h]elp tags" },
+      },
+      ["<leader>fz"] = {
+         "<cmd> Telescope current_buffer_fuzzy_find <CR>",
+         { desc = "Telescope fu[z]zy find current buffer" },
+      },
+      ["<leader>fe"] = {
+         "<cmd> Telescope oldfiles <CR>",
+         { desc = "Telescope r[e]cent files" },
+      },
+      -- Consider using pcall here
+      ["<leader>fc"] = {
+         "<cmd> Telescope git_commits <CR>",
+         { desc = "Telescope Git [c]ommits" },
+      },
+      ["<leader>fC"] = {
+         "<cmd> Telescope git_bcommits <CR>",
+         { desc = "Telescope Git buffer [C]ommits" },
+      },
+      ["<leader>fi"] = {
+         "<cmd> Telescope git_files <CR>",
+         { desc = "Telescope G[i]t files" },
+      },
+      ["<leader>fs"] = {
+         "<cmd> Telescope git_status <CR>",
+         { desc = "Telescope Git [s]tatus" },
+      },
+      ["<leader>f'"] = {
+         "<cmd> Telescope marks <CR>",
+         { desc = "Telescope marks" },
+      },
+      ["<leader>co"] = {
+         "<cmd> Telescope colorscheme enable_preview=true <CR>",
+         { desc = "Telescope [co]lorscheme" },
+      },
+   },
+}
+
+M.terminal = {
+   n = {
+      ["<leader>th"] = {
+         "<cmd> split | terminal <CR>",
+         { desc = "[T]erminal [h]orizontal (terminal)" },
+      },
+      ["<leader>tv"] = {
+         "<cmd> vsplit | terminal <CR>",
+         { desc = "[T]erminal [v]ertical (terminal)" },
+      },
+      ["<leader>tf"] = {
+         "<cmd> FloatermNew <CR>",
+         { desc = "[T]erminal [f]float (terminal)" },
+      },
+   },
+}
+
+M.tmux_navigator = {
+   n = {
+      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
+      ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
+      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
+      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
+   },
+}
+
+M.todo_comments = {
+   n = {
+      ["]t"] = {
+         function()
+            require("todo-comments").jump_next()
+         end,
+         { desc = "TODO next" },
+      },
+      -- You can also specify a list of valid jump keywords
+      -- ["]t"] = {
+      -- function()
+      --    require("todo-comments").jump_next({
+      --       keywords = { "ERROR", "WARNING" },
+      --    })
+      -- end,
+      --   { desc = "TODO next" },
+      -- },
+      ["[t"] = {
+         function()
+            require("todo-comments").jump_prev()
+         end,
+         { desc = "TODO previous" },
+      },
+      ["<leader>ft"] = {
+         function()
+            require("todo-comments")
+            vim.cmd("TodoTelescope")
+         end,
+         { desc = "Telescope [t]odo" },
+      },
+      ["<leader>xt"] = {
+         function()
+            require("todo-comments")
+            vim.cmd("TodoTrouble")
+         end,
+         { desc = "Trouble [t]odo" },
+      },
+   },
+}
+
 ------------------------------------------------------------------------------
 -- Global keymaps for key-triggered lazy-loaded plugins
+M.background_transparency = {
+   plugin = true,
+   n = {
+      ["<leader>br"] = {
+         function()
+            local state = require("core.state")
+            local ui = require("core.ui")
+            state.background_transparency_enabled_at_startup =
+               not state.background_transparency_enabled_at_startup
+            ui.toggle_background_transparency()
+            -- Hack to delay message slightly so it prints
+            -- **after** color-related  updates
+            vim.defer_fn(function()
+               print(
+                  "Background transparency:",
+                  state.background_transparency_enabled_at_startup
+               )
+            end, 1)
+         end,
+         {
+            desc = "[B]ackground t[r]ansparency toggle",
+         },
+      },
+   },
+}
+
 M.outline = {
    plugin = true,
    keys = {
@@ -446,6 +472,39 @@ M.outline = {
          "<leader>so",
          "<cmd> Outline! <CR>",
          desc = "Outline [s]ymbols t[o]ggle (toggle)",
+      },
+   },
+}
+
+M.nvim_treesitter = {
+   plugin = true,
+   keymaps = {
+      init_selection = "<leader>ss",
+      -- The keymaps below become active only after init_selection is triggered
+      node_incremental = "<leader>si",
+      scope_incremental = "<leader>sc",
+      node_decremental = "<leader>sd",
+   },
+}
+
+M.nvim_treesitter_context = {
+   n = {
+      ["<leader>tc"] = {
+         function()
+            local tsc = require("treesitter-context")
+            tsc.toggle()
+            print("Tree-sitter context:", tsc.enabled())
+         end,
+         { desc = "[T]ree-sitter [c]ontext toggle" },
+      },
+      ["[^"] = {
+         function()
+            local tsc = require("treesitter-context")
+            tsc.go_to_context(vim.v.count1)
+         end,
+         {
+            desc = "Tree-sitter jump to parent context (repeatable with count)",
+         },
       },
    },
 }
@@ -486,6 +545,13 @@ M.trouble = {
    },
 }
 
+M.undotree = {
+   plugin = true,
+   keys = {
+      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
+   },
+}
+
 M.which_key = {
    plugin = true,
    keys = {
@@ -499,65 +565,47 @@ M.which_key = {
    },
 }
 
-M.undotree = {
-   plugin = true,
-   keys = {
-      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
-   },
-}
-
-M.nvim_treesitter = {
-   plugin = true,
-   keymaps = {
-      init_selection = "<leader>ss",
-      -- The keymaps below become active only after init_selection is triggered
-      node_incremental = "<leader>si",
-      scope_incremental = "<leader>sc",
-      node_decremental = "<leader>sd",
-   },
-}
-
-M.nvim_treesitter_context = {
-   n = {
-      ["<leader>tc"] = {
-         function()
-            local tsc = require("treesitter-context")
-            tsc.toggle()
-            print("Tree-sitter context:", tsc.enabled())
-         end,
-         { desc = "[T]ree-sitter [c]ontext toggle" },
-      },
-   },
-}
-
-M.background_transparency = {
-   plugin = true,
-   n = {
-      ["<leader>br"] = {
-         function()
-            local state = require("core.state")
-            local ui = require("core.ui")
-            state.background_transparency_enabled_at_startup =
-               not state.background_transparency_enabled_at_startup
-            ui.toggle_background_transparency()
-            -- Hack to delay message slightly so it prints
-            -- **after** color-related  updates
-            vim.defer_fn(function()
-               print(
-                  "Background transparency:",
-                  state.background_transparency_enabled_at_startup
-               )
-            end, 1)
-         end,
-         {
-            desc = "[B]ackground t[r]ansparency toggle",
-         },
-      },
-   },
-}
-
 ------------------------------------------------------------------------------
 -- Buffer-local (plugin) keymaps
+M.compile_and_run_current_cpp = {
+   plugin = true,
+   n = {
+      ["<leader>cx"] = {
+         function()
+            local current_file = vim.fn.expand("%:p")
+            local output_file = vim.fn.fnamemodify(current_file, ":r")
+            local terminal_cmd = "split | term " .. vim.o.shell .. ' -c "make '
+            if vim.v.count > 0 then
+               local flag = (vim.bo.filetype == "c") and "CFLAGS=-std=c"
+                  or "CXXFLAGS=-std=c++"
+               terminal_cmd = terminal_cmd .. flag .. vim.v.count .. " "
+            end
+            terminal_cmd = terminal_cmd
+               .. output_file
+               .. " && "
+               .. output_file
+               .. '"'
+            vim.api.nvim_command(terminal_cmd)
+         end,
+         { desc = "[C]ompile and e[x]ecute current C/C++ buffer" },
+      },
+   },
+}
+
+M.go = {
+   plugin = true,
+   n = {
+      ["<leader>gsj"] = {
+         "<cmd> GoTagAdd json <CR>",
+         { desc = "Add struct ta[gs] [j]SON" },
+      },
+      ["<leader>gsy"] = {
+         "<cmd> GoTagAdd yaml <CR>",
+         { desc = "Add struct ta[gs] [y]AML" },
+      },
+   },
+}
+
 M.haskell_tools = {
    plugin = true,
    n = {
@@ -604,32 +652,6 @@ M.haskell_tools = {
    },
 }
 
-M.rust = {
-   plugin = true,
-   n = {
-      ["<leader>rcu"] = {
-         function()
-            require("crates").upgrade_all_crates()
-         end,
-         { desc = "[R]ust [c]rates [u]pdate" },
-      },
-   },
-}
-
-M.go = {
-   plugin = true,
-   n = {
-      ["<leader>gsj"] = {
-         "<cmd> GoTagAdd json <CR>",
-         { desc = "Add struct ta[gs] [j]SON" },
-      },
-      ["<leader>gsy"] = {
-         "<cmd> GoTagAdd yaml <CR>",
-         { desc = "Add struct ta[gs] [y]AML" },
-      },
-   },
-}
-
 M.nvim_dap = {
    plugin = true,
    n = {
@@ -652,18 +674,6 @@ M.nvim_dap = {
    },
 }
 
-M.nvim_dap_python = {
-   plugin = true,
-   n = {
-      ["<leader>dpr"] = {
-         function()
-            require("dap-python").test_method()
-         end,
-         { desc = "[D]AP [p]ython [r]un unit testing" },
-      },
-   },
-}
-
 M.nvim_dap_go = {
    plugin = true,
    n = {
@@ -682,6 +692,18 @@ M.nvim_dap_go = {
    },
 }
 
+M.nvim_dap_python = {
+   plugin = true,
+   n = {
+      ["<leader>dpr"] = {
+         function()
+            require("dap-python").test_method()
+         end,
+         { desc = "[D]AP [p]ython [r]un unit testing" },
+      },
+   },
+}
+
 M.nvim_lspconfig = {
    plugin = true,
    n = {
@@ -695,7 +717,7 @@ M.nvim_lspconfig = {
       },
       ["K"] = {
          function()
-            vim.lsp.buf.hover({ border = "rounded" })
+            vim.lsp.buf.hover()
          end,
          { desc = "LSP hover" },
       },
@@ -706,7 +728,7 @@ M.nvim_lspconfig = {
       },
       ["<leader>sh"] = {
          function()
-            vim.lsp.buf.signature_help({ border = "rounded" })
+            vim.lsp.buf.signature_help()
          end,
          { desc = "LSP [s]ignature [h]elp" },
       },
@@ -842,31 +864,6 @@ M.nvim_lspconfig = {
    },
 }
 
-M.compile_and_run_current_cpp = {
-   plugin = true,
-   n = {
-      ["<leader>cx"] = {
-         function()
-            local current_file = vim.fn.expand("%:p")
-            local output_file = vim.fn.fnamemodify(current_file, ":r")
-            local terminal_cmd = "split | term " .. vim.o.shell .. ' -c "make '
-            if vim.v.count > 0 then
-               local flag = (vim.bo.filetype == "c") and "CFLAGS=-std=c"
-                  or "CXXFLAGS=-std=c++"
-               terminal_cmd = terminal_cmd .. flag .. vim.v.count .. " "
-            end
-            terminal_cmd = terminal_cmd
-               .. output_file
-               .. " && "
-               .. output_file
-               .. '"'
-            vim.api.nvim_command(terminal_cmd)
-         end,
-         { desc = "[C]ompile and e[x]ecute current C/C++ buffer" },
-      },
-   },
-}
-
 M.run_current_python = {
    plugin = true,
    n = {
@@ -913,6 +910,18 @@ M.run_current_zig = {
             vim.api.nvim_command(terminal_cmd)
          end,
          { desc = "E[x]ecute current Zig buffer" },
+      },
+   },
+}
+
+M.rust = {
+   plugin = true,
+   n = {
+      ["<leader>rcu"] = {
+         function()
+            require("crates").upgrade_all_crates()
+         end,
+         { desc = "[R]ust [c]rates [u]pdate" },
       },
    },
 }

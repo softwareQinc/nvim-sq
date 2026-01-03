@@ -4,8 +4,8 @@ return {
       "hrsh7th/nvim-cmp",
       event = { "InsertEnter" },
       dependencies = {
+         -- Snippet plugin
          {
-            -- Snippet plugin
             "L3MON4D3/LuaSnip",
             -- Follow latest release.
             -- Replace <CurrentMajor> by the latest released major (first
@@ -19,12 +19,12 @@ return {
             -- install jsregexp (optional!).
             build = "make install_jsregexp",
          },
+         -- Nice LSP completion symbols
          {
-            -- Nice LSP completion symbols
             "onsails/lspkind.nvim",
          },
+         -- Autopairing of (){}[] etc
          {
-            -- Autopairing of (){}[] etc
             "windwp/nvim-autopairs",
             opts = {
                fast_wrap = {},
@@ -41,8 +41,8 @@ return {
                )
             end,
          },
+         -- cmp sources plugins
          {
-            -- cmp sources plugins
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp", -- TODO: Eventually switch to the native nvim 0.11 LSP autocompletion
@@ -50,8 +50,8 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-path",
          },
+         -- Additional auto completion, command line
          {
-            -- Additional auto completion, command line
             "hrsh7th/cmp-cmdline",
             event = "CmdlineEnter",
             dependencies = { "hrsh7th/cmp-buffer" },

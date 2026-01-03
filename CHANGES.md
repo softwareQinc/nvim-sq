@@ -1,11 +1,38 @@
+# nvim-sq 1.14 - 7 January 2026
+
+## Changes
+
+- Added
+  [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)
+  and [ESLint](https://eslint.org/) (pre-installed with native support for both
+  JavaScript and TypeScript)
+- Removed [hls](https://github.com/haskell/haskell-language-server), as
+  [haskell-tools](https://github.com/mrcjkb/haskell-tools.nvim) already
+  provides the required functionality
+- Minor UI fixes
+
+## New plugins
+
+- [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- `[^` - Tree-sitter jump to parent context (repeatable with count)
+
+---
+
 # nvim-sq 1.13 - 21 December 2025
 
 ## Changes
 
 - Added [Tombi](https://github.com/tombi-toml/tombi), a TOML language server
-  (installed by default)
+  (pre-installed)
 - Added [YAML Language Server](https://github.com/redhat-developer/yaml-language-server)
-  (installed by default)
+  (pre-installed)
 
 ## New plugins
 

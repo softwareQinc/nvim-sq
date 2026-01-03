@@ -5,11 +5,7 @@ return {
    {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-      opts = {
-         ui = {
-            border = "rounded",
-         },
-      },
+      opts = {},
    },
 
    -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
@@ -50,17 +46,19 @@ return {
             "bashls", -- Bash/sh
             "clangd", -- C, C++
             "cmake", -- C, C++ build system
+            "eslint", -- JavaScript/TypeScript
             "gopls", -- Go
-            "hls", -- Haskell
+            -- "hls", -- Haskell, not needed, we use haskell-tools
             -- Do not install julials via Mason
             -- https://discourse.julialang.org/t/neovim-languageserver-jl-crashing-again/130273
             -- "julials",
             "lua_ls", -- Lua
             "marksman", -- Markdown
             "tombi", -- TOML
-            "ruff", -- Rust
+            "ruff", -- Python
             "rust_analyzer", -- Rust
             "texlab", -- LaTeX
+            "ts_ls", -- JavaScript/TypeScript
             "vimls", -- Vim
             "yamlls", -- YAML
             "zls", -- Zig
@@ -87,13 +85,44 @@ return {
             require("cmp_nvim_lsp").default_capabilities()
          )
 
+         -- Configure the servers
          local servers = {
+            -- Servers that do not require custom settings
+            basedpyright = {}, -- Python
+            bashls = {}, -- Bash/sh
+            cmake = {}, -- CMake
+            marksman = {}, -- Markdown
+            ruff = {}, -- Python
+            tombi = {}, -- TOML
+            ts_ls = {}, -- JavaScript/TypeScript
+            vimls = {}, -- Vim script
+            yamlls = {}, -- YAML
+            zls = {}, -- Zig
+
+            -- Servers that require custom settings
             -- C, C++
             clangd = {
                cmd = {
                   "clangd",
                   "--header-insertion=never",
                   "--offset-encoding=utf-16",
+               },
+            },
+
+            -- JavaScript/TypeScript
+            eslint = {
+               filetypes = {
+                  "javascript",
+                  "javascript.jsx",
+                  "javascriptreact",
+                  "svelte",
+                  "typescript",
+                  "typescript.tsx",
+                  "typescriptreact",
+                  "vue",
+               },
+               settings = {
+                  workingDirectory = { mode = "auto" },
                },
             },
 
@@ -131,15 +160,6 @@ return {
                filetypes = { "julia" },
             },
 
-            -- LaTeX
-            texlab = {
-               settings = {
-                  texlab = {
-                     latexindent = { modifyLineBreaks = true },
-                  },
-               },
-            },
-
             -- Lua
             lua_ls = {
                settings = {
@@ -161,14 +181,14 @@ return {
                },
             },
 
-            -- TOML
-            tombi = {},
-
-            -- YAML
-            yamlls = {},
-
-            -- Zig
-            zls = {},
+            -- LaTeX
+            texlab = {
+               settings = {
+                  texlab = {
+                     latexindent = { modifyLineBreaks = true },
+                  },
+               },
+            },
          }
 
          -- Iterate over LSPs and apply global defaults
@@ -180,6 +200,7 @@ return {
             vim.lsp.enable(server_name)
          end
 
+         -- Additional settings
          vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup(
                "Nvim-lspconfig",

@@ -25,8 +25,10 @@ M = {
       virtualedit = "block",
       scrolloff = 8,
 
+      -- Tree-sitter folding is set in "lua/core/autocmds.lua" (Fold method)
+      foldmethod = "indent",
       foldlevelstart = 99,
-      -- foldmethod is set in "lua/core/autocmds.lua" (see Folding)
+      foldnestmax = 10,
 
       termguicolors = true,
       undofile = true,
@@ -41,6 +43,8 @@ M = {
       -- ignorecase = true,
       -- textwidth = 80,
       -- colorcolumn = "80,120",
+
+      winborder = "rounded",
    },
    g = {
       -- OpenQASM falls back to version 2.0

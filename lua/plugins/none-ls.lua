@@ -26,6 +26,7 @@ return {
                   "html",
                   "javascript",
                   "json",
+                  "json5",
                   "julia",
                   "markdown",
                   "md",
@@ -41,7 +42,9 @@ return {
             null_ls.builtins.formatting.stylua,
 
             -- Diagnostics
+            -- CMake
             null_ls.builtins.diagnostics.cmake_lint,
+            -- Python
             null_ls.builtins.diagnostics.mypy.with({
                extra_args = function()
                   local virtual = os.getenv("VIRTUAL_ENV")
