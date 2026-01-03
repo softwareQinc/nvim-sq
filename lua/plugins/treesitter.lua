@@ -2,6 +2,8 @@ return {
    -- Tree-sitter: LSP syntax tree and better syntax highlighting
    {
       "nvim-treesitter/nvim-treesitter",
+      -- TODO: migrate to 'main'
+      tag = "v0.10.0", -- last version before master->main breaking changes
       event = { "BufReadPost", "BufNewFile" },
       cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
       build = ":TSUpdate",

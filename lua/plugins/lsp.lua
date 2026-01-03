@@ -5,11 +5,7 @@ return {
    {
       "williamboman/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-      opts = {
-         ui = {
-            border = "rounded",
-         },
-      },
+      opts = {},
    },
 
    -- Linters and formatters ONLY. DO NOT add LSP servers or DAPs here.
@@ -51,7 +47,7 @@ return {
             "clangd", -- C, C++
             "cmake", -- C, C++ build system
             "gopls", -- Go
-            "hls", -- Haskell
+            -- "hls", -- Haskell, not needed, we use haskell-tools
             -- Do not install julials via Mason
             -- https://discourse.julialang.org/t/neovim-languageserver-jl-crashing-again/130273
             -- "julials",

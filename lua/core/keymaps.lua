@@ -695,7 +695,7 @@ M.nvim_lspconfig = {
       },
       ["K"] = {
          function()
-            vim.lsp.buf.hover({ border = "rounded" })
+            vim.lsp.buf.hover()
          end,
          { desc = "LSP hover" },
       },
@@ -706,7 +706,7 @@ M.nvim_lspconfig = {
       },
       ["<leader>sh"] = {
          function()
-            vim.lsp.buf.signature_help({ border = "rounded" })
+            vim.lsp.buf.signature_help()
          end,
          { desc = "LSP [s]ignature [h]elp" },
       },

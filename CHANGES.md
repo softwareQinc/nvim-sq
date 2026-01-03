@@ -1,3 +1,26 @@
+# nvim-sq 1.14 - 3 January 2026
+
+## Changes
+
+- Minor UI fixes
+- Removed [`hls`](https://github.com/haskell/haskell-language-server), as
+  [`haskell-tools`](https://github.com/mrcjkb/haskell-tools.nvim)
+  already provides the required functionality
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.13 - 21 December 2025
 
 ## Changes

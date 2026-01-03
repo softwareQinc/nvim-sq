@@ -41,6 +41,8 @@ M = {
       -- ignorecase = true,
       -- textwidth = 80,
       -- colorcolumn = "80,120",
+
+      winborder = "rounded",
    },
    g = {
       -- OpenQASM falls back to version 2.0
