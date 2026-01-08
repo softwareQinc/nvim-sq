@@ -30,7 +30,8 @@ end
 
 -- Map keys for single non-plugin sub-table
 function M.map_keys(keymap_tbl, additional_options)
-   local allowed_modes = { n = true, i = true, v = true, x = true, c = true }
+   local allowed_modes =
+      { n = true, i = true, v = true, s = true, x = true, o = true, c = true }
    for mode, rhs in pairs(keymap_tbl) do
       -- Check if 'mode' is a table; if so, check if the first element is
       -- allowed

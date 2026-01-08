@@ -1,4 +1,4 @@
-# nvim-sq 1.14 - 7 January 2026
+# nvim-sq 1.14 - 8 January 2026
 
 ## Changes
 
@@ -53,8 +53,8 @@
 
 ## Changes
 
-- [`basedpyright`](https://github.com/DetachHead/basedpyright) now replaces
-  [`pyright`](https://github.com/microsoft/pyright) as the default Python LSP
+- [basedpyright](https://github.com/DetachHead/basedpyright) now replaces
+  [pyright](https://github.com/microsoft/pyright) as the default Python LSP
 - Updated CMake Lua snippets
 - Restore last cursor position and centre the screen when reopening a file
 - Background transparency toggle now shows its current status

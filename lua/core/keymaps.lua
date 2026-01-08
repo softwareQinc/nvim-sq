@@ -260,6 +260,28 @@ M.netrw = {
    },
 }
 
+M.nvim_treesitter_context = {
+   n = {
+      ["<leader>tc"] = {
+         function()
+            local tsc = require("treesitter-context")
+            tsc.toggle()
+            print("Tree-sitter context:", tsc.enabled())
+         end,
+         { desc = "[T]ree-sitter [c]ontext toggle" },
+      },
+      ["[^"] = {
+         function()
+            local tsc = require("treesitter-context")
+            tsc.go_to_context(vim.v.count1)
+         end,
+         {
+            desc = "Tree-sitter jump to parent context (repeatable with count)",
+         },
+      },
+   },
+}
+
 M.oil = {
    n = {
       ["<leader>."] = { "<cmd> Oil <CR>", { desc = "Oil [.]" } },
@@ -438,7 +460,7 @@ M.todo_comments = {
 }
 
 ------------------------------------------------------------------------------
--- Global keymaps for key-triggered lazy-loaded plugins
+-- Global keymaps for key-triggered (lazy-loaded) plugins
 M.background_transparency = {
    plugin = true,
    n = {
@@ -465,17 +487,6 @@ M.background_transparency = {
    },
 }
 
-M.outline = {
-   plugin = true,
-   keys = {
-      {
-         "<leader>so",
-         "<cmd> Outline! <CR>",
-         desc = "Outline [s]ymbols t[o]ggle (toggle)",
-      },
-   },
-}
-
 M.nvim_treesitter = {
    plugin = true,
    keymaps = {
@@ -487,24 +498,13 @@ M.nvim_treesitter = {
    },
 }
 
-M.nvim_treesitter_context = {
-   n = {
-      ["<leader>tc"] = {
-         function()
-            local tsc = require("treesitter-context")
-            tsc.toggle()
-            print("Tree-sitter context:", tsc.enabled())
-         end,
-         { desc = "[T]ree-sitter [c]ontext toggle" },
-      },
-      ["[^"] = {
-         function()
-            local tsc = require("treesitter-context")
-            tsc.go_to_context(vim.v.count1)
-         end,
-         {
-            desc = "Tree-sitter jump to parent context (repeatable with count)",
-         },
+M.outline = {
+   plugin = true,
+   keys = {
+      {
+         "<leader>so",
+         "<cmd> Outline! <CR>",
+         desc = "Outline [s]ymbols t[o]ggle (toggle)",
       },
    },
 }

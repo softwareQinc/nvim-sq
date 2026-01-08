@@ -24,8 +24,6 @@ return {
             sync_install = false,
 
             -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI
-            -- installed locally
             auto_install = true,
 
             highlight = {
@@ -33,15 +31,11 @@ return {
                disable = {
                   "latex",
                   "tmux",
-                  -- "markdown",
                },
             },
 
             indent = {
                enable = true,
-               -- disable = {
-               --   "python",
-               -- },
             },
 
             incremental_selection = {
@@ -54,6 +48,7 @@ return {
          })
       end,
    },
+
    -- Tree-sitter: Current code context
    {
       "nvim-treesitter/nvim-treesitter-context",
