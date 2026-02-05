@@ -30,7 +30,7 @@ function M.set_light_scheme(color_scheme)
    state.color_toggle_current.dark_scheme_set = false
 
    vim.opt.background = "light"
-   vim.cmd("hi! link SignColumn Normal")
+   vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal", default = false })
 end
 
 -- Set a dark color scheme
@@ -59,7 +59,7 @@ function M.set_dark_scheme(color_scheme)
    state.color_toggle_current.dark_scheme_set = true
 
    vim.opt.background = "dark"
-   vim.cmd("hi! link SignColumn Normal")
+   vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal", default = false })
 end
 
 -- Auto color scheme switch callback, used by AutoColorScheme group in
@@ -131,7 +131,14 @@ end
 function M.toggle_background_transparency()
    if state.background_transparency_enabled_at_startup then
       -- Set Normal background to transparent (NONE)
-      vim.api.nvim_set_hl(0, "Normal", { ctermbg = "NONE", bg = "NONE" })
+      for _, hl in ipairs({
+         "Normal",
+         "NormalNC",
+         "NormalFloat",
+         "SignColumn",
+      }) do
+         vim.api.nvim_set_hl(0, hl, { bg = "NONE" })
+      end
    else
       -- Reload the color scheme to restore the default, opaque background
       vim.cmd.colorscheme(vim.g.colors_name)
