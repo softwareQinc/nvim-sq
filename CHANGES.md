@@ -1,3 +1,23 @@
+# nvim-sq 1.15 - 5 February 2026
+
+## Changes
+
+- Minor UI fixes
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.14 - 8 January 2026
 
 ## Changes
