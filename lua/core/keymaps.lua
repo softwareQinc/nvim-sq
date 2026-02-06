@@ -715,16 +715,21 @@ M.nvim_lspconfig = {
          vim.lsp.buf.declaration,
          { desc = "LSP [g]o to [D]eclaration" },
       },
+      ["gi"] = {
+         -- NOTE: Implemented by default in nvim 0.11 as `gri`
+         vim.lsp.buf.implementation,
+         { desc = "LSP [g]o to [i]mplementation" },
+      },
+      ["gs"] = {
+         -- NOTE: Implemented by default in nvim 0.11 as `grr`
+         vim.lsp.buf.references,
+         { desc = "LSP [g]o to reference[s]" },
+      },
       ["K"] = {
          function()
             vim.lsp.buf.hover()
          end,
          { desc = "LSP hover" },
-      },
-      -- NOTE: Implemented by default in nvim 0.11 as `gri`
-      ["gi"] = {
-         vim.lsp.buf.implementation,
-         { desc = "LSP [g]o to [i]mplementation" },
       },
       ["<leader>sh"] = {
          function()
@@ -750,12 +755,10 @@ M.nvim_lspconfig = {
          vim.lsp.buf.type_definition,
          { desc = "LSP type [D]efinition" },
       },
-      -- NOTE: Implemented by default in nvim 0.11 as `grn`
-      ["<leader>rn"] = { vim.lsp.buf.rename, { desc = "LSP [r]e[n]ame" } },
-      -- NOTE: Implemented by default in nvim 0.11 as `grr`
-      ["gs"] = {
-         vim.lsp.buf.references,
-         { desc = "LSP [g]o to reference[s]" },
+      ["<leader>rn"] = {
+         -- NOTE: Implemented by default in nvim 0.11 as `grn`
+         vim.lsp.buf.rename,
+         { desc = "LSP [r]e[n]ame" },
       },
       ["<leader>fos"] = {
          function()
@@ -763,11 +766,11 @@ M.nvim_lspconfig = {
             state.lsp_format_on_save_enabled_at_startup =
                not state.lsp_format_on_save_enabled_at_startup
             print(
-               "LSP format on save:",
+               "LSP format on save (global):",
                state.lsp_format_on_save_enabled_at_startup
             )
          end,
-         { desc = "LSP [fo]rmat on [s]ave toggle" },
+         { desc = "LSP [fo]rmat on [s]ave (global) toggle" },
       },
       ["<leader>foS"] = {
          function()
@@ -783,7 +786,7 @@ M.nvim_lspconfig = {
                vim.b.lsp_format_on_save_current_buffer
             )
          end,
-         { desc = "LSP [fo]rmat on [S]ave current buffer toggle" },
+         { desc = "LSP [fo]rmat on [S]ave (current buffer) toggle" },
       },
       ["<leader>fd"] = {
          "<cmd> Telescope lsp_definitions <CR>",
@@ -794,17 +797,47 @@ M.nvim_lspconfig = {
          { desc = "Telescope LSP [r]eferences" },
       },
       ["<leader>ih"] = {
-         -- LSP inlay hints, requires Neovim 0.10 or later
          function()
-            local lsp_inlay_hint = vim.lsp["inlay_hint"]
-            if lsp_inlay_hint then
-               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-               print("LSP inlay hints:", vim.lsp.inlay_hint.is_enabled({}))
-            else
+            if not vim.lsp.inlay_hint then
                print("LSP inlay hints not supported!")
+               return
             end
+            vim.g.inlay_hints_enabled = not vim.g.inlay_hints_enabled
+            -- apply ONLY to buffers without local override
+            for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+               if
+                  vim.api.nvim_buf_is_loaded(bufnr)
+                  and vim.b[bufnr].inlay_hints_enabled == nil
+               then
+                  vim.lsp.inlay_hint.enable(
+                     vim.g.inlay_hints_enabled,
+                     { bufnr = bufnr }
+                  )
+               end
+            end
+            print("LSP inlay hints (global):", vim.g.inlay_hints_enabled)
          end,
-         { desc = "LSP [i]nlay [h]ints toggle" },
+         { desc = "LSP [i]nlay [h]ints (global) toggle" },
+      },
+      ["<leader>iH"] = {
+         function()
+            if not vim.lsp.inlay_hint then
+               print("LSP inlay hints not supported!")
+               return
+            end
+            local bufnr = vim.api.nvim_get_current_buf()
+            vim.b.inlay_hints_enabled =
+               not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr })
+            vim.lsp.inlay_hint.enable(
+               vim.b.inlay_hints_enabled,
+               { bufnr = bufnr }
+            )
+            print(
+               "LSP inlay hints (current buffer):",
+               vim.b.inlay_hints_enabled
+            )
+         end,
+         { desc = "LSP [i]nlay [H]ints (current buffer) toggle" },
       },
       -- LSP diagnostics via virtual lines/text
       ["<leader>dl0"] = {
@@ -850,8 +883,8 @@ M.nvim_lspconfig = {
       },
    },
    [{ "n", "x" }] = {
-      -- NOTE: Implemented by default in nvim 0.11 as `gra`
       ["<leader>ca"] = {
+         -- NOTE: Implemented by default in nvim 0.11 as `gra`
          vim.lsp.buf.code_action,
          { desc = "LSP [c]ode [a]ctions" },
       },

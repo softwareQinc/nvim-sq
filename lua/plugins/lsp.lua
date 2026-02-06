@@ -3,7 +3,7 @@ return {
    -- We use mason-lspconfig for language servers, and Mason only for DAPs,
    -- linters and formatters
    {
-      "williamboman/mason.nvim",
+      "mason-org/mason.nvim",
       cmd = { "Mason", "MasonInstall", "MasonUpdate" },
       opts = {},
    },
@@ -13,7 +13,7 @@ return {
    -- DAPs are installed in "dap.lua", see mason-nvim-dap:setup({...})
    {
       "jay-babu/mason-null-ls.nvim",
-      dependencies = { "nvimtools/none-ls.nvim", "williamboman/mason.nvim" },
+      dependencies = { "mason-org/mason.nvim", "nvimtools/none-ls.nvim" },
       opts = {
          ensure_installed = {
             -- Formatters
@@ -37,8 +37,8 @@ return {
 
    -- Manages (installs/removes etc.) language servers only
    {
-      "williamboman/mason-lspconfig.nvim",
-      dependencies = { "neovim/nvim-lspconfig" },
+      "mason-org/mason-lspconfig.nvim",
+      dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
       opts = {
          -- LSPs that are installed by default
          ensure_installed = {
@@ -166,6 +166,17 @@ return {
                   Lua = {
                      hint = { enable = true },
                      format = { enable = false },
+                     -- TODO: Revisit/fix, see https://github.com/folke/lazydev.nvim/issues/136
+                     workspace = {
+                        checkThirdParty = false,
+                        library = {
+                           vim.env.VIMRUNTIME,
+                           {
+                              path = "${3rd}/luv/library",
+                              words = { "vim%.uv" },
+                           },
+                        },
+                     },
                   },
                },
             },
@@ -212,11 +223,31 @@ return {
                if client and client.name and client.name == "lua_ls" then
                   client.server_capabilities.semanticTokensProvider = nil
                end
+
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
                -- Buffer-local keymaps
                local keymaps = require("core.keymaps")
                util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
+
+               -- Inlay hints policy (buffer overrides global)
+               if vim.lsp.inlay_hint then
+                  local bufnr = ev.buf
+                  if vim.b[bufnr].inlay_hints_enabled ~= nil then
+                     -- Buffer override wins (even if false)
+                     vim.lsp.inlay_hint.enable(
+                        vim.b[bufnr].inlay_hints_enabled,
+                        { bufnr = bufnr }
+                     )
+                  elseif vim.g.inlay_hints_enabled ~= nil then
+                     -- Apply global only if explicitly set; default stays untouched otherwise
+                     vim.lsp.inlay_hint.enable(
+                        vim.g.inlay_hints_enabled == true,
+                        { bufnr = bufnr }
+                     )
+                  end
+               end
             end,
             desc = "Keymaps nvim-lspconfig (buffer-local)",
          })

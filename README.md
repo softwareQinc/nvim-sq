@@ -227,7 +227,7 @@ If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
 [here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua),
 fails to install or does not work properly, ensure that you have
 [Lua](https://www.lua.org) or [LuaJIT](https://luajit.org)
-installed on your system. For installation instructions, follow
+installed on your system. For detailed installation instructions, follow
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart).
 
 ---

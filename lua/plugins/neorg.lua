@@ -1,7 +1,6 @@
 return {
    "nvim-neorg/neorg",
    ft = "norg",
-   dependencies = { "vhyrro/luarocks.nvim" },
    version = "*", -- pin Neorg to the latest stable release
    opts = {
       load = {

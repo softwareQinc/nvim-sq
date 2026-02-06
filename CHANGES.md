@@ -1,3 +1,25 @@
+# nvim-sq 1.15 - 14 February 2026
+
+## Changes
+
+- Minor UI tweaks and Mason plugin URL fixes
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- [luarocks.nvim](https://github.com/vhyrro/luarocks.nvim), not required
+  anymore by [neorg](https://github.com/nvim-neorg/neorg)
+
+## New key mappings
+
+- `<leader>iH` - Toggle inlay hints for the current buffer (sticky; overrides
+  the global setting set by `<leader>ih`)
+
+---
+
 # nvim-sq 1.14 - 8 January 2026
 
 ## Changes
@@ -105,7 +127,7 @@
   deprecation bug fixes
 - Built-in terminal now uses the default `vim.o.shell` instead of `bash`
 - Aesthetic improvements to LSP inline diagnostic display
-- Executing <leader>cx in C/C++ buffers now supports an optional COUNT to set
+- Executing `<leader>cx` in C/C++ buffers now supports an optional COUNT to set
   the language standard. For example, `23<leader>cx` selects C++23 in a `cpp`
   buffer, while `11<leader>cx` selects C11 in a `c` buffer.
 - Bug fix in executing C/C++ buffers with `<leader>cx`
