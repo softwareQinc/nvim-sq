@@ -1,8 +1,10 @@
 return {
    "nvim-neorg/neorg",
+   -- FIXME: enable when Neorg fixes its Tree-sitter on main integration
+   enabled = false,
    ft = "norg",
    dependencies = { "vhyrro/luarocks.nvim" },
-   version = "*", -- pin Neorg to the latest stable release
+   -- version = "*", -- pin Neorg to the latest stable release
    opts = {
       load = {
          ["core.defaults"] = {},
