@@ -51,6 +51,12 @@ functionality.
     ```shell
     brew install lazygit
     ```
+- **`luarocks`**
+  Required by [lazy.nvim](https://lazy.folke.io/).
+  - **macOS**
+    ```shell
+    brew install luarocks
+    ```
 - **`npm`**
   Required by [mason.nvim](https://github.com/mason-org/mason.nvim) to install
   and manage various language servers, linters, formatters, and other
@@ -225,9 +231,8 @@ assumes that the OpenAI API key is available as a text file in
 
 If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
 [here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua),
-fails to install or does not work properly, ensure that you have
-[Lua](https://www.lua.org) or [LuaJIT](https://luajit.org)
-installed on your system. For detailed installation instructions, follow
-[Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart).
+fails to install or does not function correctly, refer to the
+[Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart) for
+detailed installation instructions.
 
 ---

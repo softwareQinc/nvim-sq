@@ -1,4 +1,4 @@
-# nvim-sq 1.15 - 14 February 2026
+# nvim-sq 1.15 - 15 February 2026
 
 ## Changes
 
@@ -10,8 +10,8 @@
 
 ## Removed plugins
 
-- [luarocks.nvim](https://github.com/vhyrro/luarocks.nvim), not required
-  anymore by [neorg](https://github.com/nvim-neorg/neorg)
+- [luarocks.nvim](https://github.com/vhyrro/luarocks.nvim), no longer required
+  by [neorg](https://github.com/nvim-neorg/neorg)
 
 ## New key mappings
 
