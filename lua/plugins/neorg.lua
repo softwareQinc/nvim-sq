@@ -1,5 +1,7 @@
 return {
    "nvim-neorg/neorg",
+   -- TODO: Revisit when Tree-sitter supports norg parser
+   enabled = false,
    ft = "norg",
    version = "*", -- pin Neorg to the latest stable release
    opts = {
