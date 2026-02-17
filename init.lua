@@ -18,8 +18,8 @@ require("core")
 
 ------------------------------------------------------------------------------
 -- Set color scheme to light between 8:00 AM and 5:00 PM, dark otherwise
--- Color scheme plugins are loaded from "lua/plugins/colorschemes.lua"
--- For defaults, see "lua/core/state.lua"
+-- Color scheme plugins are loaded from `lua/plugins/colorschemes.lua`
+-- For defaults, see `lua/core/state.lua`
 local ui = require("core.ui")
 ui.set_auto_scheme({
    light_scheme_name = "vscode", -- default light color scheme

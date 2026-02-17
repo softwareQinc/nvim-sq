@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "nvimtools/none-ls.nvim",
    event = "VeryLazy",
@@ -7,9 +8,9 @@ return {
    opts = function()
       local null_ls = require("null-ls")
       local util = require("core.util")
-      local augroup =
+      local grp =
          vim.api.nvim_create_augroup("None-ls-formatting", { clear = true })
-      local null_ls_format_on_save = util.format_on_save(augroup)
+      local null_ls_format_on_save = util.format_on_save(grp)
 
       local opts = {
          sources = {

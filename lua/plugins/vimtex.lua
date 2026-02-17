@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "lervag/vimtex",
    -- DO NOT lazy load, reverse search won't work

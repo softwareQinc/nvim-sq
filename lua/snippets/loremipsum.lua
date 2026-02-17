@@ -5,7 +5,11 @@ local ls = require("luasnip")
 local s = ls.snippet
 local f = ls.function_node
 
+--- Wrap text into lines based on the current buffer `textwidth` or 80 if unset
+---@param text string Text to wrap
+---@return string[] Wrapped lines
 local function wrap_text(text)
+   ---@type string[]
    local lines = {}
    local textwidth =
       vim.api.nvim_get_option_value("textwidth", { scope = "local" })

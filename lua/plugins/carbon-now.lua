@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "ellisonleao/carbon-now.nvim",
    lazy = true,

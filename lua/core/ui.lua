@@ -1,20 +1,25 @@
 -- UI-related functions
 
+---@class CoreUI
 local M = {}
 
 local state = require("core.state")
 
--- Set a light color scheme
+--- Apply a light colorscheme and switch Neovim to light background
+---@param color_scheme string Name of the colorscheme to load
 function M.set_light_scheme(color_scheme)
    pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
-      print(
+      vim.notify(
          "Color scheme '"
             .. color_scheme
             .. "' not found, switching to core.ui.color_toggle_default['light']: "
-            .. state.color_toggle_default["light"]
+            .. state.color_toggle_default["light"],
+         vim.log.levels.WARN,
+         { title = "core.ui.set_light_scheme" }
       )
+
       pcall(vim.cmd.colorscheme, state.color_toggle_default["light"])
       state.color_toggle_current["light"] = state.color_toggle_default["light"]
    else -- update the color_toggle_current table
@@ -33,17 +38,21 @@ function M.set_light_scheme(color_scheme)
    vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal", default = false })
 end
 
--- Set a dark color scheme
+--- Apply a dark colorscheme and switch Neovim to dark background
+---@param color_scheme string Name of the colorscheme to load
 function M.set_dark_scheme(color_scheme)
    pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
-      print(
+      vim.notify(
          "Color scheme '"
             .. color_scheme
             .. "' not found, switching to core.ui.color_toggle_default['dark']: "
-            .. state.color_toggle_default["dark"]
+            .. state.color_toggle_default["dark"],
+         vim.log.levels.WARN,
+         { title = "core.ui.set_dark_scheme" }
       )
+
       pcall(vim.cmd.colorscheme, state.color_toggle_default["dark"])
       state.color_toggle_current["dark"] = state.color_toggle_default["dark"]
    else -- update the color_toggle_current table
@@ -62,8 +71,8 @@ function M.set_dark_scheme(color_scheme)
    vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal", default = false })
 end
 
--- Auto color scheme switch callback, used by AutoColorScheme group in
--- "lua/core/autocmds.lua"
+--- Callback for automatic color scheme switching.
+--- Used by the `AutoColorScheme` augroup in `lua/core/autocmds.lua`.
 function M.set_color_scheme_callback()
    local util = require("core.util")
    local current_time = util.get_time()
@@ -89,13 +98,18 @@ function M.set_color_scheme_callback()
    end
 end
 
--- Set a light/dark color scheme automatically based on current time
--- Opts: {light_scheme_starts_at, light_scheme_ends_at, light_scheme_name,
--- dark_scheme_name}
+---@class AutoSchemeOpts
+---@field light_scheme_starts_at TimeOfDay
+---@field light_scheme_ends_at   TimeOfDay
+---@field light_scheme_name      string
+---@field dark_scheme_name       string
+
+--- Automatically set light or dark colorscheme based on current time
+---@param opts AutoSchemeOpts Options controlling light/dark schemes and time ranges
 function M.set_auto_scheme(opts)
    if opts.light_scheme_starts_at == nil then
       state.color_toggle_current.light_scheme_starts_at =
-         state.color_toggle_default.light_starts
+         state.color_toggle_default.light_scheme_starts_at
    else
       state.color_toggle_current.light_scheme_starts_at =
          opts.light_scheme_starts_at
@@ -127,20 +141,30 @@ function M.set_auto_scheme(opts)
    M.set_color_scheme_callback()
 end
 
--- Applies or removes background transparency based on the state variable
-function M.toggle_background_transparency()
-   if state.background_transparency_enabled_at_startup then
-      -- Set Normal background to transparent (NONE)
-      for _, hl in ipairs({
+--- Apply or remove background transparency
+---@param transparent boolean Whether transparency should be enabled
+function M.set_background_transparency(transparent)
+   if transparent == true then
+      -- Set background to transparent while preserving other attributes
+      for _, group in ipairs({
+         "EndOfBuffer",
          "Normal",
-         "NormalNC",
          "NormalFloat",
+         "NormalNC",
          "SignColumn",
+         "WinBar",
+         "WinBarNC",
       }) do
-         vim.api.nvim_set_hl(0, hl, { bg = "NONE" })
+         local ok, hl =
+            pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
+         if ok then
+            hl.bg = nil
+            hl.ctermbg = nil
+            vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
+         end
       end
    else
-      -- Reload the color scheme to restore the default, opaque background
+      -- Restore scheme safely
       vim.cmd.colorscheme(vim.g.colors_name)
    end
 end

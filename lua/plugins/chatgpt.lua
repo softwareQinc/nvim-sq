@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "jackMort/ChatGPT.nvim",
    cmd = {

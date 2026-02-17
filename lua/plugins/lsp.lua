@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
    -- Manages DAPs, language servers, linters, and formatters
    -- We use mason-lspconfig for language servers, and Mason only for DAPs,
@@ -212,43 +213,45 @@ return {
          end
 
          -- Additional settings
+         local lsp_group =
+            vim.api.nvim_create_augroup("Nvim-lspconfig", { clear = true })
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup(
-               "Nvim-lspconfig",
-               { clear = true }
-            ),
-            callback = function(ev)
-               -- Disable semantic token highlighting for lua_ls
-               local client = vim.lsp.get_client_by_id(ev.data.client_id)
-               if client and client.name and client.name == "lua_ls" then
-                  client.server_capabilities.semanticTokensProvider = nil
-               end
-
-               -- Enable completion triggered by <c-x><c-o>
-               vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-               -- Buffer-local keymaps
-               local keymaps = require("core.keymaps")
-               util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
-
-               -- Inlay hints policy (buffer overrides global)
-               if vim.lsp.inlay_hint then
-                  local bufnr = ev.buf
-                  if vim.b[bufnr].inlay_hints_enabled ~= nil then
-                     -- Buffer override wins (even if false)
-                     vim.lsp.inlay_hint.enable(
-                        vim.b[bufnr].inlay_hints_enabled,
-                        { bufnr = bufnr }
-                     )
-                  elseif vim.g.inlay_hints_enabled ~= nil then
-                     -- Apply global only if explicitly set; default stays untouched otherwise
-                     vim.lsp.inlay_hint.enable(
-                        vim.g.inlay_hints_enabled == true,
-                        { bufnr = bufnr }
-                     )
+            group = lsp_group,
+            callback =
+               ---@param ev vim.api.keyset.create_autocmd.callback_args
+               function(ev)
+                  -- Disable semantic token highlighting for lua_ls
+                  local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                  if client and client.name and client.name == "lua_ls" then
+                     client.server_capabilities.semanticTokensProvider = nil
                   end
-               end
-            end,
+
+                  -- Enable completion triggered by <c-x><c-o>
+                  vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+
+                  -- Buffer-local keymaps
+                  local keymaps = require("core.keymaps")
+                  util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
+
+                  -- Inlay hints policy (buffer overrides global)
+                  if vim.lsp.inlay_hint then
+                     local bufnr = ev.buf
+                     if vim.b[bufnr].inlay_hints_enabled ~= nil then
+                        -- Buffer override wins (even if false)
+                        vim.lsp.inlay_hint.enable(
+                           vim.b[bufnr].inlay_hints_enabled,
+                           { bufnr = bufnr }
+                        )
+                     elseif vim.g.inlay_hints_enabled ~= nil then
+                        -- Apply global only if explicitly set; default stays
+                        -- untouched otherwise
+                        vim.lsp.inlay_hint.enable(
+                           vim.g.inlay_hints_enabled == true,
+                           { bufnr = bufnr }
+                        )
+                     end
+                  end
+               end,
             desc = "Keymaps nvim-lspconfig (buffer-local)",
          })
       end,

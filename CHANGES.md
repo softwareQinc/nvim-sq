@@ -1,3 +1,24 @@
+# nvim-sq 1.16 - 18 February 2026
+
+## Changes
+
+- LuaLS type annotations and improved inline documentation
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- `[count] <leader>br` (Neovide only) - Toggle background transparency, or sets
+  background transparency via count (1-100)
+
+---
+
 # nvim-sq 1.15 - 15 February 2026
 
 ## Changes
@@ -185,7 +206,7 @@
 
 ## New key mappings
 
-- `<leader>foS` - Toggles LSP auto-formatting on save on **current buffer**,
+- `<leader>foS` - Toggle LSP auto-formatting on save on **current buffer**,
   has higher priority than LSP auto-formatting on save on all buffers
   (`<leader>fos`). So if you toggle, e.g., LSP auto-formatting on current
   buffer to `false`, you need to toggle it again to re-enable it, regardless of

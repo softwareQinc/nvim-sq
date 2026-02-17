@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "RRethy/vim-illuminate",
    event = { "BufReadPost", "BufNewFile" },
@@ -10,7 +11,7 @@ return {
          modes_denylist = { "v", "vs", "V", "Vs", "", "s" },
       })
       local api = vim.api
-      -- Change the highlight style
+      --- Set highlight groups
       local function set_illumintate_hl()
          -- Use Visual instead of CursorLine for more accentuated highlighting,
          -- or comment the lines below for illuminating only (no highlighting)

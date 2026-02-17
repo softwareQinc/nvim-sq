@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 -- Neovide additional initialization, executed only by a Neovide session,
--- after all other initializations are performed
+-- after all other initialization is performed
 
 local util = require("core.util")
 
@@ -10,13 +10,13 @@ local options = require("neovide.options")
 util.set_options(options)
 
 ------------------------------------------------------------------------------
--- Scale fonts up/down with <Command>= and <Command>-, respectively
+-- Scale fonts up/down with `<Command> =` and `<Command> -`, respectively
 local keymaps = require("neovide.keymaps")
 util.map_all_keys(keymaps, { noremap = true, silent = true })
 
 ------------------------------------------------------------------------------
--- Set custom font
--- Should be set in $XDG_CONFIG_HOME/neovide/config.toml, see
+-- Set custom font.
+-- Should be set in `$XDG_CONFIG_HOME/neovide/config.toml`, see
 -- https://neovide.dev/config-file.html#font
 -- Alternatively, use, e.g.,
 -- vim.cmd.set("guifont=JetBrainsMono\\ Nerd\\ Font:h16")

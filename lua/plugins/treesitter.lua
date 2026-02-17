@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
    -- Tree-sitter: LSP syntax tree and better syntax highlighting
    {

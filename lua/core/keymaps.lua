@@ -1,5 +1,6 @@
 -- Keymaps
 
+---@class CoreKeymaps
 local M = {}
 
 ------------------------------------------------------------------------------
@@ -134,7 +135,14 @@ M.hardtime = {
             vim.cmd("Hardtime disable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = false
-            print("Hardtime: false")
+            vim.notify(
+               string.format(
+                  "Hardtime: %s",
+                  state.hardtime_enabled_at_startup and "true" or "false"
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.hardtime" }
+            )
          end,
          { desc = "[H]ardtime [d]isable" },
       },
@@ -143,7 +151,14 @@ M.hardtime = {
             vim.cmd("Hardtime enable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = true
-            print("Hardtime: true")
+            vim.notify(
+               string.format(
+                  "Hardtime: %s",
+                  state.hardtime_enabled_at_startup and "true" or "false"
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.hardtime" }
+            )
          end,
          { desc = "[H]ardtime [e]nable" },
       },
@@ -159,7 +174,14 @@ M.hardtime = {
             local state = require("core.state")
             state.hardtime_enabled_at_startup =
                not state.hardtime_enabled_at_startup
-            print("Hardtime:", state.hardtime_enabled_at_startup)
+            vim.notify(
+               string.format(
+                  "Hardtime: %s",
+                  state.hardtime_enabled_at_startup and "true" or "false"
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.hardtime" }
+            )
          end,
          { desc = "[H]ardtime [t]oggle (toggle)" },
       },
@@ -266,7 +288,14 @@ M.nvim_treesitter_context = {
          function()
             local tsc = require("treesitter-context")
             tsc.toggle()
-            print("Tree-sitter context:", tsc.enabled())
+            vim.notify(
+               string.format(
+                  "Tree-sitter context: %s",
+                  tsc.enabled() and "true" or "false"
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.nvim_treesitter_context" }
+            )
          end,
          { desc = "[T]ree-sitter [c]ontext toggle" },
       },
@@ -468,15 +497,20 @@ M.background_transparency = {
          function()
             local state = require("core.state")
             local ui = require("core.ui")
-            state.background_transparency_enabled_at_startup =
+            local new_state =
                not state.background_transparency_enabled_at_startup
-            ui.toggle_background_transparency()
-            -- Hack to delay message slightly so it prints
+            state.background_transparency_enabled_at_startup = new_state
+            ui.set_background_transparency(new_state)
+            -- Hack to delay message slightly so it shows
             -- **after** color-related  updates
             vim.defer_fn(function()
-               print(
-                  "Background transparency:",
-                  state.background_transparency_enabled_at_startup
+               vim.notify(
+                  string.format(
+                     "Background transparency: %s",
+                     new_state and "true" or "false"
+                  ),
+                  vim.log.levels.INFO,
+                  { title = "core.keymaps.background_transparency" }
                )
             end, 1)
          end,
@@ -747,7 +781,11 @@ M.nvim_lspconfig = {
       },
       ["<leader>wl"] = {
          function()
-            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            vim.notify(
+               vim.inspect(vim.lsp.buf.list_workspace_folders()),
+               vim.log.levels.DEBUG,
+               { title = "core.keymaps.nvim_lspconfig" }
+            )
          end,
          { desc = "LSP [w]orkspace [l]ist folders" },
       },
@@ -765,9 +803,13 @@ M.nvim_lspconfig = {
             local state = require("core.state")
             state.lsp_format_on_save_enabled_at_startup =
                not state.lsp_format_on_save_enabled_at_startup
-            print(
-               "LSP format on save (global):",
-               state.lsp_format_on_save_enabled_at_startup
+            vim.notify(
+               string.format(
+                  "LSP format on save (global): %s",
+                  state.lsp_format_on_save_enabled_at_startup
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.nvim_lspconfig" }
             )
          end,
          { desc = "LSP [fo]rmat on [s]ave (global) toggle" },
@@ -781,9 +823,13 @@ M.nvim_lspconfig = {
             end
             vim.b.lsp_format_on_save_current_buffer =
                not vim.b.lsp_format_on_save_current_buffer
-            print(
-               "LSP format on save (current buffer):",
-               vim.b.lsp_format_on_save_current_buffer
+            vim.notify(
+               string.format(
+                  "LSP format on save (current buffer): %s",
+                  vim.b.lsp_format_on_save_current_buffer
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.nvim_lspconfig" }
             )
          end,
          { desc = "LSP [fo]rmat on [S]ave (current buffer) toggle" },
@@ -799,7 +845,11 @@ M.nvim_lspconfig = {
       ["<leader>ih"] = {
          function()
             if not vim.lsp.inlay_hint then
-               print("LSP inlay hints not supported!")
+               vim.notify(
+                  "LSP inlay hints not supported!",
+                  vim.log.levels.WARN,
+                  { title = "core.keymaps.nvim_lspconfig" }
+               )
                return
             end
             vim.g.inlay_hints_enabled = not vim.g.inlay_hints_enabled
@@ -815,14 +865,25 @@ M.nvim_lspconfig = {
                   )
                end
             end
-            print("LSP inlay hints (global):", vim.g.inlay_hints_enabled)
+            vim.notify(
+               string.format(
+                  "LSP inlay hints (global): %s",
+                  vim.g.inlay_hints_enabled
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.nvim_lspconfig" }
+            )
          end,
          { desc = "LSP [i]nlay [h]ints (global) toggle" },
       },
       ["<leader>iH"] = {
          function()
             if not vim.lsp.inlay_hint then
-               print("LSP inlay hints not supported!")
+               vim.notify(
+                  "LSP inlay hints not supported!",
+                  vim.log.levels.WARN,
+                  { title = "core.keymaps.nvim_lspconfig" }
+               )
                return
             end
             local bufnr = vim.api.nvim_get_current_buf()
@@ -832,9 +893,13 @@ M.nvim_lspconfig = {
                vim.b.inlay_hints_enabled,
                { bufnr = bufnr }
             )
-            print(
-               "LSP inlay hints (current buffer):",
-               vim.b.inlay_hints_enabled
+            vim.notify(
+               string.format(
+                  "LSP inlay hints (current buffer): %s",
+                  vim.b.inlay_hints_enabled
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.nvim_lspconfig" }
             )
          end,
          { desc = "LSP [i]nlay [H]ints (current buffer) toggle" },

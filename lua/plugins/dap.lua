@@ -1,17 +1,21 @@
+---@type LazySpec
 return {
    -- Core DAP (Debug Adapter Protocol) configuration
    {
       "mfussenegger/nvim-dap",
       event = "LspAttach",
       config = function()
+         local grp = vim.api.nvim_create_augroup("Nvim-DAP", { clear = true })
          vim.api.nvim_create_autocmd("LspAttach", {
-            group = vim.api.nvim_create_augroup("Nvim-DAP", { clear = true }),
-            callback = function(ev)
-               -- Buffer-local keymaps
-               local keymaps = require("core.keymaps")
-               local util = require("core.util")
-               util.map_keys(keymaps.nvim_dap, { buffer = ev.buf })
-            end,
+            group = grp,
+            callback =
+               ---@param ev vim.api.keyset.create_autocmd.callback_args
+               function(ev)
+                  -- Buffer-local keymaps
+                  local keymaps = require("core.keymaps")
+                  local util = require("core.util")
+                  util.map_keys(keymaps.nvim_dap, { buffer = ev.buf })
+               end,
             desc = "Keymaps nvim-dap (buffer-local)",
          })
       end,
@@ -59,23 +63,30 @@ return {
       "mfussenegger/nvim-dap-python",
       ft = "python",
       dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-      config = function(_, _)
-         require("dap-python").setup()
-         vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
-            group = vim.api.nvim_create_augroup(
-               "Nvim-DAP-Python",
-               { clear = true }
-            ),
-            pattern = { "python" },
-            callback = function(ev)
-               -- Buffer-local keymaps
-               local keymaps = require("core.keymaps")
-               local util = require("core.util")
-               util.map_keys(keymaps.nvim_dap_python, { buffer = ev.buf })
-            end,
-            desc = "Keymaps nvim-dap-python (buffer-local)",
-         })
-      end,
+
+      config =
+         ---@param _plugin LazyPlugin
+         ---@param _opts table
+         ---@diagnostic disable-next-line: unused-local
+         function(_plugin, _opts)
+            require("dap-python").setup()
+            local grp =
+               vim.api.nvim_create_augroup("Nvim-DAP-Python", { clear = true })
+
+            vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
+               group = grp,
+               pattern = { "python" },
+               callback =
+                  ---@param ev vim.api.keyset.create_autocmd.callback_args
+                  function(ev)
+                     -- Buffer-local keymaps
+                     local keymaps = require("core.keymaps")
+                     local util = require("core.util")
+                     util.map_keys(keymaps.nvim_dap_python, { buffer = ev.buf })
+                  end,
+               desc = "Keymaps nvim-dap-python (buffer-local)",
+            })
+         end,
    },
 
    -- DAP for Go
@@ -83,22 +94,26 @@ return {
       "leoluz/nvim-dap-go",
       ft = "go",
       dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-      config = function(_, opts)
-         require("dap-go").setup(opts)
-         vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
-            group = vim.api.nvim_create_augroup(
-               "Nvim-DAP-Go",
-               { clear = true }
-            ),
-            pattern = { "go" },
-            callback = function(ev)
-               -- Buffer-local keymaps
-               local keymaps = require("core.keymaps")
-               local util = require("core.util")
-               util.map_keys(keymaps.nvim_dap_go, { buffer = ev.buf })
-            end,
-            desc = "Keymaps nvim-dap-go (buffer-local)",
-         })
-      end,
+      config =
+         ---@param _ LazyPlugin
+         ---@param opts table
+         function(_, opts)
+            require("dap-go").setup(opts)
+            local grp =
+               vim.api.nvim_create_augroup("Nvim-DAP-Go", { clear = true })
+            vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
+               group = grp,
+               pattern = { "go" },
+               callback =
+                  ---@param ev vim.api.keyset.create_autocmd.callback_args
+                  function(ev)
+                     -- Buffer-local keymaps
+                     local keymaps = require("core.keymaps")
+                     local util = require("core.util")
+                     util.map_keys(keymaps.nvim_dap_go, { buffer = ev.buf })
+                  end,
+               desc = "Keymaps nvim-dap-go (buffer-local)",
+            })
+         end,
    },
 }

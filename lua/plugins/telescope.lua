@@ -1,4 +1,6 @@
+---@type LazySpec
 return {
+   -- Fuzzy finder and picker UI (files, grep, buffers, etc.)
    {
       "nvim-telescope/telescope.nvim",
       version = "*",
@@ -17,6 +19,8 @@ return {
          require("telescope").load_extension("fzf")
       end,
    },
+
+   -- Use Telescope as the UI for vim.ui.select / vim.ui.input
    {
       "nvim-telescope/telescope-ui-select.nvim",
       event = "LspAttach",

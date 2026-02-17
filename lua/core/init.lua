@@ -4,7 +4,7 @@ Initializing core functionality:
     Options
     Keymaps
     Auto commands
-    Misc.
+    Miscellaneous
 ]]
 
 ------------------------------------------------------------------------------
@@ -26,9 +26,8 @@ util.map_all_keys(keymaps)
 require("core.autocmds")
 
 ------------------------------------------------------------------------------
--- Misc.
+-- Miscellaneous
 local state = require("core.state")
-local ui = require("core.ui")
 
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
@@ -48,14 +47,14 @@ end
 
 -- Sets the keymap for enabling a transparent background. This is enabled if
 -- the `state.background_transparency_enabled_at_startup` flag is true.
--- This keymap is not enabled in Neovide sessions
+-- This keymap is not enabled in Neovide sessions.
 -- To modify the `state.background_transparency_enabled_at_startup` flag, edit
--- its table entry in "lua/core/state.lua"
--- See the `M.background_transparency` table in "lua/core/keymaps.lua" for
--- keymaps/settings
+-- its table entry in `lua/core/state.lua`.
+-- See the `M.background_transparency` table in `lua/core/keymaps.lua` for
+-- keymaps/settings.
 if not vim.g.neovide then
    util.map_keys(keymaps.background_transparency)
-   -- Hack to make the nvim-colorizer plugin attach to buffer when opening a
+   -- Hack to make the `nvim-colorizer` plugin attach to buffer when opening a
    -- file from the command line
    vim.defer_fn(function()
       vim.cmd.colorscheme(vim.g.colors_name)

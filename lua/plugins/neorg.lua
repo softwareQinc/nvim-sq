@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "nvim-neorg/neorg",
    ft = "norg",
@@ -17,8 +18,9 @@ return {
       },
    },
    init = function()
+      local grp = vim.api.nvim_create_augroup("Neorg", { clear = true })
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-         group = vim.api.nvim_create_augroup("Neorg", { clear = true }),
+         group = grp,
          pattern = { "*.norg" },
          callback = function()
             vim.opt_local.conceallevel = 2

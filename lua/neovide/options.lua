@@ -1,5 +1,6 @@
 -- Neovide options
 
+---@class NeovideOptions
 local M = {}
 
 M = {

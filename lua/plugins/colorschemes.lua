@@ -1,3 +1,4 @@
+---@type LazySpec
 return {
    {
       "catppuccin/nvim",
@@ -5,6 +6,7 @@ return {
       name = "catppuccin",
       priority = 1000,
    },
+
    {
       "sainnhe/everforest",
       lazy = true,
@@ -14,6 +16,7 @@ return {
          vim.g.everforest_background = "hard"
       end,
    },
+
    {
       "sainnhe/gruvbox-material",
       lazy = true,
@@ -23,11 +26,13 @@ return {
          vim.g.gruvbox_material_background = "medium"
       end,
    },
+
    {
       "ellisonleao/gruvbox.nvim",
       lazy = true,
       priority = 1000,
    },
+
    {
       "rebelot/kanagawa.nvim",
       lazy = true,
@@ -45,17 +50,20 @@ return {
          },
       },
    },
+
    {
       "rose-pine/neovim",
       name = "rose-pine",
       lazy = true,
       priority = 1000,
    },
+
    {
       "folke/tokyonight.nvim",
       lazy = true,
       priority = 1000,
    },
+
    {
       "Mofiqul/vscode.nvim",
       lazy = true,

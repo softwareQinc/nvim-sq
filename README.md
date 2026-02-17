@@ -38,34 +38,56 @@ brew install font-jetbrains-mono-nerd-font
 These external tools are required by Neovim or its plugins for full
 functionality.
 
-- **`curl`**
+- [**`curl`**](https://curl.se)
   Required by some Neovim plugins for internal operations.
   - **macOS** - Installed by default
   - **Ubuntu / Debian**
     ```shell
     sudo apt install curl
     ```
-- **`lazygit`**
+- [**`lazygit`**](https://github.com/jesseduffield/lazygit)
   Required by [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim).
   - **macOS**
     ```shell
     brew install lazygit
     ```
-- **`luarocks`**
-  Required by [lazy.nvim](https://lazy.folke.io/).
+- [**`luarocks`**](https://luarocks.org)
+  Required by [lazy.nvim](https://lazy.folke.io).
   - **macOS**
     ```shell
     brew install luarocks
     ```
-- **`npm`**
+- [**Node.js**](https://nodejs.org)
   Required by [mason.nvim](https://github.com/mason-org/mason.nvim) to install
   and manage various language servers, linters, formatters, and other
   development tools.
   - **macOS**
     ```shell
-    brew install npm
+    brew install node
     ```
-- **GnuPG & Pinentry (optional)**
+- [**`sioyek`**](https://sioyek.info)
+  Required by [VimTeX](https://github.com/lervag/vimtex) to preview compiled
+  LaTeX documents.
+  - **macOS**
+    ```shell
+    brew install sioyek
+    ```
+- [**`tree-sitter-cli`**](https://www.npmjs.com/package/tree-sitter-cli)
+  Required to install and build Tree-sitter parsers locally.
+
+  > NOTE: Use `tree-sitter-cli` v0.25.10 - versions v0.26.x are currently
+  > incompatible with the Tree-sitter `master` branch.
+  - **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
+
+    ```shell
+    npm install -g tree-sitter-cli@0.25.10
+    # or
+    cargo install --locked tree-sitter-cli --version 0.25.10
+    ```
+
+- [**GnuPG**](https://gnupg.org) &
+  [**Pinentry**](https://www.gnupg.org/related_software/pinentry)
+  **(optional)**
   Required for transparent encryption/decryption in Neovim, i.e., to
   interactively prompt for passphrases. Without this, encryption or decryption
   will not work. Ensure that [GnuPG](https://gnupg.org/) is installed and
