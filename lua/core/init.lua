@@ -34,7 +34,7 @@ local state = require("core.state")
 -- To modify the `state.hardtime_enabled_at_startup` flag, edit its table
 -- entry in "lua/core/state.lua"
 -- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
--- TODO: Eventually get rid of defer_fn() if possible
+-- TODO: Eliminate defer_fn() once it is no longer necessary
 if state.hardtime_enabled_at_startup then
    vim.defer_fn(function()
       vim.cmd("Hardtime enable")

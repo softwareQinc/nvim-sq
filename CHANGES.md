@@ -1,4 +1,4 @@
-# nvim-sq 1.16 - 18 February 2026
+# nvim-sq 1.16 - 19 February 2026
 
 ## Changes
 

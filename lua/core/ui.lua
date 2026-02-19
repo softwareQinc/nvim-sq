@@ -155,11 +155,11 @@ function M.set_background_transparency(transparent)
          "WinBar",
          "WinBarNC",
       }) do
-         local ok, hl =
-            pcall(vim.api.nvim_get_hl, 0, { name = group, link = false })
-         if ok then
-            hl.bg = nil
-            hl.ctermbg = nil
+         local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+         hl.bg = nil
+         hl.ctermbg = nil
+         -- FIXME: When gruvbox fixes NormalFloat handling
+         if not (vim.g.colors_name == "gruvbox" and group == "NormalFloat") then
             vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
          end
       end

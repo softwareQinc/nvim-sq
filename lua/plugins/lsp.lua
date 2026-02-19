@@ -79,7 +79,7 @@ return {
             vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
          local lsp_format_on_save = util.format_on_save(augroup)
 
-         -- TODO: Eventually switch to the native nvim 0.11 LSP autocompletion
+         -- TODO: Migrate to the native Neovim 0.11+ LSP autocompletion
          lsp_capabilities = vim.tbl_deep_extend(
             "force",
             lsp_capabilities,
@@ -167,7 +167,7 @@ return {
                   Lua = {
                      hint = { enable = true },
                      format = { enable = false },
-                     -- TODO: Revisit/fix, see https://github.com/folke/lazydev.nvim/issues/136
+                     -- FIXME: See https://github.com/folke/lazydev.nvim/issues/136
                      workspace = {
                         checkThirdParty = false,
                         library = {

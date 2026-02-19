@@ -48,7 +48,7 @@ return {
       {
          "saadparwaiz1/cmp_luasnip",
          "hrsh7th/cmp-nvim-lua",
-         "hrsh7th/cmp-nvim-lsp", -- TODO: Eventually switch to the native nvim 0.11 LSP autocompletion
+         "hrsh7th/cmp-nvim-lsp", -- TODO: Switch to the native nvim 0.11+ LSP autocompletion
          "hrsh7th/cmp-nvim-lsp-signature-help",
          "hrsh7th/cmp-buffer",
          "hrsh7th/cmp-path",
