@@ -1,3 +1,24 @@
+# nvim-sq 1.17 - 21 February 2026
+
+## Changes
+
+- None
+
+## New plugins
+
+- [Neogen](https://github.com/danymat/neogen) - Generates code annotations and
+  documentation stubs
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.16 - 19 February 2026
 
 ## Changes
