@@ -1,3 +1,36 @@
+# nvim-sq 2.0 - Future version 2.0, experimental release
+
+> ⚠️ **WARNING:** This is an experimental release. Recommended for
+> [**Neovim nightly (0.12)**](https://github.com/neovim/neovim/releases/tag/nightly).
+> Mainly intended for migrating
+> [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to the
+> `main` branch, which introduces breaking changes.
+
+## Changes
+
+- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) migrated
+  to the `main` branch
+
+## New Plugins
+
+- [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) -
+  Adds syntax-aware text objects with support for selecting, moving, swapping, and peeking
+
+## Removed Plugins
+
+- None
+
+## New Key Mappings
+
+- Multiple new keymaps for
+  [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+  to enhance navigation and selection. See the `nvim-treesitter-textobjects`
+  section in
+  [lua/core/keymaps.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/core/keymaps.lua)
+  for a full list.
+
+---
+
 # nvim-sq 1.17 - 21 February 2026
 
 ## Changes

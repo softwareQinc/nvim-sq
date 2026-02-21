@@ -8,6 +8,12 @@ Tree-sitter, tmux integration, ChatGPT, and more. Plugins are managed using
 This configuration has been extensively tested on macOS and Linux
 (Debian/Ubuntu). Minor issues may occur on other platforms.
 
+> ⚠️ **WARNING:** This is an experimental branch. Recommended for
+> [**Neovim nightly (0.12)**](https://github.com/neovim/neovim/releases/tag/nightly).
+> Mainly intended for migrating
+> [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to the
+> `main` branch, which introduces breaking changes.
+
 ---
 
 ## Pre-requisites
@@ -74,15 +80,12 @@ functionality.
     ```
 - [**`tree-sitter-cli`**](https://www.npmjs.com/package/tree-sitter-cli)
   Required to install and build Tree-sitter parsers locally.
-
-  > NOTE: Use `tree-sitter-cli` v0.25.10 - versions v0.26.x are currently
-  > incompatible with the Tree-sitter `master` branch.
   - **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
 
     ```shell
-    npm install -g tree-sitter-cli@0.25.10
+    npm install -g tree-sitter-cli
     # or
-    cargo install --locked tree-sitter-cli --version 0.25.10
+    cargo install --locked tree-sitter-cli
     ```
 
 - [**GnuPG**](https://gnupg.org) &
