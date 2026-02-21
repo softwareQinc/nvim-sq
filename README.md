@@ -16,7 +16,7 @@ This configuration has been extensively tested on macOS and Linux
 
 Install a terminal application with TrueColor support, as the default macOS
 Terminal does not support TrueColor. On macOS, you can install, for example,
-[WezTerm](https://wezterm.org/), a terminal emulator built with Rust that uses
+[WezTerm](https://wezterm.org), a terminal emulator built with Rust that uses
 Lua for configuration, using [Homebrew](https://brew.sh)
 
 ```shell
@@ -39,24 +39,28 @@ These external tools are required by Neovim or its plugins for full
 functionality.
 
 - [**`curl`**](https://curl.se)
-  Required by some Neovim plugins for internal operations.
+  Required by certain Neovim plugins for internal networking and data retrieval
+  tasks.
   - **macOS** - Installed by default
   - **Ubuntu / Debian**
     ```shell
     sudo apt install curl
     ```
+
 - [**`lazygit`**](https://github.com/jesseduffield/lazygit)
   Required by [lazygit.nvim](https://github.com/kdheepak/lazygit.nvim).
   - **macOS**
     ```shell
     brew install lazygit
     ```
+
 - [**`luarocks`**](https://luarocks.org)
   Required by [lazy.nvim](https://lazy.folke.io).
   - **macOS**
     ```shell
     brew install luarocks
     ```
+
 - [**Node.js**](https://nodejs.org)
   Required by [mason.nvim](https://github.com/mason-org/mason.nvim) to install
   and manage various language servers, linters, formatters, and other
@@ -65,6 +69,15 @@ functionality.
     ```shell
     brew install node
     ```
+
+- [**ripgrep**](https://github.com/BurntSushi/ripgrep)
+  Required by [Telescope](https://github.com/nvim-telescope/telescope.nvim) for
+  live text searching.
+  - **macOS**
+    ```shell
+    brew install ripgrep
+    ```
+
 - [**`sioyek`**](https://sioyek.info)
   Required by [VimTeX](https://github.com/lervag/vimtex) to preview compiled
   LaTeX documents.
@@ -72,25 +85,24 @@ functionality.
     ```shell
     brew install sioyek
     ```
+
 - [**`tree-sitter-cli`**](https://www.npmjs.com/package/tree-sitter-cli)
   Required to install and build Tree-sitter parsers locally.
-
-  > NOTE: Use `tree-sitter-cli` v0.25.10 - versions v0.26.x are currently
-  > incompatible with the Tree-sitter `master` branch.
   - **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
-
     ```shell
     npm install -g tree-sitter-cli@0.25.10
     # or
     cargo install --locked tree-sitter-cli --version 0.25.10
     ```
+    > NOTE: Use `tree-sitter-cli` version 0.25.10 - versions 0.26.x are
+    > currently incompatible with the Tree-sitter `master` branch.
 
 - [**GnuPG**](https://gnupg.org) &
   [**Pinentry**](https://www.gnupg.org/related_software/pinentry)
   **(optional)**
   Required for transparent encryption/decryption in Neovim, i.e., to
   interactively prompt for passphrases. Without this, encryption or decryption
-  will not work. Ensure that [GnuPG](https://gnupg.org/) is installed and
+  will not work. Ensure that [GnuPG](https://gnupg.org) is installed and
   configured.
   - **macOS**
     ```shell
@@ -212,7 +224,7 @@ Ensure that [ghcup](https://www.haskell.org/ghcup) is installed, see
 
 ### JavaScript/TypeScript
 
-If you encounter problems with [ESLint](https://eslint.org/), run
+If you encounter problems with [ESLint](https://eslint.org), run
 
 ```shell
 npm init @eslint/config@latest

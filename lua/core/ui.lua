@@ -5,8 +5,8 @@ local M = {}
 
 local state = require("core.state")
 
---- Apply a light colorscheme and switch Neovim to light background
----@param color_scheme string Name of the colorscheme to load
+--- Apply a light color scheme and switch Neovim to light background
+---@param color_scheme string Name of the color scheme to load
 function M.set_light_scheme(color_scheme)
    pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
@@ -38,8 +38,8 @@ function M.set_light_scheme(color_scheme)
    vim.api.nvim_set_hl(0, "SignColumn", { link = "Normal", default = false })
 end
 
---- Apply a dark colorscheme and switch Neovim to dark background
----@param color_scheme string Name of the colorscheme to load
+--- Apply a dark color scheme and switch Neovim to dark background
+---@param color_scheme string Name of the color scheme to load
 function M.set_dark_scheme(color_scheme)
    pcall(require, color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
@@ -104,7 +104,7 @@ end
 ---@field light_scheme_name      string
 ---@field dark_scheme_name       string
 
---- Automatically set light or dark colorscheme based on current time
+--- Automatically set light or dark color scheme based on current time
 ---@param opts AutoSchemeOpts Options controlling light/dark schemes and time ranges
 function M.set_auto_scheme(opts)
    if opts.light_scheme_starts_at == nil then
