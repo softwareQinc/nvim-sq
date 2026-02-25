@@ -146,6 +146,10 @@ system. Finally, launch Neovim by executing
 nvim
 ```
 
+This configuration ships with plugins pinned according to
+[lazy-lock.json](https://github.com/softwareQinc/nvim-sq/blob/main/lazy-lock.json)
+To update them to newer versions, run `:Lazy update` from within Neovim.
+
 ---
 
 ## Configuration overview

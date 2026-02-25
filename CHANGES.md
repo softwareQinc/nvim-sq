@@ -1,8 +1,12 @@
-# nvim-sq 1.17 - 23 February 2026
+# nvim-sq 1.17 - 25 February 2026
 
 ## Changes
 
-- None
+- Added
+  [lazy-lock.json](https://github.com/softwareQinc/nvim-sq/blob/main/lazy-lock.json)
+  to the repository to ensure reproducible plugin configurations. After a fresh
+  installation, run `:Lazy update` if you wish to update plugins to their
+  latest versions.
 
 ## New plugins
 
