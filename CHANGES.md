@@ -1,3 +1,26 @@
+# nvim-sq 1.18 - 1 March 2026
+
+## Changes
+
+- Updated deprecated configuration for
+  [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua), as defined
+  in
+  [lua/plugins/nvim-colorizer.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/nvim-colorizer.lua)
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.17 - 25 February 2026
 
 ## Changes
