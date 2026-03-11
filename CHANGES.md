@@ -1,3 +1,25 @@
+# nvim-sq 1.19 - 12 March 2026
+
+## Changes
+
+- Updated the
+  [configuration](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/carbon-now.lua)
+  for [carbon-now.nvim](https://github.com/ellisonleao/carbon-now.nvim)
+
+## New plugins
+
+- None
+
+## Removed plugins
+
+- None
+
+## New key mappings
+
+- None
+
+---
+
 # nvim-sq 1.18 - 1 March 2026
 
 ## Changes

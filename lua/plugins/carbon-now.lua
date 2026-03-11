@@ -5,5 +5,10 @@ return {
    cmd = { "CarbonNow" },
    opts = {
       open_cmd = "open",
+      options = {
+         theme = "one-light",
+         titlebar = "",
+         -- titlebar = "Made with carbon-now.nvim", -- default
+      },
    },
 }
