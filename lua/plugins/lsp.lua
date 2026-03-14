@@ -167,17 +167,6 @@ return {
                   Lua = {
                      hint = { enable = true },
                      format = { enable = false },
-                     -- FIXME: See https://github.com/folke/lazydev.nvim/issues/136
-                     workspace = {
-                        checkThirdParty = false,
-                        library = {
-                           vim.env.VIMRUNTIME,
-                           {
-                              path = "${3rd}/luv/library",
-                              words = { "vim%.uv" },
-                           },
-                        },
-                     },
                   },
                },
             },
