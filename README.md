@@ -106,7 +106,7 @@ functionality.
   configured.
   - **macOS**
     ```shell
-    brew install pinetry-mac
+    brew install pinentry-mac
     echo "use-agent" >> ~/.gnupg/gpg.conf
     echo "pinentry-program $(brew --prefix)/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf
     gpgconf --reload gpg-agent
@@ -147,51 +147,44 @@ nvim
 ```
 
 This configuration ships with plugins pinned according to
-[lazy-lock.json](https://github.com/softwareQinc/nvim-sq/blob/main/lazy-lock.json)
-To update them to newer versions, run `:Lazy update` from within Neovim.
+[lazy-lock.json](lazy-lock.json). To update them to newer versions, run
+`:Lazy update` from within Neovim.
 
 ---
 
 ## Configuration overview
 
 This configuration is written entirely in Lua, is documented, and
-self-contained. The main configuration file is
-[init.lua](https://github.com/softwareQinc/nvim-sq/blob/main/init.lua), which
+self-contained. The main configuration file is [init.lua](init.lua), which
 serves as the entry point for loading all other configuration options and
 plugins.
 
 ### Plugins
 
-Plugins are located under
-[lua/plugins](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins).
+Plugins are located under [lua/plugins](lua/plugins).
 
 ### Key mappings
 
-Key mappings can be found in
-[lua/core/keymaps.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/core/keymaps.lua).
+Key mappings can be found in [lua/core/keymaps.lua](lua/core/keymaps.lua).
 
 ### Options
 
-Options are located in
-[lua/core/options.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/core/options.lua).
+Options are located in [lua/core/options.lua](lua/core/options.lua).
 
 ### Snippets
 
 A collection of snippets for various programming/scripting languages can be
-found under
-[lua/snippets](https://github.com/softwareQinc/nvim-sq/blob/main/lua/snippets).
+found under [lua/snippets](lua/snippets).
 
 ### Colour schemes
 
 A few additional colour schemes can be lazy-loaded from
-[lua/plugins/colorschemes.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/colorschemes.lua).
-Edit the
-[init.lua](https://github.com/softwareQinc/nvim-sq/blob/main/init.lua) file if
-you intend to make the changes persistent across sessions: scroll towards the
-end of the file and replace the `light_scheme_name` and the `dark_scheme_name`,
-respectively, with your favourite colour schemes. Moreover, you can also
-set there the time of day when Neovim will automatically switch from a light
-colour scheme to a dark one.
+[lua/plugins/colorschemes.lua](lua/plugins/colorschemes.lua).
+Edit the [init.lua](init.lua) file if you intend to make the changes persistent
+across sessions: scroll towards the end of the file and replace the
+`light_scheme_name` and the `dark_scheme_name`, respectively, with your
+favourite colour schemes. Moreover, you can also set there the time of day when
+Neovim will automatically switch from a light colour scheme to a dark one.
 
 ### GUI client
 
@@ -202,8 +195,7 @@ On macOS, install it with
 brew install neovide
 ```
 
-The Neovide configuration is located under
-[lua/neovide](https://github.com/softwareQinc/nvim-sq/blob/main/lua/neovide).
+The Neovide configuration is located under [lua/neovide](lua/neovide).
 
 ---
 
@@ -212,12 +204,10 @@ The Neovide configuration is located under
 This Neovim configuration includes built-in LSP and DAP support for a wide
 range of programming, scripting, and markup languages, including (but not
 limited to) common ones such as C, C++, Python, Go, Rust,
-JavaScript/TypeScript, Markdown, and LaTeX. Some LSPs and DAPs are
+JavaScript/TypeScript, Markdown, LaTeX, and Typst. Some LSPs and DAPs are
 pre-installed by default; if you don’t need them, you can disable or remove
-them in
-[lua/plugins/lsp.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/lsp.lua)
-and
-[lua/plugins/dap.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/dap.lua).
+them in [lua/plugins/lsp.lua](lua/plugins/lsp.lua) and
+[lua/plugins/dap.lua](lua/plugins/dap.lua).
 
 Below are some potential issues you may encounter with specific languages.
 
@@ -254,23 +244,20 @@ julia --project=$HOME/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add(
 
 ## Troubleshooting
 
-From Neovim, run `:checkhealth` in case you are getting warnings/errors
-and/or there are missing packages required for this configuration.
+From Neovim, run `:checkhealth` in case you are getting warnings/errors and/or
+there are missing packages required for this configuration.
 
 ### ChatGPT
 
 The
 [ChatGPT](https://github.com/jackMort/ChatGPT.nvim) plugin, configured
-[here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/chatgpt.lua),
-assumes that the OpenAI API key is available as a text file in
-`$HOME/OpenAIkey.txt`; modify accordingly on your system.
+[here](lua/plugins/chatgpt.lua), assumes that the OpenAI API key is available
+as a text file in `$HOME/OpenAIkey.txt`; modify accordingly on your system.
 
 ### Neorg
 
 If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
-[here](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/neorg.lua),
-fails to install or does not function correctly, refer to the
+[here](lua/plugins/neorg.lua), fails to install or does not work properly,
+refer to the
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart) for
-detailed installation instructions.
-
----
+detailed installation instructions and troubleshooting.

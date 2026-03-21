@@ -22,9 +22,6 @@ M.generic = {
          end,
          { desc = "[Q]uit/close current buffer" },
       },
-      -- https://vi.stackexchange.com/a/3877
-      ["<leader>o"] = { 'o<ESC>0"_D', { desc = "Insert new line below" } },
-      ["<leader>O"] = { 'O<ESC>0"_D', { desc = "Insert new line above" } },
 
       ["<ESC>"] = { "<cmd> nohlsearch <CR>" },
 

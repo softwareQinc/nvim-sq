@@ -1,12 +1,32 @@
 # Changelog
 
+## nvim-sq 1.20 - 26 March 2026
+
+### Features
+
+- Added support for the [Typst](https://typst.app) document processing system,
+  with automatic installation of the
+  [tinymist](https://github.com/Myriad-Dreamin/tinymist) language server
+
+### Plugins
+
+- Added [typst-preview.nvim](https://github.com/chomosuke/typst-preview.nvim) -
+  Typst preview with bi-directional synchronization
+
+### Key mappings
+
+- Removed `<leader>o`/`<leader>O` mappings for inserting blank lines
+  below/above the cursor, as Neovim 0.11 introduced `]<Space>` and `[<Space>`
+  for this purpose, respectively
+
+---
+
 ## nvim-sq 1.19 - 16 March 2026
 
 ### Changes
 
-- Updated the
-  [configuration](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/carbon-now.lua)
-  for [carbon-now.nvim](https://github.com/ellisonleao/carbon-now.nvim)
+- Updated the [configuration](lua/plugins/carbon-now.lua) for
+  [carbon-now.nvim](https://github.com/ellisonleao/carbon-now.nvim)
 
 ### New plugins
 
@@ -28,8 +48,7 @@
 
 - Updated deprecated configuration for
   [nvim-colorizer](https://github.com/catgoose/nvim-colorizer.lua), as defined
-  in
-  [lua/plugins/nvim-colorizer.lua](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/nvim-colorizer.lua)
+  in [lua/plugins/nvim-colorizer.lua](lua/plugins/nvim-colorizer.lua)
 
 ### New plugins
 
@@ -49,11 +68,9 @@
 
 ### Changes
 
-- Added
-  [lazy-lock.json](https://github.com/softwareQinc/nvim-sq/blob/main/lazy-lock.json)
-  to the repository to ensure reproducible plugin configurations. After a fresh
-  installation, run `:Lazy update` if you wish to update plugins to their
-  latest versions.
+- Added [lazy-lock.json](lazy-lock.json) to the repository to ensure
+  reproducible plugin configurations. After a fresh installation, run
+  `:Lazy update` if you wish to update plugins to their latest versions.
 
 ### New plugins
 
@@ -104,7 +121,7 @@
 ### Removed plugins
 
 - [luarocks.nvim](https://github.com/vhyrro/luarocks.nvim), no longer required
-  by [neorg](https://github.com/nvim-neorg/neorg)
+  by [Neorg](https://github.com/nvim-neorg/neorg)
 
 ### New key mappings
 
@@ -119,7 +136,7 @@
 
 - Added
   [typescript-language-server](https://github.com/typescript-language-server/typescript-language-server)
-  and [ESLint](https://eslint.org/) (pre-installed with native support for both
+  and [ESLint](https://eslint.org) (pre-installed with native support for both
   JavaScript and TypeScript)
 - Removed [hls](https://github.com/haskell/haskell-language-server), as
   [haskell-tools](https://github.com/mrcjkb/haskell-tools.nvim) already
@@ -285,7 +302,8 @@
   the state of LSP auto-formatting on save on all buffers.
 
   To disable LSP auto-formatting for a specific file type (e.g., Markdown), add
-  the following line to `after/ftplugin/markdown.lua`
+  the following line to
+  [`after/ftplugin/markdown.lua`](after/ftplugin/markdown.lua)
 
   ```lua
   vim.b.lsp_format_on_save_current_buffer = false
@@ -345,7 +363,7 @@
 ### Changes
 
 - Minor bug fixes and comments for
-  [nvim-colorizer](https://github.com/softwareQinc/nvim-sq/blob/main/lua/plugins/nvim-colorizer.lua)
+  [nvim-colorizer](lua/plugins/nvim-colorizer.lua)
 
 ### New plugins
 

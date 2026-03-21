@@ -59,6 +59,7 @@ return {
             "ruff", -- Python
             "rust_analyzer", -- Rust
             "texlab", -- LaTeX
+            "tinymist", -- Typst
             "ts_ls", -- JavaScript/TypeScript
             "vimls", -- Vim
             "yamlls", -- YAML
