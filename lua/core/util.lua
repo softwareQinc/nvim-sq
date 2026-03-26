@@ -310,4 +310,59 @@ function M.lsp_diagnostics_level_4()
    vim.diagnostic.config(dl4)
 end
 
+--- Discovers language server configuration from one or more directories
+--- Each file must return a table config
+--- Later directories override earlier ones for duplicate servers
+---
+--- Returns, e.g.:
+--- {
+---   { "lua_ls", { ... } },
+---   { "clangd", { ... } },
+--- }
+---
+---@param dirs? string[] Directories to scan
+---@return table[]
+function M.discover_lsp_servers(dirs)
+   local results = {}
+   local configs = {}
+
+   dirs = dirs
+      or {
+         vim.fn.stdpath("config") .. "/lsp",
+         vim.fn.stdpath("config") .. "/after/lsp",
+      }
+
+   for _, dir in ipairs(dirs) do
+      local lsp_dir = vim.fn.fnamemodify(dir, ":p")
+
+      for _, file in ipairs(vim.fn.globpath(lsp_dir, "*.lua", false, true)) do
+         local server = vim.fn.fnamemodify(file, ":t:r")
+
+         local ok, config = pcall(dofile, file)
+         if ok and type(config) == "table" then
+            configs[server] = config
+         else
+            vim.notify(
+               string.format(
+                  "Failed to load LSP config for %s from %s",
+                  server,
+                  file
+               ),
+               vim.log.levels.WARN
+            )
+         end
+      end
+   end
+
+   for server, config in pairs(configs) do
+      results[#results + 1] = { server, config }
+   end
+
+   table.sort(results, function(a, b)
+      return a[1] < b[1]
+   end)
+
+   return results
+end
+
 return M

@@ -1,12 +1,14 @@
 # Changelog
 
-## nvim-sq 1.20 - 26 March 2026
+## nvim-sq 1.20 - 27 March 2026
 
 ### Features
 
 - Added support for the [Typst](https://typst.app) document processing system,
   with automatic installation of the
   [tinymist](https://github.com/Myriad-Dreamin/tinymist) language server
+- Modernized LSP configuration. Now all servers are configured under
+  [`after/lsp`](after/lsp).
 
 ### Plugins
 

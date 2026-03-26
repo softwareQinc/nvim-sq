@@ -1,0 +1,2 @@
+-- Typst
+return {}
