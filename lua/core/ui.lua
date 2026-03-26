@@ -158,8 +158,12 @@ function M.set_background_transparency(transparent)
          local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
          hl.bg = nil
          hl.ctermbg = nil
-         -- FIXME: When gruvbox fixes NormalFloat handling
-         if not (vim.g.colors_name == "gruvbox" and group == "NormalFloat") then
+         -- FIXME: Workaround for gruvbox NormalFloat bug causing transparency
+         -- in Tree-sitter context
+         local skip = (
+            vim.g.colors_name == "gruvbox" and group == "NormalFloat"
+         )
+         if not skip then
             vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
          end
       end
