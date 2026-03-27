@@ -1,8 +1,9 @@
 # nvim-sq
 
 Custom [Neovim](https://neovim.io) configuration designed to enhance
-development productivity. Includes LSP, DAP, auto-completion, fuzzy finding,
-Tree-sitter, tmux integration, ChatGPT, and more. Plugins are managed using
+development productivity. Includes language servers, debug adapters, linters,
+formatters, auto-completion, fuzzy finding, Tree-sitter, tmux integration,
+ChatGPT, and more. Plugins are managed via
 [lazy.nvim](https://github.com/folke/lazy.nvim). Requires Neovim 0.11 or newer.
 
 This configuration has been extensively tested on macOS and Linux
@@ -201,22 +202,58 @@ The Neovide configuration is located under [lua/neovide](lua/neovide).
 
 ## Programming language support
 
-This Neovim configuration includes built-in LSP and DAP support for a wide
-range of programming, scripting, and markup languages, including (but not
-limited to) common ones such as C, C++, Python, Go, Rust,
-JavaScript/TypeScript, Markdown, LaTeX, and Typst. Some LSPs and DAPs are
-pre-installed by default; if you don’t need them, you can disable or remove
-them in [lua/plugins/lsp.lua](lua/plugins/lsp.lua) and
+This Neovim configuration includes built-in support for the Language Server
+Protocol (LSP), Debug Adapter Protocol (DAP), and integrated linting and
+formatting across a wide range of programming, scripting, and markup languages,
+including C, C++, Python, Go, Rust, Haskell, Julia, Bash, Perl,
+JavaScript/TypeScript, Markdown, TOML, YAML, LaTeX, and Typst.
+
+### Language servers (LSP)
+
+Language server management is fully automated. Servers are
+
+- Discovered from the [after/lsp](after/lsp) directory
+- Installed via [mason-lspconfig.nvim](https://github.com/mason-org/mason-lspconfig.nvim),
+  see [lua/plugins/mason.lua](lua/plugins/mason.lua)
+- Configured and enabled via [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig),
+  see [lua/plugins/nvim-lspconfig.lua](lua/plugins/nvim-lspconfig.lua)
+
+To install and enable a new server, create a corresponding file
+
+```text
+after/lsp/<server>.lua
+```
+
+The file can simply `return {}` - the server will then use the default
+configuration provided by
+[nvim-lspconfig](https://github.com/neovim/nvim-lspconfig). Any additional
+options you define will be merged with the defaults.
+
+### Debug adapters (DAP)
+
+Debug adapters are configured and installed by
+[nvim-dap](https://github.com/mfussenegger/nvim-dap), see
 [lua/plugins/dap.lua](lua/plugins/dap.lua).
+
+### Linters and formatters
+
+Linters and formatters are
+
+- Installed via [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim),
+  see [lua/plugins/mason.lua](lua/plugins/mason.lua)
+- Configured via [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim), see
+  see [lua/plugins/none-ls.lua](lua/plugins/none-ls.lua)
+
+### Potential issues
 
 Below are some potential issues you may encounter with specific languages.
 
-### Haskell
+#### Haskell
 
 Ensure that [ghcup](https://www.haskell.org/ghcup) is installed, see
 [https://www.haskell.org/ghcup/install](https://www.haskell.org/ghcup/install).
 
-### JavaScript/TypeScript
+#### JavaScript/TypeScript
 
 If you encounter problems with [ESLint](https://eslint.org), run
 
@@ -226,7 +263,7 @@ npm init @eslint/config@latest
 
 from the root of your project.
 
-### Julia
+#### Julia
 
 To enable Julia support, install Julia (on macOS) with
 
@@ -237,7 +274,11 @@ curl -fsSL https://install.julialang.org | sh
 Next, to enable full LSP integration, execute in a shell
 
 ```shell
-julia --project=$HOME/.julia/environments/nvim-lspconfig -e 'using Pkg; Pkg.add("LanguageServer"); Pkg.add("SymbolServer"); Pkg.add("StaticLint")'
+julia --project="$HOME/.julia/environments/nvim-lspconfig" \
+  -e 'using Pkg;
+      Pkg.add("LanguageServer");
+      Pkg.add("SymbolServer");
+      Pkg.add("StaticLint")'
 ```
 
 ---
@@ -250,14 +291,15 @@ there are missing packages required for this configuration.
 ### ChatGPT
 
 The
-[ChatGPT](https://github.com/jackMort/ChatGPT.nvim) plugin, configured
-[here](lua/plugins/chatgpt.lua), assumes that the OpenAI API key is available
-as a text file in `$HOME/OpenAIkey.txt`; modify accordingly on your system.
+[ChatGPT](https://github.com/jackMort/ChatGPT.nvim) plugin, configured in
+[lua/plugins/chatgpt.lua](lua/plugins/chatgpt.lua), assumes that the OpenAI API
+key is stored as a text file in `$HOME/OpenAIkey.txt`; modify accordingly for
+your system.
 
 ### Neorg
 
 If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
-[here](lua/plugins/neorg.lua), fails to install or does not work properly,
-refer to the
+in [lua/plugins/neorg.lua](lua/plugins/neorg.lua), fails to install or does not
+work properly, refer to the
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart) for
 detailed installation instructions and troubleshooting.

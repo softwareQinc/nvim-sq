@@ -79,35 +79,60 @@ function M.set_options(options)
    end
 end
 
---- Returns an on_attach callback that enables format-on-save for a buffer
----@param augroup integer|string Augroup id or name used for `BufWritePre` autocmds
----@return fun(client:table, bufnr:integer) LSP on_attach callback
-function M.format_on_save(augroup)
+--- Create a format-on-save callback for LSP clients
+---@param format_group integer Autocmd group dedicated to format-on-save
+---@return fun(client: vim.lsp.Client, bufnr: integer)
+function M.format_on_save(format_group)
+   --- Register format-on-save for a buffer, if supported by the client
+   ---@param client vim.lsp.Client
+   ---@param bufnr integer
    return function(client, bufnr)
-      if client:supports_method("textDocument/formatting") then
-         vim.api.nvim_clear_autocmds({
-            group = augroup,
-            buffer = bufnr,
-         })
-         vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
-            buffer = bufnr,
-            callback = function()
-               local state = require("core.state")
-               if vim.b.lsp_format_on_save_current_buffer == false then
-                  return
-               end
-               if
-                  vim.b.lsp_format_on_save_current_buffer == true
-                  or state.lsp_format_on_save_enabled_at_startup
-               then
-                  -- Do not call this asynchronously!
-                  vim.lsp.buf.format({ async = false, bufnr = bufnr })
-               end
-            end,
-            desc = "LSP format on save",
-         })
+      if not client or not bufnr then
+         return
       end
+
+      if not client:supports_method("textDocument/formatting") then
+         return
+      end
+
+      if
+         not vim.api.nvim_buf_is_valid(bufnr)
+         or not vim.api.nvim_buf_is_loaded(bufnr)
+      then
+         return
+      end
+
+      -- Keep exactly one BufWritePre formatter per buffer in this group
+      vim.api.nvim_clear_autocmds({
+         group = format_group,
+         buffer = bufnr,
+      })
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+         group = format_group,
+         buffer = bufnr,
+         desc = "LSP format on save",
+         callback = function()
+            local state = require("core.state")
+            local enabled = vim.b[bufnr].lsp_format_on_save_current_buffer
+
+            if enabled == false then
+               return
+            end
+
+            if
+               enabled == true or state.lsp_format_on_save_enabled_at_startup
+            then
+               vim.lsp.buf.format({
+                  async = false,
+                  bufnr = bufnr,
+                  filter = function(fmt_client)
+                     return fmt_client.id == client.id
+                  end,
+               })
+            end
+         end,
+      })
    end
 end
 
@@ -310,21 +335,26 @@ function M.lsp_diagnostics_level_4()
    vim.diagnostic.config(dl4)
 end
 
---- Discovers language server configuration from one or more directories
---- Each file must return a table config
---- Later directories override earlier ones for duplicate servers
+--- Returns LSP server names discovered from configuration directories
 ---
---- Returns, e.g.:
---- {
----   { "lua_ls", { ... } },
----   { "clangd", { ... } },
---- }
+--- Scans the provided directories for `*.lua` files, derives the server name
+--- from each file name, de-duplicates them, and returns a sorted list.
 ---
----@param dirs? string[] Directories to scan
----@return table[]
-function M.discover_lsp_servers(dirs)
-   local results = {}
-   local configs = {}
+---@param dirs? string[] List of directories to scan
+---  Defaults to:
+---    - stdpath("config") .. "/lsp"
+---    - stdpath("config") .. "/after/lsp"
+--- @return string[] Sorted list of LSP server names
+function M.get_lsp_server_names(dirs)
+   local servers = {}
+
+   if dirs ~= nil and type(dirs) ~= "table" then
+      vim.notify(
+         "get_lsp_server_names(): dirs must be a list",
+         vim.log.levels.ERROR
+      )
+      return {}
+   end
 
    dirs = dirs
       or {
@@ -337,31 +367,12 @@ function M.discover_lsp_servers(dirs)
 
       for _, file in ipairs(vim.fn.globpath(lsp_dir, "*.lua", false, true)) do
          local server = vim.fn.fnamemodify(file, ":t:r")
-
-         local ok, config = pcall(dofile, file)
-         if ok and type(config) == "table" then
-            configs[server] = config
-         else
-            vim.notify(
-               string.format(
-                  "Failed to load LSP config for %s from %s",
-                  server,
-                  file
-               ),
-               vim.log.levels.WARN
-            )
-         end
+         servers[server] = true
       end
    end
 
-   for server, config in pairs(configs) do
-      results[#results + 1] = { server, config }
-   end
-
-   table.sort(results, function(a, b)
-      return a[1] < b[1]
-   end)
-
+   local results = vim.tbl_keys(servers)
+   table.sort(results)
    return results
 end
 

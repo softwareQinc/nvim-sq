@@ -27,10 +27,10 @@ return {
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
          group = grp,
          pattern = { vaults_dir .. "/**.md" },
+         desc = "Set conceallevel=2 for Obsidian Markdown buffers",
          callback = function()
             vim.opt_local.conceallevel = 2
          end,
-         desc = "Set conceallevel=2 for Obsidian Markdown buffers",
       })
    end,
    opts = {

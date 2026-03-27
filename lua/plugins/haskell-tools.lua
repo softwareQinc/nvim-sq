@@ -9,6 +9,7 @@ return {
       local grp = vim.api.nvim_create_augroup("Haskell-tools", { clear = true })
       vim.api.nvim_create_autocmd("LspAttach", {
          group = grp,
+         desc = "Keymaps haskell-tools (buffer-local)",
          callback =
             ---@param ev vim.api.keyset.create_autocmd.callback_args
             function(ev)
@@ -18,7 +19,6 @@ return {
                util.map_keys(keymaps.haskell_tools, { buffer = ev.buf })
                require("telescope").load_extension("ht")
             end,
-         desc = "Keymaps haskell-tools (buffer-local)",
       })
    end,
 }

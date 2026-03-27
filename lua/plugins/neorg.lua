@@ -22,11 +22,11 @@ return {
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
          group = grp,
          pattern = { "*.norg" },
+         desc = "Set conceallevel=2 and foldlevel=99 for Neorg buffers",
          callback = function()
             vim.opt_local.conceallevel = 2
             vim.opt_local.foldlevel = 99
          end,
-         desc = "Set conceallevel=2 and foldlevel=99 for Neorg buffers",
       })
    end,
 }

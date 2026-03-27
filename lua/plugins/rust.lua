@@ -32,6 +32,7 @@ return {
             vim.api.nvim_create_autocmd("FileType", {
                group = grp,
                pattern = { "rust" },
+               desc = "Keymaps rust (buffer-local)",
                callback =
                   ---@param ev vim.api.keyset.create_autocmd.callback_args
                   function(ev)
@@ -40,7 +41,6 @@ return {
                      local util = require("core.util")
                      util.map_keys(keymaps.rust, { buffer = ev.buf })
                   end,
-               desc = "Keymaps rust (buffer-local)",
             })
          end,
    },

@@ -6,57 +6,57 @@ local generic_grp = vim.api.nvim_create_augroup("Generic", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
    group = generic_grp,
    pattern = { "*" },
+   desc = "Highlights yanked text",
    callback = function()
       vim.highlight.on_yank({ timeout = 200 })
    end,
-   desc = "Highlights yanked text",
 })
 -- SignColumn always on, and of length 1, so new events in the SignColumn do
 -- not push the text to the right
 vim.api.nvim_create_autocmd("VimEnter", {
    group = generic_grp,
    pattern = { "*" },
+   desc = "SignColumn always on, length 1",
    callback = function()
       vim.opt.signcolumn = "yes"
       vim.opt.numberwidth = 1
    end,
-   desc = "SignColumn always on, length 1",
 })
 -- Set SignColumn color to background color, aesthetically nicer
 vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    group = generic_grp,
    pattern = { "*" },
-   command = "hi! link SignColumn Normal",
    desc = "Set SignColumn color to background color",
+   command = "hi! link SignColumn Normal",
 })
 -- Fold method
 vim.api.nvim_create_autocmd("FileType", {
    group = generic_grp,
+   desc = "Set foldmethod",
    callback = function()
       if require("nvim-treesitter.parsers").has_parser() then
          vim.opt.foldmethod = "expr"
          vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
       end
    end,
-   desc = "Set foldmethod",
 })
 -- Cursor line in active buffer
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
    group = generic_grp,
    pattern = { "*" },
+   desc = "Set cursorline/cursorlineopt in active buffer",
    callback = function()
       vim.opt_local.cursorlineopt = "both"
    end,
-   desc = "Set cursorline/cursorlineopt in active buffer",
 })
 -- Cursor line in inactive buffers
 vim.api.nvim_create_autocmd("WinLeave", {
    group = generic_grp,
    pattern = { "*" },
+   desc = "Set cursorline/cursorlineopt in inactive buffer",
    callback = function()
       vim.opt_local.cursorlineopt = "line"
    end,
-   desc = "Set cursorline/cursorlineopt in inactive buffer",
 })
 
 -- Restore last cursor position and centre the screen when reopening a file
@@ -80,17 +80,18 @@ local terminal_grp = vim.api.nvim_create_augroup("Terminal", { clear = true })
 vim.api.nvim_create_autocmd("TermOpen", {
    group = terminal_grp,
    pattern = { "*" },
+   desc = "Disable spell checking and line numbering in terminal windows",
    callback = function()
       vim.opt_local.spell = false
       vim.opt_local.number = false
       vim.opt_local.relativenumber = false
    end,
-   desc = "Disable spell checking and line numbering in terminal windows",
 })
 -- Enter terminal windows in Insert mode
 vim.api.nvim_create_autocmd("TermOpen", {
    group = terminal_grp,
    pattern = { "*" },
+   desc = "Enter terminal windows in Insert mode",
    callback = function()
       -- Prevent nvim-dap-ui from switching to Insert mode, see
       -- https://github.com/mfussenegger/nvim-dap/issues/439#issuecomment-1380787919
@@ -103,14 +104,13 @@ vim.api.nvim_create_autocmd("TermOpen", {
       vim.cmd("startinsert")
       vim.opt_local.number = false
    end,
-   desc = "Enter terminal windows in Insert mode",
 })
 -- Exit terminal windows without pressing any key
 -- vim.api.nvim_create_autocmd("TermClose", {
 --    group = terminal_grp,
 --    pattern = { "*" },
---    command = "call feedkeys('q')",
 --    desc = "Exit terminal windows without pressing any key",
+--    command = "call feedkeys('q')",
 -- })
 
 -- Quickfix lists
@@ -119,10 +119,10 @@ local quickfix_grp = vim.api.nvim_create_augroup("Quickfix", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
    group = quickfix_grp,
    pattern = { "qf" },
+   desc = "Disable spell checking in quickfix lists",
    callback = function()
       vim.opt_local.spell = false
    end,
-   desc = "Disable spell checking in quickfix lists",
 })
 
 -- Change color scheme automatically based on time of the day
@@ -142,8 +142,8 @@ vim.api.nvim_create_autocmd({
    "VimEnter",
 }, {
    group = auto_color_scheme_grp,
-   callback = require("core.ui").set_color_scheme_callback,
    desc = "Set auto color scheme",
+   callback = require("core.ui").set_color_scheme_callback,
 })
 
 -- Restore the state of transparent background on ColorScheme event
@@ -173,89 +173,89 @@ local gnupg_grp = vim.api.nvim_create_augroup("GnuPG", { clear = true })
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
+   desc = "Do not write to ~/.viminfo while editing GnuPG-encrypted files",
    callback = function()
       vim.opt.viminfo = ""
    end,
-   desc = "Do not write to ~/.viminfo while editing GnuPG-encrypted files",
 })
 -- We don't want a swap file, as it writes unencrypted data to disk
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
+   desc = "Disable swap and shada files while editing GnuPG-encrypted files",
    callback = function()
       vim.opt_local.swapfile = false
       vim.opt.shada = ""
    end,
-   desc = "Disable swap and shada files while editing GnuPG-encrypted files",
 })
 -- Set binary mode to read the encrypted file
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg" },
+   desc = "Set binary mode when reading GnuPG-encrpyted files",
    callback = function()
       vim.opt_local.binary = true
    end,
-   desc = "Set binary mode when reading GnuPG-encrpyted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPre", "FileReadPre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
-   command = "let ch_save = &ch|set ch=2",
    desc = "Set binary mode when reading GnuPG-encrypted files",
+   command = "let ch_save = &ch|set ch=2",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
-   command = "%!sh -c 'gpg --decrypt 2>/dev/null'",
    desc = "Set binary mode when reading GnuPG-encrypted files",
+   command = "%!sh -c 'gpg --decrypt 2>/dev/null'",
 })
 -- Set Normal mode for editing
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = gnupg_grp,
    pattern = { "*.gpg" },
+   desc = "Set Normal mode for editing GnuPG-encrypted files",
    callback = function()
       vim.opt_local.binary = false
    end,
-   desc = "Set Normal mode for editing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
+   desc = "Set Normal mode for editing GnuPG-encrypted files",
    command = "let &ch = ch_save|unlet ch_save",
-   desc = "Set Normal mode for editing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufReadPost", "FileReadPost" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
-   command = 'execute ":doautocmd BufReadPost " . expand("%:r")',
    desc = "Set Normal mode for editing GnuPG-encrypted files",
+   command = 'execute ":doautocmd BufReadPost " . expand("%:r")',
 })
 -- Convert all text to encrypted text before writing
 vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg" },
+   desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
    callback = function()
       vim.opt_local.binary = false
    end,
-   desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
 })
 vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
    group = gnupg_grp,
    pattern = { "*.gpg" },
-   command = "%!sh -c 'gpg --default-recipient-self -e 2>/dev/null'",
    desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
+   command = "%!sh -c 'gpg --default-recipient-self -e 2>/dev/null'",
 })
 vim.api.nvim_create_autocmd({ "BufWritePre", "FileWritePre" }, {
    group = gnupg_grp,
    pattern = { "*.asc" },
-   command = "%!sh -c 'gpg --default-recipient-self -e -a 2>/dev/null'",
    desc = "Convert all text to encrypted text before writing GnuPG-encrypted files",
+   command = "%!sh -c 'gpg --default-recipient-self -e -a 2>/dev/null'",
 })
 -- Undo the encryption so we are back in the normal text, directly after the
 -- file has been written
 vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
    group = gnupg_grp,
    pattern = { "*.gpg", "*.asc" },
-   command = "u",
    desc = "Undo encryption for GnuPG-encrypted files",
+   command = "u",
 })

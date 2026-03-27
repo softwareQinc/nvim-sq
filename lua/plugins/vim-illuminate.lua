@@ -21,14 +21,13 @@ return {
       end
       set_illumintate_hl()
       -- Auto update the highlight style when the color scheme changes
+      local grp =
+         vim.api.nvim_create_augroup("Vim-illuminate", { clear = true })
       api.nvim_create_autocmd("ColorScheme", {
-         group = vim.api.nvim_create_augroup(
-            "Vim-illuminate",
-            { clear = true }
-         ),
+         group = grp,
          pattern = { "*" },
-         callback = set_illumintate_hl,
          desc = "Auto update the highlight style when the color scheme changes (vim-illuminate)",
+         callback = set_illumintate_hl,
       })
    end,
 }

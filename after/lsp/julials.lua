@@ -1,4 +1,5 @@
 -- Julia
+---@type vim.lsp.Config
 return {
    cmd = {
       "julia",

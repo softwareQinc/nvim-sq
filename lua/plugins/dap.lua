@@ -8,6 +8,7 @@ return {
          local grp = vim.api.nvim_create_augroup("Nvim-DAP", { clear = true })
          vim.api.nvim_create_autocmd("LspAttach", {
             group = grp,
+            desc = "Keymaps nvim-dap (buffer-local)",
             callback =
                ---@param ev vim.api.keyset.create_autocmd.callback_args
                function(ev)
@@ -16,7 +17,6 @@ return {
                   local util = require("core.util")
                   util.map_keys(keymaps.nvim_dap, { buffer = ev.buf })
                end,
-            desc = "Keymaps nvim-dap (buffer-local)",
          })
       end,
    },
@@ -76,6 +76,7 @@ return {
             vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
                group = grp,
                pattern = { "python" },
+               desc = "Keymaps nvim-dap-python (buffer-local)",
                callback =
                   ---@param ev vim.api.keyset.create_autocmd.callback_args
                   function(ev)
@@ -84,7 +85,6 @@ return {
                      local util = require("core.util")
                      util.map_keys(keymaps.nvim_dap_python, { buffer = ev.buf })
                   end,
-               desc = "Keymaps nvim-dap-python (buffer-local)",
             })
          end,
    },
@@ -104,6 +104,7 @@ return {
             vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
                group = grp,
                pattern = { "go" },
+               desc = "Keymaps nvim-dap-go (buffer-local)",
                callback =
                   ---@param ev vim.api.keyset.create_autocmd.callback_args
                   function(ev)
@@ -112,7 +113,6 @@ return {
                      local util = require("core.util")
                      util.map_keys(keymaps.nvim_dap_go, { buffer = ev.buf })
                   end,
-               desc = "Keymaps nvim-dap-go (buffer-local)",
             })
          end,
    },

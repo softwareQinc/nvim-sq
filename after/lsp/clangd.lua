@@ -1,4 +1,5 @@
 -- C, C++
+---@type vim.lsp.Config
 return {
    cmd = {
       "clangd",

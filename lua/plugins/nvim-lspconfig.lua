@@ -1,44 +1,43 @@
----@type LazySpec
+---@type LazyPluginSpec
 return {
    -- Automatic configuration of language servers
    "neovim/nvim-lspconfig",
-   event = "LspAttach",
    config = function()
+      local keymaps = require("core.keymaps")
       local util = require("core.util")
-      local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 
-      local augroup =
-         vim.api.nvim_create_augroup("LSP-formatting", { clear = true })
-      local lsp_format_on_save = util.format_on_save(augroup)
+      -- Apply enhanced completion capabilities (cmp-nvim-lsp) to all servers
+      vim.lsp.config("*", {
+         capabilities = vim.tbl_deep_extend(
+            "force",
+            vim.lsp.protocol.make_client_capabilities(),
+            require("cmp_nvim_lsp").default_capabilities()
+         ),
+      })
 
-      -- TODO: Migrate to the native Neovim 0.11+ LSP autocompletion
-      lsp_capabilities = vim.tbl_deep_extend(
-         "force",
-         lsp_capabilities,
-         require("cmp_nvim_lsp").default_capabilities()
-      )
-
-      -- Global defaults
-      local server_configs = util.discover_lsp_servers()
-      for _, entry in ipairs(server_configs) do
-         local server = entry[1]
-         local config = entry[2]
-         config.capabilities = lsp_capabilities
-         config.on_attach = lsp_format_on_save
-         vim.lsp.config(server, config)
+      -- Enable all servers
+      for _, server in ipairs(util.get_lsp_server_names()) do
          vim.lsp.enable(server)
       end
 
       -- Additional settings
-      local lsp_group =
-         vim.api.nvim_create_augroup("Nvim-lspconfig", { clear = true })
+      local lsp_attach_grp =
+         vim.api.nvim_create_augroup("NvimLspAttach", { clear = true })
+      local lsp_format_grp =
+         vim.api.nvim_create_augroup("NvimLspFormatOnSave", { clear = true })
+      local lsp_format_on_save = util.format_on_save(lsp_format_grp)
       vim.api.nvim_create_autocmd("LspAttach", {
-         group = lsp_group,
+         group = lsp_attach_grp,
+         desc = "Configure nvim-lspconfig",
          callback =
             ---@param ev vim.api.keyset.create_autocmd.callback_args
             function(ev)
-               -- Disable semantic token highlighting for lua_ls
                local client = vim.lsp.get_client_by_id(ev.data.client_id)
+               if not client then
+                  return
+               end
+
+               -- Disable semantic token highlighting for lua_ls
                if client and client.name and client.name == "lua_ls" then
                   client.server_capabilities.semanticTokensProvider = nil
                end
@@ -46,8 +45,10 @@ return {
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
+               -- Enable format on save
+               lsp_format_on_save(client, ev.buf)
+
                -- Buffer-local keymaps
-               local keymaps = require("core.keymaps")
                util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })
 
                -- Inlay hints policy (buffer overrides global)
@@ -69,7 +70,6 @@ return {
                   end
                end
             end,
-         desc = "Keymaps nvim-lspconfig (buffer-local)",
       })
    end,
 }

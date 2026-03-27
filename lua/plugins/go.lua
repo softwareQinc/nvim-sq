@@ -11,6 +11,7 @@ return {
          vim.api.nvim_create_autocmd("FileType", {
             group = vim.api.nvim_create_augroup("Gopher", { clear = true }),
             pattern = { "go" },
+            desc = "Keymaps gopher (buffer-local)",
             callback =
                ---@param ev vim.api.keyset.create_autocmd.callback_args
                function(ev)
@@ -19,7 +20,6 @@ return {
                   local util = require("core.util")
                   util.map_keys(keymaps.go, { buffer = ev.buf })
                end,
-            desc = "Keymaps gopher (buffer-local)",
          })
       end,
    build = function()

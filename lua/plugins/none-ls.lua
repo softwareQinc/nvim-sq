@@ -8,9 +8,10 @@ return {
    opts = function()
       local null_ls = require("null-ls")
       local util = require("core.util")
-      local grp =
-         vim.api.nvim_create_augroup("None-ls-formatting", { clear = true })
-      local null_ls_format_on_save = util.format_on_save(grp)
+
+      local none_ls_format_grp =
+         vim.api.nvim_create_augroup("NoneLsFormatOnSave", { clear = true })
+      local null_ls_format_on_save = util.format_on_save(none_ls_format_grp)
 
       local opts = {
          sources = {
