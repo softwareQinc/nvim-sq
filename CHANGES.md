@@ -1,6 +1,6 @@
 # Changelog
 
-## nvim-sq 1.21 - 28 March 2026
+## nvim-sq 1.21 - 29 March 2026
 
 ### Features
 

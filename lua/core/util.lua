@@ -43,9 +43,9 @@ function M.map_keys(keymap_tbl, additional_options)
    local allowed_modes =
       { n = true, i = true, v = true, s = true, x = true, o = true, c = true }
    for mode, rhs in pairs(keymap_tbl) do
-      -- Check if 'mode' is a table; if so, check if the first element is
+      -- Check if `mode` is a table; if so, check if the first element is
       -- allowed
-      -- If 'mode' is a string, check if it's in our allowed list
+      -- If `mode` is a string, check if it's in our allowed list
       local primary_mode = type(mode) == "table" and mode[1] or mode
       if allowed_modes[primary_mode] then
          map_keys_inner(mode, rhs, additional_options)
@@ -58,7 +58,7 @@ end
 ---@param additional_options table? Extra options merged into each mapping
 function M.map_all_keys(tbl, additional_options)
    for _, keymap_tbl in pairs(tbl) do
-      -- Keymap tables that contain 'plugin = true' are skipped
+      -- Keymap tables that contain `plugin = true` are skipped
       -- Keymaps are buffer-local/key-triggered and are performed in the plugin
       -- config file
       if keymap_tbl.plugin then

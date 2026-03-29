@@ -6,7 +6,7 @@ return {
    keys = require("core.keymaps").outline.keys,
    opts = {
       keymaps = {
-         -- Do not close by pressing <ESC>, only by pressing 'q'
+         -- Do not close with <Esc>; press q instead
          close = "q",
       },
    },

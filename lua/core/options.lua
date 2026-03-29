@@ -25,7 +25,7 @@ M = {
       virtualedit = "block",
       scrolloff = 8,
 
-      -- Tree-sitter folding is set in "lua/core/autocmds.lua" (Fold method)
+      -- Tree-sitter folding is set in `lua/core/autocmds.lua` (Fold method)
       foldmethod = "indent",
       foldlevelstart = 99,
       foldnestmax = 10,

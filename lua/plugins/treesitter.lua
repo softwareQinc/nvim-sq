@@ -3,7 +3,7 @@ return {
    -- Tree-sitter: LSP syntax tree and better syntax highlighting
    {
       "nvim-treesitter/nvim-treesitter",
-      -- TODO: Migrate to 'main'
+      -- TODO: Migrate to the 'main' branch
       tag = "v0.10.0", -- last version before master->main breaking changes
       event = { "BufReadPost", "BufNewFile" },
       cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
@@ -31,8 +31,7 @@ return {
             highlight = {
                enable = true,
                disable = {
-                  "latex",
-                  "tmux",
+                  "latex", -- conflicts with `VimTeX`
                },
             },
 

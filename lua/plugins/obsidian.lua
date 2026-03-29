@@ -7,7 +7,7 @@ return {
    -- Replace the above line with the one below if you only want to load
    -- obsidian.nvim for Markdown files in your vault
    event = {
-      -- If you want to use the home shortcut '~' here you need to call
+      -- If you want to use the $HOME shortcut '~' here you need to call
       -- 'vim.fn.expand'
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
       "BufReadPre "

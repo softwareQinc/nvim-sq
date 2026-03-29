@@ -136,8 +136,8 @@ function M.set_auto_scheme(opts)
    end
 
    -- Call it once, so we don't end up with defaults for a brief time before
-   -- the auto command from the "AutoColorScheme" group in
-   -- "lua/core/autocmds.lua" kicks in
+   -- the auto command from the `AutoColorScheme` group in
+   -- `lua/core/autocmds.lua` kicks in
    M.set_color_scheme_callback()
 end
 
@@ -158,7 +158,7 @@ function M.set_background_transparency(transparent)
          local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
          hl.bg = nil
          hl.ctermbg = nil
-         -- FIXME: Workaround for gruvbox NormalFloat bug causing transparency
+         -- FIXME: Workaround for `gruvbox` NormalFloat bug causing transparency
          -- in Tree-sitter context
          local skip = (
             vim.g.colors_name == "gruvbox" and group == "NormalFloat"

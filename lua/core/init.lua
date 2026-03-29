@@ -32,8 +32,8 @@ local state = require("core.state")
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
 -- To modify the `state.hardtime_enabled_at_startup` flag, edit its table
--- entry in "lua/core/state.lua"
--- See the `M.hardtime` table in "lua/core/keymaps.lua" for keymaps/settings
+-- entry in `lua/core/state.lua`
+-- See the `M.hardtime` table in `lua/core/keymaps.lua` for keymaps/settings
 -- TODO: Eliminate defer_fn() once it is no longer necessary
 if state.hardtime_enabled_at_startup then
    vim.defer_fn(function()

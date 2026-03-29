@@ -6,7 +6,7 @@ return {
       local keymaps = require("core.keymaps")
       local util = require("core.util")
 
-      -- Apply enhanced completion capabilities (cmp-nvim-lsp) to all servers
+      -- Apply enhanced completion capabilities (`cmp-nvim-lsp`) to all servers
       vim.lsp.config("*", {
          capabilities = vim.tbl_deep_extend(
             "force",
@@ -15,7 +15,7 @@ return {
          ),
       })
 
-      -- Enable all servers
+      -- Enable all servers automatically discovered from `after/lsp`
       for _, server in ipairs(util.get_lsp_server_names()) do
          vim.lsp.enable(server)
       end
