@@ -29,17 +29,6 @@ vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    desc = "Set SignColumn color to background color",
    command = "hi! link SignColumn Normal",
 })
--- Fold method
-vim.api.nvim_create_autocmd("FileType", {
-   group = generic_grp,
-   desc = "Set foldmethod",
-   callback = function()
-      if require("nvim-treesitter.parsers").has_parser() then
-         vim.opt.foldmethod = "expr"
-         vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      end
-   end,
-})
 -- Cursor line in active buffer
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
    group = generic_grp,

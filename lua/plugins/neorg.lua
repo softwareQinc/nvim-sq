@@ -1,8 +1,8 @@
 ---@type LazyPluginSpec
 return {
    "nvim-neorg/neorg",
+   dependencies = { "nvim-neorg/tree-sitter-norg" },
    ft = "norg",
-   version = "*", -- pin Neorg to the latest stable release
    opts = {
       load = {
          ["core.defaults"] = {},

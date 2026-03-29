@@ -9,6 +9,12 @@ ChatGPT, and more. Plugins are managed via
 This configuration has been extensively tested on macOS and Linux
 (Debian/Ubuntu). Minor issues may occur on other platforms.
 
+> ⚠️ **WARNING:** This is an experimental branch. Recommended for
+> [**Neovim nightly (0.12)**](https://github.com/neovim/neovim/releases/tag/nightly).
+> Mainly intended for migrating
+> [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to the
+> `main` branch, which introduces breaking changes.
+
 ---
 
 ## Pre-requisites
@@ -91,12 +97,10 @@ functionality.
   Required to install and build Tree-sitter parsers locally.
   - **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
     ```shell
-    npm install -g tree-sitter-cli@0.25.10
+    npm install -g tree-sitter-cli
     # or
-    cargo install --locked tree-sitter-cli --version 0.25.10
+    cargo install --locked tree-sitter-cli
     ```
-    > NOTE: Use `tree-sitter-cli` version 0.25.10 - versions 0.26.x are
-    > currently incompatible with the Tree-sitter `master` branch.
 
 - [**GnuPG**](https://gnupg.org) &
   [**Pinentry**](https://www.gnupg.org/related_software/pinentry)
@@ -300,6 +304,23 @@ your system.
 
 If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
 in [lua/plugins/neorg.lua](lua/plugins/neorg.lua), fails to install or does not
-work properly, refer to the
+work properly, you can apply the workaround described in the related issue
+[here](https://github.com/nvim-neorg/neorg/issues/1715#issuecomment-3524433687)
+by following the steps below.
+
+- On UNIX-like systems, create a directory named `parser` in the root of your
+  Neovim configuration, assumed here to be `$HOME/.config/nvim`
+
+  ```shell
+  mkdir parser
+  ```
+
+- Next, create a symbolic link to the Neorg parser
+
+  ```shell
+  ln -s $HOME/.local/share/nvim/lazy-rocks/tree-sitter-norg/lib/lua/5.1/parser/norg.so parser/
+  ```
+
+Adapt accordingly for your operating system. In addition, refer to the
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart) for
 detailed installation instructions and troubleshooting.
