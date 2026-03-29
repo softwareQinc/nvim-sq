@@ -62,8 +62,15 @@ return {
             vim.wo.foldmethod = "expr"
             vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
+            -- Disable Tree-sitter highlighting for selected languages
+            local disabled_ts_highlight = {
+               latex = true, -- conflicts with `VimTeX`
+            }
+
             -- Replicate `highlight = { enable = true }`
-            vim.treesitter.start(buf, language)
+            if not disabled_ts_highlight[language] then
+               vim.treesitter.start(buf, language)
+            end
 
             -- Replicate `indent = { enable = true }`
             vim.bo[buf].indentexpr =
