@@ -15,7 +15,7 @@ return {
 
       local opts = {
          sources = {
-            -- Formatting
+            -- Formatters
             null_ls.builtins.formatting.black,
             null_ls.builtins.formatting.cmake_format,
             null_ls.builtins.formatting.gofumpt,
@@ -41,7 +41,7 @@ return {
             }),
             null_ls.builtins.formatting.stylua,
 
-            -- Diagnostics
+            -- Linters
             -- CMake
             null_ls.builtins.diagnostics.cmake_lint,
             -- Python

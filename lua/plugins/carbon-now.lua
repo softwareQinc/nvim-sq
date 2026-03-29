@@ -4,7 +4,6 @@ return {
    lazy = true,
    cmd = { "CarbonNow" },
    opts = {
-      open_cmd = "open",
       options = {
          theme = "one-light",
          titlebar = "",

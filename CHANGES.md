@@ -1,22 +1,14 @@
 # Changelog
 
-## nvim-sq 2.0 - Future version 2.0, experimental release
-
-> ⚠️ **WARNING:** This is an experimental release. Recommended for
-> [**Neovim nightly (0.12)**](https://github.com/neovim/neovim/releases/tag/nightly).
-> Mainly intended for migrating
-> [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to the
-> `main` branch, which introduces breaking changes.
+## nvim-sq 2.0 - 5 April 2026
 
 ### Features
 
-- [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-  migrated to the `main` branch
+- Migrated [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+  to the `main` branch. Requires Neovim 0.12 or newer.
 
 ### Plugins
 
-- Added [flash.nvim](https://github.com/folke/flash.nvim) - Code navigation
-  with search labels, enhanced character motions, and Tree-sitter integration
 - Added [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) -
   Provides syntax-aware text objects with support for selecting, moving,
   swapping, and peeking
@@ -473,7 +465,7 @@
 - Toggle transparent background
 - Removed Neovide font settings, as it should be specified in
   `$XDG_CONFIG_HOME/neovide/config.toml`, see
-  https://neovide.dev/config-file.html##font
+  [Neovide config documentation](https://neovide.dev/config-file.html#font)
 
 ### New plugins
 

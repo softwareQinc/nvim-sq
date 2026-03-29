@@ -11,17 +11,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
       vim.highlight.on_yank({ timeout = 200 })
    end,
 })
--- SignColumn always on, and of length 1, so new events in the SignColumn do
--- not push the text to the right
-vim.api.nvim_create_autocmd("VimEnter", {
-   group = generic_grp,
-   pattern = { "*" },
-   desc = "SignColumn always on, length 1",
-   callback = function()
-      vim.opt.signcolumn = "yes"
-      vim.opt.numberwidth = 1
-   end,
-})
 -- Set SignColumn color to background color, aesthetically nicer
 vim.api.nvim_create_autocmd({ "ColorScheme", "VimEnter" }, {
    group = generic_grp,
@@ -65,15 +54,13 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- Terminal
 local terminal_grp = vim.api.nvim_create_augroup("Terminal", { clear = true })
--- Disable spell checking and line numbering
+-- Disable spell checking
 vim.api.nvim_create_autocmd("TermOpen", {
    group = terminal_grp,
    pattern = { "*" },
-   desc = "Disable spell checking and line numbering in terminal windows",
+   desc = "Disable spell checking in terminal windows",
    callback = function()
       vim.opt_local.spell = false
-      vim.opt_local.number = false
-      vim.opt_local.relativenumber = false
    end,
 })
 -- Enter terminal windows in Insert mode

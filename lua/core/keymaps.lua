@@ -275,7 +275,7 @@ M.neo_tree = {
 
 M.netrw = {
    n = {
-      ["<leader>e"] = { "<cmd> Lexplore 20 <CR>", { desc = "N[e]tRw toggle" } },
+      ["<leader>e"] = { "<cmd> Lexplore 25 <CR>", { desc = "N[e]tRw toggle" } },
    },
 }
 
@@ -318,7 +318,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Select outer [m]ethod/function" },
+         { desc = "Select outer [m]ethod/function (TS)" },
       },
       ["im"] = {
          function()
@@ -327,7 +327,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Select inner [m]ethod/function" },
+         { desc = "Select inner [m]ethod/function (TS)" },
       },
       ["ac"] = {
          function()
@@ -336,7 +336,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Select outer [c]lass" },
+         { desc = "Select outer [c]lass (TS)" },
       },
       ["ic"] = {
          function()
@@ -345,16 +345,16 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Select inner [c]lass" },
+         { desc = "Select inner [c]lass (TS)" },
       },
-      ["as"] = {
+      ["ao"] = {
          function()
             require("nvim-treesitter-textobjects.select").select_textobject(
                "@local.scope",
                "locals"
             )
          end,
-         { desc = "Select local [s]cope" },
+         { desc = "Select local sc[o]pe (TS)" },
       },
    },
 
@@ -366,7 +366,7 @@ M.nvim_treesitter_textobjects = {
                "@parameter.inner"
             )
          end,
-         { desc = "Tree-sitter swap next parameter" },
+         { desc = "Swap with next parameter (TS)" },
       },
       ["<leader><"] = {
          function()
@@ -374,7 +374,7 @@ M.nvim_treesitter_textobjects = {
                "@parameter.inner"
             )
          end,
-         { desc = "Tree-sitter swap previous parameter" },
+         { desc = "Swap with previous parameter (TS)" },
       },
    },
 
@@ -387,43 +387,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Next method/function start" },
-      },
-      ["]]"] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_next_start(
-               "@class.outer",
-               "textobjects"
-            )
-         end,
-         { desc = "Next class start" },
-      },
-      ["]o"] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_next_start(
-               { "@loop.inner", "@loop.outer" },
-               "textobjects"
-            )
-         end,
-         { desc = "Next l[o]op start" },
-      },
-      ["]s"] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_next_start(
-               "@local.scope",
-               "locals"
-            )
-         end,
-         { desc = "Next local [s]cope start" },
-      },
-      ["]z"] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_next_start(
-               "@fold",
-               "folds"
-            )
-         end,
-         { desc = "Next fold start" },
+         { desc = "Next [m]ethod/function start (TS)" },
       },
       ["]M"] = {
          function()
@@ -432,16 +396,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Next method/function end" },
-      },
-      ["]["] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_next_end(
-               "@class.outer",
-               "textobjects"
-            )
-         end,
-         { desc = "Next class end" },
+         { desc = "Next [M]ethod/function end (TS)" },
       },
       ["[m"] = {
          function()
@@ -450,16 +405,7 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Previous method/function start" },
-      },
-      ["[["] = {
-         function()
-            require("nvim-treesitter-textobjects.move").goto_previous_start(
-               "@class.outer",
-               "textobjects"
-            )
-         end,
-         { desc = "Previous class start" },
+         { desc = "Previous [m]ethod/function start (TS)" },
       },
       ["[M"] = {
          function()
@@ -468,7 +414,34 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Previous method/function end" },
+         { desc = "Previous [M]ethod/function end (TS)" },
+      },
+      ["]]"] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_next_start(
+               "@class.outer",
+               "textobjects"
+            )
+         end,
+         { desc = "Next class start (TS)" },
+      },
+      ["]["] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_next_end(
+               "@class.outer",
+               "textobjects"
+            )
+         end,
+         { desc = "Next class end (TS)" },
+      },
+      ["[["] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_previous_start(
+               "@class.outer",
+               "textobjects"
+            )
+         end,
+         { desc = "Previous class start (TS)" },
       },
       ["[]"] = {
          function()
@@ -477,25 +450,61 @@ M.nvim_treesitter_textobjects = {
                "textobjects"
             )
          end,
-         { desc = "Previous class end" },
+         { desc = "Previous class end (TS)" },
       },
-      ["]d"] = {
+      ["]f"] = {
          function()
             require("nvim-treesitter-textobjects.move").goto_next(
                "@conditional.outer",
                "textobjects"
             )
          end,
-         { desc = "Next con[d]itional" },
+         { desc = "Next i[f]/conditional (TS)" },
       },
-      ["[d"] = {
+      ["[f"] = {
          function()
             require("nvim-treesitter-textobjects.move").goto_previous(
                "@conditional.outer",
                "textobjects"
             )
          end,
-         { desc = "Previous con[d]itional" },
+         { desc = "Previous i[f]/conditional (TS)" },
+      },
+      ["]o"] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_next_start(
+               "@local.scope",
+               "locals"
+            )
+         end,
+         { desc = "Next local sc[o]pe start (TS)" },
+      },
+      ["[o"] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_previous_start(
+               "@local.scope",
+               "locals"
+            )
+         end,
+         { desc = "Previous local sc[o]pe start (TS)" },
+      },
+      ["]r"] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_next_start(
+               { "@loop.inner", "@loop.outer" },
+               "textobjects"
+            )
+         end,
+         { desc = "Next [r]epeat/loop start (TS)" },
+      },
+      ["[r"] = {
+         function()
+            require("nvim-treesitter-textobjects.move").goto_previous_start(
+               { "@loop.inner", "@loop.outer" },
+               "textobjects"
+            )
+         end,
+         { desc = "Previous [r]epeat/loop start (TS)" },
       },
    },
 }
@@ -706,52 +715,6 @@ M.background_transparency = {
          {
             desc = "[B]ackground t[r]ansparency toggle",
          },
-      },
-   },
-}
-
-M.flash = {
-   plugin = true,
-   keys = {
-      {
-         "s",
-         mode = { "n", "x", "o" },
-         function()
-            require("flash").jump()
-         end,
-         desc = "Flash",
-      },
-      {
-         "S",
-         mode = { "n", "x", "o" },
-         function()
-            require("flash").treesitter()
-         end,
-         desc = "Flash Tree-sitter",
-      },
-      {
-         "r",
-         mode = "o",
-         function()
-            require("flash").remote()
-         end,
-         desc = "Remote Flash",
-      },
-      {
-         "R",
-         mode = { "o", "x" },
-         function()
-            require("flash").treesitter_search()
-         end,
-         desc = "Flash Tree-sitter search",
-      },
-      {
-         "<c-s>",
-         mode = { "c" },
-         function()
-            require("flash").toggle()
-         end,
-         desc = "Toggle Flash search",
       },
    },
 }

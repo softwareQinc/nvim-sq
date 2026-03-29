@@ -5,13 +5,15 @@ local M = {}
 M = {
    opt = {
       expandtab = true,
-      tabstop = 4,
-      softtabstop = 4,
       shiftwidth = 4,
+      softtabstop = 4,
+      tabstop = 4,
 
+      cursorline = true,
       number = true,
       relativenumber = true,
-      cursorline = true,
+
+      signcolumn = "yes:1",
 
       hlsearch = true,
       showmode = true,
@@ -22,12 +24,12 @@ M = {
       splitright = true,
 
       inccommand = "split",
-      virtualedit = "block",
       scrolloff = 8,
+      virtualedit = "block",
 
-      -- Tree-sitter folding is set in `lua/core/autocmds.lua` (Fold method)
-      foldmethod = "indent",
+      -- Tree-sitter folding is set up in `lua/plugins/treesitter.lua`
       foldlevelstart = 99,
+      foldmethod = "indent",
       foldnestmax = 10,
 
       termguicolors = true,

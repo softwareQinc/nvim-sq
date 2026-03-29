@@ -16,7 +16,7 @@ return {
             history = true,
             updateevents = "TextChanged,TextChangedI",
          },
-         -- install jsregexp (optional!).
+         -- Install jsregexp (optional!)
          build = "make install_jsregexp",
       },
       -- Nice LSP completion symbols
@@ -93,10 +93,10 @@ return {
       local lspkind = require("lspkind")
       local luasnip = require("luasnip")
 
-      -- VSCode format
-      require("luasnip.loaders.from_vscode").lazy_load()
-
       -- Snippets
+      -- VSCode style snippets
+      require("luasnip.loaders.from_vscode").lazy_load()
+      -- Custom Lua snippets
       local config_path = vim.fn.stdpath("config")
       require("luasnip.loaders.from_lua").load({
          paths = { config_path .. "/lua/snippets" },

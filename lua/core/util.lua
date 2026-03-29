@@ -335,6 +335,31 @@ function M.lsp_diagnostics_level_4()
    vim.diagnostic.config(dl4)
 end
 
+--- Expand, normalize, and optionally resolve a filesystem path.
+--- Returns the real path if it exists, otherwise the normalized path
+--- unless `opts.strict` is true (then returns nil).
+---@param path string
+---@param opts? { strict?: boolean }  -- strict=true: return nil if path doesn't exist
+---@return string|nil
+function M.resolve_path(path, opts)
+   opts = opts or {}
+   -- Expand (~, env vars)
+   local expanded = vim.fn.expand(path)
+   -- Normalize (clean up path)
+   local normalized = vim.fs.normalize(expanded)
+   -- Try to resolve to real path (requires existence)
+   local real = vim.uv.fs_realpath(normalized)
+   if real then
+      return real
+   end
+   -- If strict, fail when path doesn't exist
+   if opts.strict then
+      return nil
+   end
+   -- Otherwise return best-effort normalized path
+   return normalized
+end
+
 --- Returns LSP server names discovered from configuration directories
 ---
 --- Scans the provided directories for `*.lua` files, derives the server name

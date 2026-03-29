@@ -10,7 +10,7 @@ return {
          ["core.dirman"] = {
             config = {
                workspaces = {
-                  notes = vim.fs.normalize("~/notes/neorg"),
+                  notes = require("core.util").resolve_path("~/notes/neorg"),
                },
                default_workspace = "notes",
             },

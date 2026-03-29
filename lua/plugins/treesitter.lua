@@ -7,7 +7,7 @@ return {
       build = ":TSUpdate",
       config = function()
          local ts = require("nvim-treesitter")
-         local languages = {
+         local parsers = {
             "c",
             "lua",
             "luadoc",
@@ -19,7 +19,7 @@ return {
 
          -- Replicate `ensure_installed`, runs asynchronously, skips existing
          -- languages
-         ts.install(languages)
+         ts.install(parsers)
 
          local available_parsers =
             require("nvim-treesitter.config").get_available()
@@ -59,8 +59,8 @@ return {
             end
 
             -- Folding
-            vim.wo.foldmethod = "expr"
-            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.opt_local.foldmethod = "expr"
+            vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
             -- Disable Tree-sitter highlighting for selected languages
             local disabled_ts_highlight = {

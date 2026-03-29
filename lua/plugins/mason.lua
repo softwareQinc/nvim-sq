@@ -23,7 +23,9 @@ return {
       end,
    },
 
-   -- Mason bridge for `none-ls` sources (linters and formatters)
+   -- Mason bridge for `none-ls` sources (linters and formatters),
+   -- auto-installs and enables formatters and linters. Additional custom
+   -- configurations are defined in `lua/plugins/none-ls.lua`.
    {
       "jay-babu/mason-null-ls.nvim",
       dependencies = { "mason-org/mason.nvim", "nvimtools/none-ls.nvim" },

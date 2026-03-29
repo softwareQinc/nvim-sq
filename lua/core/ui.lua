@@ -168,7 +168,7 @@ function M.set_background_transparency(transparent)
          end
       end
    else
-      -- Restore scheme safely
+      -- Restore color scheme safely
       vim.cmd.colorscheme(vim.g.colors_name)
    end
 end

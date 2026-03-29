@@ -63,7 +63,6 @@ return {
       "mfussenegger/nvim-dap-python",
       ft = "python",
       dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
-
       config =
          ---@param _plugin LazyPlugin
          ---@param _opts table
@@ -72,7 +71,6 @@ return {
             require("dap-python").setup()
             local grp =
                vim.api.nvim_create_augroup("Nvim-DAP-Python", { clear = true })
-
             vim.api.nvim_create_autocmd({ "LspAttach", "FileType" }, {
                group = grp,
                pattern = { "python" },

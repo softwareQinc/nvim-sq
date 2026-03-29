@@ -3,11 +3,9 @@
 return {
    filetypes = {
       "javascript",
-      "javascript.jsx",
       "javascriptreact",
       "svelte",
       "typescript",
-      "typescript.tsx",
       "typescriptreact",
       "vue",
    },

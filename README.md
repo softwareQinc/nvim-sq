@@ -4,16 +4,10 @@ Custom [Neovim](https://neovim.io) configuration designed to enhance
 development productivity. Includes language servers, debug adapters, linters,
 formatters, auto-completion, fuzzy finding, Tree-sitter, tmux integration,
 ChatGPT, and more. Plugins are managed via
-[lazy.nvim](https://github.com/folke/lazy.nvim). Requires Neovim 0.11 or newer.
+[lazy.nvim](https://github.com/folke/lazy.nvim). Requires Neovim 0.12 or newer.
 
 This configuration has been extensively tested on macOS and Linux
 (Debian/Ubuntu). Minor issues may occur on other platforms.
-
-> ⚠️ **WARNING:** This is an experimental branch. Recommended for
-> [**Neovim nightly (0.12)**](https://github.com/neovim/neovim/releases/tag/nightly).
-> Mainly intended for migrating
-> [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) to the
-> `main` branch, which introduces breaking changes.
 
 ---
 
@@ -236,7 +230,7 @@ options you define will be merged with the defaults.
 ### Debug adapters (DAP)
 
 Debug adapters are configured and installed by
-[nvim-dap](https://github.com/mfussenegger/nvim-dap), see
+[mason-nvim-dap.nvim](https://github.com/jay-babu/mason-nvim-dap.nvim), see
 [lua/plugins/dap.lua](lua/plugins/dap.lua).
 
 ### Linters and formatters
@@ -278,7 +272,7 @@ curl -fsSL https://install.julialang.org | sh
 Next, to enable full LSP integration, execute in a shell
 
 ```shell
-julia --project="$HOME/.julia/environments/nvim-lspconfig" \
+julia --project="~/.julia/environments/nvim-lspconfig" \
   -e 'using Pkg;
       Pkg.add("LanguageServer");
       Pkg.add("SymbolServer");
@@ -297,8 +291,8 @@ there are missing packages required for this configuration.
 The
 [ChatGPT](https://github.com/jackMort/ChatGPT.nvim) plugin, configured in
 [lua/plugins/chatgpt.lua](lua/plugins/chatgpt.lua), assumes that the OpenAI API
-key is stored as a text file in `$HOME/OpenAIkey.txt`; modify accordingly for
-your system.
+key is stored as a text file in `~/OpenAIkey.txt`; modify accordingly for your
+system.
 
 ### Neorg
 
@@ -309,16 +303,12 @@ work properly, you can apply the workaround described in the related issue
 by following the steps below.
 
 - On UNIX-like systems, create a directory named `parser` in the root of your
-  Neovim configuration, assumed here to be `$HOME/.config/nvim`
+  Neovim configuration, assumed here to be `~/.config/nvim`, followed by
+  creating a symbolic link to the Neorg parser
 
   ```shell
   mkdir parser
-  ```
-
-- Next, create a symbolic link to the Neorg parser
-
-  ```shell
-  ln -s $HOME/.local/share/nvim/lazy-rocks/tree-sitter-norg/lib/lua/5.1/parser/norg.so parser/
+  ln -s ~/.local/share/nvim/lazy-rocks/tree-sitter-norg/lib/lua/5.1/parser/norg.so parser/
   ```
 
 Adapt accordingly for your operating system. In addition, refer to the

@@ -11,17 +11,16 @@ return {
       -- 'vim.fn.expand'
       -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
       "BufReadPre "
-         .. (vim.uv.fs_realpath(vim.fs.normalize("~/notes/obsidian")) or "/dev/null")
+         .. require("core.util").resolve_path("~/notes/obsidian")
          .. "/**/*.md",
-      "BufNewFile " .. (vim.uv.fs_realpath(
-         vim.fs.normalize("~/notes/obsidian")
-      ) or "/dev/null") .. "/**/*.md",
+      "BufNewFile "
+         .. require("core.util").resolve_path("~/notes/obsidian")
+         .. "/**/*.md",
    },
    dependencies = { "nvim-lua/plenary.nvim" },
    init = function()
-      local vaults_dir = vim.uv.fs_realpath(
-         vim.fs.normalize("~/notes/obsidian")
-      ) or "/dev/null"
+      local util = require("core.util")
+      local vaults_dir = util.resolve_path("~/notes/obsidian")
       local grp =
          vim.api.nvim_create_augroup("MarkdownObsidian", { clear = true })
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
@@ -37,11 +36,13 @@ return {
       workspaces = {
          {
             name = "personal",
-            path = vim.fs.normalize("~/notes/obsidian/personal"),
+            path = require("core.util").resolve_path(
+               "~/notes/obsidian/personal"
+            ),
          },
          {
             name = "work",
-            path = vim.fs.normalize("~/notes/obsidian/work"),
+            path = require("core.util").resolve_path("~/notes/obsidian/work"),
          },
       },
    },

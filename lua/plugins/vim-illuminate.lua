@@ -19,7 +19,6 @@ return {
          api.nvim_set_hl(0, "IlluminatedWordRead", { link = "CursorLine" })
          api.nvim_set_hl(0, "IlluminatedWordWrite", { link = "CursorLine" })
       end
-      set_illumintate_hl()
       -- Auto update the highlight style when the color scheme changes
       local grp =
          vim.api.nvim_create_augroup("Vim-illuminate", { clear = true })
