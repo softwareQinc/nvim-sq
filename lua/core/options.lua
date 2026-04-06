@@ -27,10 +27,12 @@ M = {
       scrolloff = 8,
       virtualedit = "block",
 
-      -- Tree-sitter folding is set up in `lua/plugins/treesitter.lua`
+      foldlevel = 99,
       foldlevelstart = 99,
-      foldmethod = "indent",
       foldnestmax = 10,
+
+      -- Tree-sitter folding is set up in `lua/plugins/treesitter.lua`
+      foldmethod = "indent",
 
       termguicolors = true,
       undofile = true,
