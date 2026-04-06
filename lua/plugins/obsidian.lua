@@ -1,6 +1,7 @@
 ---@type LazyPluginSpec
 return {
    "epwalsh/obsidian.nvim",
+   dependencies = { "nvim-lua/plenary.nvim" },
    version = "*", -- recommended, use latest release instead of latest commit
    lazy = true,
    -- ft = "markdown",
@@ -17,7 +18,6 @@ return {
          .. require("core.util").resolve_path("~/notes/obsidian")
          .. "/**/*.md",
    },
-   dependencies = { "nvim-lua/plenary.nvim" },
    init = function()
       local util = require("core.util")
       local vaults_dir = util.resolve_path("~/notes/obsidian")

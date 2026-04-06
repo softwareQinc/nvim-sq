@@ -2,17 +2,15 @@
 return {
    -- Automatic configuration of language servers
    "neovim/nvim-lspconfig",
+   dependencies = "Saghen/blink.cmp",
+   event = "VeryLazy",
    config = function()
       local keymaps = require("core.keymaps")
       local util = require("core.util")
 
       -- Apply enhanced completion capabilities (`cmp-nvim-lsp`) to all servers
       vim.lsp.config("*", {
-         capabilities = vim.tbl_deep_extend(
-            "force",
-            vim.lsp.protocol.make_client_capabilities(),
-            require("cmp_nvim_lsp").default_capabilities()
-         ),
+         require("blink.cmp").get_lsp_capabilities(),
       })
 
       -- Enable all servers automatically discovered from `after/lsp`
@@ -23,9 +21,6 @@ return {
       -- Additional settings
       local lsp_attach_grp =
          vim.api.nvim_create_augroup("NvimLspAttach", { clear = true })
-      local lsp_format_grp =
-         vim.api.nvim_create_augroup("NvimLspFormatOnSave", { clear = true })
-      local lsp_format_on_save = util.format_on_save(lsp_format_grp)
       vim.api.nvim_create_autocmd("LspAttach", {
          group = lsp_attach_grp,
          desc = "Configure nvim-lspconfig",
@@ -44,9 +39,6 @@ return {
 
                -- Enable completion triggered by <c-x><c-o>
                vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-               -- Enable format on save
-               lsp_format_on_save(client, ev.buf)
 
                -- Buffer-local keymaps
                util.map_keys(keymaps.nvim_lspconfig, { buffer = ev.buf })

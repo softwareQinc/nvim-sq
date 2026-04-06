@@ -1,6 +1,11 @@
 ---@type LazyPluginSpec
 return {
    "jackMort/ChatGPT.nvim",
+   dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+   },
    cmd = {
       "ChatGPT",
       "ChatGPTRun",
@@ -27,9 +32,4 @@ return {
          api_key_cmd = display_cmd .. key_path,
       })
    end,
-   dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-   },
 }

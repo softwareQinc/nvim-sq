@@ -4,8 +4,8 @@ return {
    -- `lua/core/options.lua` so the status mode does not overwrite Hardtime
    -- messages while in Insert mode
    "m4xshen/hardtime.nvim",
-   lazy = false,
    dependencies = { "MunifTanjim/nui.nvim" },
+   lazy = false,
    opts = {
       restricted_keys = {
          -- Allow j/k without hardtime restrictions

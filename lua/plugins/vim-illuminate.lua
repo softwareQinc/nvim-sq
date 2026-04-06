@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
    "RRethy/vim-illuminate",
-   event = { "BufReadPost", "BufNewFile" },
    config = function()
       -- Default configuration
       require("illuminate").configure({

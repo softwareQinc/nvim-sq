@@ -24,8 +24,8 @@ return {
    -- Additional DAP UI to make the debugger prettier
    {
       "rcarriga/nvim-dap-ui",
-      event = "LspAttach",
       dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+      event = "LspAttach",
       config = function()
          local dap = require("dap")
          local dapui = require("dapui")
@@ -45,8 +45,8 @@ return {
    -- DAP integration via Mason
    {
       "jay-babu/mason-nvim-dap.nvim",
-      event = "LspAttach",
       dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
+      event = "LspAttach",
       opts = {
          automatic_installation = true,
          ensure_installed = {
@@ -61,8 +61,8 @@ return {
    -- DAP for Python
    {
       "mfussenegger/nvim-dap-python",
-      ft = "python",
       dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
+      ft = "python",
       config =
          ---@param _plugin LazyPlugin
          ---@param _opts table
@@ -90,8 +90,8 @@ return {
    -- DAP for Go
    {
       "leoluz/nvim-dap-go",
-      ft = "go",
       dependencies = { "mfussenegger/nvim-dap", "rcarriga/nvim-dap-ui" },
+      ft = "go",
       config =
          ---@param _ LazyPlugin
          ---@param opts table

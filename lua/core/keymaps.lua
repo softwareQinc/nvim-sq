@@ -1153,7 +1153,7 @@ M.nvim_lspconfig = {
       },
       ["<leader>fm"] = {
          function()
-            vim.lsp.buf.format({ async = true })
+            require("conform").format({ async = true })
          end,
          { desc = "LSP [f]or[m]at" },
       },

@@ -1,5 +1,21 @@
 # Changelog
 
+## nvim-sq 2.1 - 7 April 2026
+
+### Features
+
+- Code refactoring and simplification
+
+### Plugins
+
+- Replaced [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with
+  [blink.nvim](https://github.com/Saghen/blink.cmp)
+- Replaced [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim) with
+  [conform.nvim](https://github.com/stevearc/conform.nvim) and
+  [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
+---
+
 ## nvim-sq 2.0 - 6 April 2026
 
 ### Features

@@ -1,9 +1,9 @@
 ---@type LazyPluginSpec
 return {
    "nvimdev/dashboard-nvim",
+   dependencies = { "nvim-tree/nvim-web-devicons" },
    event = "VimEnter",
    cmd = "Dashboard",
-   dependencies = { "nvim-tree/nvim-web-devicons" },
    config = function()
       local opts = {
          theme = "hyper",

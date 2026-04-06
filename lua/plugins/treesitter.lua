@@ -125,15 +125,15 @@ return {
    -- Tree-sitter: Current code context
    {
       "nvim-treesitter/nvim-treesitter-context",
-      event = { "BufReadPost", "BufNewFile" },
       dependencies = { "nvim-treesitter/nvim-treesitter" },
+      event = { "BufReadPost", "BufNewFile" },
    },
 
    -- Tree-sitter: Text objects
    {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      branch = "main",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
+      branch = "main",
       config = function()
          require("nvim-treesitter-textobjects").setup({
             -- Define your own text objects mappings similar to ip (inner

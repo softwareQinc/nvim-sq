@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
    "folke/todo-comments.nvim",
-   event = { "BufReadPost", "BufNewFile" },
    dependencies = { "nvim-lua/plenary.nvim" },
+   event = { "BufReadPost", "BufNewFile" },
    opts = {},
 }

@@ -3,8 +3,6 @@ return {
    -- Fuzzy finder and picker UI (files, grep, buffers, etc.)
    {
       "nvim-telescope/telescope.nvim",
-      version = "*",
-      cmd = { "Telescope" },
       dependencies = {
          "nvim-lua/plenary.nvim",
          -- Optional but recommended
@@ -13,6 +11,8 @@ return {
             build = "make",
          },
       },
+      version = "*",
+      cmd = { "Telescope" },
       config = function()
          -- To get fzf loaded and working with telescope, you need to call
          -- load_extension, somewhere after setup function:
