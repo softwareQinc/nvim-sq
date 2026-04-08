@@ -65,15 +65,18 @@ return {
       "jay-babu/mason-nvim-dap.nvim",
       dependencies = { "mason-org/mason.nvim", "mfussenegger/nvim-dap" },
       event = "LspAttach",
-      opts = {
-         automatic_installation = true,
-         ensure_installed = {
-            "codelldb",
-            "delve",
-            "python",
-         },
-         handlers = {},
-      },
+      build = ":MasonUpdate",
+      config = function()
+         require("mason-nvim-dap").setup({
+            automatic_installation = true,
+            ensure_installed = {
+               "codelldb",
+               "delve",
+               "python",
+            },
+            handlers = {},
+         })
+      end,
    },
 
    -- DAP for Python
