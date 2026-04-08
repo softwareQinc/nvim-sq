@@ -29,6 +29,9 @@ require("core.autocmds")
 -- Miscellaneous
 local state = require("core.state")
 
+-- Enable native Undotree
+vim.cmd("packadd nvim.undotree")
+
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
 -- To modify the `state.hardtime_enabled_at_startup` flag, edit its table

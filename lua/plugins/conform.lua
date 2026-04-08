@@ -1,10 +1,11 @@
 return {
    "stevearc/conform.nvim",
+   event = { "BufReadPost", "BufNewFile" },
    config = function()
       local state = require("core.state")
       require("conform").setup({
          formatters_by_ft = {
-            cmake = { "cmakelang" },
+            cmake = { "cmake_format" },
             go = { "gofumpt", "goimports-reviser" },
             javascript = { "prettier" },
             json = { "prettier" },
@@ -25,7 +26,11 @@ return {
             if
                enabled == true or state.lsp_format_on_save_enabled_at_startup
             then
-               return { timeout_ms = 500, lsp_format = "fallback" }
+               return {
+                  async = false,
+                  timeout_ms = 500,
+                  lsp_format = "fallback",
+               }
             end
          end,
       })

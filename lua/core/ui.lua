@@ -146,15 +146,24 @@ end
 function M.set_background_transparency(transparent)
    if transparent == true then
       -- Set background to transparent while preserving other attributes
-      for _, group in ipairs({
+      -- Set background to transparent while preserving other attributes
+      local transparency_elements = {
+         "BlinkCmpMenu",
+         "BlinkCmpMenuBorder",
+         "BlinkCmpDoc",
+         "BlinkCmpDocBorder",
+         "BlinkCmpSignatureHelp",
+         "BlinkCmpSignatureHelpBorder",
          "EndOfBuffer",
+         "FloatBorder",
          "Normal",
          "NormalFloat",
          "NormalNC",
          "SignColumn",
          "WinBar",
          "WinBarNC",
-      }) do
+      }
+      for _, group in ipairs(transparency_elements) do
          local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
          hl.bg = nil
          hl.ctermbg = nil

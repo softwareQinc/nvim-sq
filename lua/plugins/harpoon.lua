@@ -2,7 +2,7 @@
 return {
    "ThePrimeagen/harpoon",
    dependencies = { "nvim-lua/plenary.nvim" },
-   event = "VeryLazy",
+   keys = require("core.keymaps").harpoon,
    branch = "harpoon2",
    config = true,
 }

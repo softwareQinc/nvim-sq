@@ -1,25 +1,34 @@
 ---@type LazySpec
 return {
-   -- Rust language support
-   {
-      "rust-lang/rust.vim",
-      ft = "rust",
-      init = function()
-         vim.g.rustfmt_autosave = 1
-      end,
-   },
-
    -- Rust tooling support
    {
-      "simrat39/rust-tools.nvim",
-      dependencies = { "neovim/nvim-lspconfig" },
-      ft = "rust",
+      "mrcjkb/rustaceanvim",
+      version = "*",
+      -- This plugin implements proper lazy-loading (see :h lua-plugin-lazy).
+      -- No need for lazy.nvim to lazy-load it.
+      lazy = false,
+      config = function()
+         local grp =
+            vim.api.nvim_create_augroup("Rustaceanvim", { clear = true })
+         vim.api.nvim_create_autocmd("FileType", {
+            group = grp,
+            pattern = { "rust" },
+            desc = "Keymaps Rust rustaceanvim (buffer-local)",
+            callback =
+               ---@param ev vim.api.keyset.create_autocmd.callback_args
+               function(ev)
+                  -- Buffer-local keymaps
+                  local keymaps = require("core.keymaps")
+                  local util = require("core.util")
+                  util.map_keys(keymaps.rust_rustaceanvim, { buffer = ev.buf })
+               end,
+         })
+      end,
    },
 
    -- Rust crates.io dependency management
    {
       "saecki/crates.nvim",
-      dependencies = { "hrsh7th/nvim-cmp" },
       ft = { "rust", "toml" },
       config =
          ---@param _ LazyPlugin
@@ -31,15 +40,18 @@ return {
             local grp = vim.api.nvim_create_augroup("Crates", { clear = true })
             vim.api.nvim_create_autocmd("FileType", {
                group = grp,
-               pattern = { "rust" },
-               desc = "Keymaps rust (buffer-local)",
+               pattern = { "rust", "toml" },
+               desc = "Keymaps Rust crates.nvim (buffer-local)",
                callback =
                   ---@param ev vim.api.keyset.create_autocmd.callback_args
                   function(ev)
                      -- Buffer-local keymaps
                      local keymaps = require("core.keymaps")
                      local util = require("core.util")
-                     util.map_keys(keymaps.rust, { buffer = ev.buf })
+                     util.map_keys(
+                        keymaps.rust_crates_nvim,
+                        { buffer = ev.buf }
+                     )
                   end,
             })
          end,

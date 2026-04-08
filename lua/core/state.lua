@@ -30,7 +30,7 @@ M.lsp_format_on_save_enabled_at_startup = true
 M.hardtime_enabled_at_startup = false
 
 -- Background transparency is disabled by default at startup
-M.background_transparency_enabled_at_startup = false
+M.background_transparency_enabled_at_startup = true
 
 -- Color scheme auto toggle (light/dark) defaults
 M.color_toggle_default = {

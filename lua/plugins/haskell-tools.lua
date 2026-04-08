@@ -4,7 +4,6 @@ return {
    "mrcjkb/haskell-tools.nvim",
    version = "*",
    ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
-   lazy = true,
    config = function()
       local grp = vim.api.nvim_create_augroup("Haskell-tools", { clear = true })
       vim.api.nvim_create_autocmd("LspAttach", {

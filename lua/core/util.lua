@@ -159,6 +159,7 @@ function M.smart_bd()
    -- Special buffers
    -- Keys are tables of the form {buf_ft, [OPTIONAL buf_bt]}
    local buf_cmds = {
+      [{ "Outline" }] = close_Cwc,
       [{ "chatgpt-input" }] = close_Cwc,
       [{ "diff" }] = close_Cwc,
       [{ "fugitive" }] = close_Cwc,
@@ -169,8 +170,8 @@ function M.smart_bd()
       [{ "man" }] = close_Cwc,
       [{ "neo-tree" }] = close_Cwc,
       [{ "netrw" }] = close_Cwc,
+      [{ "nvim-undotree" }] = close_Cwc,
       [{ "orgagenda" }] = close_Cwc,
-      [{ "Outline" }] = close_Cwc,
       [{ "qf" }] = close_Cwc,
       [{ "query" }] = close_Cwc,
       [{ "trouble" }] = close_Cwc,

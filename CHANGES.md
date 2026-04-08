@@ -1,10 +1,10 @@
 # Changelog
 
-## nvim-sq 2.1 - 7 April 2026
+## nvim-sq 2.1 - 8 April 2026
 
 ### Features
 
-- Code refactoring and simplification
+- Major code refactoring
 
 ### Plugins
 
@@ -13,6 +13,24 @@
 - Replaced [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim) with
   [conform.nvim](https://github.com/stevearc/conform.nvim) and
   [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+- Replaced [rust.vim](https://github.com/rust-lang/rust.vim) and
+  [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim) with
+  [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
+- Replaced [undotree](https://github.com/mbbill/undotree) with the new built-in
+  `nvim.undotree` plugin (Neovim 0.12 or later). The exisiting `<leader>u`
+  keymap is now bound to toggle the native plugin.
+
+### Key mappings
+
+- Added
+  - `<leader>duc` - DAP-UI close
+  - `<leader>duo` - DAP-UI open
+
+- Replaced the following custom keymaps with built-in Neovim’s LSP keymaps
+  - `gi` -> `gri` (go to implementation)
+  - `gs` -> `grr` (go to references)
+  - `<leader>ca` -> `gra` (code action; also used by Rustacean for Rust files)
+  - `<leader>rn` -> `grn` (rename symbol)
 
 ---
 

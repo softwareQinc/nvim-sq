@@ -11,7 +11,6 @@ return {
             "c",
             "lua",
             "luadoc",
-            -- "norg",
             "query",
             "vim",
             "vimdoc",
@@ -126,7 +125,7 @@ return {
    {
       "nvim-treesitter/nvim-treesitter-context",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
-      event = { "BufReadPost", "BufNewFile" },
+      event = "BufReadPost",
    },
 
    -- Tree-sitter: Text objects
@@ -134,6 +133,7 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       dependencies = { "nvim-treesitter/nvim-treesitter" },
       branch = "main",
+      keys = require("core.keymaps").nvim_treesitter_textobjects,
       config = function()
          require("nvim-treesitter-textobjects").setup({
             -- Define your own text objects mappings similar to ip (inner

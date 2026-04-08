@@ -3,14 +3,14 @@ return {
    -- Automatic configuration of language servers
    "neovim/nvim-lspconfig",
    dependencies = "Saghen/blink.cmp",
-   event = "VeryLazy",
+   event = { "BufReadPre", "BufNewFile" },
    config = function()
       local keymaps = require("core.keymaps")
       local util = require("core.util")
 
       -- Apply enhanced completion capabilities (`cmp-nvim-lsp`) to all servers
       vim.lsp.config("*", {
-         require("blink.cmp").get_lsp_capabilities(),
+         capabilities = require("blink.cmp").get_lsp_capabilities(),
       })
 
       -- Enable all servers automatically discovered from `after/lsp`

@@ -1,5 +1,6 @@
 return {
    "mfussenegger/nvim-lint",
+   event = "BufReadPost",
    config = function()
       require("lint").linters_by_ft = {
          cmake = { "cmakelint" },
@@ -8,7 +9,7 @@ return {
       }
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
          group = vim.api.nvim_create_augroup("Nvim-lint", { clear = true }),
-         desc = "nvim-lint hooks",
+         desc = "Configure nvim-lint",
          callback = function()
             -- try_lint without arguments runs the linters defined in `linters_by_ft`
             -- for the current filetype

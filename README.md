@@ -89,12 +89,13 @@ functionality.
 
 - [**`tree-sitter-cli`**](https://www.npmjs.com/package/tree-sitter-cli)
   Required to install and build Tree-sitter parsers locally.
-  - **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
-    ```shell
-    npm install -g tree-sitter-cli
-    # or
-    cargo install --locked tree-sitter-cli
-    ```
+- **All platforms - via `npm` (Node.js) or `cargo` (Rust)**
+
+  ```shell
+  npm install -g tree-sitter-cli
+  # or
+  cargo install --locked tree-sitter-cli
+  ```
 
 - [**GnuPG**](https://gnupg.org) &
   [**Pinentry**](https://www.gnupg.org/related_software/pinentry)
@@ -296,21 +297,8 @@ system.
 
 ### Neorg
 
-If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured
-in [lua/plugins/neorg.lua](lua/plugins/neorg.lua), fails to install or does not
-work properly, you can apply the workaround described in the related issue
-[here](https://github.com/nvim-neorg/neorg/issues/1715#issuecomment-3524433687)
-by following the steps below.
-
-- On UNIX-like systems, create a directory named `parser` in the root of your
-  Neovim configuration, assumed here to be `~/.config/nvim`, followed by
-  creating a symbolic link to the Neorg parser
-
-  ```shell
-  mkdir parser
-  ln -s ~/.local/share/nvim/lazy-rocks/tree-sitter-norg/lib/lua/5.1/parser/norg.so parser/
-  ```
-
-Adapt accordingly for your operating system. In addition, refer to the
+If the [Neorg](https://github.com/nvim-neorg/neorg) plugin, configured in
+[lua/plugins/neorg.lua](lua/plugins/neorg.lua), fails to install or does not
+work properly, refer to the
 [Neorg's Kickstart](https://github.com/nvim-neorg/neorg/wiki/Kickstart) for
 detailed installation instructions and troubleshooting.

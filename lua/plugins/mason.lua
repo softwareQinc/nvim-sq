@@ -7,6 +7,7 @@ return {
       config = function()
          local formatters = {
             "black", -- Python
+            "cmakelang", -- CMake
             "gofumpt", -- Go
             "goimports-reviser", -- Go
             "golines", -- Go
@@ -16,7 +17,6 @@ return {
             "stylua", -- Lua
          }
          local linters = {
-            "cmakelang", -- CMake
             "cmakelint", -- CMake
             "mypy", -- Python
             "shellcheck", -- Bash/sh

@@ -2,8 +2,8 @@
 return {
    "L3MON4D3/LuaSnip",
    dependencies = { "rafamadriz/friendly-snippets" },
-   event = "VeryLazy",
    version = "*",
+   event = "InsertEnter",
    config = function()
       require("luasnip").setup({
          history = true,

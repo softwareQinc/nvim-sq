@@ -72,7 +72,7 @@ M.carbon_now = {
    x = {
       ["<leader>cn"] = {
          ":CarbonNow <CR>",
-         { desc = "[C]arbon[N]ow (visual selection) screenshot" },
+         { desc = "[C]arbon[N]ow screenshot (visual selection) " },
       },
    },
 }
@@ -109,6 +109,17 @@ M.color_toggle = {
             end
          end,
          { desc = "[T]heme [t]oggle, light <-> dark toggle" },
+      },
+   },
+}
+
+M.conform = {
+   [{ "n", "x" }] = {
+      ["<leader>fm"] = {
+         function()
+            require("conform").format({ lsp_fallback = true, async = false })
+         end,
+         { desc = "Conform [f]or[m]at" },
       },
    },
 }
@@ -686,6 +697,19 @@ M.todo_comments = {
    },
 }
 
+M.undotree = {
+   n = {
+      ["<leader>u"] = {
+         function()
+            require("undotree").open({
+               command = "topleft 30vnew",
+            })
+         end,
+         desc = "[U]ndotree toggle",
+      },
+   },
+}
+
 ------------------------------------------------------------------------------
 -- Global keymaps for key-triggered (lazy-loaded) plugins
 M.background_transparency = {
@@ -774,13 +798,6 @@ M.trouble = {
          "<cmd> Trouble diagnostics toggle filter.buf=0 <CR>",
          desc = "Trouble buffer diagnostics",
       },
-   },
-}
-
-M.undotree = {
-   plugin = true,
-   keys = {
-      { "<leader>u", "<cmd> UndotreeToggle <CR>", desc = "[U]ndotree toggle" },
    },
 }
 
@@ -889,19 +906,37 @@ M.nvim_dap = {
    n = {
       ["<leader>db"] = {
          "<cmd> DapToggleBreakpoint <CR>",
-         { desc = "[D]AP add [b]reakpoint at line" },
+         { desc = "[D]AP add [b]reakpoint" },
       },
       ["<leader>dr"] = {
          "<cmd> DapContinue <CR>",
-         { desc = "[D]AP sta[r]t or continue the debugger" },
+         { desc = "[D]AP sta[r]t or continue" },
       },
-      ["<leader>dus"] = {
+      ["<leader>ds"] = {
          function()
             local widgets = require("dap.ui.widgets")
             local sidebar = widgets.sidebar(widgets.scopes)
             sidebar.open()
          end,
-         { desc = "[D]AP open deb[u]gging [s]idebar" },
+         { desc = "[D]AP open [s]idebar" },
+      },
+   },
+}
+
+M.nvim_dap_ui = {
+   plugin = true,
+   n = {
+      ["<leader>duc"] = {
+         function()
+            require("dapui").close()
+         end,
+         { desc = "[D]ap-[u]i [c]lose" },
+      },
+      ["<leader>duo"] = {
+         function()
+            require("dapui").open()
+         end,
+         { desc = "[D]ap-[u]i [o]pen" },
       },
    },
 }
@@ -947,22 +982,6 @@ M.nvim_lspconfig = {
          vim.lsp.buf.declaration,
          { desc = "LSP [g]o to [D]eclaration" },
       },
-      ["gi"] = {
-         -- NOTE: Implemented by default in nvim 0.11 as `gri`
-         vim.lsp.buf.implementation,
-         { desc = "LSP [g]o to [i]mplementation" },
-      },
-      ["gs"] = {
-         -- NOTE: Implemented by default in nvim 0.11 as `grr`
-         vim.lsp.buf.references,
-         { desc = "LSP [g]o to reference[s]" },
-      },
-      ["K"] = {
-         function()
-            vim.lsp.buf.hover()
-         end,
-         { desc = "LSP hover" },
-      },
       ["<leader>sh"] = {
          function()
             vim.lsp.buf.signature_help()
@@ -990,11 +1009,6 @@ M.nvim_lspconfig = {
       ["<leader>D"] = {
          vim.lsp.buf.type_definition,
          { desc = "LSP type [D]efinition" },
-      },
-      ["<leader>rn"] = {
-         -- NOTE: Implemented by default in nvim 0.11 as `grn`
-         vim.lsp.buf.rename,
-         { desc = "LSP [r]e[n]ame" },
       },
       ["<leader>fos"] = {
          function()
@@ -1145,19 +1159,6 @@ M.nvim_lspconfig = {
          { desc = "LSP [d]iagnostics current [l]evel [t]oggle" },
       },
    },
-   [{ "n", "x" }] = {
-      ["<leader>ca"] = {
-         -- NOTE: Implemented by default in nvim 0.11 as `gra`
-         vim.lsp.buf.code_action,
-         { desc = "LSP [c]ode [a]ctions" },
-      },
-      ["<leader>fm"] = {
-         function()
-            require("conform").format({ async = true })
-         end,
-         { desc = "LSP [f]or[m]at" },
-      },
-   },
 }
 
 M.run_current_python = {
@@ -1210,7 +1211,7 @@ M.run_current_zig = {
    },
 }
 
-M.rust = {
+M.rust_crates_nvim = {
    plugin = true,
    n = {
       ["<leader>rcu"] = {
@@ -1218,6 +1219,24 @@ M.rust = {
             require("crates").upgrade_all_crates()
          end,
          { desc = "[R]ust [c]rates [u]pdate" },
+      },
+   },
+}
+
+M.rust_rustaceanvim = {
+   plugin = true,
+   n = {
+      ["gra"] = {
+         function()
+            vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+         end,
+         { desc = "Rustacean code actions" },
+      },
+      ["K"] = {
+         function()
+            vim.cmd.RustLsp({ "hover", "actions" }) -- supports rust-analyzer's grouping
+         end,
+         { desc = "Rustacean hover" },
       },
    },
 }
