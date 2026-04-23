@@ -41,6 +41,10 @@ M = {
          -- eol = "⏎",
          -- space = "␣",
          tab = ">-",
+         trail = "⋅",
+         nbsp = "~",
+         extends = ">",
+         precedes = "<",
       },
       list = true, -- show special characters
 

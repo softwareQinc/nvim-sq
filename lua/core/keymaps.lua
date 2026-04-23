@@ -53,6 +53,53 @@ M.generic = {
       ["<M-l>"] = { "<C-w>5>", { desc = "Resize split left" } },
       ["<M-k>"] = { "<C-w>5-", { desc = "Resize split up" } },
       ["<M-j>"] = { "<C-w>5+", { desc = "Resize split down" } },
+
+      ["<leader>d"] = {
+         '"+d',
+         { desc = "[D]elete (cut) to system clipboard" },
+      },
+      ["<leader>p"] = {
+         '"+p',
+         { desc = "[P]aste from system clipboard" },
+      },
+      ["<leader>y"] = {
+         '"+y',
+         { desc = "[Y]ank to system clipboard" },
+      },
+      ["<leader>_"] = {
+         '"_d',
+         { desc = "Delete without yanking (black hole)" },
+      },
+   },
+   x = {
+      ["<leader>d"] = {
+         '"+d',
+         { desc = "[D]elete (cut) selection to system clipboard" },
+      },
+      ["<leader>p"] = {
+         '"+p',
+         { desc = "[P]aste over selection from system clipboard" },
+      },
+      ["<leader>y"] = {
+         '"+y',
+         { desc = "[Y]ank selection to system clipboard" },
+      },
+      ["<leader>_"] = {
+         '"_d',
+         { desc = "Delete selection without yanking (black hole)" },
+      },
+      ["p"] = {
+         '"_dP',
+         { desc = "Paste without overwriting register" },
+      },
+      ["<"] = {
+         "<gv",
+         { desc = "Indent left (keep selection)" },
+      },
+      [">"] = {
+         ">gv",
+         { desc = "Indent right (keep selection)" },
+      },
    },
    -- [{ "n", "i", "v", "x" }] = {
    --    ["<Up>"] = { "<Nop>" },
@@ -60,6 +107,24 @@ M.generic = {
    --    ["<Left>"] = { "<Nop>" },
    --    ["<Right>"] = { "<Nop>" },
    -- },
+}
+
+M.blink = {
+   n = {
+      ["<leader>bc"] = {
+         function()
+            vim.b.completion = not (vim.b.completion ~= false)
+            vim.notify(
+               ("Blink completion (current buffer): %s"):format(
+                  vim.b.completion
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.blink" }
+            )
+         end,
+         { desc = "[B]link [c]ompletion (current buffer) toggle" },
+      },
+   },
 }
 
 M.carbon_now = {
@@ -114,12 +179,48 @@ M.color_toggle = {
 }
 
 M.conform = {
+   n = {
+      ["<leader>fos"] = {
+         function()
+            local state = require("core.state")
+            state.format_on_save_enabled_at_startup =
+               not state.format_on_save_enabled_at_startup
+            vim.notify(
+               ("Conform/LSP format on save (global): %s"):format(
+                  state.format_on_save_enabled_at_startup
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.conform" }
+            )
+         end,
+         { desc = "Conform/LSP [fo]rmat on [s]ave (global) toggle" },
+      },
+      ["<leader>foS"] = {
+         function()
+            local state = require("core.state")
+            if vim.b.format_on_save_current_buffer == nil then
+               vim.b.format_on_save_current_buffer =
+                  state.format_on_save_enabled_at_startup
+            end
+            vim.b.format_on_save_current_buffer =
+               not vim.b.format_on_save_current_buffer
+            vim.notify(
+               ("Conform/LSP format on save (current buffer): %s"):format(
+                  vim.b.format_on_save_current_buffer
+               ),
+               vim.log.levels.INFO,
+               { title = "core.keymaps.conform" }
+            )
+         end,
+         { desc = "Conform/LSP [fo]rmat on [S]ave (current buffer) toggle" },
+      },
+   },
    [{ "n", "x" }] = {
       ["<leader>fm"] = {
          function()
             require("conform").format({ lsp_fallback = true, async = false })
          end,
-         { desc = "Conform [f]or[m]at" },
+         { desc = "Conform/LSP [f]or[m]at" },
       },
    },
 }
@@ -129,7 +230,7 @@ M.dashboard = {
       ["<leader>a"] = {
          function()
             require("dashboard")
-            vim.cmd("Dashboard")
+            vim.cmd.Dashboard()
          end,
          { desc = "D[a]shboard" },
       },
@@ -140,14 +241,11 @@ M.hardtime = {
    n = {
       ["<leader>hd"] = {
          function()
-            vim.cmd("Hardtime disable")
+            vim.cmd.Hardtime("disable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = false
             vim.notify(
-               string.format(
-                  "Hardtime: %s",
-                  state.hardtime_enabled_at_startup and "true" or "false"
-               ),
+               ("Hardtime: %s"):format(state.hardtime_enabled_at_startup),
                vim.log.levels.INFO,
                { title = "core.keymaps.hardtime" }
             )
@@ -156,14 +254,11 @@ M.hardtime = {
       },
       ["<leader>he"] = {
          function()
-            vim.cmd("Hardtime enable")
+            vim.cmd.Hardtime("enable")
             local state = require("core.state")
             state.hardtime_enabled_at_startup = true
             vim.notify(
-               string.format(
-                  "Hardtime: %s",
-                  state.hardtime_enabled_at_startup and "true" or "false"
-               ),
+               ("Hardtime: %s"):format(state.hardtime_enabled_at_startup),
                vim.log.levels.INFO,
                { title = "core.keymaps.hardtime" }
             )
@@ -172,21 +267,18 @@ M.hardtime = {
       },
       ["<leader>hr"] = {
          function()
-            vim.cmd("Hardtime report")
+            vim.cmd.Hardtime("report")
          end,
          { desc = "[H]ardtime [r]eport" },
       },
       ["<leader>ht"] = {
          function()
-            vim.cmd("Hardtime toggle")
+            vim.cmd.Hardtime("toggle")
             local state = require("core.state")
             state.hardtime_enabled_at_startup =
                not state.hardtime_enabled_at_startup
             vim.notify(
-               string.format(
-                  "Hardtime: %s",
-                  state.hardtime_enabled_at_startup and "true" or "false"
-               ),
+               ("Hardtime: %s"):format(state.hardtime_enabled_at_startup),
                vim.log.levels.INFO,
                { title = "core.keymaps.hardtime" }
             )
@@ -231,36 +323,28 @@ M.harpoon = {
             local harpoon = require("harpoon")
             harpoon:list():select(1)
          end,
-         {
-            desc = "Harpoon [1]",
-         },
+         { desc = "Harpoon [1]" },
       },
       ["<leader>j2"] = {
          function()
             local harpoon = require("harpoon")
             harpoon:list():select(2)
          end,
-         {
-            desc = "Harpoon [2]",
-         },
+         { desc = "Harpoon [2]" },
       },
       ["<leader>j3"] = {
          function()
             local harpoon = require("harpoon")
             harpoon:list():select(3)
          end,
-         {
-            desc = "Harpoon [3]",
-         },
+         { desc = "Harpoon [3]" },
       },
       ["<leader>j4"] = {
          function()
             local harpoon = require("harpoon")
             harpoon:list():select(4)
          end,
-         {
-            desc = "Harpoon [4]",
-         },
+         { desc = "Harpoon [4]" },
       },
       ["<leader>fj"] = {
          "<cmd> Telescope harpoon marks <CR>",
@@ -297,8 +381,7 @@ M.nvim_treesitter_context = {
             local tsc = require("treesitter-context")
             tsc.toggle()
             vim.notify(
-               string.format(
-                  "Tree-sitter context: %s",
+               ("Tree-sitter context: %s"):format(
                   tsc.enabled() and "true" or "false"
                ),
                vim.log.levels.INFO,
@@ -320,6 +403,26 @@ M.nvim_treesitter_context = {
 }
 
 M.nvim_treesitter_textobjects = {
+   -- Swap keymaps
+   n = {
+      ["<leader>>"] = {
+         function()
+            require("nvim-treesitter-textobjects.swap").swap_next(
+               "@parameter.inner"
+            )
+         end,
+         { desc = "Swap with next parameter (TS)" },
+      },
+      ["<leader><"] = {
+         function()
+            require("nvim-treesitter-textobjects.swap").swap_previous(
+               "@parameter.inner"
+            )
+         end,
+         { desc = "Swap with previous parameter (TS)" },
+      },
+   },
+
    -- Select keymaps
    [{ "x", "o" }] = {
       ["am"] = {
@@ -366,26 +469,6 @@ M.nvim_treesitter_textobjects = {
             )
          end,
          { desc = "Select local sc[o]pe (TS)" },
-      },
-   },
-
-   -- Swap keymaps
-   [{ "n" }] = {
-      ["<leader>>"] = {
-         function()
-            require("nvim-treesitter-textobjects.swap").swap_next(
-               "@parameter.inner"
-            )
-         end,
-         { desc = "Swap with next parameter (TS)" },
-      },
-      ["<leader><"] = {
-         function()
-            require("nvim-treesitter-textobjects.swap").swap_previous(
-               "@parameter.inner"
-            )
-         end,
-         { desc = "Swap with previous parameter (TS)" },
       },
    },
 
@@ -555,27 +638,59 @@ M.spectre = {
 
 M.telescope = {
    n = {
-      ["<leader>ff"] = {
-         "<cmd> Telescope find_files <CR>",
-         { desc = "Telescope [f]iles" },
+      ["<leader>co"] = {
+         "<cmd> Telescope colorscheme enable_preview=true <CR>",
+         { desc = "Telescope [co]lorscheme" },
       },
       ["<leader>fa"] = {
          "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
          { desc = "Telescope [a]ll files" },
       },
-      ["<leader>fn"] = {
-         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
-         { desc = "Telescope [n]vim config files" },
+      ["<leader>fb"] = {
+         "<cmd> Telescope buffers <CR>",
+         { desc = "Telescope [b]uffers" },
+      },
+      ["<leader>fc"] = {
+         "<cmd> Telescope git_commits <CR>",
+         { desc = "Telescope Git [c]ommits" },
+      },
+      ["<leader>fC"] = {
+         "<cmd> Telescope git_bcommits <CR>",
+         { desc = "Telescope Git buffer [C]ommits" },
+      },
+      ["<leader>fe"] = {
+         "<cmd> Telescope oldfiles <CR>",
+         { desc = "Telescope r[e]cent files" },
+      },
+      ["<leader>ff"] = {
+         "<cmd> Telescope find_files <CR>",
+         { desc = "Telescope [f]iles" },
       },
       ["<leader>fg"] = {
          "<cmd> Telescope live_grep <CR>",
-         { desc = "Telescope [g]rep" },
+         { desc = "Telescope live [g]rep" },
       },
       ["<leader>fG"] = {
          function()
             require("telescope.builtin").live_grep({ grep_open_files = true })
          end,
-         { desc = "Telescope [G]rep local buffers" },
+         { desc = "Telescope live [G]rep open buffers" },
+      },
+      ["<leader>fh"] = {
+         "<cmd> Telescope help_tags <CR>",
+         { desc = "Telescope [h]elp tags" },
+      },
+      ["<leader>fi"] = {
+         "<cmd> Telescope git_files <CR>",
+         { desc = "Telescope G[i]t files" },
+      },
+      ["<leader>fn"] = {
+         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
+         { desc = "Telescope [n]vim config files" },
+      },
+      ["<leader>fs"] = {
+         "<cmd> Telescope git_status <CR>",
+         { desc = "Telescope Git [s]tatus" },
       },
       ["<leader>fS"] = {
          "<cmd> Telescope grep_string <CR>",
@@ -585,48 +700,15 @@ M.telescope = {
          function()
             require("telescope.builtin").grep_string({ grep_open_files = true })
          end,
-         { desc = "Telescope grep s[T]ring local buffers" },
-      },
-      ["<leader>fb"] = {
-         "<cmd> Telescope buffers <CR>",
-         { desc = "Telescope [b]uffers" },
-      },
-      ["<leader>fh"] = {
-         "<cmd> Telescope help_tags <CR>",
-         { desc = "Telescope [h]elp tags" },
+         { desc = "Telescope grep s[T]ring open buffers" },
       },
       ["<leader>fz"] = {
          "<cmd> Telescope current_buffer_fuzzy_find <CR>",
          { desc = "Telescope fu[z]zy find current buffer" },
       },
-      ["<leader>fe"] = {
-         "<cmd> Telescope oldfiles <CR>",
-         { desc = "Telescope r[e]cent files" },
-      },
-      -- Consider using pcall here
-      ["<leader>fc"] = {
-         "<cmd> Telescope git_commits <CR>",
-         { desc = "Telescope Git [c]ommits" },
-      },
-      ["<leader>fC"] = {
-         "<cmd> Telescope git_bcommits <CR>",
-         { desc = "Telescope Git buffer [C]ommits" },
-      },
-      ["<leader>fi"] = {
-         "<cmd> Telescope git_files <CR>",
-         { desc = "Telescope G[i]t files" },
-      },
-      ["<leader>fs"] = {
-         "<cmd> Telescope git_status <CR>",
-         { desc = "Telescope Git [s]tatus" },
-      },
       ["<leader>f'"] = {
          "<cmd> Telescope marks <CR>",
          { desc = "Telescope marks" },
-      },
-      ["<leader>co"] = {
-         "<cmd> Telescope colorscheme enable_preview=true <CR>",
-         { desc = "Telescope [co]lorscheme" },
       },
    },
 }
@@ -683,14 +765,14 @@ M.todo_comments = {
       ["<leader>ft"] = {
          function()
             require("todo-comments")
-            vim.cmd("TodoTelescope")
+            vim.cmd.TodoTelescope()
          end,
          { desc = "Telescope [t]odo" },
       },
       ["<leader>xt"] = {
          function()
             require("todo-comments")
-            vim.cmd("TodoTrouble")
+            vim.cmd.TodoTrouble()
          end,
          { desc = "Trouble [t]odo" },
       },
@@ -705,7 +787,7 @@ M.undotree = {
                command = "topleft 30vnew",
             })
          end,
-         desc = "[U]ndotree toggle",
+         { desc = "[U]ndotree toggle" },
       },
    },
 }
@@ -727,8 +809,7 @@ M.background_transparency = {
             -- **after** color-related  updates
             vim.defer_fn(function()
                vim.notify(
-                  string.format(
-                     "Background transparency: %s",
+                  ("Background transparency: %s"):format(
                      new_state and "true" or "false"
                   ),
                   vim.log.levels.INFO,
@@ -736,9 +817,7 @@ M.background_transparency = {
                )
             end, 1)
          end,
-         {
-            desc = "[B]ackground t[r]ansparency toggle",
-         },
+         { desc = "[B]ackground t[r]ansparency toggle" },
       },
    },
 }
@@ -858,27 +937,16 @@ M.go = {
 M.haskell_tools = {
    plugin = true,
    n = {
-      -- haskell-language-server relies heavily on codeLenses,
-      -- so auto-refresh (see advanced configuration) is enabled by default
-      ["<leader>cr"] = {
-         vim.lsp.codelens.run,
-         { desc = "Ht [c]odelens [r]un", noremap = true, silent = true },
-      },
-
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ts"] = {
          "<cmd> lua require('haskell-tools').hoogle.hoogle_signature() <CR>",
-         { desc = "Ht [t]ype [s]ignature", noremap = true, silent = true },
+         { desc = "Ht [t]ype [s]ignature" },
       },
 
       -- Hoogle search for the type signature of the definition under the cursor
       ["<leader>ea"] = {
          "<cmd> lua require('haskell-tools').lsp.buf_eval_all() <CR>",
-         {
-            desc = "Ht [e]valuate [a]ll code snippets",
-            noremap = true,
-            silent = true,
-         },
+         { desc = "Ht [e]valuate [a]ll code snippets" },
       },
 
       -- Toggle a GHCI REPL for the current package
@@ -930,13 +998,13 @@ M.nvim_dap_ui = {
          function()
             require("dapui").close()
          end,
-         { desc = "[D]ap-[u]i [c]lose" },
+         { desc = "[D]AP-[u]i [c]lose" },
       },
       ["<leader>duo"] = {
          function()
             require("dapui").open()
          end,
-         { desc = "[D]ap-[u]i [o]pen" },
+         { desc = "[D]AP-[u]i [o]pen" },
       },
    },
 }
@@ -948,13 +1016,13 @@ M.nvim_dap_go = {
          function()
             require("dap-go").debug_test()
          end,
-         { desc = "[D]ebug [g]o [t]est" },
+         { desc = "[D]AP-[g]o debug current [t]est method/function" },
       },
-      ["<leader>dgl"] = {
+      ["<leader>dgT"] = {
          function()
-            require("dap-go").debug_last()
+            require("dap-go").debug_last_test()
          end,
-         { desc = "[D]ebug [g]o [l]ast test" },
+         { desc = "[D]AP-[g]o debug las[T] test method/function" },
       },
    },
 }
@@ -962,11 +1030,17 @@ M.nvim_dap_go = {
 M.nvim_dap_python = {
    plugin = true,
    n = {
-      ["<leader>dpr"] = {
+      ["<leader>dpc"] = {
+         function()
+            require("dap-python").test_class()
+         end,
+         { desc = "[D]AP-[p]ython debug current [c]lass" },
+      },
+      ["<leader>dpt"] = {
          function()
             require("dap-python").test_method()
          end,
-         { desc = "[D]AP [p]ython [r]un unit testing" },
+         { desc = "[D]AP-[p]ython debug current [t]est method/function" },
       },
    },
 }
@@ -1006,50 +1080,6 @@ M.nvim_lspconfig = {
          end,
          { desc = "LSP [w]orkspace [l]ist folders" },
       },
-      ["<leader>D"] = {
-         vim.lsp.buf.type_definition,
-         { desc = "LSP type [D]efinition" },
-      },
-      ["<leader>fos"] = {
-         function()
-            local state = require("core.state")
-            state.lsp_format_on_save_enabled_at_startup =
-               not state.lsp_format_on_save_enabled_at_startup
-            vim.notify(
-               string.format(
-                  "LSP format on save (global): %s",
-                  state.lsp_format_on_save_enabled_at_startup
-               ),
-               vim.log.levels.INFO,
-               { title = "core.keymaps.nvim_lspconfig" }
-            )
-         end,
-         { desc = "LSP [fo]rmat on [s]ave (global) toggle" },
-      },
-      ["<leader>foS"] = {
-         function()
-            local state = require("core.state")
-            if vim.b.lsp_format_on_save_current_buffer == nil then
-               vim.b.lsp_format_on_save_current_buffer =
-                  state.lsp_format_on_save_enabled_at_startup
-            end
-            vim.b.lsp_format_on_save_current_buffer =
-               not vim.b.lsp_format_on_save_current_buffer
-            vim.notify(
-               string.format(
-                  "LSP format on save (current buffer): %s",
-                  vim.b.lsp_format_on_save_current_buffer
-               ),
-               vim.log.levels.INFO,
-               { title = "core.keymaps.nvim_lspconfig" }
-            )
-         end,
-         { desc = "LSP [fo]rmat on [S]ave (current buffer) toggle" },
-      },
-      ["<leader>fd"] = {
-         "<cmd> Telescope lsp_definitions <CR>",
-         { desc = "Telescope LSP [d]efinitions" },
-      },
       ["<leader>fr"] = {
          "<cmd> Telescope lsp_references <CR>",
          { desc = "Telescope LSP [r]eferences" },
@@ -1078,8 +1108,7 @@ M.nvim_lspconfig = {
                end
             end
             vim.notify(
-               string.format(
-                  "LSP inlay hints (global): %s",
+               ("LSP inlay hints (global): %s"):format(
                   vim.g.inlay_hints_enabled
                ),
                vim.log.levels.INFO,
@@ -1106,8 +1135,7 @@ M.nvim_lspconfig = {
                { bufnr = bufnr }
             )
             vim.notify(
-               string.format(
-                  "LSP inlay hints (current buffer): %s",
+               ("LSP inlay hints (current buffer): %s"):format(
                   vim.b.inlay_hints_enabled
                ),
                vim.log.levels.INFO,
@@ -1234,7 +1262,7 @@ M.rust_rustaceanvim = {
       },
       ["K"] = {
          function()
-            vim.cmd.RustLsp({ "hover", "actions" }) -- supports rust-analyzer's grouping
+            vim.cmd.RustLsp({ "hover", "actions" })
          end,
          { desc = "Rustacean hover" },
       },

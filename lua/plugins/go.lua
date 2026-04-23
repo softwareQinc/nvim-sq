@@ -8,8 +8,9 @@ return {
       ---@param opts table
       function(_, opts)
          require("gopher").setup(opts)
+         local grp = vim.api.nvim_create_augroup("Gopher", { clear = true })
          vim.api.nvim_create_autocmd("FileType", {
-            group = vim.api.nvim_create_augroup("Gopher", { clear = true }),
+            group = grp,
             pattern = { "go" },
             desc = "Keymaps gopher (buffer-local)",
             callback =

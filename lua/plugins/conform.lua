@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
    "stevearc/conform.nvim",
    event = { "BufReadPost", "BufNewFile" },
@@ -6,7 +7,7 @@ return {
       require("conform").setup({
          formatters_by_ft = {
             cmake = { "cmake_format" },
-            go = { "gofumpt", "goimports-reviser" },
+            go = { "golines", "gofumpt", "goimports" },
             javascript = { "prettier" },
             json = { "prettier" },
             lua = { "stylua" },
@@ -15,23 +16,30 @@ return {
             sh = { "shfmt" },
             typescript = { "prettier" },
          },
+         ---@param bufnr integer Buffer number
+         ---@return table|nil conform.FormatOpts|nil
          format_on_save = function(bufnr)
-            local enabled = vim.b[bufnr].lsp_format_on_save_current_buffer
-            if enabled == false then
-               return nil
+            -- Buffer-local override (true/false) has highest priority
+            -- nil -> inherit global setting
+            local enabled = vim.b[bufnr].format_on_save_current_buffer
+
+            -- No buffer override -> use global toggle
+            if enabled == nil then
+               enabled = state.format_on_save_enabled_at_startup
             end
-            if not state.lsp_format_on_save_enabled_at_startup then
-               return nil
+
+            -- If formatting is disabled (buffer or global), skip
+            if not enabled then
+               return
             end
-            if
-               enabled == true or state.lsp_format_on_save_enabled_at_startup
-            then
-               return {
-                  async = false,
-                  timeout_ms = 500,
-                  lsp_format = "fallback",
-               }
-            end
+
+            -- Conform format options: synchronous formatting with a timeout,
+            -- falling back to LSP if no formatter is available
+            return {
+               async = false,
+               timeout_ms = 500,
+               lsp_format = "fallback",
+            }
          end,
       })
    end,

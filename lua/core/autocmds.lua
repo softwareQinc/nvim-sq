@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
       if buf_ft == "dapui_console" then
          return
       end
-      vim.cmd("startinsert")
+      vim.cmd.startinsert()
       vim.opt_local.number = false
    end,
 })

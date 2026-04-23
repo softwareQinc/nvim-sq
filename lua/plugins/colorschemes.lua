@@ -2,14 +2,12 @@
 return {
    {
       "catppuccin/nvim",
-      lazy = true,
       name = "catppuccin",
       priority = 1000,
    },
 
    {
       "sainnhe/everforest",
-      lazy = true,
       priority = 1000,
       config = function()
          -- Set contrast ("hard/medium/soft")
@@ -19,7 +17,6 @@ return {
 
    {
       "sainnhe/gruvbox-material",
-      lazy = true,
       priority = 1000,
       config = function()
          -- Set contrast ("hard/medium/soft")
@@ -29,47 +26,33 @@ return {
 
    {
       "ellisonleao/gruvbox.nvim",
-      lazy = true,
       priority = 1000,
    },
 
    {
       "rebelot/kanagawa.nvim",
-      lazy = true,
       priority = 1000,
       opts = {
          -- Remove the background of LineNr, {Sign,Fold}Column and friends
-         colors = {
-            theme = {
-               all = {
-                  ui = {
-                     bg_gutter = "none",
-                  },
-               },
-            },
-         },
+         colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
       },
    },
 
    {
       "rose-pine/neovim",
       name = "rose-pine",
-      lazy = true,
       priority = 1000,
    },
 
    {
       "folke/tokyonight.nvim",
-      lazy = true,
       priority = 1000,
    },
 
    {
       "Mofiqul/vscode.nvim",
-      lazy = true,
       priority = 1000,
       opts = {
-         -- Enable italic comment
          italic_comments = true,
       },
    },

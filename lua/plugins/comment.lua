@@ -2,5 +2,5 @@
 return {
    "numToStr/Comment.nvim",
    event = { "BufReadPost", "BufNewFile" },
-   opts = {},
+   opts = {}, -- lazy.nvim implicitly calls `setup({})`
 }

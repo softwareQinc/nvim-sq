@@ -161,20 +161,25 @@ plugins.
 
 ### Plugins
 
-Plugins are located under [lua/plugins](lua/plugins).
+Plugins are located in [lua/plugins](lua/plugins).
 
 ### Key mappings
 
-Key mappings can be found in [lua/core/keymaps.lua](lua/core/keymaps.lua).
+Key mappings are defined in [lua/core/keymaps.lua](lua/core/keymaps.lua).
 
-### Options
+### Neovim options
 
-Options are located in [lua/core/options.lua](lua/core/options.lua).
+Neovim options are set in [lua/core/options.lua](lua/core/options.lua).
+
+### Startup options
+
+Certain startup options, such as format-on-save and background transparency,
+are configured in [lua/core/state.lua](lua/core/state.lua).
 
 ### Snippets
 
-A collection of snippets for various programming/scripting languages can be
-found under [lua/snippets](lua/snippets).
+A collection of snippets for various programming/scripting languages is
+available in[lua/snippets](lua/snippets).
 
 ### Colour schemes
 
@@ -185,6 +190,12 @@ across sessions: scroll towards the end of the file and replace the
 `light_scheme_name` and the `dark_scheme_name`, respectively, with your
 favourite colour schemes. Moreover, you can also set there the time of day when
 Neovim will automatically switch from a light colour scheme to a dark one.
+
+### New experimental UI
+
+To enable Neovim's [experimental UI2](https://neovim.io/doc/user/lua/#_ui2),
+uncomment the relevant block in the Miscellaneous section of
+[lua/core/init.lua](lua/core/init.lua).
 
 ### GUI client
 

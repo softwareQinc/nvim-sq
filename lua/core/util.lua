@@ -3,43 +3,32 @@
 ---@class CoreUtil
 local M = {}
 
---- Merge 2 Lua tables into a new table
----@param table1 table?
----@param table2 table?
----@return table
-function M.merge_tables(table1, table2)
-   local merged_table = {}
-   if table1 then
-      for key, value in pairs(table1) do
-         merged_table[key] = value
-      end
-   end
-   if table2 then
-      for key, value in pairs(table2) do
-         merged_table[key] = value
-      end
-   end
-   return merged_table
-end
-
 --- Define keymaps from a mode → key → {rhs, opts} table and apply extra options
 ---@param mode string|string[] Mode or list of modes passed to vim.keymap.set
 ---@alias KeymapEntry { [1]: string|function, [2]: table|nil }
 ---@param rhs table<string, KeymapEntry> Mapping table keyed by lhs
----@param additional_options table? Extra options merged into each mapping
-local function map_keys_inner(mode, rhs, additional_options)
+---@param default_opts table? Default keymap options applied to all mappings (overridden by per-keymap options)
+local function map_keys_inner(mode, rhs, default_opts)
    for key, cmd in pairs(rhs) do
       local keymap = cmd[1]
       local options = cmd[2]
-      local all_options = M.merge_tables(options, additional_options)
+
+      -- Merge global defaults with per-keymap options
+      -- Later tables override earlier ones:
+      --   options > default_opts
+      local all_options = vim.tbl_extend(
+         "force",
+         default_opts or {}, -- global defaults
+         options or {} -- per-keymap, takes precendence
+      )
       vim.keymap.set(mode, key, keymap, all_options)
    end
 end
 
 --- Apply keymaps for each supported mode in a single keymap sub-table
 ---@param keymap_tbl table Mode-keyed table of mappings
----@param additional_options table? Extra options merged into each mapping
-function M.map_keys(keymap_tbl, additional_options)
+---@param default_opts table? Default keymap options applied to all mappings (overridden by per-keymap options)
+function M.map_keys(keymap_tbl, default_opts)
    local allowed_modes =
       { n = true, i = true, v = true, s = true, x = true, o = true, c = true }
    for mode, rhs in pairs(keymap_tbl) do
@@ -48,15 +37,15 @@ function M.map_keys(keymap_tbl, additional_options)
       -- If `mode` is a string, check if it's in our allowed list
       local primary_mode = type(mode) == "table" and mode[1] or mode
       if allowed_modes[primary_mode] then
-         map_keys_inner(mode, rhs, additional_options)
+         map_keys_inner(mode, rhs, default_opts)
       end
    end
 end
 
 --- Apply keymaps for all non-plugin keymap sub-tables in a keymaps table
 ---@param tbl table Table containing multiple keymap sub-tables
----@param additional_options table? Extra options merged into each mapping
-function M.map_all_keys(tbl, additional_options)
+---@param default_opts table? Default keymap options applied to all mappings (overridden by per-keymap options)
+function M.map_all_keys(tbl, default_opts)
    for _, keymap_tbl in pairs(tbl) do
       -- Keymap tables that contain `plugin = true` are skipped
       -- Keymaps are buffer-local/key-triggered and are performed in the plugin
@@ -64,7 +53,7 @@ function M.map_all_keys(tbl, additional_options)
       if keymap_tbl.plugin then
          goto continue
       end
-      M.map_keys(keymap_tbl, additional_options)
+      M.map_keys(keymap_tbl, default_opts)
       ::continue::
    end
 end
@@ -79,63 +68,6 @@ function M.set_options(options)
    end
 end
 
---- Create a format-on-save callback for LSP clients
----@param format_group integer Autocmd group dedicated to format-on-save
----@return fun(client: vim.lsp.Client, bufnr: integer)
-function M.format_on_save(format_group)
-   --- Register format-on-save for a buffer, if supported by the client
-   ---@param client vim.lsp.Client
-   ---@param bufnr integer
-   return function(client, bufnr)
-      if not client or not bufnr then
-         return
-      end
-
-      if not client:supports_method("textDocument/formatting") then
-         return
-      end
-
-      if
-         not vim.api.nvim_buf_is_valid(bufnr)
-         or not vim.api.nvim_buf_is_loaded(bufnr)
-      then
-         return
-      end
-
-      -- Keep exactly one BufWritePre formatter per buffer in this group
-      vim.api.nvim_clear_autocmds({
-         group = format_group,
-         buffer = bufnr,
-      })
-
-      vim.api.nvim_create_autocmd("BufWritePre", {
-         group = format_group,
-         buffer = bufnr,
-         desc = "LSP format on save",
-         callback = function()
-            local state = require("core.state")
-            local enabled = vim.b[bufnr].lsp_format_on_save_current_buffer
-
-            if enabled == false then
-               return
-            end
-
-            if
-               enabled == true or state.lsp_format_on_save_enabled_at_startup
-            then
-               vim.lsp.buf.format({
-                  async = false,
-                  bufnr = bufnr,
-                  filter = function(fmt_client)
-                     return fmt_client.id == client.id
-                  end,
-               })
-            end
-         end,
-      })
-   end
-end
-
 --- Close or delete the current buffer while preserving the window layout
 function M.smart_bd()
    local DEBUG = false
@@ -147,7 +79,7 @@ function M.smart_bd()
    local buf_bt = vim.api.nvim_get_option_value("buftype", { buf = buf_no })
    if DEBUG then
       vim.notify(
-         string.format("filetype: [%s] | buftype: [%s]", buf_ft, buf_bt),
+         ("filetype: [%s] | buftype: [%s]"):format(buf_ft, buf_bt),
          vim.log.levels.DEBUG,
          { title = "core.util.smart_bd (DEBUG)" }
       )
@@ -247,8 +179,7 @@ local shorter_source_names = {
 ---@param diagnostic table LSP diagnostic item
 ---@return string
 function M.diagnostic_format(diagnostic)
-   return string.format(
-      "%s %s (%s): %s",
+   return ("%s %s (%s): %s"):format(
       diagnostic_signs[diagnostic.severity],
       shorter_source_names[diagnostic.source] or diagnostic.source,
       diagnostic.code,

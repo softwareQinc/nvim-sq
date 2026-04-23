@@ -19,7 +19,7 @@ util.set_options(options)
 ------------------------------------------------------------------------------
 -- Keymaps
 local keymaps = require("core.keymaps")
-util.map_all_keys(keymaps)
+util.map_all_keys(keymaps, { silent = true })
 
 ------------------------------------------------------------------------------
 -- Auto commands
@@ -30,7 +30,24 @@ require("core.autocmds")
 local state = require("core.state")
 
 -- Enable native Undotree
-vim.cmd("packadd nvim.undotree")
+vim.cmd.packadd("nvim.undotree")
+
+-- Enable new experimental UI2
+-- require("vim._core.ui2").enable({
+--    enable = true,
+--    msg = {
+--       -- This redirect messages to the new system
+--       targets = {
+--          confirm = "cmd", -- Confirm prompts (e.g., :quit with unsaved changes)
+--          [""] = "msg", -- General messages (echo)
+--          bufwrite = "msg", -- Buffer write messages
+--          echo = "msg", -- :echo output
+--          echoerr = "msg", -- :echoerr output
+--          echomsg = "msg", -- :echomsg output
+--          emsg = "msg", -- Error messages (goes to the new pager buffer)
+--       },
+--    },
+-- })
 
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
@@ -40,16 +57,16 @@ vim.cmd("packadd nvim.undotree")
 -- TODO: Eliminate defer_fn() once it is no longer necessary
 if state.hardtime_enabled_at_startup then
    vim.defer_fn(function()
-      vim.cmd("Hardtime enable")
+      vim.cmd.Hardtime("enable")
    end, 1000)
 else
    vim.defer_fn(function()
-      vim.cmd("Hardtime disable")
+      vim.cmd.Hardtime("disable")
    end, 1000)
 end
 
--- Sets the keymap for enabling a transparent background. This is enabled if
--- the `state.background_transparency_enabled_at_startup` flag is true.
+-- Define the keymap to toggle transparent background. This is enabled if the
+-- `state.background_transparency_enabled_at_startup` flag is true.
 -- This keymap is not enabled in Neovide sessions.
 -- To modify the `state.background_transparency_enabled_at_startup` flag, edit
 -- its table entry in `lua/core/state.lua`.
@@ -57,9 +74,4 @@ end
 -- keymaps/settings.
 if not vim.g.neovide then
    util.map_keys(keymaps.background_transparency)
-   -- Hack to make the `nvim-colorizer` plugin attach to buffer when opening a
-   -- file from the command line
-   vim.defer_fn(function()
-      vim.cmd.colorscheme(vim.g.colors_name)
-   end, 1)
 end

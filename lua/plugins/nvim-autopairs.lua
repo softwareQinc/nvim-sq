@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
    "windwp/nvim-autopairs",
-   event = "InsertEnter",
+   event = "VeryLazy",
    opts = {
       fast_wrap = {},
       disable_filetype = { "TelescopePrompt", "vim" },

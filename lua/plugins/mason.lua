@@ -9,7 +9,7 @@ return {
             "black", -- Python
             "cmakelang", -- CMake
             "gofumpt", -- Go
-            "goimports-reviser", -- Go
+            "goimports", -- Go
             "golines", -- Go
             "latexindent", -- Latex
             "prettier", -- Multiple languages
@@ -48,7 +48,7 @@ return {
    -- Mason bridge for `nvim-lspconfig`, auto-installs language servers
    {
       "mason-org/mason-lspconfig.nvim",
-      dependencies = { "mason-org/mason.nvim", "neovim/nvim-lspconfig" },
+      dependencies = { "mason-org/mason.nvim" },
       event = "VeryLazy",
       opts = function()
          -- Language servers are automatically installed from `after/lsp`
