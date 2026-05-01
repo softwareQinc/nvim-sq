@@ -12,10 +12,10 @@ function M.set_light_scheme(color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       vim.notify(
-         "Color scheme '"
-            .. color_scheme
-            .. "' not found, switching to core.ui.color_toggle_default['light']: "
-            .. state.color_toggle_default["light"],
+         ("Color scheme '%s' not found, switching to `core.state.color_toggle_default['light']`: %s"):format(
+            color_scheme,
+            state.color_toggle_default["light"]
+         ),
          vim.log.levels.WARN,
          { title = "core.ui.set_light_scheme" }
       )
@@ -45,10 +45,10 @@ function M.set_dark_scheme(color_scheme)
    local status, _ = pcall(vim.cmd.colorscheme, color_scheme)
    if not status then
       vim.notify(
-         "Color scheme '"
-            .. color_scheme
-            .. "' not found, switching to core.ui.color_toggle_default['dark']: "
-            .. state.color_toggle_default["dark"],
+         ("Color scheme '%s' not found, switching to `core.state.color_toggle_default['dark']`: %s"):format(
+            color_scheme,
+            state.color_toggle_default["dark"]
+         ),
          vim.log.levels.WARN,
          { title = "core.ui.set_dark_scheme" }
       )
@@ -144,41 +144,32 @@ end
 --- Apply or remove background transparency
 ---@param transparent boolean Whether transparency should be enabled
 function M.set_background_transparency(transparent)
-   if transparent == true then
-      -- Set background to transparent while preserving other attributes
-      -- Set background to transparent while preserving other attributes
-      local transparency_elements = {
-         "BlinkCmpMenu",
-         "BlinkCmpMenuBorder",
-         "BlinkCmpDoc",
-         "BlinkCmpDocBorder",
-         "BlinkCmpSignatureHelp",
-         "BlinkCmpSignatureHelpBorder",
-         "EndOfBuffer",
-         "FloatBorder",
-         "Normal",
-         "NormalFloat",
-         "NormalNC",
-         "SignColumn",
-         "WinBar",
-         "WinBarNC",
-      }
-      for _, group in ipairs(transparency_elements) do
-         local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
-         hl.bg = nil
-         hl.ctermbg = nil
-         -- FIXME: Workaround for `gruvbox` NormalFloat bug causing transparency
-         -- in Tree-sitter context
-         local skip = (
-            vim.g.colors_name == "gruvbox" and group == "NormalFloat"
-         )
-         if not skip then
-            vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
-         end
-      end
-   else
+   if not transparent then
       -- Restore color scheme safely
       vim.cmd.colorscheme(vim.g.colors_name)
+      return
+   end
+   -- Set background to transparent while preserving other attributes
+   local transparency_elements = {
+      "EndOfBuffer",
+      "FloatBorder",
+      "Normal",
+      "NormalFloat",
+      "NormalNC",
+      "SignColumn",
+      "WinBar",
+      "WinBarNC",
+   }
+   for _, group in ipairs(transparency_elements) do
+      local hl = vim.api.nvim_get_hl(0, { name = group, link = false })
+      hl.bg = nil
+      hl.ctermbg = nil
+      -- FIXME: Workaround for `gruvbox` NormalFloat bug causing transparency
+      -- in Tree-sitter context
+      local skip = (vim.g.colors_name == "gruvbox" and group == "NormalFloat")
+      if not skip then
+         vim.api.nvim_set_hl(0, group, hl --[[@as vim.api.keyset.highlight]])
+      end
    end
 end
 

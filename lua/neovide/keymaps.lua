@@ -82,13 +82,13 @@ M.background_transparency = {
             local transparency_pct = math.floor((1 - opacity) * 100 + 0.5)
 
             vim.notify(
-               string.format("Transparent background: %d%%", transparency_pct),
+               ("Transparent background: %d%%"):format(transparency_pct),
                vim.log.levels.INFO,
                { title = "neovide.keymaps.background_transparency" }
             )
          end,
          {
-            desc = "Toggle [b]ackground t[r]ansparency or set via count (1-100)",
+            desc = "[B]ackground t[r]ansparency toggle or set via count (1-100)",
          },
       },
    },

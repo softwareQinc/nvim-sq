@@ -74,9 +74,6 @@ return {
             -- Replicate `indent = { enable = true }`
             vim.bo[buf].indentexpr =
                "v:lua.require'nvim-treesitter'.indentexpr()"
-
-            -- NOTE: `incremental_selection = { enable = true }` cannot be easily
-            -- replicated
          end
 
          local grp = vim.api.nvim_create_augroup("treesitter.setup", {})

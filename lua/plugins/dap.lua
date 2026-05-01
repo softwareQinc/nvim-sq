@@ -38,6 +38,7 @@ return {
          local function notify_session_end()
             if session_active then
                session_active = false
+               -- dapui.close()
             end
          end
          dap.listeners.before.event_terminated["dapui_config"] =

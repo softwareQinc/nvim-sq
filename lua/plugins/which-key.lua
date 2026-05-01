@@ -2,6 +2,6 @@
 return {
    "folke/which-key.nvim",
    event = "VeryLazy",
-   opts = {},
+   opts = {}, -- lazy.nvim implicitly calls `setup({})`
    keys = require("core.keymaps").which_key.keys,
 }

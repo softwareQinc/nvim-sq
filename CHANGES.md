@@ -1,36 +1,49 @@
 # Changelog
 
-## nvim-sq 2.1 - 8 April 2026
+## nvim-sq 3.0 - 30 April 2026
 
 ### Features
 
-- Major code refactoring
+- Major code refactoring, UI improvements, and plugin reconfiguration
 
 ### Plugins
 
 - Replaced [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with
-  [blink.nvim](https://github.com/Saghen/blink.cmp)
+  [blink.cmp](https://github.com/Saghen/blink.cmp)
 - Replaced [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim) with
   [conform.nvim](https://github.com/stevearc/conform.nvim) and
   [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 - Replaced [rust.vim](https://github.com/rust-lang/rust.vim) and
   [rust-tools.nvim](https://github.com/simrat39/rust-tools.nvim) with
   [rustaceanvim](https://github.com/mrcjkb/rustaceanvim)
-- Replaced [undotree](https://github.com/mbbill/undotree) with the new built-in
-  `nvim.undotree` plugin (Neovim 0.12 or later). The exisiting `<leader>u`
-  keymap is now bound to toggle the native plugin.
+- Replaced [undotree](https://github.com/mbbill/undotree) with Neovim's
+  built-in `nvim.undotree`; `<leader>u` now toggles the native plugin
 
 ### Key mappings
 
 - Added
+  - `<leader>bc` - Blink completion toggle (current buffer)
   - `<leader>duc` - DAP-UI close
   - `<leader>duo` - DAP-UI open
-
-- Replaced the following custom keymaps with built-in Neovim’s LSP keymaps
+  - `<leader>d` (normal/visual mode) - Delete (cut) to system clipboard
+  - `<leader>p` (normal/visual mode) - Paste from system clipboard
+  - `<leader>y` (normal/visual mode) - Yank to system clipboard
+  - `<leader>_` (normal/visual mode) - Delete without yanking (black hole
+    register)
+  - `p` (visual mode) - Paste without overwriting register
+  - `<` (visual mode) - Indent left (keep selection)
+  - `>` (visual mode) - Indent right (keep selection)
+- Replaced the following custom key mappings with Neovim’s built-in LSP key
+  mappings
   - `gi` -> `gri` (go to implementation)
   - `gs` -> `grr` (go to references)
-  - `<leader>ca` -> `gra` (code action; also used by Rustacean for Rust files)
+  - `<leader>ca` -> `gra` (code action; also used by
+    [rustaceanvim](https://github.com/mrcjkb/rustaceanvim) for Rust files)
+  - `<leader>D` -> `grt` (type definition)
   - `<leader>rn` -> `grn` (rename symbol)
+- Removed the custom key mapping
+  - `<leader>fd` (`Telescope lsp_definitions`) -> redundant; `gd` already
+    provides the same functionality (go to definition)
 
 ---
 
@@ -382,7 +395,7 @@
   [`after/ftplugin/markdown.lua`](after/ftplugin/markdown.lua)
 
   ```lua
-  vim.b.lsp_format_on_save_current_buffer = false
+  vim.b.format_on_save_current_buffer = false
   ```
 
   Replace `markdown.lua`
