@@ -100,6 +100,21 @@ vim.api.nvim_create_autocmd("FileType", {
       vim.opt_local.spell = false
    end,
 })
+-- Open the quickfix window after quickfix commands when results are available
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+   group = quickfix_grp,
+   pattern = { "grep", "make", "vimgrep", "helpgrep" },
+   desc = "Open quickfix window when results are available",
+   command = "cwindow",
+})
+-- Open the location window after location-list commands when results are
+-- available
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+   group = quickfix_grp,
+   pattern = { "lgrep", "lmake", "lvimgrep", "lhelpgrep" },
+   desc = "Open location window when results are available",
+   command = "lwindow",
+})
 
 -- Change color scheme automatically based on time of the day
 local auto_color_scheme_grp =

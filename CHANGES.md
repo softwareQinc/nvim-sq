@@ -1,5 +1,22 @@
 # Changelog
 
+## nvim-sq 3.1 - 11 May 2026
+
+### Features
+
+- Improved Neovim's `ripgrep` defaults for `:grep`, if available
+- Automatically open the quickfix/location window when results are available
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- None
+
+---
+
 ## nvim-sq 3.0 - 30 April 2026
 
 ### Features
