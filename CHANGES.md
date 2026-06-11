@@ -1,5 +1,24 @@
 # Changelog
 
+## nvim-sq 3.2 - 11 June 2026
+
+### Features
+
+- Minor code refactoring (deprecated API fixes), UI improvements, and
+  keybinding bug fixes for
+  [vim-tmux-navigator](https://github.com/christoomey/vim-tmux-navigator)
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- Added `Esc-Esc` to exit Terminal mode and return to Normal mode, avoiding
+  the default `C-\ C-n` mapping conflict with tmux
+
+---
+
 ## nvim-sq 3.1 - 11 May 2026
 
 ### Features

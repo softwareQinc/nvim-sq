@@ -29,8 +29,16 @@ end
 ---@param keymap_tbl table Mode-keyed table of mappings
 ---@param default_opts table? Default keymap options applied to all mappings (overridden by per-keymap options)
 function M.map_keys(keymap_tbl, default_opts)
-   local allowed_modes =
-      { n = true, i = true, v = true, s = true, x = true, o = true, c = true }
+   local allowed_modes = {
+      n = true, -- Normal mode
+      i = true, -- Insert mode
+      v = true, -- Visual and Select mode
+      s = true, -- Select mode
+      x = true, -- Visual mode
+      o = true, -- Operator-pending mode
+      c = true, -- Command-line mode
+      t = true, -- Terminal mode
+   }
    for mode, rhs in pairs(keymap_tbl) do
       -- Check if `mode` is a table; if so, check if the first element is
       -- allowed

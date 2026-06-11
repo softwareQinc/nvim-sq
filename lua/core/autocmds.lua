@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
    pattern = { "*" },
    desc = "Highlights yanked text",
    callback = function()
-      vim.highlight.on_yank({ timeout = 200 })
+      vim.hl.on_yank({ timeout = 200 })
    end,
 })
 -- Set SignColumn color to background color, aesthetically nicer

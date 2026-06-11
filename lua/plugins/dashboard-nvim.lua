@@ -44,5 +44,15 @@ return {
       }
       vim.opt.shortmess:append("I") -- disable Neovim welcome message
       require("dashboard").setup(opts)
+      -- Hide end-of-buffer `~` markers in the Dashboard buffer to avoid a
+      -- brief flash on startup
+      vim.api.nvim_create_autocmd("FileType", {
+         pattern = "dashboard",
+         callback = function()
+            vim.opt_local.fillchars:append({
+               eob = " ",
+            })
+         end,
+      })
    end,
 }

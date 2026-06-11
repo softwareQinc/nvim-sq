@@ -15,10 +15,9 @@ This configuration has been extensively tested on macOS and Linux
 
 ### Terminal
 
-Install a terminal application with TrueColor support, as the default macOS
+Install a terminal emulator with TrueColor support, as the default macOS
 Terminal does not support TrueColor. On macOS, you can install, for example,
-[WezTerm](https://wezterm.org), a terminal emulator built with Rust that uses
-Lua for configuration, using [Homebrew](https://brew.sh)
+[WezTerm](https://wezterm.org) using [Homebrew](https://brew.sh)
 
 ```shell
 brew install wezterm

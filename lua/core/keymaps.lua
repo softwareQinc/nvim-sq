@@ -101,6 +101,12 @@ M.generic = {
          { desc = "Indent right (keep selection)" },
       },
    },
+   t = {
+      ["<Esc><Esc>"] = {
+         "<C-\\><C-n>",
+         { desc = "Exit Terminal mode and return to Normal mode" },
+      },
+   },
    -- [{ "n", "i", "v", "x" }] = {
    --    ["<Up>"] = { "<Nop>" },
    --    ["<Down>"] = { "<Nop>" },
@@ -731,7 +737,7 @@ M.terminal = {
 }
 
 M.tmux_navigator = {
-   n = {
+   [{ "n", "t" }] = {
       ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
       ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
       ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
