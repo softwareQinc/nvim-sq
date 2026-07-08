@@ -67,7 +67,9 @@ return {
             }
 
             -- Replicate `highlight = { enable = true }`
-            if not disabled_ts_highlight[language] then
+            -- Skip special buffers to prevent rendering artifacts
+            local buftype = vim.bo[buf].buftype
+            if buftype == "" and not disabled_ts_highlight[language] then
                vim.treesitter.start(buf, language)
             end
 

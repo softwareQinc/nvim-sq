@@ -1,5 +1,24 @@
 # Changelog
 
+## nvim-sq 3.3 - 7 July 2026
+
+### Features
+
+- Maintenance release
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- Added `<leader>tq` for `:TodoQuickFix`
+- Replaced `C-l` with `C-M-l` for `TmuxNavigateRight` in Terminal mode,
+  allowing `C-l` to continue clearing the terminal screen when running inside
+  tmux
+
+---
+
 ## nvim-sq 3.2 - 11 June 2026
 
 ### Features

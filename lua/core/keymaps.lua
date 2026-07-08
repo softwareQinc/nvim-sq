@@ -737,9 +737,18 @@ M.terminal = {
 }
 
 M.tmux_navigator = {
-   [{ "n", "t" }] = {
+   n = {
       ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
       ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
+      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
+      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
+   },
+   t = {
+      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
+      ["<C-M-l>"] = {
+         "<cmd> TmuxNavigateRight <CR>",
+         { desc = "Window right" },
+      },
       ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
       ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
    },
@@ -774,6 +783,13 @@ M.todo_comments = {
             vim.cmd.TodoTelescope()
          end,
          { desc = "Telescope [t]odo" },
+      },
+      ["<leader>tq"] = {
+         function()
+            require("todo-comments")
+            vim.cmd.TodoQuickFix()
+         end,
+         { desc = "[T]odo [q]uickfix" },
       },
       ["<leader>xt"] = {
          function()
