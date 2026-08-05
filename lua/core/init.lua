@@ -36,7 +36,6 @@ vim.cmd.packadd("nvim.undotree")
 -- require("vim._core.ui2").enable({
 --    enable = true,
 --    msg = {
---       -- This redirect messages to the new system
 --       targets = {
 --          confirm = "cmd", -- Confirm prompts (e.g., :quit with unsaved changes)
 --          [""] = "msg", -- General messages (echo)

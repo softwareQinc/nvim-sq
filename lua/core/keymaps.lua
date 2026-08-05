@@ -736,24 +736,6 @@ M.terminal = {
    },
 }
 
-M.tmux_navigator = {
-   n = {
-      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
-      ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
-      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
-      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
-   },
-   t = {
-      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
-      ["<C-M-l>"] = {
-         "<cmd> TmuxNavigateRight <CR>",
-         { desc = "Window right" },
-      },
-      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
-      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
-   },
-}
-
 M.todo_comments = {
    n = {
       ["]t"] = {
@@ -811,6 +793,24 @@ M.undotree = {
          end,
          { desc = "[U]ndotree toggle" },
       },
+   },
+}
+
+M.vim_tmux_navigator = {
+   n = {
+      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
+      ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
+      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
+      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
+   },
+   t = {
+      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
+      ["<C-w>l"] = {
+         "<cmd> TmuxNavigateRight <CR>",
+         { desc = "Window right" },
+      },
+      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
+      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
    },
 }
 
@@ -1105,6 +1105,14 @@ M.nvim_lspconfig = {
       ["<leader>fr"] = {
          "<cmd> Telescope lsp_references <CR>",
          { desc = "Telescope LSP [r]eferences" },
+      },
+      ["<leader>fy"] = {
+         function()
+            require("telescope.builtin").lsp_document_symbols({
+               sorting_strategy = "ascending",
+            })
+         end,
+         { desc = "Telescope LSP document s[y]mbols" },
       },
       ["<leader>ih"] = {
          function()

@@ -13,8 +13,8 @@ return {
          -- Use Telescope as the UI for vim.ui.select / vim.ui.input
          "nvim-telescope/telescope-ui-select.nvim",
       },
+      event = "VeryLazy",
       version = "*",
-      cmd = { "Telescope" },
       config = function()
          require("telescope").setup({
             extensions = {

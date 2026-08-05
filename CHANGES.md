@@ -1,5 +1,22 @@
 # Changelog
 
+## nvim-sq 3.4 - 5 August 2026
+
+### Features
+
+- Maintenance release
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- Added `<leader>fy` for `:Telescope lsp_document_symbols`
+- Replaced `C-M-l` with `C-w l` for `:TmuxNavigateRight` in Terminal mode
+
+---
+
 ## nvim-sq 3.3 - 7 July 2026
 
 ### Features
@@ -13,7 +30,7 @@
 ### Key mappings
 
 - Added `<leader>tq` for `:TodoQuickFix`
-- Replaced `C-l` with `C-M-l` for `TmuxNavigateRight` in Terminal mode,
+- Replaced `C-l` with `C-M-l` for `:TmuxNavigateRight` in Terminal mode,
   allowing `C-l` to continue clearing the terminal screen when running inside
   tmux
 
