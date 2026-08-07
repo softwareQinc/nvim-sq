@@ -1,9 +1,9 @@
-# nvim-sq
+# nvim-sq - fzf-lua branch
 
 Custom [Neovim](https://neovim.io) configuration designed to enhance
 development productivity. Includes language servers, debug adapters, linters,
-formatters, auto-completion, fuzzy finding, Tree-sitter, tmux integration,
-ChatGPT, and more. Plugins are managed via
+formatters, auto-completion, fuzzy finding, Tree-sitter, tmux integration, and
+more. Plugins are managed via
 [lazy.nvim](https://github.com/folke/lazy.nvim). Requires Neovim 0.12 or newer.
 
 This configuration has been extensively tested on macOS and Linux
@@ -71,8 +71,8 @@ functionality.
     ```
 
 - [**ripgrep**](https://github.com/BurntSushi/ripgrep)
-  Required by [Telescope](https://github.com/nvim-telescope/telescope.nvim) for
-  live text searching.
+  Required by [fzf-lua](https://github.com/ibhagwan/fzf-lua) for live text
+  searching.
   - **macOS**
     ```shell
     brew install ripgrep
@@ -135,7 +135,8 @@ mv ~/.local/state/nvim ~/.local/state/nvim.bak
 Then clone the new configuration
 
 ```shell
-git clone https://github.com/softwareqinc/nvim-sq ~/.config/nvim --depth 1
+git clone -b fzf-lua --depth 1 \
+  https://github.com/softwareqinc/nvim-sq ~/.config/nvim
 ```
 
 Adapt the backup and installation commands accordingly for your operating

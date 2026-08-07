@@ -342,4 +342,21 @@ function M.get_lsp_server_names(dirs)
    return results
 end
 
+--- Returns a list of file paths for all currently listed and readable open buffers
+---@return string[] A table containing the file paths of valid open buffers
+function M.get_buffer_paths()
+   local search_paths = {}
+   for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+      -- Check if the buffer is listed (open in bufferline/manager)
+      if vim.fn.buflisted(bufnr) == 1 then
+         local name = vim.api.nvim_buf_get_name(bufnr)
+         -- Ensure it has a name and the file actually exists on disk
+         if name ~= "" and vim.fn.filereadable(name) == 1 then
+            table.insert(search_paths, name)
+         end
+      end
+   end
+   return search_paths
+end
+
 return M

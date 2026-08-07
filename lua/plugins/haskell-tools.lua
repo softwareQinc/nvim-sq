@@ -16,7 +16,6 @@ return {
                local keymaps = require("core.keymaps")
                local util = require("core.util")
                util.map_keys(keymaps.haskell_tools, { buffer = ev.buf })
-               require("telescope").load_extension("ht")
             end,
       })
    end,

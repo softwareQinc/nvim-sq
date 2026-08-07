@@ -1,7 +1,7 @@
 ---@type LazyPluginSpec
 return {
    "nvimdev/dashboard-nvim",
-   dependencies = { "nvim-tree/nvim-web-devicons" },
+   dependencies = { "nvim-tree/nvim-web-devicons", "ibhagwan/fzf-lua" },
    event = "VimEnter",
    cmd = "Dashboard",
    config = function()
@@ -24,7 +24,9 @@ return {
                {
                   desc = " Files",
                   group = "Label",
-                  action = "Telescope find_files",
+                  action = function()
+                     require("fzf-lua").files()
+                  end,
                   key = "f",
                },
                {

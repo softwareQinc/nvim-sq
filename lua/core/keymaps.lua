@@ -353,8 +353,31 @@ M.harpoon = {
          { desc = "Harpoon [4]" },
       },
       ["<leader>fj"] = {
-         "<cmd> Telescope harpoon marks <CR>",
-         { desc = "Telescope Harpoon marks" },
+         function()
+            local harpoon = require("harpoon")
+            local list = harpoon:list()
+            local items = {}
+
+            for index, item in ipairs(list.items) do
+               local value = item.value or item.context and item.context.value
+               if value and value ~= "" then
+                  table.insert(items, ("%d: %s"):format(index, value))
+               end
+            end
+
+            require("fzf-lua").fzf_exec(items, {
+               prompt = "Harpoon> ",
+               actions = {
+                  ["default"] = function(selected)
+                     local index = tonumber(selected[1]:match("^(%d+):"))
+                     if index then
+                        list:select(index)
+                     end
+                  end,
+               },
+            })
+         end,
+         { desc = "FzfLua Harpoon marks" },
       },
    },
 }
@@ -642,79 +665,100 @@ M.spectre = {
    },
 }
 
-M.telescope = {
+M.fzflua = {
    n = {
       ["<leader>co"] = {
-         "<cmd> Telescope colorscheme enable_preview=true <CR>",
-         { desc = "Telescope [co]lorscheme" },
+         "<cmd> FzfLua colorschemes <CR>",
+         { desc = "FzfLua [co]lorscheme" },
       },
       ["<leader>fa"] = {
-         "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>",
-         { desc = "Telescope [a]ll files" },
+         "<cmd> FzfLua files follow=true no_ignore=true hidden=true <CR>",
+         { desc = "FzfLua [a]ll files" },
       },
       ["<leader>fb"] = {
-         "<cmd> Telescope buffers <CR>",
-         { desc = "Telescope [b]uffers" },
+         "<cmd> FzfLua buffers <CR>",
+         { desc = "FzfLua [b]uffers" },
       },
       ["<leader>fc"] = {
-         "<cmd> Telescope git_commits <CR>",
-         { desc = "Telescope Git [c]ommits" },
+         "<cmd> FzfLua git_commits <CR>",
+         { desc = "FzfLua Git [c]ommits" },
       },
       ["<leader>fC"] = {
-         "<cmd> Telescope git_bcommits <CR>",
-         { desc = "Telescope Git buffer [C]ommits" },
+         "<cmd> FzfLua git_bcommits <CR>",
+         { desc = "FzfLua Git buffer [C]ommits" },
       },
       ["<leader>fe"] = {
-         "<cmd> Telescope oldfiles <CR>",
-         { desc = "Telescope r[e]cent files" },
+         "<cmd> FzfLua oldfiles <CR>",
+         { desc = "FzfLua r[e]cent files" },
       },
       ["<leader>ff"] = {
-         "<cmd> Telescope find_files <CR>",
-         { desc = "Telescope [f]iles" },
+         "<cmd> FzfLua files <CR>",
+         { desc = "FzfLua [f]iles" },
       },
       ["<leader>fg"] = {
-         "<cmd> Telescope live_grep <CR>",
-         { desc = "Telescope live [g]rep" },
+         "<cmd> FzfLua live_grep <CR>",
+         { desc = "FzfLua live [g]rep" },
       },
       ["<leader>fG"] = {
          function()
-            require("telescope.builtin").live_grep({ grep_open_files = true })
+            local search_paths = require("core.util").get_buffer_paths()
+            if #search_paths == 0 then
+               vim.notify(
+                  "No open file buffers found to live grep",
+                  vim.log.levels.WARN
+               )
+               return
+            end
+            require("fzf-lua").live_grep({
+               search_paths = search_paths,
+            })
          end,
-         { desc = "Telescope live [G]rep open buffers" },
+         { desc = "FzfLua live [G]rep open buffers" },
       },
       ["<leader>fh"] = {
-         "<cmd> Telescope help_tags <CR>",
-         { desc = "Telescope [h]elp tags" },
+         "<cmd> FzfLua helptags <CR>",
+         { desc = "FzfLua [h]elp tags" },
       },
       ["<leader>fi"] = {
-         "<cmd> Telescope git_files <CR>",
-         { desc = "Telescope G[i]t files" },
+         "<cmd> FzfLua git_files <CR>",
+         { desc = "FzfLua G[i]t files" },
       },
       ["<leader>fn"] = {
-         "<cmd> lua require('telescope.builtin').find_files{cwd=vim.fn.stdpath 'config'} <CR>",
-         { desc = "Telescope [n]vim config files" },
+         "<cmd> lua require('fzf-lua').files({ cwd = vim.fn.stdpath('config') }) <CR>",
+         { desc = "FzfLua [n]vim config files" },
       },
       ["<leader>fs"] = {
-         "<cmd> Telescope git_status <CR>",
-         { desc = "Telescope Git [s]tatus" },
+         "<cmd> FzfLua git_status <CR>",
+         { desc = "FzfLua Git [s]tatus" },
       },
       ["<leader>fS"] = {
-         "<cmd> Telescope grep_string <CR>",
-         { desc = "Telescope grep [S]tring" },
+         "<cmd> FzfLua grep_cword <CR>",
+         { desc = "FzfLua grep [S]tring" },
       },
       ["<leader>fT"] = {
          function()
-            require("telescope.builtin").grep_string({ grep_open_files = true })
+            local search_paths = require("core.util").get_buffer_paths()
+            if #search_paths == 0 then
+               vim.notify(
+                  "No open file buffers found to grep",
+                  vim.log.levels.WARN
+               )
+               return
+            end
+            require("fzf-lua").grep({
+               search = vim.fn.expand("<cword>"),
+               search_paths = search_paths,
+            })
          end,
-         { desc = "Telescope grep s[T]ring open buffers" },
+         { desc = "FzfLua grep s[T]ring open buffers" },
       },
       ["<leader>fz"] = {
-         "<cmd> Telescope current_buffer_fuzzy_find <CR>",
-         { desc = "Telescope fu[z]zy find current buffer" },
+         "<cmd> FzfLua blines <CR>",
+         { desc = "FzfLua fu[z]zy find current buffer" },
       },
       ["<leader>f'"] = {
-         "<cmd> Telescope marks <CR>",
-         { desc = "Telescope marks" },
+         "<cmd> FzfLua marks <CR>",
+         { desc = "FzfLua marks" },
       },
    },
 }
@@ -762,9 +806,11 @@ M.todo_comments = {
       ["<leader>ft"] = {
          function()
             require("todo-comments")
-            vim.cmd.TodoTelescope()
+            require("todo-comments.fzf").todo({
+               prompt = "Filter TODOs> ",
+            })
          end,
-         { desc = "Telescope [t]odo" },
+         { desc = "FzfLua [t]odo" },
       },
       ["<leader>tq"] = {
          function()
@@ -1103,16 +1149,14 @@ M.nvim_lspconfig = {
          { desc = "LSP [w]orkspace [l]ist folders" },
       },
       ["<leader>fr"] = {
-         "<cmd> Telescope lsp_references <CR>",
-         { desc = "Telescope LSP [r]eferences" },
+         "<cmd> FzfLua lsp_references <CR>",
+         { desc = "FzfLua LSP [r]eferences" },
       },
       ["<leader>fy"] = {
          function()
-            require("telescope.builtin").lsp_document_symbols({
-               sorting_strategy = "ascending",
-            })
+            require("fzf-lua").lsp_document_symbols()
          end,
-         { desc = "Telescope LSP document s[y]mbols" },
+         { desc = "FzfLua LSP document s[y]mbols" },
       },
       ["<leader>ih"] = {
          function()

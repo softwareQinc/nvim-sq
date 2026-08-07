@@ -1,5 +1,26 @@
 # Changelog
 
+## nvim-sq - fzf-lua branch
+
+### Features
+
+- Migrated the picker interface from
+  [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) to
+  [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+
+### Plugins
+
+- Replaced [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+  with [fzf-lua](https://github.com/ibhagwan/fzf-lua)
+- Removed [ChatGPT.nvim](https://github.com/jackMort/ChatGPT.nvim) because it
+  depends on Telescope
+
+### Key mappings
+
+- None
+
+---
+
 ## nvim-sq 3.4 - 5 August 2026
 
 ### Features

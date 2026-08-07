@@ -33,20 +33,20 @@ local state = require("core.state")
 vim.cmd.packadd("nvim.undotree")
 
 -- Enable new experimental UI2
--- require("vim._core.ui2").enable({
---    enable = true,
---    msg = {
---       targets = {
---          confirm = "cmd", -- Confirm prompts (e.g., :quit with unsaved changes)
---          [""] = "msg", -- General messages (echo)
---          bufwrite = "msg", -- Buffer write messages
---          echo = "msg", -- :echo output
---          echoerr = "msg", -- :echoerr output
---          echomsg = "msg", -- :echomsg output
---          emsg = "msg", -- Error messages (goes to the new pager buffer)
---       },
---    },
--- })
+require("vim._core.ui2").enable({
+   enable = true,
+   msg = {
+      targets = {
+         confirm = "cmd", -- Confirm prompts (e.g., :quit with unsaved changes)
+         [""] = "msg", -- General messages (echo)
+         bufwrite = "msg", -- Buffer write messages
+         echo = "msg", -- :echo output
+         echoerr = "msg", -- :echoerr output
+         echomsg = "msg", -- :echomsg output
+         emsg = "msg", -- Error messages (goes to the new pager buffer)
+      },
+   },
+})
 
 -- Enable Hardtime.nvim hardtime mode at startup if
 -- `state.hardtime_enabled_at_startup` is true
