@@ -21,6 +21,22 @@
 
 ---
 
+## nvim-sq 3.5 - 10 September 2026
+
+### Features
+
+- Maintenance release
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- None
+
+---
+
 ## nvim-sq 3.4 - 5 August 2026
 
 ### Features

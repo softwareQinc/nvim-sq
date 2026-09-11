@@ -285,10 +285,7 @@ Next, to enable full LSP integration, execute in a shell
 
 ```shell
 julia --project="~/.julia/environments/nvim-lspconfig" \
-  -e 'using Pkg;
-      Pkg.add("LanguageServer");
-      Pkg.add("SymbolServer");
-      Pkg.add("StaticLint")'
+  -e 'using Pkg; Pkg.add("LanguageServer");
 ```
 
 ---
