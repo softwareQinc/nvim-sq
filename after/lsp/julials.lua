@@ -5,7 +5,7 @@ return {
       "julia",
       "--project=@nvim-lspconfig",
       "-e",
-      "using LanguageServer; using SymbolServer; runserver()",
+      "using LanguageServer; runserver()",
    },
    filetypes = { "julia" },
 }

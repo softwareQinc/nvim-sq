@@ -1,5 +1,22 @@
 # Changelog
 
+## nvim-sq 3.5 - 21 September 2026
+
+### Features
+
+- Maintenance release
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- Replaced `C-l` with `C-w l` for `:TmuxNavigateRight` to avoid conflicts with
+  Neovim 0.13's new multiple-cursor clearing command
+
+---
+
 ## nvim-sq 3.4 - 5 August 2026
 
 ### Features
