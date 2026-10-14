@@ -248,10 +248,14 @@ Debug adapters are configured and installed by
 
 Linters and formatters are
 
-- Installed via [mason-null-ls.nvim](https://github.com/jay-babu/mason-null-ls.nvim),
-  see [lua/plugins/mason.lua](lua/plugins/mason.lua)
-- Configured via [none-ls.nvim](https://github.com/nvimtools/none-ls.nvim), see
-  see [lua/plugins/none-ls.lua](lua/plugins/none-ls.lua)
+- Installed via [mason.nvim](https://github.com/mason-org/mason.nvim), see
+  [lua/plugins/mason.lua](lua/plugins/mason.lua)
+- Configured for formatting via
+  [conform.nvim](https://github.com/stevearc/conform.nvim),
+  see [lua/plugins/conform.lua](lua/plugins/conform.lua)
+- Configured for linting via
+  [nvim-lint](https://github.com/mfussenegger/nvim-lint),
+  see [lua/plugins/nvim-lint.lua](lua/plugins/nvim-lint.lua)
 
 ### Potential issues
 
@@ -284,10 +288,7 @@ Next, to enable full LSP integration, execute in a shell
 
 ```shell
 julia --project="~/.julia/environments/nvim-lspconfig" \
-  -e 'using Pkg;
-      Pkg.add("LanguageServer");
-      Pkg.add("SymbolServer");
-      Pkg.add("StaticLint")'
+  -e 'using Pkg; Pkg.add("LanguageServer");
 ```
 
 ---

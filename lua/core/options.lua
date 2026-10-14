@@ -53,6 +53,8 @@ M = {
       -- colorcolumn = "80,120",
 
       winborder = "rounded",
+
+      exrc = true,
    },
    g = {},
 }

@@ -797,13 +797,7 @@ M.undotree = {
 }
 
 M.vim_tmux_navigator = {
-   n = {
-      ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
-      ["<C-l>"] = { "<cmd> TmuxNavigateRight <CR>", { desc = "Window right" } },
-      ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
-      ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
-   },
-   t = {
+   [{ "n", "t" }] = {
       ["<C-h>"] = { "<cmd> TmuxNavigateLeft <CR>", { desc = "Window left" } },
       ["<C-w>l"] = {
          "<cmd> TmuxNavigateRight <CR>",
