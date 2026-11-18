@@ -1,5 +1,21 @@
 # Changelog
 
+## Upcoming release
+
+### Features
+
+- Maintenance release
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- Added `C-\` for `:TmuxNavigatePrevious`
+
+---
+
 ## nvim-sq 3.5 - 14 October 2026
 
 ### Features
