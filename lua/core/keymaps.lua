@@ -851,6 +851,10 @@ M.vim_tmux_navigator = {
       },
       ["<C-j>"] = { "<cmd> TmuxNavigateDown <CR>", { desc = "Window down" } },
       ["<C-k>"] = { "<cmd> TmuxNavigateUp <CR>", { desc = "Window up" } },
+      ["<C-\\>"] = {
+         "<cmd> TmuxNavigatePrevious <CR>",
+         { desc = "Window previous" },
+      },
    },
 }
 
