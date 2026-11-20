@@ -249,14 +249,14 @@ Debug adapters are configured and installed by
 
 Linters and formatters are
 
-- Installed via [mason.nvim](https://github.com/mason-org/mason.nvim),
-  see [lua/plugins/mason.lua](lua/plugins/mason.lua)
-- Formatting is configured via
-  [conform.nvim](https://github.com/stevearc/conform.nvim), see
-  [lua/plugins/conform.lua](lua/plugins/conform.lua)
-- Linting is configured via
-  [nvim-lint](https://github.com/mfussenegger/nvim-lint), see
-  [lua/plugins/nvim-lint.lua](lua/plugins/nvim-lint.lua)
+- Installed via [mason.nvim](https://github.com/mason-org/mason.nvim), see
+  [lua/plugins/mason.lua](lua/plugins/mason.lua)
+- Configured for formatting via
+  [conform.nvim](https://github.com/stevearc/conform.nvim),
+  see [lua/plugins/conform.lua](lua/plugins/conform.lua)
+- Configured for linting via
+  [nvim-lint](https://github.com/mfussenegger/nvim-lint),
+  see [lua/plugins/nvim-lint.lua](lua/plugins/nvim-lint.lua)
 
 ### Potential issues
 

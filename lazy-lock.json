@@ -53,7 +53,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "oil.nvim": { "branch": "master", "commit": "d3733d933833a0e59b813ecec99341527adf0c28" },
   "openqasm.vim": { "branch": "main", "commit": "c9e132468b3ab1827c6e9de955dbf2471875726c" },
-  "orgmode": { "branch": "master", "commit": "08c3ea6ca3745d49435378cddfa93d06e0b39574" },
+  "orgmode": { "branch": "master", "commit": "e29856da93af4b68f8d5f204f6c584c29b035470" },
   "outline.nvim": { "branch": "main", "commit": "6f95d46ff1d128fd4e6ec77f660caec6ad40a122" },
   "pathlib.nvim": { "branch": "main", "commit": "a0d3dbbe00ce6a546426b1aed3838a82fe6bfc42" },
   "plenary.nvim": { "branch": "master", "commit": "74b06c6c75e4eeb3108ec01852001636d85a932b" },
