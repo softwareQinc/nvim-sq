@@ -1,6 +1,6 @@
 # Changelog
 
-## Upcoming release
+## nvim-sq 3.6 - 20 November 2026
 
 ### Features
 
