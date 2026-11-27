@@ -6,7 +6,6 @@ return {
       require("lint").linters_by_ft = {
          bash = { "shellcheck" },
          cmake = { "cmakelint" },
-         python = { "mypy" },
       }
       local grp = vim.api.nvim_create_augroup("Nvim-lint", { clear = true })
       vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {

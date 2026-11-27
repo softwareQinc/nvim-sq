@@ -21,6 +21,24 @@
 
 ---
 
+## nvim-sq 3.7 - 27 November 2026
+
+### Features
+
+- Maintenance release
+- Removed the [mypy](https://mypy-lang.org) Python linter, as type checking is
+  already handled by [BasedPyright](https://github.com/DetachHead/basedpyright)
+
+### Plugins
+
+- None
+
+### Key mappings
+
+- None
+
+---
+
 ## nvim-sq 3.6 - 20 November 2026
 
 ### Features

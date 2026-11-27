@@ -18,7 +18,6 @@ return {
          }
          local linters = {
             "cmakelint", -- CMake
-            "mypy", -- Python
             "shellcheck", -- Bash/sh
          }
 
